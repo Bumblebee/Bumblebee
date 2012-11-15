@@ -4,7 +4,7 @@ using OpenQA.Selenium;
 
 namespace Bumblebee.UIElements.Generic
 {
-    class Clickable<TResult> : ConditionalClickable, IClickable<TResult> where TResult : Block
+    public class Clickable<TResult> : ConditionalClickable, IClickable<TResult> where TResult : Block
     {
         public Clickable(Block parent, By by)
             : base(parent, by)
