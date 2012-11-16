@@ -1,4 +1,4 @@
 Bumblebee
 =========
 
-A selenium abstraction layer for .NET. Build page objects for dynamic pages. More documentation to come.
+Bumblebee is a layer on top of the Selenium browser automation framework. Using Bumblebee and the accompanying design paradigm allows for easy creation of page objects, even on a dynamic web page.
