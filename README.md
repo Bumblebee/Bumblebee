@@ -21,10 +21,10 @@ Elements
 
 Each type of element is represented by an interface. For example IClickable represents both buttons and links (with a single method, "Click"). The return type of the action taken by the element is decided in the definition of the element's property. The return type is the class of the resulting block, and is specified as a generic type.
 
-For example, say we have a class represented google's home page, HomePage, and one for the search results page, SearchResultsPage. Both these classes extend Block. In HomePage, we can define the search bar as ITextField<HomePage> SearchBar { ... }. The generic type is where focus will be after text is entered. Because it does not switch pages when text is entered, the type parameter is the same as the parent class. Next we can define the search button as IClickable<SearchResultsPage> { ... }. After the button is clicked, focus will shift to the search results page.
+For example, say we have a class represented google's home page, HomePage, and one for the search results page, SearchResultsPage. Both these classes extend Block. In HomePage, we can define the search bar as <code>ITextField&lt;HomePage&gt; SearchBar { ... }</code> The generic type is where focus will be after text is entered. Because it does not switch pages when text is entered, the type parameter is the same as the parent class. Next we can define the search button as <code>IClickable&lt;SearchResultsPage&gt; { ... }</code> After the button is clicked, focus will shift to the search results page.
 
 Using the framework above, we can automate a google search like so:
 
-Session.GoTo<HomePage>().SearchBar.EnterText("kittens").SearchButton.Click();
+<code>Session.GoTo&lt;HomePage&gt;().SearchBar.EnterText("kittens").SearchButton.Click();</code>
 
 To be continued...
