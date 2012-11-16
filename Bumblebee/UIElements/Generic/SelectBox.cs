@@ -1,10 +1,12 @@
-﻿using Bumblebee.UI.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Bumblebee.UI.Generic;
 using Bumblebee.UIElements.Conditional;
 using OpenQA.Selenium;
 
 namespace Bumblebee.UIElements.Generic
 {
-    public class SelectBox<TResult> : ConditionalSelectBox, ISelectBox<TResult> where TResult : Block
+    public class SelectBox<TResult> : Element, ISelectBox<TResult> where TResult : Block
     {
         public SelectBox(Block parent, By by) : base(parent, by)
         {
@@ -14,14 +16,9 @@ namespace Bumblebee.UIElements.Generic
         {
         }
 
-        public TResult Select(int index)
+        public IEnumerable<IClickable<TResult>> Options
         {
-            return Select<TResult>(index);
-        }
-
-        public TResult Select(string text)
-        {
-            return Select<TResult>(text);
+            get { return GetElements(By.TagName("option")).Select(opt => new Clickable<TResult>(this, opt)); }
         }
     }
 }

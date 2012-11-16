@@ -34,7 +34,7 @@ namespace Bumblebee
             } 
             catch (InvalidOperationException)
             {
-                throw new NoSuchElementException("Tried to get element in scope " + Dom + " with selector " + by);
+                throw new NoSuchElementException("Tried to get element in scope " + Dom.GetID() + " with selector " + by);
             }
         }
 

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Bumblebee.UI;
+using Bumblebee.UI.Generic;
+using OpenQA.Selenium;
 
 namespace Bumblebee
 {
@@ -17,6 +19,11 @@ namespace Bumblebee
         public static TUIElement FirstWithText<TUIElement>(this IEnumerable<TUIElement> uiElements, string text) where TUIElement : IUIElement
         {
             return uiElements.First(uiElement => uiElement.Text == text);
+        }
+
+        public static string GetID(this IWebElement element)
+        {
+            return element.GetAttribute("id");
         }
     }
 }
