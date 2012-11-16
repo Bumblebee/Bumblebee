@@ -4,6 +4,6 @@ namespace Bumblebee.UI
 {
     public interface IUIElement
     {
-        string Text { get; }
+        
     }
 }

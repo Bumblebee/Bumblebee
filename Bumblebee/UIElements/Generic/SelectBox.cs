@@ -16,9 +16,9 @@ namespace Bumblebee.UIElements.Generic
         {
         }
 
-        public IEnumerable<IClickable<TResult>> Options
+        public IEnumerable<IOption<TResult>> Options
         {
-            get { return GetElements(By.TagName("option")).Select(opt => new Clickable<TResult>(this, opt)); }
+            get { return GetElements(By.TagName("option")).Select(opt => new Option<TResult>(this, opt)); }
         }
     }
 }
