@@ -26,9 +26,9 @@ namespace Bumblebee.UIElements.Generic
             Session.Driver.FindElement(By.Id(buttonId)).Click();
         }
 
-        public IEnumerable<IClickable<TResult>> Options
+        public IEnumerable<IOption<TResult>> Options
         {
-            get { return GetElements(By.TagName("a")).Select(opt => new Clickable<TResult>(this, opt)); }
+            get { return GetElements(By.TagName("a")).Select(opt => new Option<TResult>(this, opt)); }
         }
     }
 }

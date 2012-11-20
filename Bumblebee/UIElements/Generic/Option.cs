@@ -1,6 +1,9 @@
+using Bumblebee.UI.Generic;
+using OpenQA.Selenium;
+
 namespace Bumblebee.UIElements.Generic
 {
-    public class Option<TResult> : Clickable<TResult>, IClickable<TResult>, IOption<TResult> where TResult : Block
+    public class Option<TResult> : Clickable<TResult>, IOption<TResult> where TResult : Block
     {
         public Option(Block parent, By by) : base(parent, by)
         {

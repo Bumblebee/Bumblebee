@@ -1,9 +1,7 @@
-﻿using System.Collections.Generic;
-
-namespace Bumblebee.UI
+﻿namespace Bumblebee.UI
 {
     public interface IUIElement
     {
-        
+         
     }
 }

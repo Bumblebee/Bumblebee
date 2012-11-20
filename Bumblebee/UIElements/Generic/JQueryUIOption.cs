@@ -1,6 +1,10 @@
+using System;
+using Bumblebee.UI.Generic;
+using OpenQA.Selenium;
+
 namespace Bumblebee.UIElements.Generic
 {
-    public class JQueryUIOption<TResult> : Clickable<TResult>, IClickable<TResult>, IOption<TResult> where TResult : Block
+    public class JQueryUIOption<TResult> : Clickable<TResult>, IOption<TResult> where TResult : Block
     {
         public JQueryUIOption(Block parent, By by) : base(parent, by)
         {
@@ -10,6 +14,6 @@ namespace Bumblebee.UIElements.Generic
         {
         }
         
-        public bool Selected { get { throw new NotImplementedException(); } }
+        public bool Selected { get { return Dom.GetAttribute("aria-selected") != "true"; } }
     }
 }

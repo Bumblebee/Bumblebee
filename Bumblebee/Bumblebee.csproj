@@ -67,14 +67,17 @@
     <Compile Include="Session.cs" />
     <Compile Include="UIElements\Generic\Clickable.cs" />
     <Compile Include="UIElements\Conditional\ConditionalClickable.cs" />
+    <Compile Include="UIElements\Generic\JQueryUIOption.cs" />
     <Compile Include="UIElements\Generic\JQueryUISelectBox.cs" />
+    <Compile Include="UIElements\Generic\Option.cs" />
     <Compile Include="UIElements\Generic\SelectBox.cs" />
     <Compile Include="UIElements\Generic\TextField.cs" />
     <Compile Include="UI\Generic\IClickable.cs" />
     <Compile Include="UI\Conditional\IConditionalClickable.cs" />
+    <Compile Include="UI\Generic\IOption.cs" />
     <Compile Include="UI\Generic\ISelectBox.cs" />
     <Compile Include="UI\Generic\ITextField.cs" />
-    <Compile Include="UI\UIElement.cs" />
+    <Compile Include="UI\IUIElement.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
