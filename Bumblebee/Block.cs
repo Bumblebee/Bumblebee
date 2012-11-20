@@ -18,7 +18,6 @@ namespace Bumblebee
         protected Block(Session session)
         {
             Session = session;
-            Thread.Sleep(200);
         }
 
         protected internal IList<IWebElement> GetElements(By by)
@@ -38,7 +37,7 @@ namespace Bumblebee
             }
         }
 
-        protected void VerifyElementPresent(By by)
+        protected internal void VerifyElementPresent(By by)
         {
             try
             {
@@ -50,7 +49,7 @@ namespace Bumblebee
             }
         }
 
-        protected void VerifyElementAbsent(By by)
+        protected internal void VerifyElementAbsent(By by)
         {
             try
             {
@@ -63,18 +62,6 @@ namespace Bumblebee
             throw new BadStateException("Couldn't verify absence of element " + by);
         }
 
-        protected TResult Result<TResult>() where TResult : Block
-        {
-            var type = typeof (TResult);
-            var constructor = type.GetConstructor(new[] {typeof (Session)});
-
-            if (constructor == null)
-            {
-                throw new ArgumentException("The result type specified (" + type + ") is not valid as a result. " +
-                                            "It must have a constructor that takes only a session.");
-            }
-
-            return (TResult) constructor.Invoke(new object[] {Session});
-        }
+        
     }
 }

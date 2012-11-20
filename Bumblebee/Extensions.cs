@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using Bumblebee.UI;
 using Bumblebee.UI.Generic;
 using OpenQA.Selenium;
@@ -27,6 +28,24 @@ namespace Bumblebee
         public static string GetID(this IWebElement element)
         {
             return element.GetAttribute("id");
+        }
+
+        public static TBlock Pause<TBlock>(this TBlock block, int seconds) where TBlock : Block
+        {
+            Thread.Sleep(1000 * seconds);
+            return block;
+        }
+
+        public static TBlock VerifyPresence<TBlock>(this TBlock block, By by) where TBlock : Block
+        {
+            block.VerifyElementPresent(by);
+            return block;
+        }
+
+        public static TBlock VerifyAbsence<TBlock>(this TBlock block, By by) where TBlock : Block
+        {
+            block.VerifyElementAbsent(by);
+            return block;
         }
     }
 }

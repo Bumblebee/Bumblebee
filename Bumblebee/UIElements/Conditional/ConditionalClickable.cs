@@ -18,7 +18,7 @@ namespace Bumblebee.UIElements.Conditional
         public TResult Click<TResult>() where TResult : Block
         {
             Dom.Click();
-            return Result<TResult>();
+            return Session.CurrentBlock<TResult>();
         }
     }
 }

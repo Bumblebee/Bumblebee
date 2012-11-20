@@ -30,6 +30,20 @@ namespace Bumblebee
             return (TBlock) method.Invoke(null, new object[] {this});
         }
 
+        public TBlock CurrentBlock<TBlock>() where TBlock : Block
+        {
+            var type = typeof(TBlock);
+            var constructor = type.GetConstructor(new[] { typeof(Session) });
+
+            if (constructor == null)
+            {
+                throw new ArgumentException("The result type specified (" + type + ") is not a valid block. " +
+                                            "It must have a constructor that takes only a session.");
+            }
+
+            return (TBlock)constructor.Invoke(new object[] { this });
+        }
+
         public void End()
         {
             Driver.Quit();

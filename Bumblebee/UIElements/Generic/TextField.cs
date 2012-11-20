@@ -18,7 +18,7 @@ namespace Bumblebee.UIElements.Generic
         public TResult EnterText(string text)
         {
             Dom.SendKeys(text);
-            return Result<TResult>();
+            return Session.CurrentBlock<TResult>();
         }
     }
 }
