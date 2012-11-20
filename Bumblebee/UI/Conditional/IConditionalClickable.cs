@@ -1,8 +1,7 @@
 ﻿namespace Bumblebee.UI.Conditional
 {
-    public interface IConditionalClickable : IUIElement
+    public interface IConditionalClickable : IUIElement, IHasText
     {
         TResult Click<TResult>() where TResult : Block;
-        string Text { get; }
     }
 }

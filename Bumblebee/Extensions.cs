@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Bumblebee.UI;
 using Bumblebee.UI.Generic;
 using OpenQA.Selenium;
@@ -11,14 +9,19 @@ namespace Bumblebee
 {
     public static class Extensions
     {
-        public static IEnumerable<IClickable<TResult>> WithText<TResult>(this IEnumerable<IClickable<TResult>> clickables, string text) where TResult : Block
+        public static IEnumerable<TResult> WithText<TResult>(this IEnumerable<TResult> haveText, string text) where TResult : IHasText
         {
-            return clickables.Where(clickable => clickable.Text == text);
+            return haveText.Where(clickable => clickable.Text == text);
         }
         
-        public static IEnumerable<IOption<TResult>> Unselected<TResult>(this IEnumerable<IOption<TResult>> options) where TResult : Block
+        public static IEnumerable<TSelectable> Unselected<TSelectable>(this IEnumerable<TSelectable> options) where TSelectable : ISelectable
         {
             return options.Where(option => !option.Selected);
+        }
+
+        public static T Random<T>(this IEnumerable<T> enumerable)
+        {
+            return enumerable.OrderBy(id => new Guid()).First();
         }
 
         public static string GetID(this IWebElement element)

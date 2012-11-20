@@ -10,20 +10,10 @@ namespace Bumblebee.UIElements.Generic
 {
     public class JQueryUISelectBox<TResult> : Element, ISelectBox<TResult> where TResult : Block
     {
-        public JQueryUISelectBox(Block parent, By by) : base(parent, by)
+        public JQueryUISelectBox(Block parent, By optionsSelector, By openSelector)
+            : base(parent, optionsSelector)
         {
-            Open();
-        }
-
-        public JQueryUISelectBox(Block parent, IWebElement element) : base(parent, element)
-        {
-            Open();
-        }
-
-        private void Open()
-        {
-            var buttonId = Dom.GetID().Replace("-menu", "-button");
-            Session.Driver.FindElement(By.Id(buttonId)).Click();
+            Session.Driver.FindElement(openSelector).Click();
         }
 
         public IEnumerable<IOption<TResult>> Options

@@ -20,7 +20,5 @@ namespace Bumblebee.UIElements.Conditional
             Dom.Click();
             return Result<TResult>();
         }
-        
-        public string Text { get { return Dom.Text; } }
     }
 }
