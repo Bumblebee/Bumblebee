@@ -14,6 +14,6 @@ namespace Bumblebee.UIElements.Generic
         {
         }
         
-        public bool Selected { get { return Dom.GetAttribute("aria-selected") != "true"; } }
+        public override bool Selected { get { return Dom.GetAttribute("aria-selected") != "true"; } }
     }
 }

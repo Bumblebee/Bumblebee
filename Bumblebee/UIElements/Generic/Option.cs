@@ -12,7 +12,5 @@ namespace Bumblebee.UIElements.Generic
         public Option(Block parent, IWebElement element) : base(parent, element)
         {
         }
-        
-        public bool Selected { get { return Dom.Selected; } }
     }
 }

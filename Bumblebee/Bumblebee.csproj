@@ -67,6 +67,7 @@
     <Compile Include="Session.cs" />
     <Compile Include="UIElements\Conditional\ConditionalOption.cs" />
     <Compile Include="UIElements\Conditional\ConditionalSelectBox.cs" />
+    <Compile Include="UIElements\Generic\Checkbox.cs" />
     <Compile Include="UIElements\Generic\Clickable.cs" />
     <Compile Include="UIElements\Conditional\ConditionalClickable.cs" />
     <Compile Include="UIElements\Generic\JQueryUIOption.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="UIElements\Generic\TextField.cs" />
     <Compile Include="UI\Conditional\IConditionalOption.cs" />
     <Compile Include="UI\Conditional\IConditionalSelectBox.cs" />
+    <Compile Include="UI\Generic\ICheckbox.cs" />
     <Compile Include="UI\Generic\IClickable.cs" />
     <Compile Include="UI\Conditional\IConditionalClickable.cs" />
     <Compile Include="UI\Generic\IOption.cs" />

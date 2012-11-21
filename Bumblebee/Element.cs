@@ -23,5 +23,10 @@ namespace Bumblebee
         {
             get { return Dom.Text; }
         }
+
+        public virtual bool Selected
+        {
+            get { return Dom.Selected; }
+        }
     }
 }

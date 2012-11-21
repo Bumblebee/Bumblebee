@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading;
 using Bumblebee.UI;
 using Bumblebee.UI.Generic;
+using Ionic.Zip;
 using OpenQA.Selenium;
 
 namespace Bumblebee
@@ -18,6 +19,20 @@ namespace Bumblebee
         public static IEnumerable<TSelectable> Unselected<TSelectable>(this IEnumerable<TSelectable> options) where TSelectable : ISelectable
         {
             return options.Where(option => !option.Selected);
+        }
+
+        public static TSelectable VerifySelected<TSelectable>(this TSelectable selectable, bool selected) where TSelectable : ISelectable
+        {
+            if (selectable.Selected != selected)
+                throw new BadStateException("Selection verification failed. Expected: " + selected + ", Actual: " + selectable.Selected + ".");
+            return selectable;
+        }
+
+        public static THasText VerifyText<THasText>(this THasText hasText, string text) where THasText : IHasText
+        {
+            if (hasText.Text != text)
+                throw new BadStateException("Text verification failed. Expected: " + text + ", Actual: " + hasText.Text + ".");
+            return hasText;
         }
 
         public static T Random<T>(this IEnumerable<T> enumerable)
