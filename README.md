@@ -1,11 +1,11 @@
 Bumblebee
 =========
 
-Bumblebee is a layer on top of the Selenium browser automation framework. Using Bumblebee and the accompanying design paradigm allows for easy creation of page objects, even for dynamic web pages.
+Bumblebee is a layer on top of the Selenium browser automation framework. It and the accompanying design pattern allow for easy creation of page objects, even on dynamic web pages.
 
-Bumblebee makes browser automation dead simple. Develop page objects quickly by modeling which parts of the page can be interacted with. Then, using Intellisense, we can check what elements/blocks are on the page and easily perform actions on them.
+Bumblebee makes browser automation dead simple. Develop page objects quickly by modeling which parts of the page can be interacted with. Then, using Intellisense, we can check what actions are available and chain them together.
 
-The basic idea behind Bumblebee is to break each page down into blocks and elements. Use the classes provided by bumblebee to model your site into page objects. Consume page objects by writing your automation code. If page objects are well designed, writing the automation code should take no effort.
+The basic idea behind Bumblebee is to break each page down into blocks and elements. Use the classes provided by Bumblebee to model your site into page objects. Consume page objects by writing your automation code. If page objects are well designed, writing the automation code should take no effort at all.
 
 Blocks
 ------
@@ -51,6 +51,8 @@ public IConditionalClickable LogInButton { ... }
 ```
 
 Notice there is no generic type parameter; we don't know where it will go so we cannot specify ahead of time.
+
+--------------
 
 To implement the property, we must return a concrete type. For most cases, each interface's corresponding implementation should suffice (Use *Clickable* for *IClickable*). We diverge from this pattern when a site contains custom UI elements (like jQuery select boxes and such). If the element on the page fits the interface, but is implemented differently, make a custom implementation and use that.
 
@@ -305,3 +307,5 @@ Conveniences
 *    To continue an automation without continuing one long expression, use *Session.CurrentBlock* and pass the type of the page you're on.
 
 *    Perform verifications from with your automation expression. Scope returns to where it was before the call. There are verifications for the presence and absence of an element, for the text of textual elements, and for the selected status of options. You can create more; they are just extension methods. See the default ones in the *Extensions* class for reference.
+
+*    Frames are easy! They are just blocks. Other blocks can extend them, which causes the frame to be selected before the child block's constructor is even executed. Is the whole site content in a frame? Select the frame in your base block and forget about it.
