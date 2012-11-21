@@ -34,13 +34,9 @@ Each element on a page gets represented by a property. The most important part o
 
 The generic type parameter of the return type is where the scope returns to after the element is interacted with. For elements that generally do not change the page, the generic type is typically the type of the parent block (the block of which the element is a property). Suppose there is a select box on our home page for the user to choose their favorite color. We define the property like this:
 
-<<<<<<< HEAD
 ```C#
 public ISelectBox&lt;HomePage&gt; FavoriteColorSelectBox { ... }
 ```
-=======
-<code>Session.NavigateTo&lt;HomePage&gt;("http://www.google.com").SearchBar.EnterText("kittens").SearchButton.Click();</code>
->>>>>>> 16a6b15fcfa1c6f1989b37e1e2f00a34f93e3428
 
 For elements that generally do change the state of the page, the type parameter is the type of the block that is led to. For example, say we have a link to an about page *AboutPage*.
 
