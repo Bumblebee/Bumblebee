@@ -13,7 +13,7 @@ Blocks
 A block is an area on a web page. This could be an entire page, or a subset, like a tab menu, or a sidebar. Each block is represented by a class that extends *Block*. Blocks can contain child elements or child blocks. Each child is represented by a property in the parent block's class. Say we have some home page *HomePage*.
 
 ```C#
-public class HomePage : Page
+public class HomePage : BaseBlock
 {
     public HomePage(Session session) : base(session)
     {
@@ -23,7 +23,7 @@ public class HomePage : Page
 }
 ```
 
-Page here is a base type that is not provided by Bumblebee, but extends Block. It is the base block for this project. More on that later.
+BaseBlock here is a base type that is not provided by Bumblebee, but extends Block. It is the base block for this project. See the section on [block scope](#block-scope) for an explanation.
 
 Elements
 --------
@@ -35,13 +35,13 @@ Each element on a page gets represented by a property. The most important part o
 The generic type parameter of the return type is where the scope returns to after the element is interacted with. For elements that generally do not change the page, the generic type is typically the type of the parent block (the block of which the element is a property). Suppose there is a select box on our home page for the user to choose their favorite color. We define the property like this:
 
 ```C#
-public ISelectBox&lt;HomePage&gt; FavoriteColorSelectBox { ... }
+public ISelectBox<HomePage> FavoriteColorSelectBox { ... }
 ```
 
 For elements that generally do change the state of the page, the type parameter is the type of the block that is led to. For example, say we have a link to an about page *AboutPage*.
 
 ```C#
-public IClickable&lt;AboutPage&gt; AboutLink { ... }
+public IClickable<AboutPage> AboutLink { ... }
 ```
 
 Sometimes, however, performing an action could lead to several different places on the site. For example, say we have a "Log In" button. Clicking this button could lead to the profile page *ProfilePage* or stay on the home page with an invalid login message. Elements like this are deemed "conditional" and have seperate interfaces. We'd model the button like this:
@@ -52,19 +52,19 @@ public IConditionalClickable LogInButton { ... }
 
 Notice there is no generic type parameter; we don't know where it will go so we cannot specify ahead of time.
 
-To implement the property, we must return a concrete type. For most cases, each interface's corresponding implementation should suffice (*Clickable* for *IClickable*). We diverge from this pattern when a site contains custom UI elements (like jQuery select boxes and such). If the element on the page fits the interface, but is implemented differently, make a custom implementation and use that.
+To implement the property, we must return a concrete type. For most cases, each interface's corresponding implementation should suffice (Use *Clickable* for *IClickable*). We diverge from this pattern when a site contains custom UI elements (like jQuery select boxes and such). If the element on the page fits the interface, but is implemented differently, make a custom implementation and use that.
 
 Element implementations take two parameters. The first is the parent block of the element, which it uses for scope. Just pass *this*, as we are calling from the parent block. The second is the selector for the element (a Selenium By object). Alternatively, you can pass the IWebElement representing the element, which is often useful.
 
 Here are the properties above implemented fully:
 
 ```C#
-public ISelectBox&lt;HomePage&gt; FavoriteColorSelectBox
+public ISelectBox<HomePage> FavoriteColorSelectBox
 {
     get { return new SelectBox<HomePage>(this, By.Id("favoriteColor")); }
 }
 
-public IClickable&lt;AboutPage&gt; AboutLink
+public IClickable<AboutPage> AboutLink
 {
     get { return new Clickable<AboutPage>(this, By.Id("aboutLink")); }
 }
@@ -84,12 +84,12 @@ public class HomePage : Page
     {
     }
     
-    public ISelectBox&lt;HomePage&gt; FavoriteColorSelectBox
+    public ISelectBox<HomePage> FavoriteColorSelectBox
     {
         get { return new SelectBox<HomePage>(this, By.Id("favoriteColor")); }
     }
 
-    public IClickable&lt;AboutPage&gt; AboutLink
+    public IClickable<AboutPage> AboutLink
     {
         get { return new Clickable<AboutPage>(this, By.Id("aboutLink")); }
     }
@@ -123,18 +123,18 @@ I would like to be able to run automations on my own machine, as well as on some
 Now that our *Session* is set up and instantiated, we can run this automation:
 
 ```C#
-Session.NavigateTo&lt;HomePage&gt;(url).FavoriteColorSelectBox.Options.Random().Click().AboutLink.Click();
+Session.NavigateTo<HomePage>(url).FavoriteColorSelectBox.Options.Random().Click().AboutLink.Click();
 ```
 
 or these:
 
 ```C#
-Session.NavigateTo&lt;HomePage&gt;(url).UsernameField.EnterText("patrick").PasswordField.EnterText("password1234")
+Session.NavigateTo<HomePage>(url).UsernameField.EnterText("patrick").PasswordField.EnterText("password1234")
 .LogInButton.Click<ProfilePage>();
 ```
 
 ```C#
-Session.NavigateTo&lt;HomePage&gt;(url).UsernameField.EnterText("invalid").PasswordField.EnterText("invalid")
+Session.NavigateTo<HomePage>(url).UsernameField.EnterText("invalid").PasswordField.EnterText("invalid")
 .LogInButton.Click<HomePage>().VerifyPresence(By.Id("invalidLoginMessage"));
 ```
 
@@ -150,10 +150,12 @@ The *Options* property in the first example above return an *IEnumerable* of opt
 ```C#
 Options.First().Click();
 ```
+Clicks the first option.
 
 ```C#
 Options.Last().Click();
 ```
+Clicks the last option.
 
 ```C#
 Options.ElementAt(3).Click();
@@ -190,9 +192,9 @@ Options.Unselected().Random().Click();
 ```
 Click a random option excluding the one already selected.
 
-Not that *Random*, *WithText*, and *Unselected* are not part of linq, but come with Bumblebee.
+Note that *Random*, *WithText*, and *Unselected* are not part of linq, but come with Bumblebee.
 
-We can use this pattern whenever we have a collection of similar elements. Suppose we have a client search page on our site. The search results come back as a list of client profile links. We can easily model all of these links with a single property:
+We can use this pattern whenever we have a collection of similar elements. Suppose we have a user search page on our site. The search results come back as a list of user profile links. We can easily model all of these links with a single property:
 
 ```C#
 public IEnumerable<IClickable<ProfilePage>> ProfileLinks
@@ -211,3 +213,61 @@ ProfileLinks.First().Click();
 ```
 
 along with all the other selectors.
+
+Block Scope
+-----------
+Each block is associated with an element in the DOM. All selectors within the block search within the block by searching only within its corresponding DOM element. By default, the scope of a block is that of its parent class. To narrow the scope of the block, set the *Dom* property in the constructor of the block. For example, say the user search mechanism is on several different pages, but is always wrapped in a *div* with class "userSearch". We should create a block to represent it.
+
+```C#
+public class UserSearchBox : Block
+{
+    public UserSearchBox(Session session) : base(session)
+    {
+        Dom = GetElement(By.ClassName("userSearch"));
+    }
+    
+    public ITextField<UserSearchBox> UsernameField
+    {
+        get { return new TextField<UserSearchBox>(this, By.Id("userSearchField")); }
+    }
+    
+    public IClickable<UserSearchResultsBox> SearchButton
+    {
+        get { return new Clickable<UserSearchResultsBox>(this, By.Id("userSearchButton")); }
+    }
+}
+```
+
+In the constructor, the scope is set to only search within the *div* in question. Because each constructor calls its base constructor first, scope narrowing cascades down from the base block. This raises the question, what is the default *Dom* selected from Block? *There actually isn't one*. There should only be one class that directly extends Block, which is to be used as your base block from then on. Lets create one.
+
+```C#
+public class BaseBlock : Block
+{
+    public BaseBlock(Session session) : base(session)
+    {
+        Dom = Session.FindElement(By.TagName("body"));
+    }
+}
+```
+
+This class will serve as the base for all of our blocks. We set the initial scope to be inside the body of the page here, but you can make it whatever you want. Notice we cannot use *GetElement*; *GetElement* searches within the current scope, which is not yet defined. Now we change our *UserSearchBox* class to extend the right block.
+
+```C#
+public class UserSearchBox : BaseBlock
+{
+    public UserSearchBox(Session session) : base(session)
+    {
+        Dom = GetElement(By.ClassName("userSearch"));
+    }
+    
+    public ITextField<UserSearchBox> UsernameField
+    {
+        get { return new TextField<UserSearchBox>(this, By.Id("userSearchField")); }
+    }
+    
+    public IClickable<UserSearchResultsBox> SearchButton
+    {
+        get { return new Clickable<UserSearchResultsBox>(this, By.Id("userSearchButton")); }
+    }
+}
+```
