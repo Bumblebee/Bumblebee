@@ -275,7 +275,7 @@ public class UserSearchBox : BaseBlock
 Suppose there is a user search box on the home page. We can add one like so:
 
 ```C#
-public class HomePage : Page
+public class HomePage : BaseBlock
 {
     public HomePage(Session session) : base(session)
     {
@@ -293,7 +293,8 @@ public class HomePage : Page
 After we add the ProfileLinks property to a block called *UserSearchResultsBox*, we can do this:
 
 ```C#
-Session.NavigateTo<HomePage>(url).UserSearchBox.UsernameField.EnterText("Corey Trevor").SearchButton.Click().ProfileLinks.First().Click();
+Session.NavigateTo<HomePage>(url).UserSearchBox.UsernameField.EnterText("Corey Trevor")
+.SearchButton.Click().ProfileLinks.First().Click();
 ```
 
 Conveniences
