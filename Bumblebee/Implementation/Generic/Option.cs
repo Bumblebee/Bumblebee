@@ -1,7 +1,7 @@
-using Bumblebee.UI.Generic;
+using Bumblebee.Interfaces.Generic;
 using OpenQA.Selenium;
 
-namespace Bumblebee.UIElements.Generic
+namespace Bumblebee.Implementation.Generic
 {
     public class Option<TResult> : Clickable<TResult>, IOption<TResult> where TResult : Block
     {

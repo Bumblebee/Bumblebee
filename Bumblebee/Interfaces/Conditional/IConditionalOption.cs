@@ -1,4 +1,4 @@
-﻿namespace Bumblebee.UI.Conditional
+﻿namespace Bumblebee.Interfaces.Conditional
 {
     public interface IConditionalOption : IConditionalClickable, ISelectable
     {

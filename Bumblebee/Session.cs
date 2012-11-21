@@ -16,18 +16,10 @@ namespace Bumblebee
             Driver = driver;
         }
 
-        public TBlock GoTo<TBlock>() where TBlock : Block
+        public TBlock NavigateTo<TBlock>(string url) where TBlock : Block
         {
-            var type = typeof (TBlock);
-            var method = type.GetMethod("GoTo");
-            
-            if (method == null)
-            {
-                throw new ArgumentException("Cannot go to block '" + type + "'. " +
-                                            "Implement a static 'GoTo' method for the block.");
-            }
-
-            return (TBlock) method.Invoke(null, new object[] {this});
+            Driver.Navigate().GoToUrl(url);
+            return CurrentBlock<TBlock>();
         }
 
         public TBlock CurrentBlock<TBlock>() where TBlock : Block

@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Bumblebee.UI.Generic;
-using Bumblebee.UIElements.Conditional;
+using Bumblebee.Interfaces.Generic;
 using OpenQA.Selenium;
 
-namespace Bumblebee.UIElements.Generic
+namespace Bumblebee.Implementation.Generic
 {
     public class SelectBox<TResult> : Element, ISelectBox<TResult> where TResult : Block
     {

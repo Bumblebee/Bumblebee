@@ -1,8 +1,8 @@
-﻿using Bumblebee.UI.Generic;
-using Bumblebee.UIElements.Conditional;
+﻿using Bumblebee.Implementation.Conditional;
+using Bumblebee.Interfaces.Generic;
 using OpenQA.Selenium;
 
-namespace Bumblebee.UIElements.Generic
+namespace Bumblebee.Implementation.Generic
 {
     public class Clickable<TResult> : ConditionalClickable, IClickable<TResult> where TResult : Block
     {

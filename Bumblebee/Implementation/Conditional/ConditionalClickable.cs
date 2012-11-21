@@ -1,7 +1,7 @@
-﻿using Bumblebee.UI.Conditional;
+﻿using Bumblebee.Interfaces.Conditional;
 using OpenQA.Selenium;
 
-namespace Bumblebee.UIElements.Conditional
+namespace Bumblebee.Implementation.Conditional
 {
     public class ConditionalClickable : Element, IConditionalClickable
     {

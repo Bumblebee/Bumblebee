@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Bumblebee.UI.Conditional;
+﻿using Bumblebee.Interfaces.Conditional;
 using OpenQA.Selenium;
 
-namespace Bumblebee.UIElements.Conditional
+namespace Bumblebee.Implementation.Conditional
 {
     public class ConditionalOption : Element, IConditionalOption
     {

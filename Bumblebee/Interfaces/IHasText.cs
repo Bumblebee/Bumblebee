@@ -1,4 +1,4 @@
-﻿namespace Bumblebee.UI
+﻿namespace Bumblebee.Interfaces
 {
     public interface IHasText
     {

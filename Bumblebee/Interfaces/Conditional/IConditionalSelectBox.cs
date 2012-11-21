@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace Bumblebee.UI.Conditional
+namespace Bumblebee.Interfaces.Conditional
 {
-    public interface IConditionalSelectBox : IUIElement
+    public interface IConditionalSelectBox : IElement
     {
         IEnumerable<IConditionalOption> Options { get; }
     }

@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Bumblebee.UI.Generic;
+using Bumblebee.Interfaces.Generic;
 using OpenQA.Selenium;
 
-namespace Bumblebee.UIElements.Generic
+namespace Bumblebee.Implementation.Generic
 {
     public class JQueryUISelectBox<TResult> : Element, ISelectBox<TResult> where TResult : Block
     {

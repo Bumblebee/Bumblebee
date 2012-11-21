@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using Bumblebee.UI;
-using Bumblebee.UI.Generic;
+using Bumblebee.Interfaces;
 using Ionic.Zip;
 using OpenQA.Selenium;
 
