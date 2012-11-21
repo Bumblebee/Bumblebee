@@ -11,9 +11,9 @@ namespace Bumblebee
     {
         public IWebDriver Driver { get; private set; }
 
-        public Session(IWebDriver driver)
+        public Session(IDriverEnvironment environment)
         {
-            Driver = driver;
+            Driver = environment.CreateWebDriver();
         }
 
         public TBlock NavigateTo<TBlock>(string url) where TBlock : Block
