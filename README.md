@@ -271,3 +271,36 @@ public class UserSearchBox : BaseBlock
     }
 }
 ```
+
+Suppose there is a user search box on the home page. We can add one like so:
+
+```C#
+public class HomePage : Page
+{
+    public HomePage(Session session) : base(session)
+    {
+    }
+    
+    public UserSearchBox UserSearchBox
+    {
+        get { return new UserSearchBox(session); }
+    }
+    
+    ...
+}
+```
+
+After we add the ProfileLinks property to a block called *UserSearchResultsBox*, we can do this:
+
+```C#
+Session.NavigateTo<HomePage>(url).UserSearchBox.UsernameField.EnterText("Corey Trevor").SearchButton.Click().ProfileLinks.First().Click();
+```
+
+Conveniences
+------------
+
+*    Call *Pause(int seconds)* on any block or element and execution will pause. Scope will be returned exactly where it was.
+
+*    To continue an automation without continuing one long expression, use *Session.CurrentBlock* and pass the type of the page you're on.
+
+*    Perform verifications from with your automation expression. Scope returns to where it was before the call. There are verifications for the presence and absence of an element, for the text of textual elements, and for the selected status of options. You can create more; they are just extension methods. See the default ones in the *Extensions* class for reference.
