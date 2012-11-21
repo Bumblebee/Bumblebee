@@ -25,6 +25,6 @@ For example, say we have a class represented google's home page, HomePage, and o
 
 Using the framework above, we can automate a google search like so:
 
-<code>Session.GoTo&lt;HomePage&gt;().SearchBar.EnterText("kittens").SearchButton.Click();</code>
+<code>Session.NavigateTo&lt;HomePage&gt;("http://www.google.com").SearchBar.EnterText("kittens").SearchButton.Click();</code>
 
 To be continued...
