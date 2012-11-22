@@ -131,8 +131,8 @@ Session.NavigateTo<HomePage>(url).FavoriteColorSelectBox.Options.Random().Click(
 or these:
 
 ```C#
-Session.NavigateTo<HomePage>(url).UsernameField.EnterText("randylahey@sunnyvale.org").PasswordField.EnterText("password1234")
-.LogInButton.Click<ProfilePage>();
+Session.NavigateTo<HomePage>(url).UsernameField.EnterText("randylahey@sunnyvale.org").PasswordField
+.EnterText("password1234").LogInButton.Click<ProfilePage>();
 ```
 
 ```C#
@@ -309,7 +309,3 @@ Conveniences
 *    Perform verifications from with your automation expression. Scope returns to where it was before the call. There are verifications for the presence and absence of an element, for the text of textual elements, and for the selected status of options. You can create more; they are just extension methods. See the default ones in the *Extensions* class for reference.
 
 *    Frames are easy! They are just blocks. Other blocks can extend them, which causes the frame to be selected before the child block's constructor is even executed. Is the whole site content in a frame? Select the frame in your base block and forget about it.
-
-------------
-
-Feel free to contact me for any questions on how Bumblebee works or how to set up it for your project.
