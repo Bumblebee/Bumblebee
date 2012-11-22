@@ -131,7 +131,7 @@ Session.NavigateTo<HomePage>(url).FavoriteColorSelectBox.Options.Random().Click(
 or these:
 
 ```C#
-Session.NavigateTo<HomePage>(url).UsernameField.EnterText("patrick").PasswordField.EnterText("password1234")
+Session.NavigateTo<HomePage>(url).UsernameField.EnterText("randylahey@sunnyvale.org").PasswordField.EnterText("password1234")
 .LogInButton.Click<ProfilePage>();
 ```
 
@@ -147,7 +147,7 @@ The selection of the random option from the first example deserves some discussi
 Using Linq
 ----------
 
-The *Options* property in the first example above return an *IEnumerable* of options. This allows the automator to decide which option to act on however they like. Using linq we get many methods for free. Here are some examples of valid selections:
+The *Options* property in the first example above returns an *IEnumerable* of options. This allows the automator to decide which option to act on however they like. Using linq we get many methods for free. Here are some examples of valid selections:
 
 ```C#
 Options.First().Click();
@@ -309,3 +309,7 @@ Conveniences
 *    Perform verifications from with your automation expression. Scope returns to where it was before the call. There are verifications for the presence and absence of an element, for the text of textual elements, and for the selected status of options. You can create more; they are just extension methods. See the default ones in the *Extensions* class for reference.
 
 *    Frames are easy! They are just blocks. Other blocks can extend them, which causes the frame to be selected before the child block's constructor is even executed. Is the whole site content in a frame? Select the frame in your base block and forget about it.
+
+------------
+
+Feel free to contact me for any questions on how Bumblebee works or how to set up it for your project.

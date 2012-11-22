@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Ionic.Zip;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 
 namespace Bumblebee
 {
