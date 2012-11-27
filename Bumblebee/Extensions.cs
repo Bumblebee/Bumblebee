@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using Bumblebee.Interfaces;
@@ -27,16 +28,20 @@ namespace Bumblebee
 
         public static TSelectable VerifySelected<TSelectable>(this TSelectable selectable, bool selected) where TSelectable : ISelectable
         {
-            if (selectable.Selected != selected)
-                throw new BadStateException("Selection verification failed. Expected: " + selected + ", Actual: " + selectable.Selected + ".");
+            Debug.Assert(selectable.Selected == selected, "Selection verification failed. Expected: " + selected + ", Actual: " + selectable.Selected + ".");
             return selectable;
         }
 
         public static THasText VerifyText<THasText>(this THasText hasText, string text) where THasText : IHasText
         {
-            if (hasText.Text != text)
-                throw new BadStateException("Text verification failed. Expected: " + text + ", Actual: " + hasText.Text + ".");
+            Debug.Assert(hasText.Text == text, "Text verification failed. Expected: " + text + ", Actual: " + hasText.Text + ".");
             return hasText;
+        }
+
+        public static T Verify<T>(this T obj, Predicate<T> assertion)
+        {
+            Debug.Assert(assertion.Invoke(obj), "Assertion failed on object " + obj);
+            return obj;
         }
 
         public static T Random<T>(this IEnumerable<T> enumerable)
@@ -75,6 +80,18 @@ namespace Bumblebee
         {
             block.VerifyElementAbsent(by);
             return block;
+        }
+
+        public static T DebugPrint<T>(this T obj)
+        {
+            Console.WriteLine(obj.ToString());
+            return obj;
+        }
+
+        public static T DebugPrint<T>(this T obj, Func<T, object> func)
+        {
+            Console.WriteLine(func.Invoke(obj));
+            return obj;
         }
     }
 }
