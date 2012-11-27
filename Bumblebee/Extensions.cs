@@ -4,12 +4,11 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using Bumblebee.Interfaces;
-using Ionic.Zip;
 using OpenQA.Selenium;
 
 namespace Bumblebee
 {
-    public static class Extensions
+    public static class Filtering
     {
         public static IEnumerable<TResult> WithText<TResult>(this IEnumerable<TResult> haveText, string text) where TResult : IHasText
         {
@@ -20,10 +19,34 @@ namespace Bumblebee
         {
             return haveText.Single(hasText => hasText.Text == text);
         }
-        
+
         public static IEnumerable<TSelectable> Unselected<TSelectable>(this IEnumerable<TSelectable> options) where TSelectable : ISelectable
         {
             return options.Where(option => !option.Selected);
+        }
+
+        public static IEnumerable<TSelectable> Selected<TSelectable>(this IEnumerable<TSelectable> options) where TSelectable : ISelectable
+        {
+            return options.Where(option => option.Selected);
+        }
+
+        public static TSelectable SingleSelected<TSelectable>(this IEnumerable<TSelectable> options) where TSelectable : ISelectable
+        {
+            return options.Single(option => option.Selected);
+        }
+
+        public static T Random<T>(this IEnumerable<T> enumerable)
+        {
+            return enumerable.OrderBy(id => new Guid()).First();
+        }
+    }
+
+    public static class Verification
+    {
+        public static T Verify<T>(this T obj, Predicate<T> assertion)
+        {
+            Debug.Assert(assertion.Invoke(obj), "Assertion failed on object " + obj);
+            return obj;
         }
 
         public static TSelectable VerifySelected<TSelectable>(this TSelectable selectable, bool selected) where TSelectable : ISelectable
@@ -38,17 +61,42 @@ namespace Bumblebee
             return hasText;
         }
 
-        public static T Verify<T>(this T obj, Predicate<T> assertion)
+        public static TBlock VerifyPresence<TBlock>(this TBlock block, By by) where TBlock : Block
         {
-            Debug.Assert(assertion.Invoke(obj), "Assertion failed on object " + obj);
+            block.VerifyElementPresent(by);
+            return block;
+        }
+
+        public static TBlock VerifyAbsence<TBlock>(this TBlock block, By by) where TBlock : Block
+        {
+            block.VerifyElementAbsent(by);
+            return block;
+        }
+    }
+
+    public static class Debugging
+    {
+        public static T DebugPrint<T>(this T obj)
+        {
+            Console.WriteLine(obj.ToString());
             return obj;
         }
 
-        public static T Random<T>(this IEnumerable<T> enumerable)
+        public static T DebugPrint<T>(this T obj, Func<T, object> func)
         {
-            return enumerable.OrderBy(id => new Guid()).First();
+            Console.WriteLine(func.Invoke(obj));
+            return obj;
         }
 
+        public static T Pause<T>(this T block, int seconds)
+        {
+            Thread.Sleep(1000 * seconds);
+            return block;
+        }
+    }
+
+    public static class WebElementConvenience
+    {
         public static string GetID(this IWebElement element)
         {
             return element.GetAttribute("id");
@@ -62,36 +110,6 @@ namespace Bumblebee
         public static bool HasClass(this IWebElement element, string className)
         {
             return element.GetClasses().Contains("className");
-        }
-
-        public static TBlock Pause<TBlock>(this TBlock block, int seconds) where TBlock : Block
-        {
-            Thread.Sleep(1000 * seconds);
-            return block;
-        }
-
-        public static TBlock VerifyPresence<TBlock>(this TBlock block, By by) where TBlock : Block
-        {
-            block.VerifyElementPresent(by);
-            return block;
-        }
-
-        public static TBlock VerifyAbsence<TBlock>(this TBlock block, By by) where TBlock : Block
-        {
-            block.VerifyElementAbsent(by);
-            return block;
-        }
-
-        public static T DebugPrint<T>(this T obj)
-        {
-            Console.WriteLine(obj.ToString());
-            return obj;
-        }
-
-        public static T DebugPrint<T>(this T obj, Func<T, object> func)
-        {
-            Console.WriteLine(func.Invoke(obj));
-            return obj;
         }
     }
 }
