@@ -12,7 +12,12 @@ namespace Bumblebee
     {
         public static IEnumerable<TResult> WithText<TResult>(this IEnumerable<TResult> haveText, string text) where TResult : IHasText
         {
-            return haveText.Where(clickable => clickable.Text == text);
+            return haveText.Where(hasText => hasText.Text == text);
+        }
+
+        public static TResult SingleWithText<TResult>(this IEnumerable<TResult> haveText, string text) where TResult : IHasText
+        {
+            return haveText.Single(hasText => hasText.Text == text);
         }
         
         public static IEnumerable<TSelectable> Unselected<TSelectable>(this IEnumerable<TSelectable> options) where TSelectable : ISelectable
@@ -42,6 +47,16 @@ namespace Bumblebee
         public static string GetID(this IWebElement element)
         {
             return element.GetAttribute("id");
+        }
+
+        public static IEnumerable<string> GetClasses(this IWebElement element)
+        {
+            return element.GetAttribute("class").Split(' ');
+        }
+
+        public static bool HasClass(this IWebElement element, string className)
+        {
+            return element.GetClasses().Contains("className");
         }
 
         public static TBlock Pause<TBlock>(this TBlock block, int seconds) where TBlock : Block
