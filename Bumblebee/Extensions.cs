@@ -109,7 +109,7 @@ namespace Bumblebee
 
         public static bool HasClass(this IWebElement element, string className)
         {
-            return element.GetClasses().Contains("className");
+            return element.GetClasses().Any(@class => @class.Equals(className));
         }
     }
 }
