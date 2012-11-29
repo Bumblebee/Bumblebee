@@ -16,12 +16,7 @@ namespace Bumblebee.Implementation.Conditional
         public TResult Click<TResult>() where TResult : Block
         {
             Dom.Click();
-            return Session.CurrentBlock<TResult>();
-        }
-
-        public bool Selected
-        {
-            get { return Dom.Selected; }
+            return Session.CurrentBlock<TResult>(ParentElement);
         }
     }
 }

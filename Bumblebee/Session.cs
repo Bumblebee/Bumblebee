@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,10 +23,19 @@ namespace Bumblebee
             return CurrentBlock<TBlock>();
         }
 
-        public TBlock CurrentBlock<TBlock>() where TBlock : Block
+        public TBlock CurrentBlock<TBlock>(IWebElement dom = null) where TBlock : Block
         {
             var type = typeof(TBlock);
-            var constructor = type.GetConstructor(new[] { typeof(Session) });
+            IList<Type> constructorSignature = new List<Type> { typeof(Session) };
+            IList<object> constructorArgs = new List<object> { this };
+
+            if (typeof(SpecificBlock).IsAssignableFrom(typeof(TBlock)))
+            {
+                constructorSignature.Add(typeof(IWebElement));
+                constructorArgs.Add(dom);
+            }
+
+            var constructor = type.GetConstructor(constructorSignature.ToArray());
 
             if (constructor == null)
             {
@@ -33,7 +43,7 @@ namespace Bumblebee
                                             "It must have a constructor that takes only a session.");
             }
 
-            return (TBlock)constructor.Invoke(new object[] { this });
+            return (TBlock) constructor.Invoke(constructorArgs.ToArray());
         }
 
         public void End()

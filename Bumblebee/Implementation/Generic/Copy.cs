@@ -21,7 +21,7 @@ namespace Bumblebee.Implementation.Generic
         public TResult VerifyContent(string text)
         {
             this.VerifyText(text);
-            return Session.CurrentBlock<TResult>();
+            return Session.CurrentBlock<TResult>(ParentElement);
         }
     }
 }

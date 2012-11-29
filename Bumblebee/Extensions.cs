@@ -111,5 +111,10 @@ namespace Bumblebee
         {
             return element.GetClasses().Any(@class => @class.Equals(className));
         }
+
+        public static IWebElement FindElementByJQuery(this IWebDriver driver, string query)
+        {
+            return ((IJavaScriptExecutor) driver).ExecuteScript(string.Format("return $('{0}').get();", query)) as IWebElement;
+        }
     }
 }

@@ -13,7 +13,7 @@ namespace Bumblebee
     {
         public Session Session { get; private set; }
 
-        protected IWebElement Dom { get; set; }
+        protected internal IWebElement Dom { get; protected set; }
 
         protected Block(Session session)
         {

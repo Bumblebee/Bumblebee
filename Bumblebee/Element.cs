@@ -2,16 +2,18 @@
 
 namespace Bumblebee
 {
-    public abstract class Element : Block
+    public abstract class Element : SpecificBlock
     {
-        protected Element(Block parent, By by) : base(parent.Session)
+        protected IWebElement ParentElement { get; private set; }
+
+        protected Element(Block parent, By by) : base(parent.Session, parent.GetElement(by))
         {
-            Dom = parent.GetElement(by);
+            ParentElement = parent.Dom;
         }
 
-        protected Element(Block parent, IWebElement element) : base(parent.Session)
+        protected Element(Block parent, IWebElement dom) : base(parent.Session, dom)
         {
-            Dom = element;
+            ParentElement = parent.Dom;
         }
 
         public string Text

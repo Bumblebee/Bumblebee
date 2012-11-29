@@ -16,19 +16,19 @@ namespace Bumblebee.Implementation.Generic
         public TResult Check()
         {
             if (!Selected) Dom.Click();
-            return Session.CurrentBlock<TResult>();
+            return Session.CurrentBlock<TResult>(ParentElement);
         }
 
         public TResult Uncheck()
         {
             if (Selected) Dom.Click();
-            return Session.CurrentBlock<TResult>();
+            return Session.CurrentBlock<TResult>(ParentElement);
         }
 
         public TResult Toggle()
         {
             Dom.Click();
-            return Session.CurrentBlock<TResult>();
+            return Session.CurrentBlock<TResult>(ParentElement);
         }
     }
 }

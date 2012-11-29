@@ -89,6 +89,7 @@
     <Compile Include="Interfaces\IHasText.cs" />
     <Compile Include="Interfaces\ISelectable.cs" />
     <Compile Include="Interfaces\IElement.cs" />
+    <Compile Include="SpecificBlock.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
