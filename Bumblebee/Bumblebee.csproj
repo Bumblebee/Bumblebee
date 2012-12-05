@@ -60,6 +60,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlertDialog.cs" />
     <Compile Include="Block.cs" />
     <Compile Include="Element.cs" />
     <Compile Include="Extensions.cs" />

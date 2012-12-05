@@ -20,5 +20,11 @@ namespace Bumblebee.Implementation.Conditional
             Dom.Click();
             return Session.CurrentBlock<TResult>(ParentElement);
         }
+
+        public AlertDialog ClickExpectingAlert()
+        {
+            Dom.Click();
+            return new AlertDialog(ParentElement, Session);
+        }
     }
 }

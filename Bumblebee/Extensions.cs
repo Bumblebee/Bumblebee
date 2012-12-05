@@ -109,14 +109,12 @@ namespace Bumblebee
 
         public static IWebElement GetElement(this IWebElement element, By by)
         {
-            try
-            {
-                return element.FindElements(by).First();
-            }
-            catch (InvalidOperationException)
-            {
+            var elements = element.FindElements(by);
+
+            if (!elements.Any())
                 throw new NoSuchElementException("Tried to get element with selector " + by);
-            }
+
+            return elements.First();
         }
 
         public static string GetID(this IWebElement element)
