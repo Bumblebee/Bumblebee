@@ -46,26 +46,31 @@ namespace Bumblebee
     {
         public static T Verify<T>(this T obj, Predicate<T> assertion)
         {
-            Debug.Assert(assertion.Invoke(obj), "Assertion failed on object " + obj);
+            if (!assertion.Invoke(obj))
+                throw new VerificationException("Verification failed on object " + obj);
+
             return obj;
         }
 
         public static TSelectable VerifySelected<TSelectable>(this TSelectable selectable, bool selected) where TSelectable : ISelectable
         {
-            Debug.Assert(selectable.Selected == selected, "Selection verification failed. Expected: " + selected + ", Actual: " + selectable.Selected + ".");
+            if (selectable.Selected != selected)
+                throw new VerificationException("Selection verification failed. Expected: " + selected + ", Actual: " + selectable.Selected + ".");
+
             return selectable;
         }
 
         public static THasText VerifyText<THasText>(this THasText hasText, string text) where THasText : IHasText
         {
-            Debug.Assert(hasText.Text == text, "Text verification failed. Expected: " + text + ", Actual: " + hasText.Text + ".");
+            if (hasText.Text != text)
+                throw new VerificationException("Text verification failed. Expected: " + text + ", Actual: " + hasText.Text + ".");
             return hasText;
         }
 
         public static TBlock VerifyPresence<TBlock>(this TBlock block, By by) where TBlock : Block
         {
             if (!block.Dom.FindElements(by).Any())
-                throw new BadStateException("Couldn't verify presence of element " + by);
+                throw new VerificationException("Couldn't verify presence of element " + by);
 
             return block;
         }
@@ -73,7 +78,7 @@ namespace Bumblebee
         public static TBlock VerifyAbsence<TBlock>(this TBlock block, By by) where TBlock : Block
         {
             if (block.Dom.FindElements(by).Any())
-                throw new BadStateException("Couldn't verify absence of element " + by);
+                throw new VerificationException("Couldn't verify absence of element " + by);
 
             return block;
         }

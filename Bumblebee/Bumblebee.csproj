@@ -74,8 +74,6 @@
     <Compile Include="Implementation\Generic\Checkbox.cs" />
     <Compile Include="Implementation\Generic\Clickable.cs" />
     <Compile Include="Implementation\Conditional\ConditionalClickable.cs" />
-    <Compile Include="Implementation\Generic\AriaOption.cs" />
-    <Compile Include="Implementation\Generic\AriaSelectBox.cs" />
     <Compile Include="Implementation\Generic\Option.cs" />
     <Compile Include="Implementation\Generic\SelectBox.cs" />
     <Compile Include="Implementation\Generic\TextField.cs" />
@@ -91,6 +89,7 @@
     <Compile Include="Interfaces\ISelectable.cs" />
     <Compile Include="Interfaces\IElement.cs" />
     <Compile Include="SpecificBlock.cs" />
+    <Compile Include="VerificationException.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
