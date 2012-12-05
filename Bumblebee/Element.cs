@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using System.Linq;
+using OpenQA.Selenium;
 
 namespace Bumblebee
 {
@@ -6,7 +7,7 @@ namespace Bumblebee
     {
         protected IWebElement ParentElement { get; private set; }
 
-        protected Element(Block parent, By by) : base(parent.Session, parent.GetElement(by))
+        protected Element(Block parent, By by) : base(parent.Session, parent.Dom.GetElement(by))
         {
             ParentElement = parent.Dom;
         }

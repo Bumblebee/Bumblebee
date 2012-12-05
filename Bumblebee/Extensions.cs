@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using Bumblebee.Interfaces;
+using Ionic.Zip;
 using OpenQA.Selenium;
 
 namespace Bumblebee
@@ -63,13 +64,17 @@ namespace Bumblebee
 
         public static TBlock VerifyPresence<TBlock>(this TBlock block, By by) where TBlock : Block
         {
-            block.VerifyElementPresent(by);
+            if (!block.Dom.FindElements(by).Any())
+                throw new BadStateException("Couldn't verify presence of element " + by);
+
             return block;
         }
 
         public static TBlock VerifyAbsence<TBlock>(this TBlock block, By by) where TBlock : Block
         {
-            block.VerifyElementAbsent(by);
+            if (block.Dom.FindElements(by).Any())
+                throw new BadStateException("Couldn't verify absence of element " + by);
+
             return block;
         }
     }
@@ -97,6 +102,23 @@ namespace Bumblebee
 
     public static class WebElementConvenience
     {
+        public static IEnumerable<IWebElement> GetElements(this IWebElement element, By by)
+        {
+            return element.FindElements(by);
+        }
+
+        public static IWebElement GetElement(this IWebElement element, By by)
+        {
+            try
+            {
+                return element.FindElements(by).First();
+            }
+            catch (InvalidOperationException)
+            {
+                throw new NoSuchElementException("Tried to get element with selector " + by);
+            }
+        }
+
         public static string GetID(this IWebElement element)
         {
             return element.GetAttribute("id");
