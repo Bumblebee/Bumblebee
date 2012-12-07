@@ -6,24 +6,24 @@ namespace Bumblebee
     {
         protected IWebElement ParentElement { get; private set; }
 
-        protected Element(Block parent, By by) : base(parent.Session, parent.Dom.GetElement(by))
+        protected Element(Block parent, By by) : base(parent.Session, parent.Tag.GetElement(by))
         {
-            ParentElement = parent.Dom;
+            ParentElement = parent.Tag;
         }
 
-        protected Element(Block parent, IWebElement dom) : base(parent.Session, dom)
+        protected Element(Block parent, IWebElement tag) : base(parent.Session, tag)
         {
-            ParentElement = parent.Dom;
+            ParentElement = parent.Tag;
         }
 
         public string Text
         {
-            get { return Dom.Text; }
+            get { return Tag.Text; }
         }
 
         public virtual bool Selected
         {
-            get { return Dom.Selected; }
+            get { return Tag.Selected; }
         }
     }
 }

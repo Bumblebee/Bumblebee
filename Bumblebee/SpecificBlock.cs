@@ -4,9 +4,9 @@ namespace Bumblebee
 {
     public abstract class SpecificBlock : Block
     {
-        protected SpecificBlock(Session session, IWebElement dom) : base(session)
+        protected SpecificBlock(Session session, IWebElement tag) : base(session)
         {
-            Dom = dom;
+            Tag = tag;
         }
     }
 }

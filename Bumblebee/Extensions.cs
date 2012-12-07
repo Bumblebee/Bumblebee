@@ -67,7 +67,7 @@ namespace Bumblebee
 
         public static TBlock VerifyPresence<TBlock>(this TBlock block, By by) where TBlock : Block
         {
-            if (!block.Dom.FindElements(by).Any())
+            if (!block.Tag.FindElements(by).Any())
                 throw new VerificationException("Couldn't verify presence of element " + by);
 
             return block;
@@ -75,7 +75,7 @@ namespace Bumblebee
 
         public static TBlock VerifyAbsence<TBlock>(this TBlock block, By by) where TBlock : Block
         {
-            if (block.Dom.FindElements(by).Any())
+            if (block.Tag.FindElements(by).Any())
                 throw new VerificationException("Couldn't verify absence of element " + by);
 
             return block;

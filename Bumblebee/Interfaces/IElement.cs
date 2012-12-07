@@ -4,6 +4,6 @@ namespace Bumblebee.Interfaces
 {
     public interface IElement
     {
-        IWebElement Dom { get; }
+        IWebElement Tag { get; }
     }
 }

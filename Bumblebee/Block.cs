@@ -7,7 +7,7 @@ namespace Bumblebee
     {
         public Session Session { get; private set; }
 
-        public IWebElement Dom { get; protected set; }
+        public IWebElement Tag { get; protected set; }
 
         protected Block(Session session)
         {
@@ -16,12 +16,12 @@ namespace Bumblebee
 
         protected IList<IWebElement> GetElements(By by)
         {
-            return Dom.FindElements(by);
+            return Tag.FindElements(by);
         }
 
         protected IWebElement GetElement(By by)
         {
-            return Dom.GetElement(by);
+            return Tag.GetElement(by);
         }
     }
 }

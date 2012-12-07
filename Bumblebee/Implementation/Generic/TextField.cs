@@ -17,7 +17,7 @@ namespace Bumblebee.Implementation.Generic
 
         public TResult EnterText(string text)
         {
-            Dom.SendKeys(text);
+            Tag.SendKeys(text);
             return Session.CurrentBlock<TResult>(ParentElement);
         }
     }

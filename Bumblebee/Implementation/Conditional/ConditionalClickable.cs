@@ -17,13 +17,13 @@ namespace Bumblebee.Implementation.Conditional
 
         public TResult Click<TResult>() where TResult : Block
         {
-            Dom.Click();
+            Tag.Click();
             return Session.CurrentBlock<TResult>(ParentElement);
         }
 
         public AlertDialog ClickExpectingAlert()
         {
-            Dom.Click();
+            Tag.Click();
             return new AlertDialog(ParentElement, Session);
         }
     }
