@@ -1,6 +1,8 @@
-﻿namespace Bumblebee.Interfaces.Generic
+﻿using Bumblebee.Interfaces.Conditional;
+
+namespace Bumblebee.Interfaces.Generic
 {
-    public interface IClickable<out TResult> : IElement, IHasText where TResult : Block
+    public interface IClickable<out TResult> : IConditionalClickable where TResult : Block
     {
         TResult Click();
     }
