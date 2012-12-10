@@ -80,6 +80,20 @@ namespace Bumblebee
 
             return block;
         }
+
+        public static TBlock Store<TBlock, TData>(this TBlock block, out TData data, Func<TBlock, TData> exp)
+        {
+            data = exp.Invoke(block);
+            return block;
+        }
+
+        public static TBlock VerifyEquality<TBlock>(this TBlock block, object expected, object actual)
+        {
+            if (!expected.Equals(actual))
+                throw new VerificationException("Couldn't verify equality. Expected: " + expected + ". Actual: " + actual);
+
+            return block;
+        }
     }
 
     public static class Debugging
