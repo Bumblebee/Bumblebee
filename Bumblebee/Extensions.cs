@@ -11,12 +11,12 @@ namespace Bumblebee
     {
         public static IEnumerable<TResult> WithText<TResult>(this IEnumerable<TResult> haveText, string text) where TResult : IHasText
         {
-            return haveText.Where(hasText => hasText.Text == text);
+            return haveText.Where(hasText => hasText.Text.Trim() == text.Trim());
         }
 
-        public static TResult SingleWithText<TResult>(this IEnumerable<TResult> haveText, string text) where TResult : IHasText
+        public static IEnumerable<TResult> ContainingText<TResult>(this IEnumerable<TResult> haveText, string text) where TResult : IHasText
         {
-            return haveText.Single(hasText => hasText.Text == text);
+            return haveText.Where(hasText => hasText.Text.Contains(text.Trim()));
         }
 
         public static IEnumerable<TSelectable> Unselected<TSelectable>(this IEnumerable<TSelectable> options) where TSelectable : ISelectable
