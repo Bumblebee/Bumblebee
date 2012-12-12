@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using Bumblebee.Implementation;
 using Bumblebee.Interfaces;
 using OpenQA.Selenium;
 
@@ -65,7 +66,7 @@ namespace Bumblebee
             return hasText;
         }
 
-        public static TBlock VerifyPresence<TBlock>(this TBlock block, By by) where TBlock : Block
+        public static TBlock VerifyPresence<TBlock>(this TBlock block, By by) where TBlock : IBlock
         {
             if (!block.Tag.FindElements(by).Any())
                 throw new VerificationException("Couldn't verify presence of element " + by);
@@ -73,7 +74,7 @@ namespace Bumblebee
             return block;
         }
 
-        public static TBlock VerifyAbsence<TBlock>(this TBlock block, By by) where TBlock : Block
+        public static TBlock VerifyAbsence<TBlock>(this TBlock block, By by) where TBlock : IBlock
         {
             if (block.Tag.FindElements(by).Any())
                 throw new VerificationException("Couldn't verify absence of element " + by);
@@ -91,6 +92,14 @@ namespace Bumblebee
         {
             if (!expected.Equals(actual))
                 throw new VerificationException("Couldn't verify equality. Expected: " + expected + ". Actual: " + actual);
+
+            return block;
+        }
+
+        public static TBlock VerifyInequality<TBlock>(this TBlock block, object unexpected, object actual)
+        {
+            if (unexpected.Equals(actual))
+                throw new VerificationException("Couldn't verify inequality. Unxpected: " + unexpected + ". Actual: " + actual);
 
             return block;
         }

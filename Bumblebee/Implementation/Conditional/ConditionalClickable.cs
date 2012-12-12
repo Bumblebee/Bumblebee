@@ -1,4 +1,5 @@
-﻿using Bumblebee.Interfaces.Conditional;
+﻿using Bumblebee.Interfaces;
+using Bumblebee.Interfaces.Conditional;
 using OpenQA.Selenium;
 
 namespace Bumblebee.Implementation.Conditional
@@ -15,7 +16,7 @@ namespace Bumblebee.Implementation.Conditional
         {
         }
 
-        public TResult Click<TResult>() where TResult : Block
+        public TResult Click<TResult>() where TResult : IBlock
         {
             Tag.Click();
             return Session.CurrentBlock<TResult>(ParentElement);

@@ -1,6 +1,8 @@
-﻿namespace Bumblebee.Interfaces.Generic
+﻿using Bumblebee.Implementation;
+
+namespace Bumblebee.Interfaces.Generic
 {
-    public interface ICheckbox<out TResult> : IElement, ISelectable where TResult : Block
+    public interface ICheckbox<out TResult> : IElement, ISelectable where TResult : IBlock
     {
         TResult Check();
         TResult Uncheck();

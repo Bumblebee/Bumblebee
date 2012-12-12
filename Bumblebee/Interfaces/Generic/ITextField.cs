@@ -1,6 +1,8 @@
-﻿namespace Bumblebee.Interfaces.Generic
+﻿using Bumblebee.Implementation;
+
+namespace Bumblebee.Interfaces.Generic
 {
-    public interface ITextField<out TResult> : IElement, IHasText where TResult : Block
+    public interface ITextField<out TResult> : IElement, IHasText where TResult : IBlock
     {
         TResult EnterText(string text);
     }

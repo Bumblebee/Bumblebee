@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Bumblebee.Implementation;
+using Bumblebee.Interfaces;
 using OpenQA.Selenium;
 
 namespace Bumblebee
@@ -20,7 +22,7 @@ namespace Bumblebee
             return CurrentBlock<TBlock>();
         }
 
-        public TBlock CurrentBlock<TBlock>(IWebElement tag = null) where TBlock : Block
+        public TBlock CurrentBlock<TBlock>(IWebElement tag = null) where TBlock : IBlock
         {
             var type = typeof(TBlock);
             IList<Type> constructorSignature = new List<Type> { typeof(Session) };

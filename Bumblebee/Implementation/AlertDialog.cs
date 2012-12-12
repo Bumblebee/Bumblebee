@@ -1,8 +1,9 @@
-﻿using OpenQA.Selenium;
+﻿using Bumblebee.Interfaces;
+using OpenQA.Selenium;
 
-namespace Bumblebee
+namespace Bumblebee.Implementation
 {
-    public class AlertDialog : Block
+    public class AlertDialog : Block, IAlertDialog
     {
         private IWebElement Parent { get; set; }
         private IAlert Alert { get; set; }
@@ -19,13 +20,13 @@ namespace Bumblebee
             Alert = Session.Driver.SwitchTo().Alert();
         }
 
-        public TResult Accept<TResult>() where TResult : Block
+        public TResult Accept<TResult>() where TResult : IBlock
         {
             Alert.Accept();
             return Session.CurrentBlock<TResult>(Parent);
         }
 
-        public TResult Dismiss<TResult>() where TResult : Block
+        public TResult Dismiss<TResult>() where TResult : IBlock
         {
             Alert.Dismiss();
             return Session.CurrentBlock<TResult>(Parent);

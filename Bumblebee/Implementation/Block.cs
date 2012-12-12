@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
+using Bumblebee.Interfaces;
 using OpenQA.Selenium;
 
-namespace Bumblebee
+namespace Bumblebee.Implementation
 {
-    public abstract class Block
+    public abstract class Block : IBlock
     {
         public Session Session { get; private set; }
 
