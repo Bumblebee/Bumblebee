@@ -66,6 +66,13 @@ namespace Bumblebee
             return hasText;
         }
 
+        public static THasText VerifyTextMismatch<THasText>(this THasText hasText, string text) where THasText : IHasText
+        {
+            if (hasText.Text == text)
+                throw new VerificationException("Text mismatch verification failed. Unexpected: " + text + ", Actual: " + hasText.Text + ".");
+            return hasText;
+        }
+
         public static TBlock VerifyPresence<TBlock>(this TBlock block, By by) where TBlock : IBlock
         {
             if (!block.Tag.FindElements(by).Any())

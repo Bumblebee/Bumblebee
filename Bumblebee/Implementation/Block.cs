@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Bumblebee.Interfaces;
 using OpenQA.Selenium;
 
@@ -17,11 +18,17 @@ namespace Bumblebee.Implementation
 
         protected IList<IWebElement> GetElements(By by)
         {
+            if (Tag == null)
+                throw new NullReferenceException("You can't call GetElements on a block without first initializing Tag.");
+
             return Tag.FindElements(by);
         }
 
         protected IWebElement GetElement(By by)
         {
+            if (Tag == null)
+                throw new NullReferenceException("You can't call GetElement on a block without first initializing Tag.");
+
             return Tag.GetElement(by);
         }
     }
