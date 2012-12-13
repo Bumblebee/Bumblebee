@@ -1,1 +1,1 @@
-[See the wiki](https://github.com/patrickherrmann/Bumblebee/wiki)
+Check out the [web page](http://patrickherrmann.github.com/Bumblebee).
