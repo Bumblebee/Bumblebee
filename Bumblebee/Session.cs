@@ -16,7 +16,7 @@ namespace Bumblebee
             Driver = environment.CreateWebDriver();
         }
 
-        public TBlock NavigateTo<TBlock>(string url) where TBlock : Block
+        public TBlock NavigateTo<TBlock>(string url) where TBlock : IBlock
         {
             Driver.Navigate().GoToUrl(url);
             return CurrentBlock<TBlock>();
@@ -28,7 +28,7 @@ namespace Bumblebee
             IList<Type> constructorSignature = new List<Type> { typeof(Session) };
             IList<object> constructorArgs = new List<object> { this };
 
-            if (typeof(SpecificBlock).IsAssignableFrom(typeof(TBlock)))
+            if (typeof(ISpecificBlock).IsAssignableFrom(typeof(TBlock)))
             {
                 constructorSignature.Add(typeof(IWebElement));
                 constructorArgs.Add(tag);

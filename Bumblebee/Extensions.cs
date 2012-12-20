@@ -28,11 +28,6 @@ namespace Bumblebee
         {
             return options.Where(option => option.Selected);
         }
-
-        public static TSelectable SingleSelected<TSelectable>(this IEnumerable<TSelectable> options) where TSelectable : ISelectable
-        {
-            return options.Single(option => option.Selected);
-        }
     }
 
     public static class Randomization
@@ -174,6 +169,12 @@ namespace Bumblebee
         public static T Pause<T>(this T block, int seconds)
         {
             Thread.Sleep(1000 * seconds);
+            return block;
+        }
+
+        public static T Pause<T>(this T block)
+        {
+            Console.ReadLine();
             return block;
         }
     }

@@ -1,23 +1,23 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Bumblebee.Interfaces.Generic;
+using Bumblebee.Interfaces;
 using OpenQA.Selenium;
 
-namespace Bumblebee.Implementation.Generic
+namespace Bumblebee.Implementation
 {
     public class SelectBox<TResult> : Element, ISelectBox<TResult> where TResult : Block
     {
-        public SelectBox(Block parent, By by) : base(parent, by)
+        public SelectBox(IBlock parent, By by) : base(parent, by)
         {
         }
 
-        public SelectBox(Block parent, IWebElement element) : base(parent, element)
+        public SelectBox(IBlock parent, IWebElement element) : base(parent, element)
         {
         }
 
         public IEnumerable<IOption<TResult>> Options
         {
-            get { return GetElements(By.TagName("option")).Select(opt => new Option<TResult>(this, opt)); }
+            get { return GetElements(By.TagName("option")).Select(opt => new Option<TResult>(ParentBlock, opt)); }
         }
     }
 }

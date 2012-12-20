@@ -6,24 +6,19 @@ namespace Bumblebee.Implementation.Conditional
 {
     public class ConditionalOption : Element, IConditionalOption
     {
-        public ConditionalOption(Block parent, By by) : base(parent, by)
+        public ConditionalOption(IBlock parent, By by) : base(parent, by)
         {
         }
 
-        public ConditionalOption(Block parent, IWebElement element) : base(parent, element)
+        public ConditionalOption(IBlock parent, IWebElement element) : base(parent, element)
         {
         }
 
         public TResult Click<TResult>() where TResult : IBlock
         {
+            ParentBlock.Tag.Click();
             Tag.Click();
-            return Session.CurrentBlock<TResult>(ParentElement);
-        }
-
-        public AlertDialog ClickExpectingAlert()
-        {
-            Tag.Click();
-            return new AlertDialog(ParentElement, Session);
+            return Session.CurrentBlock<TResult>(ParentBlock.Tag);
         }
     }
 }

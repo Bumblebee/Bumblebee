@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using Bumblebee.Implementation;
 
-namespace Bumblebee.Interfaces.Generic
+namespace Bumblebee.Interfaces
 {
     public interface ISelectBox<out TResult> : IElement where TResult : IBlock
     {

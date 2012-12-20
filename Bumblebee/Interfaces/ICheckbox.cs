@@ -1,6 +1,4 @@
-﻿using Bumblebee.Implementation;
-
-namespace Bumblebee.Interfaces.Generic
+﻿namespace Bumblebee.Interfaces
 {
     public interface ICheckbox<out TResult> : IElement, ISelectable where TResult : IBlock
     {

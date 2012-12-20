@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Bumblebee.Interfaces;
 using Bumblebee.Interfaces.Conditional;
 using OpenQA.Selenium;
 
@@ -7,11 +8,11 @@ namespace Bumblebee.Implementation.Conditional
 {
     public class ConditionalSelectBox : Element, IConditionalSelectBox
     {
-        public ConditionalSelectBox(Block parent, By by) : base(parent, by)
+        public ConditionalSelectBox(IBlock parent, By by) : base(parent, by)
         {
         }
 
-        public ConditionalSelectBox(Block parent, IWebElement element) : base(parent, element)
+        public ConditionalSelectBox(IBlock parent, IWebElement element) : base(parent, element)
         {
         }
 

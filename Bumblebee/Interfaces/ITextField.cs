@@ -1,6 +1,4 @@
-﻿using Bumblebee.Implementation;
-
-namespace Bumblebee.Interfaces.Generic
+﻿namespace Bumblebee.Interfaces
 {
     public interface ITextField<out TResult> : IElement, IHasText where TResult : IBlock
     {

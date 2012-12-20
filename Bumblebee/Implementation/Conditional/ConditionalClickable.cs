@@ -6,12 +6,12 @@ namespace Bumblebee.Implementation.Conditional
 {
     public class ConditionalClickable : Element, IConditionalClickable
     {
-        public ConditionalClickable(Block parent, By by)
+        public ConditionalClickable(IBlock parent, By by)
             : base(parent, by)
         {
         }
 
-        public ConditionalClickable(Block parent, IWebElement element)
+        public ConditionalClickable(IBlock parent, IWebElement element)
             : base(parent, element)
         {
         }
@@ -19,13 +19,7 @@ namespace Bumblebee.Implementation.Conditional
         public TResult Click<TResult>() where TResult : IBlock
         {
             Tag.Click();
-            return Session.CurrentBlock<TResult>(ParentElement);
-        }
-
-        public AlertDialog ClickExpectingAlert()
-        {
-            Tag.Click();
-            return new AlertDialog(ParentElement, Session);
+            return Session.CurrentBlock<TResult>(ParentBlock.Tag);
         }
     }
 }

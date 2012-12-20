@@ -1,7 +1,6 @@
-﻿using Bumblebee.Implementation;
-using Bumblebee.Interfaces.Conditional;
+﻿using Bumblebee.Interfaces.Conditional;
 
-namespace Bumblebee.Interfaces.Generic
+namespace Bumblebee.Interfaces
 {
     public interface IClickable<out TResult> : IConditionalClickable where TResult : IBlock
     {

@@ -1,16 +1,16 @@
-﻿using Bumblebee.Interfaces.Generic;
+﻿using Bumblebee.Interfaces;
 using OpenQA.Selenium;
 
-namespace Bumblebee.Implementation.Generic
+namespace Bumblebee.Implementation
 {
     public class TextField<TResult> : Element, ITextField<TResult> where TResult : Block
     {
-        public TextField(Block parent, By by)
+        public TextField(IBlock parent, By by)
             : base(parent, by)
         {
         }
 
-        public TextField(Block parent, IWebElement element)
+        public TextField(IBlock parent, IWebElement element)
             : base(parent, element)
         {
         }
@@ -18,7 +18,7 @@ namespace Bumblebee.Implementation.Generic
         public TResult EnterText(string text)
         {
             Tag.SendKeys(text);
-            return Session.CurrentBlock<TResult>(ParentElement);
+            return Session.CurrentBlock<TResult>(ParentBlock.Tag);
         }
     }
 }

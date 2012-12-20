@@ -1,19 +1,20 @@
-﻿using OpenQA.Selenium;
+﻿using Bumblebee.Interfaces;
+using OpenQA.Selenium;
 
 namespace Bumblebee.Implementation
 {
     public abstract class Element : SpecificBlock
     {
-        protected IWebElement ParentElement { get; private set; }
+        protected IBlock ParentBlock { get; private set; }
 
-        protected Element(Block parent, By by) : base(parent.Session, parent.Tag.GetElement(by))
+        protected Element(IBlock parent, By by) : base(parent.Session, parent.Tag.GetElement(by))
         {
-            ParentElement = parent.Tag;
+            ParentBlock = parent;
         }
 
-        protected Element(Block parent, IWebElement tag) : base(parent.Session, tag)
+        protected Element(IBlock parent, IWebElement tag) : base(parent.Session, tag)
         {
-            ParentElement = parent.Tag;
+            ParentBlock = parent;
         }
 
         public string Text
