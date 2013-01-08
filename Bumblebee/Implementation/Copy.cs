@@ -13,10 +13,9 @@ namespace Bumblebee.Implementation
         {
         }
 
-        public TResult VerifyContent(string text)
+        public TResult Then()
         {
-            this.VerifyText(text);
-            return Session.CurrentBlock<TResult>(ParentBlock.Tag);
+            return Then<TResult>();
         }
     }
 }

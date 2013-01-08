@@ -26,5 +26,10 @@ namespace Bumblebee.Implementation
         {
             get { return Tag.Selected; }
         }
+
+        public TCustomResult Then<TCustomResult>() where TCustomResult : IBlock
+        {
+            return Session.CurrentBlock<TCustomResult>(ParentBlock.Tag);
+        }
     }
 }

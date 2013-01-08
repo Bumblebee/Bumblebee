@@ -113,6 +113,14 @@ namespace Bumblebee
             return hasText;
         }
 
+        public static THasText VerifyTextContains<THasText>(this THasText hasText, string text)
+            where THasText : IHasText
+        {
+            if (!hasText.Text.Contains(text))
+                throw new VerificationException("Expected \"" + hasText.Text + "\" to contain \"" + text + "\"");
+            return hasText;
+        }
+
         public static TBlock VerifyPresence<TBlock>(this TBlock block, By by) where TBlock : IBlock
         {
             if (!block.Tag.FindElements(by).Any())

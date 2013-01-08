@@ -30,6 +30,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\IAllowsDoingNothing.cs" />
     <Compile Include="Interfaces\IBlock.cs" />
     <Compile Include="Implementation\AlertDialog.cs" />
     <Compile Include="Implementation\Block.cs" />
@@ -42,19 +43,13 @@
     <Compile Include="Interfaces\ISpecificBlock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Session.cs" />
-    <Compile Include="Implementation\Conditional\ConditionalOption.cs" />
-    <Compile Include="Implementation\Conditional\ConditionalSelectBox.cs" />
     <Compile Include="Implementation\Checkbox.cs" />
     <Compile Include="Implementation\Clickable.cs" />
-    <Compile Include="Implementation\Conditional\ConditionalClickable.cs" />
     <Compile Include="Implementation\Option.cs" />
     <Compile Include="Implementation\SelectBox.cs" />
     <Compile Include="Implementation\TextField.cs" />
-    <Compile Include="Interfaces\Conditional\IConditionalOption.cs" />
-    <Compile Include="Interfaces\Conditional\IConditionalSelectBox.cs" />
     <Compile Include="Interfaces\ICheckbox.cs" />
     <Compile Include="Interfaces\IClickable.cs" />
-    <Compile Include="Interfaces\Conditional\IConditionalClickable.cs" />
     <Compile Include="Interfaces\IOption.cs" />
     <Compile Include="Interfaces\ISelectBox.cs" />
     <Compile Include="Interfaces\ITextField.cs" />
