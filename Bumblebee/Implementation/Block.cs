@@ -16,7 +16,7 @@ namespace Bumblebee.Implementation
             Session = session;
         }
 
-        protected IList<IWebElement> GetElements(By by)
+        public IList<IWebElement> GetElements(By by)
         {
             if (Tag == null)
                 throw new NullReferenceException("You can't call GetElements on a block without first initializing Tag.");
@@ -24,7 +24,7 @@ namespace Bumblebee.Implementation
             return Tag.FindElements(by);
         }
 
-        protected IWebElement GetElement(By by)
+        public IWebElement GetElement(By by)
         {
             if (Tag == null)
                 throw new NullReferenceException("You can't call GetElement on a block without first initializing Tag.");

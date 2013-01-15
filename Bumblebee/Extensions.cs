@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -189,6 +190,21 @@ namespace Bumblebee
 
     public static class WebElementConvenience
     {
+        public static IList<IWebElement> GetElements(this IWebDriver driver, By by)
+        {
+            return driver.FindElements(by);
+        }
+
+        public static IWebElement GetElement(this IWebDriver driver, By by)
+        {
+            var elements = driver.GetElements(by);
+
+            if (!elements.Any())
+                throw new NoSuchElementException("Tried to get element with selector " + by);
+
+            return elements.First();
+        }
+
         public static IEnumerable<IWebElement> GetElements(this IWebElement element, By by)
         {
             return element.FindElements(by);
@@ -219,7 +235,7 @@ namespace Bumblebee
             return element.GetClasses().Any(@class => @class.Equals(className));
         }
 
-        public static IWebElement FindElementByJQuery(this IWebDriver driver, string query)
+        public static IWebElement GetElementByJQuery(this IWebDriver driver, string query)
         {
             return ((IJavaScriptExecutor) driver).ExecuteScript(string.Format("return $('{0}').get();", query)) as IWebElement;
         }
