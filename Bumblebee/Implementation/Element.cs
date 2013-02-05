@@ -17,7 +17,7 @@ namespace Bumblebee.Implementation
             ParentBlock = parent;
         }
 
-        public string Text
+        public virtual string Text
         {
             get { return Tag.Text; }
         }

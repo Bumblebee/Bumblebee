@@ -2,9 +2,7 @@ using OpenQA.Selenium;
 
 namespace Bumblebee.Interfaces
 {
-    public interface IBlock
+    public interface IBlock : IElement
     {
-        Session Session { get; }
-        IWebElement Tag { get; }
     }
 }

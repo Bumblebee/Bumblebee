@@ -23,7 +23,7 @@ namespace Bumblebee.Implementation
         }
     }
 
-    public class SelectBox<TResult> : Element, ISelectBox<TResult> where TResult : Block
+    public class SelectBox<TResult> : Element, ISelectBox<TResult> where TResult : IBlock
     {
         public SelectBox(IBlock parent, By by) : base(parent, by)
         {

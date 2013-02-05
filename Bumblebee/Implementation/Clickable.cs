@@ -22,7 +22,7 @@ namespace Bumblebee.Implementation
         }
     }
 
-    public class Clickable<TResult> : Clickable, IClickable<TResult> where TResult : Block
+    public class Clickable<TResult> : Clickable, IClickable<TResult> where TResult : IBlock
     {
         public Clickable(IBlock parent, By by)
             : base(parent, by)

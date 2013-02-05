@@ -6,7 +6,7 @@ namespace Bumblebee.Interfaces
     {
         TResult Accept<TResult>() where TResult : IBlock;
         TResult Dismiss<TResult>() where TResult : IBlock;
-        AlertDialog EnterText(string text);
+        IAlertDialog EnterText(string text);
         string Text { get; }
     }
 }

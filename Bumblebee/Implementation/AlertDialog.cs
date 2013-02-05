@@ -32,7 +32,7 @@ namespace Bumblebee.Implementation
             return Session.CurrentBlock<TResult>(Parent);
         }
 
-        public AlertDialog EnterText(string text)
+        public IAlertDialog EnterText(string text)
         {
             Alert.SendKeys(text);
             return this;

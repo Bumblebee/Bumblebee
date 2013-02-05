@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using Bumblebee.Interfaces;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
 
 namespace Bumblebee
 {
@@ -161,6 +161,17 @@ namespace Bumblebee
         }
     }
 
+    public static class AdvancedSeleniumActions
+    {
+        public static TElement Hover<TElement>(this TElement element, int pauseSeconds = 0) where TElement : IElement
+        {
+            var builder = new Actions(element.Session.Driver);
+            builder.MoveToElement(element.Tag).Perform();
+
+            return element.Pause(pauseSeconds);
+        }
+    }
+
     public static class Debugging
     {
         public static T DebugPrint<T>(this T obj)
@@ -177,13 +188,8 @@ namespace Bumblebee
 
         public static T Pause<T>(this T block, int seconds)
         {
-            Thread.Sleep(1000 * seconds);
-            return block;
-        }
+            if (seconds > 0) Thread.Sleep(1000 * seconds);
 
-        public static T Pause<T>(this T block)
-        {
-            Console.ReadLine();
             return block;
         }
     }

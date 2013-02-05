@@ -23,7 +23,7 @@ namespace Bumblebee.Implementation
         }
     }
 
-    public class Option<TResult> : Clickable<TResult>, IOption<TResult> where TResult : Block
+    public class Option<TResult> : Clickable<TResult>, IOption<TResult> where TResult : IBlock
     {
         public Option(IBlock parent, By by) : base(parent, by)
         {
