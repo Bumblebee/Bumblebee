@@ -15,7 +15,7 @@ namespace Bumblebee.Implementation
         {
         }
 
-        public TResult Click<TResult>() where TResult : IBlock
+        public virtual TResult Click<TResult>() where TResult : IBlock
         {
             ParentBlock.Tag.Click();
             Tag.Click();

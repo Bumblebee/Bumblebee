@@ -1,5 +1,7 @@
-﻿using Bumblebee.Interfaces;
+﻿using System;
+using Bumblebee.Interfaces;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 
 namespace Bumblebee.Implementation
 {
@@ -11,34 +13,40 @@ namespace Bumblebee.Implementation
         public AlertDialog(Session session) : base(session)
         {
             Parent = null;
-            Alert = Session.Driver.SwitchTo().Alert();
+            Alert = WaitForAlert();
         }
 
         public AlertDialog(IWebElement parent, Session session) : base(session)
         {
             Parent = parent;
-            Alert = Session.Driver.SwitchTo().Alert();
+            Alert = WaitForAlert();
         }
 
-        public TResult Accept<TResult>() where TResult : IBlock
+        private IAlert WaitForAlert()
+        {
+            var wait = new WebDriverWait(Session.Driver, new TimeSpan(0, 0, 5));
+            return wait.Until(d => d.SwitchTo().Alert());
+        }
+
+        public virtual TResult Accept<TResult>() where TResult : IBlock
         {
             Alert.Accept();
             return Session.CurrentBlock<TResult>(Parent);
         }
 
-        public TResult Dismiss<TResult>() where TResult : IBlock
+        public virtual TResult Dismiss<TResult>() where TResult : IBlock
         {
             Alert.Dismiss();
             return Session.CurrentBlock<TResult>(Parent);
         }
 
-        public IAlertDialog EnterText(string text)
+        public virtual IAlertDialog EnterText(string text)
         {
             Alert.SendKeys(text);
             return this;
         }
 
-        public string Text
+        public virtual string Text
         {
             get { return Alert.Text; }
         }

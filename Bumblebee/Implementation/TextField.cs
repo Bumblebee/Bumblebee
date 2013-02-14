@@ -15,10 +15,16 @@ namespace Bumblebee.Implementation
         {
         }
 
-        public TResult EnterText(string text)
+        public virtual TResult EnterText(string text)
         {
             Tag.SendKeys(text);
+
             return Session.CurrentBlock<TResult>(ParentBlock.Tag);
+        }
+
+        public override string Text
+        {
+            get { return Tag.GetAttribute("value"); }
         }
     }
 }

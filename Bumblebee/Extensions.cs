@@ -5,6 +5,7 @@ using System.Threading;
 using Bumblebee.Interfaces;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
+using OpenQA.Selenium.Internal;
 
 namespace Bumblebee
 {
@@ -47,8 +48,7 @@ namespace Bumblebee
             return source.ShuffleIterator(rng);
         }
 
-        private static IEnumerable<T> ShuffleIterator<T>(
-            this IEnumerable<T> source, Random rng)
+        private static IEnumerable<T> ShuffleIterator<T>(this IEnumerable<T> source, Random rng)
         {
             var buffer = source.ToList();
 
@@ -84,12 +84,17 @@ namespace Bumblebee
 
     public static class Verification
     {
-        public static T Verify<T>(this T obj, Predicate<T> assertion)
+        public static T Verify<T>(this T obj, string verification, Predicate<T> predicate)
         {
-            if (!assertion.Invoke(obj))
-                throw new VerificationException("Verification failed on object " + obj);
+            if (!predicate.Invoke(obj))
+                throw new VerificationException(verification);
 
             return obj;
+        }
+
+        public static T Verify<T>(this T obj, Predicate<T> predicate)
+        {
+            return obj.Verify(null, predicate);
         }
 
         public static TSelectable VerifySelected<TSelectable>(this TSelectable selectable, bool selected) where TSelectable : ISelectable
@@ -124,16 +129,26 @@ namespace Bumblebee
 
         public static TBlock VerifyPresence<TBlock>(this TBlock block, By by) where TBlock : IBlock
         {
-            if (!block.Tag.FindElements(by).Any())
-                throw new VerificationException("Couldn't verify presence of element " + by);
-
-            return block;
+            return block.VerifyPresenceOf("element", by);
         }
 
         public static TBlock VerifyAbsence<TBlock>(this TBlock block, By by) where TBlock : IBlock
         {
-            if (block.Tag.FindElements(by).Any())
-                throw new VerificationException("Couldn't verify absence of element " + by);
+            return block.VerifyAbsenceOf("element", by);
+        }
+
+        public static TBlock VerifyPresenceOf<TBlock>(this TBlock block, string element, By by) where TBlock : IBlock
+        {
+            if (!block.Tag.GetElements(by).Any())
+                throw new VerificationException("Couldn't verify presence of " + element + " " + by);
+
+            return block;
+        }
+
+        public static TBlock VerifyAbsenceOf<TBlock>(this TBlock block, string element, By by) where TBlock : IBlock
+        {
+            if (block.Tag.GetElements(by).Any())
+                throw new VerificationException("Couldn't verify absence of " + element + " " + by);
 
             return block;
         }
@@ -143,30 +158,13 @@ namespace Bumblebee
             data = exp.Invoke(block);
             return block;
         }
-
-        public static TBlock VerifyEquality<TBlock>(this TBlock block, object expected, object actual)
-        {
-            if (!expected.Equals(actual))
-                throw new VerificationException("Couldn't verify equality. Expected: " + expected + ". Actual: " + actual);
-
-            return block;
-        }
-
-        public static TBlock VerifyInequality<TBlock>(this TBlock block, object unexpected, object actual)
-        {
-            if (unexpected.Equals(actual))
-                throw new VerificationException("Couldn't verify inequality. Unxpected: " + unexpected + ". Actual: " + actual);
-
-            return block;
-        }
     }
 
     public static class AdvancedSeleniumActions
     {
         public static TElement Hover<TElement>(this TElement element, int pauseSeconds = 0) where TElement : IElement
         {
-            var builder = new Actions(element.Session.Driver);
-            builder.MoveToElement(element.Tag).Perform();
+            new Actions(element.Session.Driver).MoveToElement(element.Tag).Perform();
 
             return element.Pause(pauseSeconds);
         }
@@ -196,6 +194,11 @@ namespace Bumblebee
 
     public static class WebElementConvenience
     {
+        public static IWebDriver GetDriver(this IWebElement element)
+        {
+            return ((IWrapsDriver) element).WrappedDriver;
+        }
+
         public static IList<IWebElement> GetElements(this IWebDriver driver, By by)
         {
             return driver.FindElements(by);
@@ -241,9 +244,29 @@ namespace Bumblebee
             return element.GetClasses().Any(@class => @class.Equals(className));
         }
 
+        public static T ExecuteScript<T>(this IWebDriver driver, string script, params object[] args)
+        {
+            return (T)((IJavaScriptExecutor) driver).ExecuteScript(script, args);
+        }
+
         public static IWebElement GetElementByJQuery(this IWebDriver driver, string query)
         {
-            return ((IJavaScriptExecutor) driver).ExecuteScript(string.Format("return $('{0}').get();", query)) as IWebElement;
+            return driver.ExecuteScript<IWebElement>(string.Format("return $('{0}').get();", query));
+        }
+
+        public static T ExecuteFunction<T>(this IWebElement element, string function, params object[] args)
+        {
+            return element.GetDriver().ExecuteScript<T>("arguments[0]." + function, element, args);
+        }
+
+        public static T ExecuteJQueryFunction<T>(this IWebElement element, string function, params object[] args)
+        {
+            return element.GetDriver().ExecuteScript<T>("$(arguments[0])." + function, element, args);
+        }
+
+        public static void SetAttribute(this IWebElement element, string attribute, string value)
+        {
+            element.GetDriver().ExecuteScript<object>("arguments[0].setAttribute(arguments[1], arguments[2])", element, attribute, value);
         }
     }
 }

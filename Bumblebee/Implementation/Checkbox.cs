@@ -13,19 +13,19 @@ namespace Bumblebee.Implementation
         {
         }
 
-        public TResult Check()
+        public virtual TResult Check()
         {
             if (!Selected) Tag.Click();
             return Session.CurrentBlock<TResult>(ParentBlock.Tag);
         }
 
-        public TResult Uncheck()
+        public virtual TResult Uncheck()
         {
             if (Selected) Tag.Click();
             return Session.CurrentBlock<TResult>(ParentBlock.Tag);
         }
 
-        public TResult Toggle()
+        public virtual TResult Toggle()
         {
             Tag.Click();
             return Session.CurrentBlock<TResult>(ParentBlock.Tag);

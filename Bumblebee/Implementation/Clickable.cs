@@ -15,7 +15,7 @@ namespace Bumblebee.Implementation
         {
         }
 
-        public TResult Click<TResult>() where TResult : IBlock
+        public virtual TResult Click<TResult>() where TResult : IBlock
         {
             Tag.Click();
             return Session.CurrentBlock<TResult>(ParentBlock.Tag);
@@ -34,7 +34,7 @@ namespace Bumblebee.Implementation
         {
         }
 
-        public TResult Click()
+        public virtual TResult Click()
         {
             return Click<TResult>();
         }

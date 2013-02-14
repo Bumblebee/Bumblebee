@@ -17,7 +17,7 @@ namespace Bumblebee.Implementation
         {
         }
 
-        public IEnumerable<IOption> Options
+        public virtual IEnumerable<IOption> Options
         {
             get { return GetElements(By.TagName("option")).Select(opt => new ConditionalOption(this, opt)); }
         }
@@ -33,7 +33,7 @@ namespace Bumblebee.Implementation
         {
         }
 
-        public IEnumerable<IOption<TResult>> Options
+        public virtual IEnumerable<IOption<TResult>> Options
         {
             get { return GetElements(By.TagName("option")).Select(opt => new Option<TResult>(ParentBlock, opt)); }
         }

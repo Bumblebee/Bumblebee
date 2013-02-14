@@ -19,7 +19,7 @@ namespace Bumblebee.Implementation
             By = by;
         } 
 
-        public IEnumerable<IOption<TResult>> Options
+        public virtual IEnumerable<IOption<TResult>> Options
         {
             get
             {
