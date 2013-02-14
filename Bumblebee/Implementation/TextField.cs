@@ -17,6 +17,12 @@ namespace Bumblebee.Implementation
 
         public virtual TResult EnterText(string text)
         {
+            Tag.Clear();
+            return AppendText(text);
+        }
+
+        public virtual TResult AppendText(string text)
+        {
             Tag.SendKeys(text);
 
             return Session.CurrentBlock<TResult>(ParentBlock.Tag);
