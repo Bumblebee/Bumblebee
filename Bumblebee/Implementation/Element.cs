@@ -1,4 +1,5 @@
-﻿using Bumblebee.Interfaces;
+﻿using Bumblebee.Extensions;
+using Bumblebee.Interfaces;
 using OpenQA.Selenium;
 
 namespace Bumblebee.Implementation
