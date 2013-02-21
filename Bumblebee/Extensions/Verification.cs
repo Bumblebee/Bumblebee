@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Bumblebee.Interfaces;
 using OpenQA.Selenium;
@@ -74,6 +75,27 @@ namespace Bumblebee.Extensions
                 throw new VerificationException("Couldn't verify absence of " + element + " " + by);
 
             return block;
+        }
+
+        public static TElement VerifyClasses<TElement>(this TElement block, IEnumerable<string> expectedClasses) where TElement : IElement
+        {
+            var classes = block.Tag.GetClasses();
+
+            var missingClasses = expectedClasses.Where(expected => !classes.Contains(expected)).ToList();
+
+            if (missingClasses.Any())
+            {
+                var message = "Block is missing the following expected classes: ";
+                message += missingClasses.Aggregate((current, missingClass) => current + ", " + missingClass);
+                throw new VerificationException(message);
+            }
+
+            return block;
+        }
+
+        public static TElement VerifyClasses<TElement>(this TElement block, params string[] expectedClasses) where TElement : IElement
+        {
+            return block.VerifyClasses((IEnumerable<string>) expectedClasses);
         }
 
         public static TBlock Store<TBlock, TData>(this TBlock block, out TData data, Func<TBlock, TData> exp)
