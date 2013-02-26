@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Bumblebee
+namespace Bumblebee.Exceptions
 {
     public class VerificationException : Exception
     {

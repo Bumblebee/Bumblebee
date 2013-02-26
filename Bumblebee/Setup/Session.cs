@@ -1,17 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Bumblebee.Implementation;
 using Bumblebee.Interfaces;
 using OpenQA.Selenium;
 
-namespace Bumblebee
+namespace Bumblebee.Setup
 {
     public class Session
     {
         public IWebDriver Driver { get; private set; }
 
-        public Session(IDriverEnvironment environment)
+        protected Session(IDriverEnvironment environment)
         {
             Driver = environment.CreateWebDriver();
         }

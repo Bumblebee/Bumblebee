@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Bumblebee.Extensions;
 using Bumblebee.Interfaces;
+using Bumblebee.Setup;
 using OpenQA.Selenium;
 
 namespace Bumblebee.Implementation

@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
 
-namespace Bumblebee
+namespace Bumblebee.Setup
 {
     public interface IDriverEnvironment
     {

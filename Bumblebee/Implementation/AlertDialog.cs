@@ -1,5 +1,6 @@
 ﻿using System;
 using Bumblebee.Interfaces;
+using Bumblebee.Setup;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 
