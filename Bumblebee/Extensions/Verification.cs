@@ -80,7 +80,19 @@ namespace Bumblebee.Extensions
 
         public static TElement VerifyClasses<TElement>(this TElement block, IEnumerable<string> expectedClasses) where TElement : IElement
         {
-            var classes = block.Tag.GetClasses();
+            block.Tag.VerifyClasses(expectedClasses);
+
+            return block;
+        }
+
+        public static TElement VerifyClasses<TElement>(this TElement block, params string[] expectedClasses) where TElement : IElement
+        {
+            return block.VerifyClasses((IEnumerable<string>) expectedClasses);
+        }
+
+        public static void VerifyClasses(this IWebElement element, IEnumerable<string> expectedClasses)
+        {
+            var classes = element.GetClasses();
 
             var missingClasses = expectedClasses.Where(expected => !classes.Contains(expected)).ToList();
 
@@ -90,13 +102,11 @@ namespace Bumblebee.Extensions
                 message += missingClasses.Aggregate((current, missingClass) => current + ", " + missingClass);
                 throw new VerificationException(message);
             }
-
-            return block;
         }
 
-        public static TElement VerifyClasses<TElement>(this TElement block, params string[] expectedClasses) where TElement : IElement
+        public static void VerifyClasses(this IWebElement element, params string[] expectedClasses)
         {
-            return block.VerifyClasses((IEnumerable<string>) expectedClasses);
+            element.VerifyClasses((IEnumerable<string>) expectedClasses);
         }
 
         public static TBlock Store<TBlock, TData>(this TBlock block, out TData data, Func<TBlock, TData> exp)

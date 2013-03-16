@@ -7,29 +7,14 @@ namespace Bumblebee.Extensions
 {
     public static class WebElementConvenience
     {
-        public static IList<IWebElement> GetElements(this IWebDriver driver, By by)
+        public static IList<IWebElement> GetElements(this ISearchContext driver, By by)
         {
             return driver.FindElements(by);
         }
 
-        public static IWebElement GetElement(this IWebDriver driver, By by)
+        public static IWebElement GetElement(this ISearchContext driver, By by)
         {
             var elements = driver.GetElements(by);
-
-            if (!elements.Any())
-                throw new NoSuchElementException("Tried to get element with selector " + by);
-
-            return elements.First();
-        }
-
-        public static IEnumerable<IWebElement> GetElements(this IWebElement element, By by)
-        {
-            return element.FindElements(by);
-        }
-
-        public static IWebElement GetElement(this IWebElement element, By by)
-        {
-            var elements = element.FindElements(by);
 
             if (!elements.Any())
                 throw new NoSuchElementException("Tried to get element with selector " + by);

@@ -6,7 +6,7 @@ namespace Bumblebee.Implementation
 {
     public abstract class Element : SpecificBlock
     {
-        protected IBlock ParentBlock { get; private set; }
+        public IBlock ParentBlock { get; private set; }
 
         protected Element(IBlock parent, By by) : base(parent.Session, parent.Tag.GetElement(by))
         {

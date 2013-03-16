@@ -33,5 +33,10 @@ namespace Bumblebee.Implementation
 
             return Tag.GetElement(by);
         }
+
+        public virtual IPerformsDragAndDrop GetDragAndDropPerformer()
+        {
+            return new WebDragAndDropPerformer(Session.Driver);
+        }
     }
 }

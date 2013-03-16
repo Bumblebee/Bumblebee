@@ -3,7 +3,36 @@ using OpenQA.Selenium;
 
 namespace Bumblebee.Implementation
 {
-    public class Checkbox<TResult> : Element, ICheckbox<TResult> where TResult : IBlock
+    public class Checkbox : Element, ICheckbox
+    {
+        public Checkbox(IBlock parent, By by) : base(parent, by)
+        {
+        }
+
+        public Checkbox(IBlock parent, IWebElement tag) : base(parent, tag)
+        {
+        }
+
+        public TCustomResult Check<TCustomResult>() where TCustomResult : IBlock
+        {
+            if (!Selected) Tag.Click();
+            return Session.CurrentBlock<TCustomResult>(ParentBlock.Tag);
+        }
+
+        public TCustomResult Uncheck<TCustomResult>() where TCustomResult : IBlock
+        {
+            if (Selected) Tag.Click();
+            return Session.CurrentBlock<TCustomResult>(ParentBlock.Tag);
+        }
+
+        public TCustomResult Toggle<TCustomResult>() where TCustomResult : IBlock
+        {
+            Tag.Click();
+            return Session.CurrentBlock<TCustomResult>(ParentBlock.Tag);
+        }
+    }
+
+    public class Checkbox<TResult> : Checkbox, ICheckbox<TResult> where TResult : IBlock
     {
         public Checkbox(IBlock parent, By by) : base(parent, by)
         {
