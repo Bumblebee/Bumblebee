@@ -14,7 +14,7 @@ namespace Bumblebee.Implementation
             Draggable = getDraggable.Invoke(parent);
         }
 
-        public TParent AndDrop(Func<TParent, IBlock> getDropzone)
+        public TParent AndDrop(Func<TParent, IHasBackingElement> getDropzone)
         {
             PerformDragAndDrop(getDropzone);
 
