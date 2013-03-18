@@ -1,4 +1,5 @@
 using System;
+using Bumblebee.Implementation;
 using Bumblebee.Interfaces;
 using OpenQA.Selenium.Interactions;
 
@@ -13,26 +14,9 @@ namespace Bumblebee.Extensions
             return element.Pause(pauseSeconds);
         }
 
-        public static TParent DragAndDrop<TParent>(this TParent parent, Func<TParent, IDraggable> getDraggable, Func<TParent, IHasBackingElement> getDropzone) where TParent : IBlock
+        public static DragAction<TParent> Drag<TParent>(this TParent parent, Func<TParent, IDraggable> getDraggable) where TParent : IBlock
         {
-            PerformDragAndDrop(parent, getDraggable, getDropzone);
-
-            return parent;
-        }
-
-        public static TCustomResult DragAndDrop<TParent, TCustomResult>(this TParent parent, Func<TParent, IDraggable> getDraggable, Func<TParent, IHasBackingElement> getDropzone) where TParent : IBlock where TCustomResult : IBlock
-        {
-            PerformDragAndDrop(parent, getDraggable, getDropzone);
-
-            return parent.Session.CurrentBlock<TCustomResult>();
-        }
-
-        private static void PerformDragAndDrop<TParent>(TParent parent, Func<TParent, IDraggable> getDraggable, Func<TParent, IHasBackingElement> getDropzone) where TParent : IBlock
-        {
-            var draggable = getDraggable.Invoke(parent);
-            var dropzone = getDropzone.Invoke(parent);
-
-            draggable.GetDragAndDropPerformer().DragAndDrop(draggable.Tag, dropzone.Tag);
+            return new DragAction<TParent>(parent, getDraggable);
         }
     }
 }
