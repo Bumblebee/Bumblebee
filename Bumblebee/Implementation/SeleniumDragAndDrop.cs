@@ -23,10 +23,5 @@ namespace Bumblebee.Implementation
         {
             new Actions(Driver).DragAndDropToOffset(drag, xDrop, yDrop).Build().Perform();
         }
-
-        public void DragAndDrop(int xDrag, int yDrag, int xDrop, int yDrop)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
