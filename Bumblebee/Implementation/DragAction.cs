@@ -46,12 +46,12 @@ namespace Bumblebee.Implementation
         {
             var dropzone = getDropzone.Invoke(Parent);
 
-            Draggable.GetDragAndDropPerformer().DragAndDrop(Draggable.Tag, dropzone.Tag);
+            Parent.GetDragAndDropPerformer().DragAndDrop(Draggable.Tag, dropzone.Tag);
         }
 
         private void PerformDragAndDrop(int x, int y)
         {
-            Draggable.GetDragAndDropPerformer().DragAndDrop(Draggable.Tag, x, y);
+            Parent.GetDragAndDropPerformer().DragAndDrop(Draggable.Tag, x, y);
         }
     }
 }
