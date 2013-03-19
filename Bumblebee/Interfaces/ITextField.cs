@@ -6,7 +6,7 @@
         TCustomResult AppendText<TCustomResult>(string text) where TCustomResult : IBlock;
     }
 
-    public interface ITextField<out TResult> : ITextField, IGenericElement<TResult> where TResult : IBlock
+    public interface ITextField<out TResult> : ITextField, IAllowsNoOp<TResult> where TResult : IBlock
     {
         TResult EnterText(string text);
         TResult AppendText(string text);
