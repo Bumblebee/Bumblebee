@@ -1,6 +1,4 @@
-﻿using OpenQA.Selenium;
-
-namespace Bumblebee.Interfaces
+﻿namespace Bumblebee.Interfaces
 {
     public interface IDraggable : IHasBackingElement
     {

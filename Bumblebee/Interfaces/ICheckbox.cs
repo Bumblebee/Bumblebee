@@ -7,7 +7,7 @@
         TCustomResult Toggle<TCustomResult>() where TCustomResult : IBlock;
     }
 
-    public interface ICheckbox<out TResult> : ICheckbox where TResult : IBlock
+    public interface ICheckbox<out TResult> : ICheckbox, IGenericElement<TResult> where TResult : IBlock
     {
         TResult Check();
         TResult Uncheck();

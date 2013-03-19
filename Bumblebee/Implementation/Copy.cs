@@ -12,10 +12,5 @@ namespace Bumblebee.Implementation
         public Copy(IBlock parent, IWebElement element) : base(parent, element)
         {
         }
-
-        public TResult Then()
-        {
-            return Then<TResult>();
-        }
     }
 }
