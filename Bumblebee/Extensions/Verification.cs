@@ -12,14 +12,14 @@ namespace Bumblebee.Extensions
         public static T Verify<T>(this T obj, string verification, Predicate<T> predicate)
         {
             if (!predicate.Invoke(obj))
-                throw new VerificationException(verification);
+                throw new VerificationException("Unable to verify " + verification);
 
             return obj;
         }
 
         public static T Verify<T>(this T obj, Predicate<T> predicate)
         {
-            return obj.Verify(null, predicate);
+            return obj.Verify("custom verification", predicate);
         }
 
         public static TSelectable VerifySelected<TSelectable>(this TSelectable selectable, bool selected) where TSelectable : ISelectable
