@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading;
 
 namespace Bumblebee.Extensions
@@ -17,9 +18,15 @@ namespace Bumblebee.Extensions
             return obj;
         }
 
-        public static T DebugPrint<T>(this T obj, Func<T, object> func)
+        public static T DebugPrint<T>(this T obj, Func<T, object> getObject)
         {
-            Console.WriteLine(func.Invoke(obj));
+            Console.WriteLine(getObject.Invoke(obj));
+            return obj;
+        }
+
+        public static T DebugPrint<T>(this T obj, Func<T, IEnumerable<object>> getEnumerable)
+        {
+            getEnumerable.Invoke(obj).Each(Console.WriteLine);
             return obj;
         }
 

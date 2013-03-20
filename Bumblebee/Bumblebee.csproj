@@ -34,6 +34,7 @@
     <Compile Include="Extensions\BlockConvenience.cs" />
     <Compile Include="Extensions\Debugging.cs" />
     <Compile Include="Extensions\Filtering.cs" />
+    <Compile Include="Extensions\Miscellaneous.cs" />
     <Compile Include="Extensions\Randomization.cs" />
     <Compile Include="Extensions\Verification.cs" />
     <Compile Include="Extensions\WebElementConvenience.cs" />
