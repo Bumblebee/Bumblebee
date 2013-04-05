@@ -38,7 +38,6 @@
     <Compile Include="Extensions\Randomization.cs" />
     <Compile Include="Extensions\Verification.cs" />
     <Compile Include="Extensions\WebElementConvenience.cs" />
-    <Compile Include="Implementation\DragAction.cs" />
     <Compile Include="Implementation\RadioButton.cs" />
     <Compile Include="Implementation\RadioButtons.cs" />
     <Compile Include="Implementation\SeleniumDragAndDrop.cs" />
