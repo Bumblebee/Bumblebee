@@ -21,8 +21,8 @@ namespace Bumblebee.Extensions
 
         public static TParent WaitUntil<TParent>(this TParent parent, Predicate<TParent> condition, int miliseconds = 10000) where TParent : IBlock
         {
-            var wait = new WebDriverWait(parent.Session.Driver, new TimeSpan(miliseconds));
-            wait.Until(driver => condition.Invoke(parent));
+            var wait = new DefaultWait<TParent>(parent);
+            wait.Until(condition.Invoke);
             return parent;
         }
     }
