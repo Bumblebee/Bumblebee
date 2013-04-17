@@ -21,7 +21,7 @@ namespace Bumblebee.Extensions
 
         public static TParent WaitUntil<TParent>(this TParent parent, Predicate<TParent> condition, int miliseconds = 10000) where TParent : IBlock
         {
-            var wait = new DefaultWait<TParent>(parent);
+            var wait = new DefaultWait<TParent>(parent) {Timeout = new TimeSpan(miliseconds)};
             wait.Until(condition.Invoke);
             return parent;
         }

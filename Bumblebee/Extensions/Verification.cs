@@ -11,7 +11,7 @@ namespace Bumblebee.Extensions
     {
         public static T Verify<T>(this T obj, string verification, Predicate<T> predicate)
         {
-            if (!predicate.Invoke(obj))
+            if (!predicate(obj))
                 throw new VerificationException("Unable to verify " + verification);
 
             return obj;
@@ -111,7 +111,7 @@ namespace Bumblebee.Extensions
 
         public static TBlock Store<TBlock, TData>(this TBlock block, out TData data, Func<TBlock, TData> exp)
         {
-            data = exp.Invoke(block);
+            data = exp(block);
             return block;
         }
     }

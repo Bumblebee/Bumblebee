@@ -20,13 +20,13 @@ namespace Bumblebee.Extensions
 
         public static T DebugPrint<T>(this T obj, Func<T, object> getObject)
         {
-            Console.WriteLine(getObject.Invoke(obj));
+            Console.WriteLine(getObject(obj));
             return obj;
         }
 
         public static T DebugPrint<T>(this T obj, Func<T, IEnumerable<object>> getEnumerable)
         {
-            getEnumerable.Invoke(obj).Each(Console.WriteLine);
+            getEnumerable(obj).Each(Console.WriteLine);
             return obj;
         }
 
