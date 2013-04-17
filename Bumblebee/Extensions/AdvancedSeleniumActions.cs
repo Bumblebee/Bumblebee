@@ -1,6 +1,7 @@
 using System;
 using Bumblebee.Interfaces;
 using OpenQA.Selenium.Interactions;
+using OpenQA.Selenium.Support.UI;
 
 namespace Bumblebee.Extensions
 {
@@ -16,6 +17,13 @@ namespace Bumblebee.Extensions
         public static DragAction<TParent> Drag<TParent>(this TParent parent, Func<TParent, IDraggable> getDraggable) where TParent : IBlock
         {
             return new DragAction<TParent>(parent, getDraggable);
+        }
+
+        public static TParent WaitUntil<TParent>(this TParent parent, Predicate<TParent> condition, int miliseconds = 10000) where TParent : IBlock
+        {
+            var wait = new WebDriverWait(parent.Session.Driver, new TimeSpan(miliseconds));
+            wait.Until(driver => condition.Invoke(parent));
+            return parent;
         }
     }
 
