@@ -36,9 +36,9 @@ namespace Bumblebee.Extensions
             return obj.Pause(pause);
         }
 
-        public static T Pause<T>(this T block, int seconds)
+        public static T Pause<T>(this T block, int miliseconds)
         {
-            if (seconds > 0) Thread.Sleep(1000 * seconds);
+            if (miliseconds > 0) Thread.Sleep(miliseconds);
             return block;
         }
     }
