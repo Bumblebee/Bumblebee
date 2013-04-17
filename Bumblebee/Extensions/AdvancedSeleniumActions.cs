@@ -35,7 +35,7 @@ namespace Bumblebee.Extensions
         public DragAction(TParent parent, Func<TParent, IDraggable> getDraggable)
         {
             Parent = parent;
-            Draggable = getDraggable.Invoke(parent);
+            Draggable = getDraggable(parent);
         }
 
         public TParent AndDrop(Func<TParent, IHasBackingElement> getDropzone)
@@ -68,7 +68,7 @@ namespace Bumblebee.Extensions
 
         private void PerformDragAndDrop(Func<TParent, IHasBackingElement> getDropzone)
         {
-            var dropzone = getDropzone.Invoke(Parent);
+            var dropzone = getDropzone(Parent);
 
             Parent.GetDragAndDropPerformer().DragAndDrop(Draggable.Tag, dropzone.Tag);
         }

@@ -9,7 +9,7 @@ namespace Bumblebee.Extensions
         {
             foreach (var member in enumerable)
             {
-                function.Invoke(member);
+                function(member);
             }
         }
     }
