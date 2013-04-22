@@ -52,16 +52,16 @@ namespace Bumblebee.Extensions
             return Parent.Session.CurrentBlock<TCustomResult>();
         }
 
-        public TParent AndDrop(int x, int y)
+        public TParent AndDrop(int xOffset, int yOffset)
         {
-            PerformDragAndDrop(x, y);
+            PerformDragAndDrop(xOffset, yOffset);
 
             return Parent.Session.CurrentBlock<TParent>();
         }
 
-        public TCustomResult AndDrop<TCustomResult>(int x, int y) where TCustomResult : IBlock
+        public TCustomResult AndDrop<TCustomResult>(int xOffset, int yOffset) where TCustomResult : IBlock
         {
-            PerformDragAndDrop(x, y);
+            PerformDragAndDrop(xOffset, yOffset);
 
             return Parent.Session.CurrentBlock<TCustomResult>();
         }
@@ -73,9 +73,9 @@ namespace Bumblebee.Extensions
             Parent.GetDragAndDropPerformer().DragAndDrop(Draggable.Tag, dropzone.Tag);
         }
 
-        private void PerformDragAndDrop(int x, int y)
+        private void PerformDragAndDrop(int xOffset, int yOffset)
         {
-            Parent.GetDragAndDropPerformer().DragAndDrop(Draggable.Tag, x, y);
+            Parent.GetDragAndDropPerformer().DragAndDrop(Draggable.Tag, xOffset, yOffset);
         }
     }
 }
