@@ -32,7 +32,8 @@ namespace Bumblebee.Extensions
 
         public static T DebugBreak<T>(this T obj)
         {
-            System.Diagnostics.Debugger.Break();
+            if(System.Diagnostics.Debugger.IsAttached)
+                System.Diagnostics.Debugger.Break();
             return obj;
         }
 
