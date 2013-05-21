@@ -3,14 +3,14 @@ using OpenQA.Selenium;
 
 namespace Bumblebee.Implementation
 {
-    public class ConditionalOption : Element, IOption
+    public class Option : Element, IOption
     {
-        public ConditionalOption(IBlock parent, By by)
+        public Option(IBlock parent, By by)
             : base(parent, by)
         {
         }
 
-        public ConditionalOption(IBlock parent, IWebElement element)
+        public Option(IBlock parent, IWebElement element)
             : base(parent, element)
         {
         }

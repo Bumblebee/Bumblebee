@@ -5,21 +5,21 @@ using OpenQA.Selenium;
 
 namespace Bumblebee.Implementation
 {
-    public class ConditionalSelectBox : Element, ISelectBox
+    public class SelectBox : Element, ISelectBox
     {
-        public ConditionalSelectBox(IBlock parent, By by)
+        public SelectBox(IBlock parent, By by)
             : base(parent, by)
         {
         }
 
-        public ConditionalSelectBox(IBlock parent, IWebElement element)
+        public SelectBox(IBlock parent, IWebElement element)
             : base(parent, element)
         {
         }
 
         public virtual IEnumerable<IOption> Options
         {
-            get { return GetElements(By.TagName("option")).Select(opt => new ConditionalOption(this, opt)); }
+            get { return GetElements(By.TagName("option")).Select(opt => new Option(this, opt)); }
         }
     }
 
