@@ -16,6 +16,11 @@ namespace Bumblebee.Implementation
         protected Block(Session session)
         {
             Session = session;
+
+            if (Session.Monkey != null)
+            {
+                Session.Monkey.Invoke(this);
+            }
         }
 
         public IList<IWebElement> GetElements(By by)
@@ -37,6 +42,10 @@ namespace Bumblebee.Implementation
         public virtual IPerformsDragAndDrop GetDragAndDropPerformer()
         {
             return new WebDragAndDropPerformer(Session.Driver);
+        }
+
+        public virtual void VerifyMonkeyState()
+        {
         }
     }
 }
