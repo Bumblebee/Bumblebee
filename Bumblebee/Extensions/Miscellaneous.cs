@@ -20,5 +20,10 @@ namespace Bumblebee.Extensions
             element.Tag.ExecuteJQueryFunction<bool?>("trigger('click')");
             return element.Session.CurrentBlock<TResult>(((Clickable)element).ParentBlock.Tag);
         }
+
+        public static TResult ForceClick<TResult>(this IClickable<TResult> element) where TResult : IBlock
+        {
+            return ((IClickable) element).ForceClick<TResult>();
+        }
     }
 }
