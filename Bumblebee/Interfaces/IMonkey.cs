@@ -10,7 +10,6 @@ namespace Bumblebee.Interfaces
 {
     public interface IMonkey
     {
-        double Probability { get; set; }
         void Invoke(IBlock block);
         IList<string> Logs { get; } 
         void VerifyState();

@@ -11,7 +11,7 @@ namespace Bumblebee.Implementation
     {
         private double _probability { get; set; }
 
-        public double Probability
+        protected double Probability
         {
             get { return _probability; }
             set
@@ -20,6 +20,10 @@ namespace Bumblebee.Implementation
                     throw new FormatException("Probability must be between 0 and 1");
                 _probability = value;
             }
+        }
+
+        public virtual void SetProbability(double probability)
+        {
         }
 
         protected IBlock Block { get; set; }
