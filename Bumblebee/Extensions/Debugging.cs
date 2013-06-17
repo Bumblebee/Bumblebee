@@ -30,6 +30,13 @@ namespace Bumblebee.Extensions
             return obj;
         }
 
+        public static T DebugBreak<T>(this T obj)
+        {
+            if(System.Diagnostics.Debugger.IsAttached)
+                System.Diagnostics.Debugger.Break();
+            return obj;
+        }
+
         public static T PlaySound<T>(this T obj, int pause = 0)
         {
             System.Media.SystemSounds.Exclamation.Play();
