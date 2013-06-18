@@ -13,13 +13,13 @@ namespace Bumblebee.Implementation
         {
         }
 
-        public TCustomResult EnterText<TCustomResult>(string text) where TCustomResult : IBlock
+        public virtual TCustomResult EnterText<TCustomResult>(string text) where TCustomResult : IBlock
         {
             Tag.Clear();
             return AppendText<TCustomResult>(text);
         }
 
-        public TCustomResult AppendText<TCustomResult>(string text) where TCustomResult : IBlock
+        public virtual TCustomResult AppendText<TCustomResult>(string text) where TCustomResult : IBlock
         {
             Tag.SendKeys(text);
             return Session.CurrentBlock<TCustomResult>(ParentBlock.Tag);
@@ -40,14 +40,12 @@ namespace Bumblebee.Implementation
 
         public virtual TResult EnterText(string text)
         {
-            Tag.Clear();
-            return AppendText(text);
+            return EnterText<TResult>(text);
         }
 
         public virtual TResult AppendText(string text)
         {
-            Tag.SendKeys(text);
-            return Session.CurrentBlock<TResult>(ParentBlock.Tag);
+            return AppendText<TResult>(text);
         }
 
         public override string Text
