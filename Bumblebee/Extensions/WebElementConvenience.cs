@@ -14,12 +14,7 @@ namespace Bumblebee.Extensions
 
         public static IWebElement GetElement(this ISearchContext driver, By by)
         {
-            var elements = driver.GetElements(by);
-
-            if (!elements.Any())
-                throw new NoSuchElementException("Tried to get element with selector " + by);
-
-            return elements.First();
+            return driver.FindElement(by);
         }
 
         public static IWebDriver GetDriver(this IWebElement element)
