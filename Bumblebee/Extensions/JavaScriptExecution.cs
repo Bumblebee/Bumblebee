@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using System.Collections.Generic;
+using OpenQA.Selenium;
 
 namespace Bumblebee.Extensions
 {
@@ -9,9 +10,9 @@ namespace Bumblebee.Extensions
             return (T)((IJavaScriptExecutor)driver).ExecuteScript(script, args);
         }
 
-        public static IWebElement GetElementByJQuery(this IWebDriver driver, string query)
+        public static IEnumerable<IWebElement> GetElementsByJQuery(this IWebDriver driver, string query)
         {
-            return driver.ExecuteScript<IWebElement>(string.Format("return $('{0}').get();", query));
+            return driver.ExecuteScript<IEnumerable<IWebElement>>(string.Format("return $('{0}').get();", query));
         }
 
         public static T ExecuteFunction<T>(this IWebElement element, string function, params object[] args)
