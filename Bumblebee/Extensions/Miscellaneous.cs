@@ -15,5 +15,14 @@ namespace Bumblebee.Extensions
                 function(member);
             }
         }
+
+        public static T While<T>(this T parent, Predicate<T> condition, Action<T> action)
+        {
+            while (condition(parent))
+            {
+                action(parent);
+            }
+            return parent;
+        }
     }
 }
