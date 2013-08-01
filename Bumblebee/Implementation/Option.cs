@@ -26,6 +26,12 @@ namespace Bumblebee.Implementation
             ParentBlock.Tag.Click();
             return base.DoubleClick<TResult>();
         }
+
+        public override TResult ContextClick<TResult>()
+        {
+            ParentBlock.Tag.Click();
+            return base.ContextClick<TResult>();
+        }
     }
 
     public class Option<TResult> : Clickable<TResult>, IOption<TResult> where TResult : IBlock
