@@ -3,7 +3,7 @@ using OpenQA.Selenium;
 
 namespace Bumblebee.Implementation
 {
-    public class Option : Element, IOption
+    public class Option : Clickable, IOption
     {
         public Option(IBlock parent, By by)
             : base(parent, by)
@@ -15,11 +15,16 @@ namespace Bumblebee.Implementation
         {
         }
 
-        public virtual TResult Click<TResult>() where TResult : IBlock
+        public override TResult Click<TResult>()
         {
             ParentBlock.Tag.Click();
-            Tag.Click();
-            return Session.CurrentBlock<TResult>(ParentBlock.Tag);
+            return base.Click<TResult>();
+        }
+
+        public override TResult DoubleClick<TResult>()
+        {
+            ParentBlock.Tag.Click();
+            return base.DoubleClick<TResult>();
         }
     }
 
