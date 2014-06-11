@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bumblebee", "Bumblebee\Bumblebee.csproj", "{690961A6-7130-4AFB-AE14-51D18DC6B223}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bumblebee.IntegrationTests", "Bumblebee.IntegrationTests\Bumblebee.IntegrationTests.csproj", "{5B2C5CD0-1C34-433C-9100-59E50DC4DE1F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{690961A6-7130-4AFB-AE14-51D18DC6B223}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{690961A6-7130-4AFB-AE14-51D18DC6B223}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{690961A6-7130-4AFB-AE14-51D18DC6B223}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B2C5CD0-1C34-433C-9100-59E50DC4DE1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B2C5CD0-1C34-433C-9100-59E50DC4DE1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B2C5CD0-1C34-433C-9100-59E50DC4DE1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B2C5CD0-1C34-433C-9100-59E50DC4DE1F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
