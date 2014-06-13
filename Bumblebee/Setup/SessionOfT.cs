@@ -8,7 +8,7 @@ namespace Bumblebee.Setup
         private static readonly object PadLock = new object();
 
         private Session()
-        { }
+        {}
 
         public static Session Current
         {
@@ -19,6 +19,12 @@ namespace Bumblebee.Setup
                     return _threadLocalSession.Value ?? (_threadLocalSession.Value = new Session(new T()));
                 }
             }
+        }
+        
+        public static void Reset()
+        {
+            _threadLocalSession.Value.End();
+            _threadLocalSession.Value = null;
         }
     }
 }

@@ -55,5 +55,19 @@ namespace Bumblebee.IntegrationTests
             session1.End();
             session2.End();
         }
+
+        [Test]
+        public void given_instance_when_reseting_should_not_be_equal()
+        {
+            var ieSession1 = Session<PhantomEnvironment>.Current;
+            Session<PhantomEnvironment>.Reset();
+
+            var ieSession2 = Session<PhantomEnvironment>.Current;
+
+            ieSession1.Should().NotBe(ieSession2);
+
+            ieSession1.End();
+            ieSession2.End();
+        }
     }
 }
