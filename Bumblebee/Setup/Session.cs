@@ -12,7 +12,7 @@ namespace Bumblebee.Setup
 
         public IMonkey Monkey { get; protected set; }
 
-        internal Session(IDriverEnvironment environment)
+        public Session(IDriverEnvironment environment)
         {
             Driver = environment.CreateWebDriver();
         }
