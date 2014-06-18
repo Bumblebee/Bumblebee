@@ -10,7 +10,7 @@
     <projectUrl>https://github.com/patrickherrmann/Bumblebee</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>Initial release.</releaseNotes>
+    <releaseNotes>Made the Session public so that clients can manage session according to their own patterns.</releaseNotes>
     <copyright>Copyright 2012</copyright>
     <tags>acceptance ui automation system test testing</tags>
   </metadata>
