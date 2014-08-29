@@ -2,29 +2,22 @@
 
 namespace Bumblebee.Setup
 {
-    public class Session<T> where T : IDriverEnvironment, new()
+    public class Session<TDriverEnvironment> where TDriverEnvironment : IDriverEnvironment, new()
     {
-        private static readonly ThreadLocal<Session> _threadLocalSession = new ThreadLocal<Session>();
-        private static readonly object PadLock = new object();
+        private static readonly ThreadLocal<Session> _session = new ThreadLocal<Session>();
 
         private Session()
         {}
 
         public static Session Current
         {
-            get
-            {
-                lock (PadLock)
-                {
-                    return _threadLocalSession.Value ?? (_threadLocalSession.Value = new Session(new T()));
-                }
-            }
+            get { return _session.Value ?? (_session.Value = new Session(new TDriverEnvironment())); }
         }
         
         public static void Reset()
         {
-            _threadLocalSession.Value.End();
-            _threadLocalSession.Value = null;
+            _session.Value.End();
+            _session.Value = null;
         }
     }
 }
