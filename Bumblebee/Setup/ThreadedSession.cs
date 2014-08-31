@@ -53,7 +53,7 @@ namespace Bumblebee.Setup
             return CurrentSession.CurrentBlock<TBlock>();
         }
 
-        internal static void Reset()
+        public static void Reset()
         {
             CurrentSession = null;
         }

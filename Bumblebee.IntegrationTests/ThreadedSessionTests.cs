@@ -16,6 +16,14 @@ namespace Bumblebee.IntegrationTests
     [TestFixture]
     public class ThreadedSessionTests
     {
+        [SetUp]
+        public void BeforeEach()
+        {
+            Threaded<Session>.Reset();
+            Threaded<DerivedSession>.Reset();
+            Threaded<DerivedSessionWithWrongArgs>.Reset();
+        }
+
         [Test]
         public void given_driver_environment_when_loading_with_driver_should_return_session_with_correct_driver()
         {
@@ -60,8 +68,6 @@ namespace Bumblebee.IntegrationTests
         [Test]
         public void given_session_not_loaded_with_navigation_when_getting_current_block_should_throw()
         {
-            Threaded<Session>.Reset();
-
             Action action = () =>
                 Threaded<Session>
                 .CurrentBlock<LoggedOutPage>()
