@@ -21,7 +21,7 @@ namespace Bumblebee.Setup
             set { _session.Value = value; }
         }
 
-        public static Session WithDriver<TDriverEnvironment>() where TDriverEnvironment : IDriverEnvironment, new()
+        public static TSession WithDriver<TDriverEnvironment>() where TDriverEnvironment : IDriverEnvironment, new()
         {
             if (CurrentSession != null)
             {
