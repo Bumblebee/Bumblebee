@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Bumblebee")]
 [assembly: AssemblyDescription("Bumblebee is a .NET layer on top of the Selenium browser automation framework allowing for standardized creation of page objects, even for dynamic web pages.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Patrick Herrmann, John Hammerlund")]
+[assembly: AssemblyCompany("Patrick Herrmann, John Hammerlund, Todd Meinershagen")]
 [assembly: AssemblyProduct("Bumblebee")]
 [assembly: AssemblyCopyright("Copyright ©  2012")]
 [assembly: AssemblyTrademark("")]
@@ -32,6 +32,6 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.1")]
-[assembly: AssemblyFileVersion("1.0.1")]
+[assembly: AssemblyVersion("1.0.2")]
+[assembly: AssemblyFileVersion("1.0.2")]
 [assembly: InternalsVisibleTo("Bumblebee.IntegrationTests")]

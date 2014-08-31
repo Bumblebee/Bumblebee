@@ -79,7 +79,7 @@
     <Compile Include="Interfaces\ISelectable.cs" />
     <Compile Include="Implementation\SpecificBlock.cs" />
     <Compile Include="Exceptions\VerificationException.cs" />
-    <Compile Include="Setup\SessionOfT.cs" />
+    <Compile Include="Setup\ThreadedSession.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

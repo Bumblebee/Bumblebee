@@ -53,12 +53,19 @@
     <Reference Include="WebDriver">
       <HintPath>..\packages\Selenium.WebDriver.2.42.0\lib\net40\WebDriver.dll</HintPath>
     </Reference>
+    <Reference Include="WebDriver.Support">
+      <HintPath>..\packages\Selenium.Support.2.42.0\lib\net40\WebDriver.Support.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DriverEnvironments\IeEnvironment.cs" />
-    <Compile Include="DriverEnvironments\PhantomEnvironment.cs" />
-    <Compile Include="SessionOfTTests.cs" />
+    <Compile Include="Sessions\DerivedSessionWithWrongArgs.cs" />
+    <Compile Include="DriverEnvironments\LocalIeEnvironment.cs" />
+    <Compile Include="Sessions\DerivedSession.cs" />
+    <Compile Include="DriverEnvironments\LocalPhantomEnvironment.cs" />
+    <Compile Include="Pages\LoggedOutPage.cs" />
+    <Compile Include="Pages\WebBlock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ThreadedSessionTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Bumblebee\Bumblebee.csproj">

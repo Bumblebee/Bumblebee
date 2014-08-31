@@ -48,7 +48,10 @@ namespace Bumblebee.Setup
 
         public void End()
         {
+            if (Driver == null) return;
+
             Driver.Quit();
+            Driver = null;
         }
     }
 }
