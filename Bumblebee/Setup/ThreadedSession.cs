@@ -21,11 +21,22 @@ namespace Bumblebee.Setup
             set { _session.Value = value; }
         }
 
+        /// <summary>
+        /// Allows the creation of a Session-based type using a type derived from IDriverEnvironment that the system can initialize with a parameterless constructor.
+        /// </summary>
+        /// <typeparam name="TDriverEnvironment"></typeparam>
+        /// <returns></returns>
         public static TSession With<TDriverEnvironment>() where TDriverEnvironment : IDriverEnvironment, new()
         {
             return With(new TDriverEnvironment());
         }
 
+        /// <summary>
+        /// Allows the creation of a Session-based type using an instance of a type of IDriverEnvironment.
+        /// </summary>
+        /// <typeparam name="TDriverEnvironment"></typeparam>
+        /// <param name="environment"></param>
+        /// <returns></returns>
         public static TSession With<TDriverEnvironment>(TDriverEnvironment environment)
             where TDriverEnvironment : IDriverEnvironment
         {
