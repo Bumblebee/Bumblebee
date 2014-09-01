@@ -28,7 +28,7 @@ namespace Bumblebee.IntegrationTests
         public void given_driver_environment_when_loading_with_driver_should_return_session_with_correct_driver()
         {
             Threaded<Session>
-                .WithDriver<LocalPhantomEnvironment>()
+                .With<LocalPhantomEnvironment>()
                 .Verify(x => x.Driver is PhantomJSDriver)
                 .End();
         }
@@ -39,12 +39,12 @@ namespace Bumblebee.IntegrationTests
             Session previousSession;
 
             Threaded<Session>
-                .WithDriver<LocalPhantomEnvironment>()
+                .With<LocalPhantomEnvironment>()
                 .Store(out previousSession, s => s)
                 .Verify(x => x.Driver is PhantomJSDriver);
 
             Threaded<Session>
-                .WithDriver<LocalIeEnvironment>()
+                .With<LocalIeEnvironment>()
                 .Verify(x => x.Driver is InternetExplorerDriver)
                 .End();
 
@@ -56,7 +56,7 @@ namespace Bumblebee.IntegrationTests
         public void given_session_already_loaded_with_navigation_when_getting_matching_current_block_should_return_block()
         {
             Threaded<Session>
-                .WithDriver<LocalPhantomEnvironment>()
+                .With<LocalPhantomEnvironment>()
                 .NavigateTo<LoggedOutPage>("https://www.nirvanahq.com/account/login");
 
             Threaded<Session>
@@ -77,7 +77,7 @@ namespace Bumblebee.IntegrationTests
             action
                 .ShouldThrow<NullReferenceException>()
                 .WithMessage(
-                    "You cannot access the CurrentBlock without first initializing the Session by calling WithDriver<TDriverEnvironment>().");
+                    "You cannot access the CurrentBlock without first initializing the Session by calling With<TDriverEnvironment>().");
         }
 
         [Test]
@@ -88,7 +88,7 @@ namespace Bumblebee.IntegrationTests
             Action action = () =>
             {
                 var session = Threaded<Session>
-                    .WithDriver<LocalPhantomEnvironment>();
+                    .With<LocalPhantomEnvironment>();
                 sessions.TryAdd(Guid.NewGuid(), session);
             };
 
@@ -109,11 +109,11 @@ namespace Bumblebee.IntegrationTests
         public void given_multiple_sessions_in_single_thread_when_loading_with_drivers_should_maintain_distinct_sessions()
         {
             var session1 = Threaded<Session>
-                .WithDriver<LocalPhantomEnvironment>()
+                .With<LocalPhantomEnvironment>()
                 .Verify(s => s.Driver is PhantomJSDriver);
 
             var session2 = Threaded<DerivedSession>
-                .WithDriver<LocalPhantomEnvironment>()
+                .With<LocalPhantomEnvironment>()
                 .Verify(s => s.Driver is PhantomJSDriver);
 
             session1
@@ -132,11 +132,20 @@ namespace Bumblebee.IntegrationTests
         public void given_session_type_with_wrong_constructor_args_when_loading_with_driver_should_throw()
         {
             Action action = () => Threaded<DerivedSessionWithWrongArgs>
-                .WithDriver<LocalPhantomEnvironment>();
+                .With<LocalPhantomEnvironment>();
 
             action
                 .ShouldThrow<ArgumentException>()
                 .WithMessage("The result type specified (Bumblebee.IntegrationTests.Sessions.DerivedSessionWithWrongArgs) is not a valid session.  It must have a constructor that takes only an IDriverEnvironment.");
+        }
+
+        [Test]
+        public void given_session_type_when_loading_with_driver_explicitly_should_load_with_driver()
+        {
+            Threaded<Session>
+                .With(new LocalPhantomEnvironment())
+                .Verify(s => s.Driver is PhantomJSDriver)
+                .End();
         }
     }
 }

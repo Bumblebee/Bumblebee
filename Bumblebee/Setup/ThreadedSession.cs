@@ -21,7 +21,13 @@ namespace Bumblebee.Setup
             set { _session.Value = value; }
         }
 
-        public static TSession WithDriver<TDriverEnvironment>() where TDriverEnvironment : IDriverEnvironment, new()
+        public static TSession With<TDriverEnvironment>() where TDriverEnvironment : IDriverEnvironment, new()
+        {
+            return With(new TDriverEnvironment());
+        }
+
+        public static TSession With<TDriverEnvironment>(TDriverEnvironment environment)
+            where TDriverEnvironment : IDriverEnvironment
         {
             if (CurrentSession != null)
             {
@@ -31,7 +37,7 @@ namespace Bumblebee.Setup
 
             var type = typeof(TSession);
             IList<Type> constructorSignature = new List<Type> { typeof(IDriverEnvironment) };
-            IList<object> constructorArgs = new List<object> { new TDriverEnvironment() };
+            IList<object> constructorArgs = new List<object> { environment };
 
             var constructor = type.GetConstructor(constructorSignature.ToArray());
 
@@ -48,7 +54,7 @@ namespace Bumblebee.Setup
         public static TBlock CurrentBlock<TBlock>(IWebElement tag = null) where TBlock : IBlock
         {
             if (CurrentSession == null)
-                throw new NullReferenceException("You cannot access the CurrentBlock without first initializing the Session by calling WithDriver<TDriverEnvironment>().");
+                throw new NullReferenceException("You cannot access the CurrentBlock without first initializing the Session by calling With<TDriverEnvironment>().");
             
             return CurrentSession.CurrentBlock<TBlock>();
         }
