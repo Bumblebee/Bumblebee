@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using System.Threading;
 using System.Threading.Tasks;
 using Bumblebee.Extensions;
 using Bumblebee.IntegrationTests.DriverEnvironments;
@@ -19,9 +20,9 @@ namespace Bumblebee.IntegrationTests
         [SetUp]
         public void BeforeEach()
         {
-            Threaded<Session>.Reset();
-            Threaded<DerivedSession>.Reset();
-            Threaded<DerivedSessionWithWrongArgs>.Reset();
+            Threaded<Session>.End();
+            Threaded<DerivedSession>.End();
+            Threaded<DerivedSessionWithWrongArgs>.End();
         }
 
         [Test]
@@ -145,6 +146,25 @@ namespace Bumblebee.IntegrationTests
             Threaded<Session>
                 .With(new LocalPhantomEnvironment())
                 .Verify(s => s.Driver is PhantomJSDriver)
+                .End();
+        }
+
+        [Test]
+        public void given_session_has_not_been_loaded_with_driver_when_ending_should_not_throw()
+        {
+            Action action = Threaded<Session>
+                .End;
+
+            action.ShouldNotThrow();
+        }
+
+        [Test]
+        public void given_session_has_been_loaded_with_driver_when_ending_should_end_session()
+        {
+            Threaded<Session>
+                .With<LocalPhantomEnvironment>();
+
+            Threaded<Session>
                 .End();
         }
     }

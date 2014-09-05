@@ -70,8 +70,11 @@ namespace Bumblebee.Setup
             return CurrentSession.CurrentBlock<TBlock>();
         }
 
-        public static void Reset()
+        public static void End()
         {
+            if (CurrentSession == null) return;
+
+            CurrentSession.End();
             CurrentSession = null;
         }
     }
