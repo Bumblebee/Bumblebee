@@ -1,6 +1,6 @@
 ﻿using Bumblebee.Setup;
 
-namespace Bumblebee.IntegrationTests.Sessions
+namespace Bumblebee.IntegrationTests.TestSupport.Sessions
 {
     public class DerivedSession : Session
     {

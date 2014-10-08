@@ -1,18 +1,17 @@
 ﻿using System;
 using System.Collections.Concurrent;
-using System.Threading;
 using System.Threading.Tasks;
 using Bumblebee.Extensions;
-using Bumblebee.IntegrationTests.DriverEnvironments;
-using Bumblebee.IntegrationTests.Pages;
-using Bumblebee.IntegrationTests.Sessions;
+using Bumblebee.IntegrationTests.TestSupport.DriverEnvironments;
+using Bumblebee.IntegrationTests.TestSupport.Pages;
+using Bumblebee.IntegrationTests.TestSupport.Sessions;
 using Bumblebee.Setup;
 using FluentAssertions;
 using NUnit.Framework;
 using OpenQA.Selenium.IE;
 using OpenQA.Selenium.PhantomJS;
 
-namespace Bumblebee.IntegrationTests
+namespace Bumblebee.IntegrationTests.Setup
 {
     [TestFixture]
     public class ThreadedSessionTests
@@ -135,9 +134,14 @@ namespace Bumblebee.IntegrationTests
             Action action = () => Threaded<DerivedSessionWithWrongArgs>
                 .With<LocalPhantomEnvironment>();
 
+            var expectedMessage =
+                string.Format(
+                    "The result type specified ({0}) is not a valid session.  It must have a constructor that takes only an IDriverEnvironment.",
+                    typeof (DerivedSessionWithWrongArgs).FullName);
+
             action
                 .ShouldThrow<ArgumentException>()
-                .WithMessage("The result type specified (Bumblebee.IntegrationTests.Sessions.DerivedSessionWithWrongArgs) is not a valid session.  It must have a constructor that takes only an IDriverEnvironment.");
+                .WithMessage(expectedMessage);
         }
 
         [Test]

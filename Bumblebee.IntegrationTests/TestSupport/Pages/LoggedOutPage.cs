@@ -1,7 +1,7 @@
 ﻿using Bumblebee.Setup;
 using OpenQA.Selenium;
 
-namespace Bumblebee.IntegrationTests.Pages
+namespace Bumblebee.IntegrationTests.TestSupport.Pages
 {
     public class LoggedOutPage : WebBlock
     {
