@@ -9,6 +9,18 @@ namespace Bumblebee.Extensions
 {
     public static class Verification
     {
+        /// <summary>
+        /// Verification method that allows for passing a predicate expression to evaluate some condition and a message to display if predicate is not true.
+        /// </summary>
+        /// <remarks>
+        /// When throwing an error on verification, the system will add "Unable to verify " to anything that you pass as a message.  The recommendation is that you 
+        /// write your verification strings starting with "that".  An example verification of "that string is empty." would return "Unable to verify that string is empty."
+        /// </remarks>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="obj"></param>
+        /// <param name="verification"></param>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
         public static T Verify<T>(this T obj, string verification, Predicate<T> predicate)
         {
             if (!predicate(obj))
@@ -17,9 +29,42 @@ namespace Bumblebee.Extensions
             return obj;
         }
 
+        /// <summary>
+        /// Verification method that allows for passing a predicate expression to evaluate some condition.
+        /// </summary>
+        /// <remarks>
+        /// If the predicate fails, the system will throw a verification exception with the message "Unable to verify custom verification."
+        /// </remarks>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="obj"></param>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
         public static T Verify<T>(this T obj, Predicate<T> predicate)
         {
-            return obj.Verify("custom verification", predicate);
+            return obj.Verify("custom verification.", predicate);
+        }
+
+        /// <summary>
+        /// Verification method that allows for passing an assertion from any assertion library.
+        /// </summary>
+        /// <remarks>
+        /// The message that is thrown from the assertion library that you use will be captured in the VerificationException.
+        /// </remarks>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="value"></param>
+        /// <param name="assertion"></param>
+        /// <returns></returns>
+        public static T VerifyThat<T>(this T value, Action<T> assertion)
+        {
+            try
+            {
+                assertion(value);
+                return value;
+            }
+            catch (Exception ex)
+            {
+                throw new VerificationException(string.Format("Unable to verify.\r\n{0}", ex.Message), ex);
+            }
         }
 
         public static TSelectable VerifySelected<TSelectable>(this TSelectable selectable, bool selected) where TSelectable : ISelectable

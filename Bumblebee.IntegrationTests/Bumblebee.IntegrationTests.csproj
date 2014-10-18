@@ -58,6 +58,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\VerificationTests.cs" />
     <Compile Include="TestSupport\Sessions\DerivedSessionWithWrongArgs.cs" />
     <Compile Include="TestSupport\DriverEnvironments\LocalIeEnvironment.cs" />
     <Compile Include="TestSupport\Sessions\DerivedSession.cs" />
