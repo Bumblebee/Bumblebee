@@ -14,6 +14,8 @@ namespace Bumblebee.IntegrationTests.KendoUI.Pages
 {
     public class KendoDropDownListDemoPage : WebBlock
     {
+        public const string Url = "http://demos.telerik.com/kendo-ui/dropdownlist/index";
+
         public KendoDropDownListDemoPage(Session session)
             : base(session)
         {
@@ -22,6 +24,11 @@ namespace Bumblebee.IntegrationTests.KendoUI.Pages
         public ISelectBox<KendoDropDownListDemoPage> Colors
         {
             get { return new KendoDropDownList<KendoDropDownListDemoPage>(this, By.Id("color")); }
+        }
+
+        public ISelectBox<KendoDropDownListDemoPage> Sizes
+        {
+            get { return new KendoDropDownList<KendoDropDownListDemoPage>(this, By.Id("size")); }
         }
     }
 }

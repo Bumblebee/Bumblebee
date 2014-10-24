@@ -23,7 +23,7 @@ namespace Bumblebee.IntegrationTests.KendoUI
         {
             Threaded<Session>
                 .With<LocalIeEnvironment>()
-                .NavigateTo<KendoDropDownListDemoPage>("http://demos.telerik.com/kendo-ui/dropdownlist/index");
+                .NavigateTo<KendoDropDownListDemoPage>(KendoDropDownListDemoPage.Url);
         }
 
         [TearDown]
@@ -38,6 +38,7 @@ namespace Bumblebee.IntegrationTests.KendoUI
             var page = Threaded<Session>
                 .CurrentBlock<KendoDropDownListDemoPage>();
             page.Colors.Options.First(x => x.Selected).Text.Should().Be("Black");
+            page.Sizes.Options.First(x => x.Selected).Text.Should().Be("S - 6 3/4\"");
         }
 
         [Test]
@@ -47,6 +48,9 @@ namespace Bumblebee.IntegrationTests.KendoUI
                 .CurrentBlock<KendoDropDownListDemoPage>();
             page.Colors.Options.First(x => x.Text == "Orange").Click();
             page.Colors.Options.First(x => x.Selected).Text.Should().Be("Orange");
+
+            page.Sizes.Options.First(x => x.Text == "L - 7 1/8\"").Click();
+            page.Sizes.Options.First(x => x.Selected).Text.Should().Be("L - 7 1/8\"");
         }
     }
 }
