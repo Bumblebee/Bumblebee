@@ -59,6 +59,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extensions\VerificationTests.cs" />
+    <Compile Include="KendoUI\GivenKendoDropDownList.cs" />
+    <Compile Include="KendoUI\Pages\KendoDropDownListDemoPage.cs" />
     <Compile Include="TestSupport\Sessions\DerivedSessionWithWrongArgs.cs" />
     <Compile Include="TestSupport\DriverEnvironments\LocalIeEnvironment.cs" />
     <Compile Include="TestSupport\Sessions\DerivedSession.cs" />
@@ -69,6 +71,10 @@
     <Compile Include="Setup\ThreadedSessionTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Bumblebee.KendoUI\Bumblebee.KendoUI.csproj">
+      <Project>{8ee25b3e-3903-4e14-bd1f-ab6836c7b364}</Project>
+      <Name>Bumblebee.KendoUI</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Bumblebee\Bumblebee.csproj">
       <Project>{690961a6-7130-4afb-ae14-51d18dc6b223}</Project>
       <Name>Bumblebee</Name>
