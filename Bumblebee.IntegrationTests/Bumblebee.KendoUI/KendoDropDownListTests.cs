@@ -43,8 +43,6 @@ namespace Bumblebee.IntegrationTests.Bumblebee.KendoUI
         [Test]
         public void Given_no_option_selected_Then_no_option_should_be_selected()
         {
-            ISelectBox<KendoDropDownListDemoPage> colors = null;
-
             Threaded<Session>
                 .CurrentBlock<KendoDropDownListDemoPage>()
                 .VerifyThat(p => p.Colors.Options.Select(o => o.Selected).Should().BeEmpty());
