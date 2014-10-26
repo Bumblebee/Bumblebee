@@ -1,21 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Bumblebee.IntegrationTests.TestSupport.Pages;
+﻿using Bumblebee.IntegrationTests.Shared.Pages;
 using Bumblebee.Interfaces;
 using Bumblebee.KendoUI;
 using Bumblebee.Setup;
-
 using OpenQA.Selenium;
 
-namespace Bumblebee.IntegrationTests.KendoUI.Pages
+namespace Bumblebee.IntegrationTests.Bumblebee.KendoUI.Pages
 {
     public class KendoDropDownListDemoPage : WebBlock
     {
-        public const string Url = "http://demos.telerik.com/kendo-ui/dropdownlist/index";
-
         public KendoDropDownListDemoPage(Session session)
             : base(session)
         {
@@ -26,9 +18,9 @@ namespace Bumblebee.IntegrationTests.KendoUI.Pages
             get { return new KendoDropDownList<KendoDropDownListDemoPage>(this, By.Id("color")); }
         }
 
-        public ISelectBox<KendoDropDownListDemoPage> Sizes
+        public ISelectBox Sizes
         {
-            get { return new KendoDropDownList<KendoDropDownListDemoPage>(this, By.Id("size")); }
+            get { return new KendoDropDownList(this, By.Id("size")); }
         }
     }
 }

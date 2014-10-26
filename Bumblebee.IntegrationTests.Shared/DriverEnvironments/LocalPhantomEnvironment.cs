@@ -3,7 +3,7 @@ using Bumblebee.Setup;
 using OpenQA.Selenium;
 using OpenQA.Selenium.PhantomJS;
 
-namespace Bumblebee.IntegrationTests.TestSupport.DriverEnvironments
+namespace Bumblebee.IntegrationTests.Shared.DriverEnvironments
 {
     public class LocalPhantomEnvironment : IDriverEnvironment
     {
