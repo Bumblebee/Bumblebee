@@ -58,7 +58,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bumblebee.KendoUI\KendoDropDownListTests.cs" />
+    <Compile Include="Bumblebee.KendoUI\Given_kendo_drop_down_list_when_clicking_an_option.cs" />
+    <Compile Include="Bumblebee.KendoUI\Given_page_with_kendoui_drop_down_lists_and_no_options_selected.cs" />
     <Compile Include="Shared\Pages\KendoDropDownListDemoPage.cs" />
     <Compile Include="Bumblebee\Extensions\VerificationTests.cs" />
     <Compile Include="Shared\DriverEnvironments\LocalIeEnvironment.cs" />

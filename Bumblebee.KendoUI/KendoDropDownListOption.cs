@@ -24,6 +24,9 @@ namespace Bumblebee.KendoUI
 
             // Kendo animation may slow down the showing of the element.
             this.WaitUntil(x => x.Tag.Displayed);
+
+            // Internet Explorer has weird behaviour if we don't pause a bit more.
+            this.Pause(50);
             Tag.Click();
             return Session.CurrentBlock<TResult>(ParentBlock.Tag);
         }
