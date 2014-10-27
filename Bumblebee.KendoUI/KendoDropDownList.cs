@@ -24,7 +24,8 @@ namespace Bumblebee.KendoUI
 
         protected IEnumerable<IWebElement> GetOptions()
         {
-            var parentList = Session.Driver.FindElement(By.Id(Tag.GetAttribute("id") + "-list"));
+            // Kendo generates a new <div> everytime the data source of the drop down is refreshed. Therefore, we have to get the last one that exists.
+            var parentList = Session.Driver.FindElements(By.CssSelector("[id='" + Tag.GetAttribute("id") + "-list" + "']")).Last();
             return parentList.FindElements(By.TagName("li"));
         }
 

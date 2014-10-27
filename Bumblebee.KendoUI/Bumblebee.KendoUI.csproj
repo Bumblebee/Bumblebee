@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="KendoDropDownList.cs" />
     <Compile Include="KendoDropDownListOption.cs" />
+    <Compile Include="KendoNumericTextBox.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="KendoExtensions.cs" />
   </ItemGroup>

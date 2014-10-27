@@ -1,8 +1,8 @@
 ﻿using System.Linq;
 
 using Bumblebee.Extensions;
-using Bumblebee.IntegrationTests.Bumblebee.KendoUI.Pages;
 using Bumblebee.IntegrationTests.Shared.DriverEnvironments;
+using Bumblebee.IntegrationTests.Shared.Pages.KendoUI;
 using Bumblebee.Setup;
 
 using FluentAssertions;
@@ -21,7 +21,7 @@ namespace Bumblebee.IntegrationTests.Bumblebee.KendoUI
         public void Init()
         {
             Threaded<Session>
-                .With<LocalPhantomEnvironment>()
+                .With<LocalIeEnvironment>()
                 .NavigateTo<KendoDropDownListDemoPage>(Url);
         }
 

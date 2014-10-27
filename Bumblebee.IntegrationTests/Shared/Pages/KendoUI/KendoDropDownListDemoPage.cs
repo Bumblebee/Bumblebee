@@ -1,10 +1,10 @@
-﻿using Bumblebee.IntegrationTests.Shared.Pages;
-using Bumblebee.Interfaces;
+﻿using Bumblebee.Interfaces;
 using Bumblebee.KendoUI;
 using Bumblebee.Setup;
+
 using OpenQA.Selenium;
 
-namespace Bumblebee.IntegrationTests.Bumblebee.KendoUI.Pages
+namespace Bumblebee.IntegrationTests.Shared.Pages.KendoUI
 {
     public class KendoDropDownListDemoPage : WebBlock
     {

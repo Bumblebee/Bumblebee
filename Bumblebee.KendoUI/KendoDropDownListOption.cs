@@ -28,6 +28,9 @@ namespace Bumblebee.KendoUI
             // Internet Explorer has weird behaviour if we don't pause a bit more.
             this.Pause(50);
             Tag.Click();
+
+            // Animation wait.
+            this.WaitUntil(x => !x.Tag.Displayed);
             return Session.CurrentBlock<TResult>(ParentBlock.Tag);
         }
 
