@@ -34,8 +34,8 @@ namespace Bumblebee.KendoUI
         }
     }
 
-    public class KendoDropDownList<T> : KendoDropDownList, ISelectBox<T>
-        where T : IBlock
+    public class KendoDropDownList<TResult> : KendoDropDownList, ISelectBox<TResult>
+        where TResult : IBlock
     {
         public KendoDropDownList(IBlock parent, By by)
             : base(parent, by)
@@ -47,9 +47,9 @@ namespace Bumblebee.KendoUI
         {
         }
 
-        IEnumerable<IOption<T>> ISelectBox<T>.Options
+        IEnumerable<IOption<TResult>> ISelectBox<TResult>.Options
         {
-            get { return GetOptions().Select(x => new KendoDropDownListOption<T>(this, x)); }
+            get { return GetOptions().Select(x => new KendoDropDownListOption<TResult>(this, x)); }
         }
     }
 }

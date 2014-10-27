@@ -5,7 +5,7 @@ using Bumblebee.Setup;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 
-namespace Bumblebee.IntegrationTests.TestSupport.Pages
+namespace Bumblebee.IntegrationTests.Shared.Pages
 {
     public class WebBlock : Block
     {
