@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -11,7 +12,8 @@ using OpenQA.Selenium;
 
 namespace Bumblebee.KendoUI
 {
-    public class KendoNumericTextBox : Element, INumericField
+    [DebuggerDisplay("KendoNumericTextBox {ToString}")]
+    public class KendoNumericTextBox : Element
     {
         public KendoNumericTextBox(IBlock parent, By by)
             : base(parent, by)
@@ -57,9 +59,15 @@ namespace Bumblebee.KendoUI
                 return double.TryParse(Tag.GetAttribute("value") ?? string.Empty, NumberStyles.Any, CultureInfo.CurrentUICulture, out result) ? result : new double?();
             }
         }
+
+        public override string ToString()
+        {
+            return string.Format("Text: {0}, Value: {1}", Text, Value);
+        }
     }
 
-    public class KendoNumericTextBox<TResult> : KendoNumericTextBox, INumericField<TResult>
+    [DebuggerDisplay("KendoNumericTextBox<T> {ToString}")]
+    public class KendoNumericTextBox<TResult> : KendoNumericTextBox
         where TResult : IBlock
     {
         public KendoNumericTextBox(IBlock parent, By by)

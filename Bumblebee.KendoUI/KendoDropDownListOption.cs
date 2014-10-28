@@ -1,4 +1,6 @@
-﻿using Bumblebee.Extensions;
+﻿using System.Diagnostics;
+
+using Bumblebee.Extensions;
 using Bumblebee.Implementation;
 using Bumblebee.Interfaces;
 
@@ -6,6 +8,7 @@ using OpenQA.Selenium;
 
 namespace Bumblebee.KendoUI
 {
+    [DebuggerDisplay("KendoDropDownListOption {ToString()}")]
     public class KendoDropDownListOption : Element, IOption
     {
         public KendoDropDownListOption(IBlock parent, By by)
@@ -17,7 +20,7 @@ namespace Bumblebee.KendoUI
             : base(parent, element)
         {
         }
-        
+
         public virtual TResult Click<TResult>() where TResult : IBlock
         {
             ParentBlock.Tag.FindElement(By.XPath("..")).Click();
@@ -26,11 +29,11 @@ namespace Bumblebee.KendoUI
             this.WaitUntil(x => x.Tag.Displayed);
 
             // Internet Explorer has weird behaviour if we don't pause a bit more.
-            this.Pause(50);
+            this.Pause(100);
             Tag.Click();
 
-            // Animation wait.
-            this.WaitUntil(x => !x.Tag.Displayed);
+            // Await animation.
+            this.Pause(100);
             return Session.CurrentBlock<TResult>(ParentBlock.Tag);
         }
 
@@ -47,8 +50,14 @@ namespace Bumblebee.KendoUI
         {
             get { return Tag.GetTextFromHiddenElement(Session.Driver); }
         }
+
+        public override string ToString()
+        {
+            return string.Format("Selected: {0}, Text: {1}", Selected, Text);
+        }
     }
 
+    [DebuggerDisplay("KendoDropDownListOption<T> {ToString()}")]
     public class KendoDropDownListOption<T> : KendoDropDownListOption, IOption<T>
         where T : IBlock
     {
