@@ -1,0 +1,63 @@
+﻿using System;
+using System.Globalization;
+
+using Bumblebee.Interfaces;
+
+using OpenQA.Selenium;
+
+namespace Bumblebee.Implementation
+{
+    public class DateField : Element, IDateField
+    {
+        public DateField(IBlock parent, By by) : base(parent, by)
+        {
+        }
+
+        public DateField(IBlock parent, IWebElement tag) : base(parent, tag)
+        {
+        }
+
+        public virtual TCustomResult EnterDate<TCustomResult>(DateTime date) where TCustomResult : IBlock
+        {
+            var executor = (IJavaScriptExecutor)Session.Driver;
+            executor.ExecuteScript(string.Format("arguments[0].value = '{0:yyyy-MM-dd}';", date), Tag);
+            return Session.CurrentBlock<TCustomResult>(ParentBlock.Tag);
+        }
+
+        public override string Text
+        {
+            get
+            {
+                var executor = (IJavaScriptExecutor)Session.Driver;
+                return (string)executor.ExecuteScript("return arguments[0].value;", Tag);
+            }
+        }
+
+        public DateTime? Value
+        {
+            get
+            {
+                DateTime result;
+                return DateTime.TryParse(Text ?? string.Empty, out result) ? result : new DateTime?();
+            }
+        }
+    }
+
+    public class DateField<TResult> : DateField, IDateField<TResult> where TResult : IBlock
+    {
+        public DateField(IBlock parent, By by)
+            : base(parent, by)
+        {
+        }
+
+        public DateField(IBlock parent, IWebElement element)
+            : base(parent, element)
+        {
+        }
+
+        public virtual TResult EnterDate(DateTime date)
+        {
+            return EnterDate<TResult>(date);
+        }
+    }
+}

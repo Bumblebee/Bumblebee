@@ -58,10 +58,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bumblebee.KendoUI\Given_kendo_date_picker.cs" />
     <Compile Include="Bumblebee.KendoUI\Given_kendo_drop_down_list_when_clicking_an_option.cs" />
     <Compile Include="Bumblebee.KendoUI\Given_kendo_numeric_text_box_when_entering_value.cs" />
     <Compile Include="Bumblebee.KendoUI\Given_page_with_kendoui_drop_down_lists_and_no_options_selected.cs" />
+    <Compile Include="Bumblebee\Implementation\Given_date_field.cs" />
+    <Compile Include="Shared\Pages\Implementation\WufooHtml5Examples.cs" />
     <Compile Include="Shared\Pages\KendoUI\KendoDropDownListDemoPage.cs" />
+    <Compile Include="Shared\Pages\KendoUI\KendoDatePickerDemoPage.cs" />
     <Compile Include="Shared\Pages\KendoUI\KendoNumericTextBoxDemoPage.cs" />
     <Compile Include="Bumblebee\Extensions\VerificationTests.cs" />
     <Compile Include="Shared\DriverEnvironments\LocalIeEnvironment.cs" />

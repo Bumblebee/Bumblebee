@@ -13,7 +13,7 @@ using OpenQA.Selenium;
 namespace Bumblebee.KendoUI
 {
     [DebuggerDisplay("KendoNumericTextBox {ToString}")]
-    public class KendoNumericTextBox : Element
+    public class KendoNumericTextBox : Element, INumericField
     {
         public KendoNumericTextBox(IBlock parent, By by)
             : base(parent, by)
@@ -67,7 +67,7 @@ namespace Bumblebee.KendoUI
     }
 
     [DebuggerDisplay("KendoNumericTextBox<T> {ToString}")]
-    public class KendoNumericTextBox<TResult> : KendoNumericTextBox
+    public class KendoNumericTextBox<TResult> : KendoNumericTextBox, INumericField<TResult>
         where TResult : IBlock
     {
         public KendoNumericTextBox(IBlock parent, By by)
