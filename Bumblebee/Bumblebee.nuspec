@@ -10,7 +10,7 @@
     <projectUrl>https://github.com/patrickherrmann/Bumblebee</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>Added Threaded&lt;TSession&gt; type for creating reusable pattern for loading thread-safe sessions.</releaseNotes>
+    <releaseNotes>Added xml comments so that http://nudoq.org can find comments for display on their site.</releaseNotes>
     <copyright>Copyright 2012</copyright>
     <tags>acceptance ui automation system test testing</tags>
   </metadata>
