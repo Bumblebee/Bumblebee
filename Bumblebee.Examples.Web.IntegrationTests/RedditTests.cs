@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Bumblebee.Examples.Web.IntegrationTests.Infrastructure;
 using Bumblebee.Examples.Web.Pages;
@@ -68,12 +69,13 @@ namespace Bumblebee.Examples.Web.IntegrationTests
         }
 
         [Test]
-        public void ShowPostsFromBooksSubreddit()
+        public void ShowPostsFromRandomSubreddit()
         {
             Threaded<Session>
                 .CurrentBlock<LoggedOutPage>()
-                .FeaturedSubreddits.First(featured =>
-                    featured.Text == "BOOKS")
+                .FeaturedSubreddits
+                .Take(5)
+                .Random()
                 .Click()
                 .DebugPrint(page =>
                     page.RankedPosts
