@@ -16,7 +16,7 @@ namespace Bumblebee.Examples.Web.IntegrationTests
         public void GoToReddit()
         {
             Threaded<Session>
-                .With<LocalFirefoxEnvironment>()
+                .With<LocalChromeEnvironment>()
                 .NavigateTo<LoggedOutPage>("http://www.reddit.com");
         }
 
