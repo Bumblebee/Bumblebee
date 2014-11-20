@@ -24,7 +24,8 @@ namespace Bumblebee.KendoUI
 
         protected IEnumerable<IWebElement> GetOptions()
         {
-            var parentList = Session.Driver.FindElement(By.Id(Tag.GetAttribute("id") + "-list"));
+            // Kendo generates a new <div> everytime the data source of the drop down is refreshed. Therefore, we have to get the last one that exists.
+            var parentList = Session.Driver.FindElements(By.CssSelector("[id='" + Tag.GetAttribute("id") + "-list" + "']")).Last();
             return parentList.FindElements(By.TagName("li"));
         }
 
@@ -34,8 +35,8 @@ namespace Bumblebee.KendoUI
         }
     }
 
-    public class KendoDropDownList<T> : KendoDropDownList, ISelectBox<T>
-        where T : IBlock
+    public class KendoDropDownList<TResult> : KendoDropDownList, ISelectBox<TResult>
+        where TResult : IBlock
     {
         public KendoDropDownList(IBlock parent, By by)
             : base(parent, by)
@@ -47,9 +48,9 @@ namespace Bumblebee.KendoUI
         {
         }
 
-        IEnumerable<IOption<T>> ISelectBox<T>.Options
+        IEnumerable<IOption<TResult>> ISelectBox<TResult>.Options
         {
-            get { return GetOptions().Select(x => new KendoDropDownListOption<T>(this, x)); }
+            get { return GetOptions().Select(x => new KendoDropDownListOption<TResult>(this, x)); }
         }
     }
 }

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Bumblebee.IntegrationTests.TestSupport.Pages;
+﻿using Bumblebee.Examples.Web.Pages;
 using Bumblebee.Interfaces;
 using Bumblebee.KendoUI;
 using Bumblebee.Setup;
@@ -26,9 +21,9 @@ namespace Bumblebee.IntegrationTests.KendoUI.Pages
             get { return new KendoDropDownList<KendoDropDownListDemoPage>(this, By.Id("color")); }
         }
 
-        public ISelectBox<KendoDropDownListDemoPage> Sizes
+        public ISelectBox Sizes
         {
-            get { return new KendoDropDownList<KendoDropDownListDemoPage>(this, By.Id("size")); }
+            get { return new KendoDropDownList(this, By.Id("size")); }
         }
     }
 }

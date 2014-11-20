@@ -43,9 +43,11 @@
     <Compile Include="Extensions\Verification.cs" />
     <Compile Include="Extensions\WebElementConvenience.cs" />
     <Compile Include="Implementation\Monkey.cs" />
+    <Compile Include="Implementation\DateField.cs" />
     <Compile Include="Implementation\RadioButton.cs" />
     <Compile Include="Implementation\RadioButtons.cs" />
     <Compile Include="Implementation\SeleniumDragAndDrop.cs" />
+    <Compile Include="Implementation\NumericField.cs" />
     <Compile Include="Implementation\WebBlock.cs" />
     <Compile Include="Interfaces\IAllowsNoOp.cs" />
     <Compile Include="Interfaces\IBlock.cs" />
@@ -61,6 +63,8 @@
     <Compile Include="Interfaces\IHasBackingElement.cs" />
     <Compile Include="Interfaces\IMonkey.cs" />
     <Compile Include="Interfaces\IMonkeyable.cs" />
+    <Compile Include="Interfaces\IDateField.cs" />
+    <Compile Include="Interfaces\INumericField.cs" />
     <Compile Include="Interfaces\IPerformsDragAndDrop.cs" />
     <Compile Include="Setup\IDriverEnvironment.cs" />
     <Compile Include="Interfaces\IElement.cs" />

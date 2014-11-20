@@ -2,16 +2,16 @@
 using System.Collections.Concurrent;
 using System.Threading.Tasks;
 using Bumblebee.Extensions;
-using Bumblebee.IntegrationTests.TestSupport.DriverEnvironments;
-using Bumblebee.IntegrationTests.TestSupport.Pages;
-using Bumblebee.IntegrationTests.TestSupport.Sessions;
+using Bumblebee.IntegrationTests.Shared.DriverEnvironments;
+using Bumblebee.IntegrationTests.Shared.Pages;
+using Bumblebee.IntegrationTests.Shared.Sessions;
 using Bumblebee.Setup;
 using FluentAssertions;
 using NUnit.Framework;
 using OpenQA.Selenium.IE;
 using OpenQA.Selenium.PhantomJS;
 
-namespace Bumblebee.IntegrationTests.Setup
+namespace Bumblebee.IntegrationTests.Bumblebee.Setup
 {
     [TestFixture]
     public class ThreadedSessionTests
