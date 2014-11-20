@@ -53,6 +53,7 @@
     <Compile Include="KendoExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Bumblebee.KendoUI.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

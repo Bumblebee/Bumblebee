@@ -1,0 +1,17 @@
+﻿<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Bumblebee.Automation</id>
+    <version>$version$</version>
+    <title>Bumblebee Automation</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <licenseUrl>https://github.com/patrickherrmann/Bumblebee/blob/master/LICENSE.md</licenseUrl>
+    <projectUrl>https://github.com/patrickherrmann/Bumblebee</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <releaseNotes>Adding Kendo UI implementation.</releaseNotes>
+    <copyright>Copyright 2014</copyright>
+    <tags>acceptance ui automation system test testing kendo</tags>
+  </metadata>
+</package>
