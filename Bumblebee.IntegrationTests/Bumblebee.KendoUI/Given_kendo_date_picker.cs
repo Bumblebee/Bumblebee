@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 
@@ -39,8 +40,8 @@ namespace Bumblebee.IntegrationTests.Bumblebee.KendoUI
         {
             Threaded<Session>
                 .CurrentBlock<KendoDatePickerDemoPage>()
-                .VerifyThat(p => p.DateFrom.Value.Should().Be(DateTime.Parse("2011-10-10")))
-                .VerifyThat(p => p.DateFrom.Text.Should().Be("2011-10-10"));
+                .VerifyThat(p => p.DateFrom.Text.Should().Be("2011-10-10"))
+                .VerifyThat(p => p.DateFrom.Value.Should().Be(DateTime.Parse("2011-10-10")));
         }
 
         [Test]
@@ -49,8 +50,18 @@ namespace Bumblebee.IntegrationTests.Bumblebee.KendoUI
             Threaded<Session>
                 .CurrentBlock<KendoDatePickerDemoPage>()
                 .DateFrom.EnterDate(DateTime.Today)
-                .VerifyThat(p => p.DateFrom.Value.Should().Be(DateTime.Today))
-                .VerifyThat(p => p.DateFrom.Text.Should().Be(DateTime.Today.ToString("yyyy-MM-dd")));
+                .VerifyThat(p => p.DateFrom.Text.Should().Be(DateTime.Today.ToString("yyyy-MM-dd")))
+                .VerifyThat(p => p.DateFrom.Value.Should().Be(DateTime.Today));
+        }
+
+        [Test]
+        public void When_writing_date_as_text_Then_writes_and_reads_text_and_value()
+        {
+            Threaded<Session>
+                .CurrentBlock<KendoDatePickerDemoPage>()
+                .DateFrom.EnterText(DateTime.Today.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture))
+                .VerifyThat(p => p.DateFrom.Text.Should().Be(DateTime.Today.ToString("yyyy-MM-dd")))
+                .VerifyThat(p => p.DateFrom.Value.Should().Be(DateTime.Today));
         }
     }
 }

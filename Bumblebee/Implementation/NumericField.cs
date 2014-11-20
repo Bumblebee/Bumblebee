@@ -5,7 +5,7 @@ using OpenQA.Selenium;
 
 namespace Bumblebee.Implementation
 {
-    public class NumericField : Element, INumericField
+    public class NumericField : TextField, INumericField
     {
         public NumericField(IBlock parent, By by) : base(parent, by)
         {
@@ -52,6 +52,16 @@ namespace Bumblebee.Implementation
         public virtual TResult EnterNumber(double number)
         {
             return EnterNumber<TResult>(number);
+        }
+
+        public virtual TResult EnterText(string text)
+        {
+            return EnterText<TResult>(text);
+        }
+
+        public virtual TResult AppendText(string text)
+        {
+            return AppendText<TResult>(text);
         }
     }
 }

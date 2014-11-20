@@ -40,8 +40,8 @@ namespace Bumblebee.IntegrationTests.Bumblebee.KendoUI
         {
             Threaded<Session>
                 .CurrentBlock<KendoNumericTextBoxDemoPage>()
-                .VerifyThat(p => p.Price.Value.Should().Be(30))
-                .VerifyThat(p => p.Price.Text.Should().Be("$30.00"));
+                .VerifyThat(p => p.Price.Text.Should().Be("$30.00"))
+                .VerifyThat(p => p.Price.Value.Should().Be(30));
         }
 
         [Test]
@@ -50,8 +50,18 @@ namespace Bumblebee.IntegrationTests.Bumblebee.KendoUI
             Threaded<Session>
                 .CurrentBlock<KendoNumericTextBoxDemoPage>()
                 .Price.EnterNumber(45.12)
-                .VerifyThat(p => p.Price.Value.Should().Be(45.12))
-                .VerifyThat(p => p.Price.Text.Should().Be("$45.12"));
+                .VerifyThat(p => p.Price.Text.Should().Be("$45.12"))
+                .VerifyThat(p => p.Price.Value.Should().Be(45.12));
+        }
+
+        [Test]
+        public void When_setting_current_value_as_text_Then_enters_text_and_parses_double()
+        {
+            Threaded<Session>
+                .CurrentBlock<KendoNumericTextBoxDemoPage>()
+                .Price.EnterText("45.12")
+                .VerifyThat(p => p.Price.Text.Should().Be("$45.12"))
+                .VerifyThat(p => p.Price.Value.Should().Be(45.12));
         }
     }
 }

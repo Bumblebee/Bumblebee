@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Globalization;
-using System.Linq;
-using System.Text;
 
 using Bumblebee.Implementation;
 using Bumblebee.Interfaces;
@@ -13,7 +9,7 @@ using OpenQA.Selenium;
 namespace Bumblebee.KendoUI
 {
     [DebuggerDisplay("KendoDatePicker {ToString}")]
-    public class KendoDatePicker : Element, IDateField
+    public class KendoDatePicker : TextField, IDateField
     {
         public KendoDatePicker(IBlock parent, By by)
             : base(parent, by)
@@ -30,6 +26,31 @@ namespace Bumblebee.KendoUI
             var executor = (IJavaScriptExecutor)Session.Driver;
             executor.ExecuteScript("return $(arguments[0]).data('kendoDatePicker').value(kendo.parseDate(arguments[1]));", Tag, date.ToString("yyyy-MM-dd"));
             return Session.CurrentBlock<TCustomResult>(ParentBlock.Tag);
+        }
+
+        public override TCustomResult EnterText<TCustomResult>(string text)
+        {
+            return AppendText<TCustomResult>(text, true);
+        }
+
+        public override TCustomResult AppendText<TCustomResult>(string text)
+        {
+            return AppendText<TCustomResult>(text, false);
+        }
+
+        private TCustomResult AppendText<TCustomResult>(string text, bool clear) where TCustomResult : IBlock
+        {
+            if (clear)
+            {
+                Tag.Clear();
+            }
+
+            var result = base.AppendText<TCustomResult>(text);
+
+            // Hack because the value is only update on blur.
+            Tag.FindElement(By.XPath("../../../../..")).Click();
+            Tag.Click();
+            return result;
         }
 
         public override string Text
@@ -57,7 +78,7 @@ namespace Bumblebee.KendoUI
     }
 
     [DebuggerDisplay("KendoDatePicker<T> {ToString}")]
-    public class KendoDatePicker<TResult> : KendoDatePicker, IDateField<TResult>
+    public class KendoDatePicker<TResult> : KendoDatePicker, IDateField<TResult>, ITextField<TResult>
         where TResult : IBlock
     {
         public KendoDatePicker(IBlock parent, By by)
@@ -73,6 +94,16 @@ namespace Bumblebee.KendoUI
         public TResult EnterDate(DateTime date)
         {
             return EnterDate<TResult>(date);
+        }
+
+        public virtual TResult EnterText(string text)
+        {
+            return EnterText<TResult>(text);
+        }
+
+        public virtual TResult AppendText(string text)
+        {
+            return AppendText<TResult>(text);
         }
     }
 }

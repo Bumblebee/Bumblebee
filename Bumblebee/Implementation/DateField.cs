@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Globalization;
 
 using Bumblebee.Interfaces;
 
@@ -7,7 +6,7 @@ using OpenQA.Selenium;
 
 namespace Bumblebee.Implementation
 {
-    public class DateField : Element, IDateField
+    public class DateField : TextField, IDateField
     {
         public DateField(IBlock parent, By by) : base(parent, by)
         {
@@ -58,6 +57,16 @@ namespace Bumblebee.Implementation
         public virtual TResult EnterDate(DateTime date)
         {
             return EnterDate<TResult>(date);
+        }
+
+        public virtual TResult EnterText(string text)
+        {
+            return EnterText<TResult>(text);
+        }
+
+        public virtual TResult AppendText(string text)
+        {
+            return AppendText<TResult>(text);
         }
     }
 }

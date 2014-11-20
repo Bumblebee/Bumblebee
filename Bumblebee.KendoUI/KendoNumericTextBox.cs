@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
-using System.Text;
 
 using Bumblebee.Implementation;
 using Bumblebee.Interfaces;
@@ -13,7 +10,7 @@ using OpenQA.Selenium;
 namespace Bumblebee.KendoUI
 {
     [DebuggerDisplay("KendoNumericTextBox {ToString}")]
-    public class KendoNumericTextBox : Element, INumericField
+    public class KendoNumericTextBox : TextField, INumericField
     {
         public KendoNumericTextBox(IBlock parent, By by)
             : base(parent, by)
@@ -32,10 +29,29 @@ namespace Bumblebee.KendoUI
 
         public TCustomResult EnterNumber<TCustomResult>(double number) where TCustomResult : IBlock
         {
+            return EnterText<TCustomResult>(number.ToString(CultureInfo.CurrentUICulture));
+        }
+
+        public override TCustomResult EnterText<TCustomResult>(string text)
+        {
+            return AppendText<TCustomResult>(text, true);
+        }
+
+        public override TCustomResult AppendText<TCustomResult>(string text)
+        {
+            return AppendText<TCustomResult>(text, false);
+        }
+
+        private TCustomResult AppendText<TCustomResult>(string text, bool clear) where TCustomResult : IBlock
+        {
             var fakeElement = GetFakeElement();
             fakeElement.Click();
-            Tag.Clear();
-            Tag.SendKeys(number.ToString(CultureInfo.CurrentUICulture));
+            if (clear)
+            {
+                Tag.Clear();
+            }
+
+            Tag.SendKeys(text);
 
             // Have to click a parent, then re-click for the value to be updated.
             Tag.FindElement(By.XPath("../../../..")).Click();
@@ -67,7 +83,7 @@ namespace Bumblebee.KendoUI
     }
 
     [DebuggerDisplay("KendoNumericTextBox<T> {ToString}")]
-    public class KendoNumericTextBox<TResult> : KendoNumericTextBox, INumericField<TResult>
+    public class KendoNumericTextBox<TResult> : KendoNumericTextBox, INumericField<TResult>, ITextField<TResult>
         where TResult : IBlock
     {
         public KendoNumericTextBox(IBlock parent, By by)
@@ -83,6 +99,16 @@ namespace Bumblebee.KendoUI
         public TResult EnterNumber(double number)
         {
             return EnterNumber<TResult>(number);
+        }
+
+        public virtual TResult EnterText(string text)
+        {
+            return EnterText<TResult>(text);
+        }
+
+        public virtual TResult AppendText(string text)
+        {
+            return AppendText<TResult>(text);
         }
     }
 }
