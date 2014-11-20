@@ -11,9 +11,7 @@ namespace Bumblebee.Examples.Web.Pages
     public class RedditPage : WebBlock
     {
         public RedditPage(Session session) : base(session)
-        {
-            this.Pause(200);
-        }
+        {}
 
         public IEnumerable<Post> Posts
         {

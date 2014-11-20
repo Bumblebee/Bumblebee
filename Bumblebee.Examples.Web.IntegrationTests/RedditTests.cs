@@ -30,7 +30,7 @@ namespace Bumblebee.Examples.Web.IntegrationTests
         }
 
         [Test]
-        public void Login()
+        public void given_valid_credentials_when_logging_in_then_logged_in()
         {
             Threaded<Session>
                 .CurrentBlock<LoggedOutPage>()
@@ -42,7 +42,7 @@ namespace Bumblebee.Examples.Web.IntegrationTests
         }
 
         [Test]
-        public void FailLogin()
+        public void given_invalid_credentials_when_loggging_in_then_return_user_to_login()
         {
             Threaded<Session>
                 .CurrentBlock<LoggedOutPage>()
@@ -54,22 +54,29 @@ namespace Bumblebee.Examples.Web.IntegrationTests
         }
 
         [Test]
-        public void VerifyObviousThings()
+        public void given_logged_out_when_at_front_page_then_posts_should_contain_til()
         {
             Threaded<Session>
                 .CurrentBlock<LoggedOutPage>()
                 .VerifyThat(page => 
                     page.Posts.Any(post =>
                     post.Subreddit.Text.Contains("todayilearned"))
-                    .Should().BeTrue("there should be at least one til on the front page"))
-                .VerifyThat(page => 
+                    .Should().BeTrue("there should be at least one til on the front page"));
+        }
+
+        [Test]
+        public void given_logged_out_when_at_front_page_then_posts_should_not_contain_selenium()
+        {
+            Threaded<Session>
+                .CurrentBlock<LoggedOutPage>()
+                .VerifyThat(page =>
                     page.Posts.Any(post =>
                     post.Subreddit.Text.Contains("selenium"))
                     .Should().BeFalse("there should be no selenium subreddit posts on the front page"));
         }
 
         [Test]
-        public void ShowPostsFromRandomSubreddit()
+        public void given_logged_out_at_front_page_when_clicking_random_featured_subreddit_first_page_should_start_with_1_and_second_page_should_start_with_26()
         {
             Threaded<Session>
                 .CurrentBlock<LoggedOutPage>()
