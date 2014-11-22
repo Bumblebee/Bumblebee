@@ -29,7 +29,7 @@ namespace Bumblebee.KendoUI
             return parentList.FindElements(By.TagName("li"));
         }
 
-        public IEnumerable<IOption> Options
+        public virtual IEnumerable<IOption> Options
         {
             get { return GetOptions().Select(x => new KendoDropDownListOption(this, x)); }
         }

@@ -25,7 +25,7 @@ namespace Bumblebee.IntegrationTests.Bumblebee.Implementation
         {
             Threaded<Session>
                 .With<LocalPhantomEnvironment>()
-                .NavigateTo<WufooHtml5Examples>(Url);
+                .NavigateTo<WufooHtml5ExamplesPage>(Url);
         }
 
         [TestFixtureTearDown]
@@ -38,7 +38,7 @@ namespace Bumblebee.IntegrationTests.Bumblebee.Implementation
         public void When_entering_date_Then_text_and_value_work()
         {
             Threaded<Session>
-                .CurrentBlock<WufooHtml5Examples>()
+                .CurrentBlock<WufooHtml5ExamplesPage>()
                 .Date.EnterDate(DateTime.Today)
                 .VerifyThat(x => x.Date.Value.Should().Be(DateTime.Today))
                 .VerifyThat(x => x.Date.Text.Should().Be(DateTime.Today.ToString("yyyy-MM-dd")));

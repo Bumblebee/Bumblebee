@@ -11,16 +11,16 @@ using OpenQA.Selenium;
 
 namespace Bumblebee.IntegrationTests.Shared.Pages.Implementation
 {
-    public class WufooHtml5Examples : WebBlock
+    public class WufooHtml5ExamplesPage : WebBlock
     {
-        public WufooHtml5Examples(Session session)
+        public WufooHtml5ExamplesPage(Session session)
             : base(session)
         {
         }
 
-        public IDateField<WufooHtml5Examples> Date
+        public IDateField<WufooHtml5ExamplesPage> Date
         {
-            get { return new DateField<WufooHtml5Examples>(this, By.CssSelector("input[type='date']")); }
+            get { return new DateField<WufooHtml5ExamplesPage>(this, By.CssSelector("input[type='date']")); }
         }
     }
 }

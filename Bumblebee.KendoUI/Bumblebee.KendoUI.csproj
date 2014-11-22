@@ -46,6 +46,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="KendoDatePicker.cs" />
+    <Compile Include="KendoMultiSelectOption.cs" />
+    <Compile Include="KendoMultiSelect.cs" />
     <Compile Include="KendoDropDownList.cs" />
     <Compile Include="KendoDropDownListOption.cs" />
     <Compile Include="KendoNumericTextBox.cs" />

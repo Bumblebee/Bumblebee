@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 using Bumblebee.Extensions;
 using Bumblebee.IntegrationTests.Shared.DriverEnvironments;
@@ -21,7 +20,7 @@ namespace Bumblebee.IntegrationTests.Bumblebee.KendoUI
     {
         public const string Url = "http://demos.telerik.com/kendo-ui/numerictextbox/index";
 
-        [TestFixtureSetUp]
+        [SetUp]
         public void Init()
         {
             Threaded<Session>
@@ -29,7 +28,7 @@ namespace Bumblebee.IntegrationTests.Bumblebee.KendoUI
                 .NavigateTo<KendoNumericTextBoxDemoPage>(Url);
         }
 
-        [TestFixtureTearDown]
+        [TearDown]
         public void Dispose()
         {
             Threaded<Session>.End();

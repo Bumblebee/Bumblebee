@@ -1,0 +1,55 @@
+using System.Linq;
+
+using Bumblebee.Extensions;
+using Bumblebee.IntegrationTests.Shared.DriverEnvironments;
+using Bumblebee.IntegrationTests.Shared.Pages.KendoUI;
+using Bumblebee.Setup;
+
+using NUnit.Framework;
+
+namespace Bumblebee.IntegrationTests.Bumblebee.KendoUI
+{
+    // ReSharper disable InconsistentNaming
+    [TestFixture]
+    public class Given_kendo_drop_down_list_with_multiple_values
+    {
+        private const string Url = "http://demos.telerik.com/kendo-ui/multiselect/api";
+
+        [TestFixtureSetUp]
+        public void Init()
+        {
+            Threaded<Session>
+                .With<LocalIeEnvironment>()
+                .NavigateTo<KendoMultiSelectDemoPage>(Url);
+        }
+
+        [TestFixtureTearDown]
+        public void Dispose()
+        {
+            Threaded<Session>.End();
+        }
+
+        [Test]
+        public void When_selecting_multiple_values_Then_selection_occurs()
+        {
+            Threaded<Session>
+                .CurrentBlock<KendoMultiSelectDemoPage>()
+                .Movies.Options.First().Click()
+                .Movies.Options.Last().Click()
+                .Verify(p => p.Movies.Options.Count(x => x.Selected) == 2)
+                .Verify(p => p.Movies.Options.First().Selected)
+                .Verify(p => p.Movies.Options.Last().Selected);
+        }
+
+        [Test]
+        public void When_selecting_and_deselecting_a_value_Then_nothing_is_selected()
+        {
+            Threaded<Session>
+                .CurrentBlock<KendoMultiSelectDemoPage>()
+                .Movies.Options.First().Click()
+                .Verify(p => p.Movies.Options.Count(x => x.Selected) == 1)
+                .Movies.Options.First().Click()
+                .Verify(p => p.Movies.Options.Count(x => x.Selected) == 0);
+        }
+    }
+}
