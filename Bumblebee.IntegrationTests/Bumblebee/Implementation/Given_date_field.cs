@@ -28,6 +28,12 @@ namespace Bumblebee.IntegrationTests.Bumblebee.Implementation
                 .NavigateTo<WufooHtml5Examples>(Url);
         }
 
+        [TestFixtureTearDown]
+        public void Dispose()
+        {
+            Threaded<Session>.End();
+        }
+
         [Test]
         public void When_entering_date_Then_text_and_value_work()
         {
