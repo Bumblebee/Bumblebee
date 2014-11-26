@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0"?>
 <package >
   <metadata>
-    <id>Bumblebee.Automation</id>
+    <id>Bumblebee.Automation.KendoUI</id>
     <version>$version$</version>
-    <title>Bumblebee Automation</title>
+    <title>Bumblebee Automation for Kendo UI</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
     <licenseUrl>https://github.com/patrickherrmann/Bumblebee/blob/master/LICENSE.md</licenseUrl>
