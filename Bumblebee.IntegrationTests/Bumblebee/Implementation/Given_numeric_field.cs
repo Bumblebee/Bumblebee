@@ -16,13 +16,13 @@ namespace Bumblebee.IntegrationTests.Bumblebee.Implementation
 {
     // ReSharper disable InconsistentNaming
     [TestFixture]
-    public class Given_date_field
+    public class Given_numeric_field
     {
         [TestFixtureSetUp]
         public void Init()
         {
             Threaded<Session>
-                .With<LocalChromeEnvironment>()
+                .With<LocalPhantomEnvironment>()
                 .NavigateTo<WufooHtml5ExamplesPage>(WufooHtml5ExamplesPage.Url);
         }
 
@@ -37,9 +37,9 @@ namespace Bumblebee.IntegrationTests.Bumblebee.Implementation
         {
             Threaded<Session>
                 .CurrentBlock<WufooHtml5ExamplesPage>()
-                .Date.EnterDate(DateTime.Today)
-                .VerifyThat(x => x.Date.Value.Should().Be(DateTime.Today))
-                .VerifyThat(x => x.Date.Text.Should().Be(DateTime.Today.ToString("yyyy-MM-dd")));
+                .Number.EnterNumber(456789.123456)
+                .VerifyThat(x => x.Number.Value.Should().Be(456789.123456))
+                .VerifyThat(x => x.Number.Text.Should().Be("456789.123456"));
         }
     }
 }

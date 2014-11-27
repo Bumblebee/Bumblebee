@@ -22,17 +22,12 @@ namespace Bumblebee.Implementation
             return Session.CurrentBlock<TCustomResult>(ParentBlock.Tag);
         }
 
-        public override string Text
-        {
-            get { return Tag.GetAttribute("value"); }
-        }
-
         public double? Value
         {
             get
             {
                 double result;
-                return double.TryParse(Text ?? string.Empty, out result) ? result : new double?();
+                return double.TryParse(Text ?? string.Empty, NumberStyles.Any, CultureInfo.CurrentUICulture, out result) ? result : new double?();
             }
         }
     }
