@@ -23,4 +23,4 @@ SET package="%project%\%project%.csproj"
 ECHO "Packing/Pushing project found here:  %package%."
 nuget.exe pack %package%
 
-REM nuget.exe push *.nupkg
+nuget.exe push *.nupkg
