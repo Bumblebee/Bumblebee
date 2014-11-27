@@ -22,11 +22,6 @@ namespace Bumblebee.Implementation
             return Session.CurrentBlock<TCustomResult>(ParentBlock.Tag);
         }
 
-        //public override string Text
-        //{
-        //    get { return Tag.GetAttribute("value"); }
-        //}
-
         public double? Value
         {
             get
