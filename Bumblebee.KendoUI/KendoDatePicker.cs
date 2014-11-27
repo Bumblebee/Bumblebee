@@ -46,11 +46,15 @@ namespace Bumblebee.KendoUI
             }
 
             var result = base.AppendText<TCustomResult>(text);
+            EnsureValueIsUpdated();
 
-            // Hack because the value is only update on blur.
+            return result;
+        }
+
+        private void EnsureValueIsUpdated()
+        {
             Tag.FindElement(By.XPath("../../../../..")).Click();
             Tag.Click();
-            return result;
         }
 
         public override string Text

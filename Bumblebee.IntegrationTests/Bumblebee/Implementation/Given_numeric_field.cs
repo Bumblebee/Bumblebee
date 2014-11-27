@@ -1,29 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 using Bumblebee.Extensions;
 using Bumblebee.IntegrationTests.Shared.DriverEnvironments;
 using Bumblebee.IntegrationTests.Shared.Pages.Implementation;
 using Bumblebee.Setup;
 
 using FluentAssertions;
-
 using NUnit.Framework;
 
 namespace Bumblebee.IntegrationTests.Bumblebee.Implementation
 {
+
     // ReSharper disable InconsistentNaming
     [TestFixture]
     public class Given_numeric_field
     {
+        private const string Url = "http://www.wufoo.com/html5/example/";
+
         [TestFixtureSetUp]
         public void Init()
         {
             Threaded<Session>
                 .With<LocalPhantomEnvironment>()
-                .NavigateTo<WufooHtml5ExamplesPage>(WufooHtml5ExamplesPage.Url);
+                .NavigateTo<WufooHtml5ExamplesPage>(Url);
         }
 
         [TestFixtureTearDown]
@@ -33,13 +30,14 @@ namespace Bumblebee.IntegrationTests.Bumblebee.Implementation
         }
 
         [Test]
-        public void When_entering_date_Then_text_and_value_work()
+        public void When_entering_number_Then_text_and_value_work()
         {
             Threaded<Session>
                 .CurrentBlock<WufooHtml5ExamplesPage>()
-                .Number.EnterNumber(456789.123456)
-                .VerifyThat(x => x.Number.Value.Should().Be(456789.123456))
-                .VerifyThat(x => x.Number.Text.Should().Be("456789.123456"));
+                .Number.EnterNumber(5)
+                .VerifyThat(x => AssertionExtensions.Should((double?) x.Number.Value).Be(5))
+                .VerifyThat(x => x.Number.Text
+                    .Should().Be("5"));
         }
     }
 }

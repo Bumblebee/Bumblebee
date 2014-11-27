@@ -1,19 +1,16 @@
 ﻿using System.Linq;
-
 using Bumblebee.Extensions;
 using Bumblebee.IntegrationTests.Shared.DriverEnvironments;
 using Bumblebee.IntegrationTests.Shared.Pages.KendoUI;
 using Bumblebee.Setup;
-
 using FluentAssertions;
-
 using NUnit.Framework;
 
 namespace Bumblebee.IntegrationTests.Bumblebee.KendoUI
 {
     // ReSharper disable InconsistentNaming
     [TestFixture]
-    public class Given_page_with_kendoui_drop_down_lists_and_no_options_selected
+    public class Given_kendo_drop_down_list_and_no_options_selected
     {
         public const string Url = "http://demos.telerik.com/kendo-ui/dropdownlist/index";
 
@@ -47,7 +44,10 @@ namespace Bumblebee.IntegrationTests.Bumblebee.KendoUI
         {
             Threaded<Session>
                 .CurrentBlock<KendoDropDownListDemoPage>()
-                .VerifyThat(p => p.Colors.Options.Where(o => o.Selected).Should().HaveCount(1));
+                .VerifyThat(p => p.Colors
+                    .Options
+                    .Where(o => o.Selected)
+                    .Should().HaveCount(1));
         }
     }
 }

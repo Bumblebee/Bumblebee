@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Bumblebee.Extensions;
+﻿using Bumblebee.Extensions;
 using Bumblebee.IntegrationTests.Shared.DriverEnvironments;
 using Bumblebee.IntegrationTests.Shared.Pages.KendoUI;
 using Bumblebee.Setup;
-
 using FluentAssertions;
-
 using NUnit.Framework;
 
 namespace Bumblebee.IntegrationTests.Bumblebee.KendoUI

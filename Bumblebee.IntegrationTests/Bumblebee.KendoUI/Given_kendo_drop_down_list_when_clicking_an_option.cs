@@ -1,12 +1,9 @@
 using System.Linq;
-
 using Bumblebee.Extensions;
 using Bumblebee.IntegrationTests.Shared.DriverEnvironments;
 using Bumblebee.IntegrationTests.Shared.Pages.KendoUI;
 using Bumblebee.Setup;
-
 using FluentAssertions;
-
 using NUnit.Framework;
 
 namespace Bumblebee.IntegrationTests.Bumblebee.KendoUI
@@ -42,8 +39,8 @@ namespace Bumblebee.IntegrationTests.Bumblebee.KendoUI
             Threaded<Session>
                 .CurrentBlock<KendoDropDownListDemoPage>()
                 .VerifyThat(p => p.Sizes
-                                     .Options.First(x => x.Text == TextForSizeOption)
-                                     .Selected.Should().BeTrue());
+                    .Options.First(x => x.Text == TextForSizeOption)
+                    .Selected.Should().BeTrue());
         }
 
         [Test]
@@ -52,9 +49,9 @@ namespace Bumblebee.IntegrationTests.Bumblebee.KendoUI
             Threaded<Session>
                 .CurrentBlock<KendoDropDownListDemoPage>()
                 .VerifyThat(p => p.Sizes
-                                     .Options
-                                     .Where(x => x.Text != TextForSizeOption).ToList()
-                                     .ForEach(x => x.Selected.Should().BeFalse()));
+                    .Options
+                    .Where(x => x.Text != TextForSizeOption).ToList()
+                    .ForEach(x => x.Selected.Should().BeFalse()));
         }
     }
 }

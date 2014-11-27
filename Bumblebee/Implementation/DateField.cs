@@ -20,16 +20,8 @@ namespace Bumblebee.Implementation
         {
             var executor = (IJavaScriptExecutor)Session.Driver;
             executor.ExecuteScript(string.Format("arguments[0].value = '{0:yyyy-MM-dd}';", date), Tag);
+   
             return Session.CurrentBlock<TCustomResult>(ParentBlock.Tag);
-        }
-
-        public override string Text
-        {
-            get
-            {
-                var executor = (IJavaScriptExecutor)Session.Driver;
-                return (string)executor.ExecuteScript("return arguments[0].value;", Tag);
-            }
         }
 
         public DateTime? Value

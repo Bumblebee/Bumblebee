@@ -27,7 +27,7 @@ namespace Bumblebee.Implementation
             get
             {
                 double result;
-                return double.TryParse(Text ?? string.Empty, NumberStyles.Any, CultureInfo.CurrentUICulture, out result) ? result : new double?();
+                return double.TryParse(Text ?? string.Empty, out result) ? result : new double?();
             }
         }
     }
