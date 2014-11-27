@@ -1,20 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 
 using Bumblebee.Extensions;
 using Bumblebee.IntegrationTests.Shared.DriverEnvironments;
 using Bumblebee.IntegrationTests.Shared.Pages.Implementation;
 using Bumblebee.Setup;
 
+using FluentAssertions;
 using NUnit.Framework;
 
 namespace Bumblebee.IntegrationTests.Bumblebee.Implementation
 {
     // ReSharper disable InconsistentNaming
     [TestFixture]
-    public class Given_multiple_select_box
+    public class Given_select_box_with_ability_to_select_multiple_values
     {
         private const string Url = "http://www.htmlcodetutorial.com/forms/_SELECT_MULTIPLE.html";
 
@@ -39,9 +37,15 @@ namespace Bumblebee.IntegrationTests.Bumblebee.Implementation
                 .CurrentBlock<HtmlCodeTutorialSelectMultiplePage>()
                 .Toppings.Options.First().Click()
                 .Toppings.Options.Last().Click()
-                .Verify(p => p.Toppings.Options.Count(x => x.Selected) == 2)
-                .Verify(p => p.Toppings.Options.First().Selected)
-                .Verify(p => p.Toppings.Options.Last().Selected);
+                .VerifyThat(p => p.Toppings.Options
+                    .Count(x => x.Selected)
+                    .Should().Be(2))
+                .VerifyThat(p => p.Toppings.Options
+                    .First().Selected
+                    .Should().BeTrue())
+                .VerifyThat(p => p.Toppings.Options
+                    .Last().Selected
+                    .Should().BeTrue());
         }
 
         [Test]
@@ -50,9 +54,13 @@ namespace Bumblebee.IntegrationTests.Bumblebee.Implementation
             Threaded<Session>
                 .CurrentBlock<HtmlCodeTutorialSelectMultiplePage>()
                 .Toppings.Options.First().Click()
-                .Verify(p => p.Toppings.Options.Count(x => x.Selected) == 1)
+                .VerifyThat(p => p.Toppings.Options
+                    .Count(x => x.Selected)
+                    .Should().Be(1))
                 .Toppings.Options.First().Click()
-                .Verify(p => p.Toppings.Options.Count(x => x.Selected) == 0);
+                .VerifyThat(p => p.Toppings.Options
+                    .Count(x => x.Selected)
+                    .Should().Be(0));
         }
     }
 }

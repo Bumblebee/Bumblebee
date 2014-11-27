@@ -1,10 +1,9 @@
 using System.Linq;
-
 using Bumblebee.Extensions;
 using Bumblebee.IntegrationTests.Shared.DriverEnvironments;
 using Bumblebee.IntegrationTests.Shared.Pages.KendoUI;
 using Bumblebee.Setup;
-
+using FluentAssertions;
 using NUnit.Framework;
 
 namespace Bumblebee.IntegrationTests.Bumblebee.KendoUI
@@ -36,9 +35,15 @@ namespace Bumblebee.IntegrationTests.Bumblebee.KendoUI
                 .CurrentBlock<KendoMultiSelectDemoPage>()
                 .Movies.Options.First().Click()
                 .Movies.Options.Last().Click()
-                .Verify(p => p.Movies.Options.Count(x => x.Selected) == 2)
-                .Verify(p => p.Movies.Options.First().Selected)
-                .Verify(p => p.Movies.Options.Last().Selected);
+                .VerifyThat(p => p.Movies.Options
+                    .Count(x => x.Selected)
+                    .Should().Be(2))
+                .VerifyThat(p => p.Movies.Options
+                    .First().Selected
+                    .Should().BeTrue())
+                .VerifyThat(p => p.Movies.Options
+                    .Last().Selected
+                    .Should().BeTrue());
         }
 
         [Test]
@@ -47,9 +52,15 @@ namespace Bumblebee.IntegrationTests.Bumblebee.KendoUI
             Threaded<Session>
                 .CurrentBlock<KendoMultiSelectDemoPage>()
                 .Movies.Options.First().Click()
-                .Verify(p => p.Movies.Options.Count(x => x.Selected) == 1)
-                .Movies.Options.First().Click()
-                .Verify(p => p.Movies.Options.Count(x => x.Selected) == 0);
+                .VerifyThat(p => p.Movies.Options
+                    .Count(x => x.Selected)
+                    .Should().Be(1))
+                .Movies.Options
+                    .First()
+                    .Click()
+                .VerifyThat(p => p.Movies.Options
+                    .Count(x => x.Selected)
+                    .Should().Be(0));
         }
     }
 }

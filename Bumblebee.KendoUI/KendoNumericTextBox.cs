@@ -52,11 +52,15 @@ namespace Bumblebee.KendoUI
             }
 
             Tag.SendKeys(text);
+            EnsureValueIsUpdated(fakeElement);
 
-            // Have to click a parent, then re-click for the value to be updated.
+            return Session.CurrentBlock<TCustomResult>(ParentBlock.Tag);
+        }
+
+        private void EnsureValueIsUpdated(IWebElement fakeElement)
+        {
             Tag.FindElement(By.XPath("../../../..")).Click();
             fakeElement.Click();
-            return Session.CurrentBlock<TCustomResult>(ParentBlock.Tag);
         }
 
         public override string Text

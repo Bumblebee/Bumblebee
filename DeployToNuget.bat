@@ -1,8 +1,26 @@
+@ECHO OFF
+
+IF "%1"=="" (
+	GOTO Blank
+) ELSE (
+	SET project=%1
+	GOTO Specific
+)
+
+:Blank
+SET project=Bumblebee
+GOTO Specific
+
+:Specific
 nuget.exe update -self
 ECHO Y | DEL *.nupkg
 
-REM Using an account for bumblebee@meinershagen.net to publish to NuGet.org.  This can be changed in the future.
-set /p NuGetApiKey= Please enter the project's NuGet API Key: 
+SET /p NuGetApiKey= Please enter the project's NuGet API Key: 
 nuget.exe setApiKey %NuGetApiKey%
-nuget.exe pack Bumblebee\Bumblebee.csproj
-nuget.exe push *.nupkg
+
+SET package="%project%\%project%.csproj"
+
+ECHO "Packing/Pushing project found here:  %package%."
+nuget.exe pack %package%
+
+REM nuget.exe push *.nupkg

@@ -1,19 +1,16 @@
-﻿using System;
-
-using Bumblebee.Extensions;
+﻿using Bumblebee.Extensions;
 using Bumblebee.IntegrationTests.Shared.DriverEnvironments;
 using Bumblebee.IntegrationTests.Shared.Pages.Implementation;
 using Bumblebee.Setup;
 
 using FluentAssertions;
-
 using NUnit.Framework;
 
 namespace Bumblebee.IntegrationTests.Bumblebee.Implementation
 {
     // ReSharper disable InconsistentNaming
     [TestFixture]
-    public class Given_date_field
+    public class Given_text_field
     {
         private const string Url = "http://www.wufoo.com/html5/example/";
 
@@ -32,15 +29,14 @@ namespace Bumblebee.IntegrationTests.Bumblebee.Implementation
         }
 
         [Test]
-        public void When_entering_date_Then_text_and_value_work()
+        public void When_entering_date_Then_text_should_work()
         {
+            const string expectedText = "This is the text.";
+
             Threaded<Session>
                 .CurrentBlock<WufooHtml5ExamplesPage>()
-                .Date.EnterDate(DateTime.Today)
-                .VerifyThat(x => x.Date.Value
-                    .Should().Be(DateTime.Today))
-                .VerifyThat(x => x.Date.Text
-                    .Should().Be(DateTime.Today.ToString("yyyy-MM-dd")));
+                .Placeholder.EnterText(expectedText)
+                .VerifyThat(x => AssertionExtensions.Should((string) x.Placeholder.Text).Be(expectedText));
         }
     }
 }
