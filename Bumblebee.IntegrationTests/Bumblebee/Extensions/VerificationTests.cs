@@ -4,7 +4,7 @@ using Bumblebee.Extensions;
 using FluentAssertions;
 using NUnit.Framework;
 
-namespace Bumblebee.IntegrationTests.Extensions
+namespace Bumblebee.IntegrationTests.Bumblebee.Extensions
 {
     [TestFixture]
     public class VerificationTests

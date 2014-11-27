@@ -1,7 +1,7 @@
 ﻿using Bumblebee.Interfaces;
 using Bumblebee.Setup;
 
-namespace Bumblebee.IntegrationTests.TestSupport.Sessions
+namespace Bumblebee.IntegrationTests.Shared.Sessions
 {
     public class DerivedSessionWithWrongArgs : Session
     {

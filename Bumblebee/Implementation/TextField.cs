@@ -24,6 +24,11 @@ namespace Bumblebee.Implementation
             Tag.SendKeys(text);
             return Session.CurrentBlock<TCustomResult>(ParentBlock.Tag);
         }
+
+        public override string Text
+        {
+            get { return Tag.GetAttribute("value"); }
+        }
     }
 
     public class TextField<TResult> : TextField, ITextField<TResult> where TResult : IBlock
@@ -46,11 +51,6 @@ namespace Bumblebee.Implementation
         public virtual TResult AppendText(string text)
         {
             return AppendText<TResult>(text);
-        }
-
-        public override string Text
-        {
-            get { return Tag.GetAttribute("value"); }
         }
     }
 }

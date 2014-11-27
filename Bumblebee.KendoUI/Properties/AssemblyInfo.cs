@@ -1,16 +1,15 @@
 ﻿using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Bumblebee")]
-[assembly: AssemblyDescription("Bumblebee is a .NET layer on top of the Selenium browser automation framework allowing for standardized creation of page objects, even for dynamic web pages.")]
+[assembly: AssemblyTitle("Bumblebee.KendoUI")]
+[assembly: AssemblyDescription("Implementation of certain controls for the Kendo UI library.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Patrick Herrmann, John Hammerlund, Todd Meinershagen")]
-[assembly: AssemblyProduct("Bumblebee")]
-[assembly: AssemblyCopyright("Copyright ©  2012")]
+[assembly: AssemblyCompany("Patrick Herrmann, John Hammerlund, Todd Meinershagen, Christian Droulers")]
+[assembly: AssemblyProduct("Bumblebee.KendoUI")]
+[assembly: AssemblyCopyright("Copyright © 2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +19,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("f63d1cf0-ff82-47a2-9d3a-c2f99d5a993c")]
+[assembly: Guid("3b039576-ca2a-4818-83b1-c04ca4aea146")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -32,6 +31,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.7")]
-[assembly: AssemblyFileVersion("1.0.7")]
-[assembly: InternalsVisibleTo("Bumblebee.IntegrationTests")]
+[assembly: AssemblyVersion("0.1.0")]
+[assembly: AssemblyFileVersion("0.1.0")]

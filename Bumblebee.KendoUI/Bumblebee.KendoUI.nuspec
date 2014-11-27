@@ -1,0 +1,20 @@
+﻿<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Bumblebee.Automation.KendoUI</id>
+    <version>$version$</version>
+    <title>Bumblebee Automation for Kendo UI</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <licenseUrl>https://github.com/patrickherrmann/Bumblebee/blob/master/LICENSE.md</licenseUrl>
+    <projectUrl>https://github.com/patrickherrmann/Bumblebee</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <releaseNotes>First release of Bumblebee.Automation for Kendo UI controls.  This release includes the drop down list, date picker, multi-select, and numeric textbox.</releaseNotes>
+    <copyright>Copyright 2014</copyright>
+    <tags>acceptance ui automation system test testing kendo</tags>
+    <dependencies>
+      <dependency id="Bumblebee.Automation" version="1.0.7" />
+    </dependencies>
+  </metadata>
+</package>
