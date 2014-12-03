@@ -29,14 +29,24 @@ namespace Bumblebee.IntegrationTests.Bumblebee.Implementation
         }
 
         [Test]
-        public void When_entering_date_Then_text_should_work()
+        public void When_entering_text_Then_text_should_work()
         {
             const string expectedText = "This is the text.";
 
             Threaded<Session>
                 .CurrentBlock<WufooHtml5ExamplesPage>()
                 .Placeholder.EnterText(expectedText)
-                .VerifyThat(x => AssertionExtensions.Should((string) x.Placeholder.Text).Be(expectedText));
+                .VerifyThat(x => x.Placeholder.Text.Should().Be(expectedText));
+        }
+
+        [Test]
+        public void When_label_Then_text_should_work()
+        {
+            const string expectedText = "Placeholder";
+
+            Threaded<Session>
+                .CurrentBlock<WufooHtml5ExamplesPage>()
+                .VerifyThat(x => x.PlaceholderLabel.Should().Be(expectedText));
         }
     }
 }

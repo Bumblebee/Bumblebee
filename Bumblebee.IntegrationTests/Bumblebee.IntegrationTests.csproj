@@ -38,6 +38,12 @@
     <Reference Include="FluentAssertions.Core">
       <HintPath>..\packages\FluentAssertions.3.0.107\lib\net45\FluentAssertions.Core.dll</HintPath>
     </Reference>
+    <Reference Include="Nancy">
+      <HintPath>..\packages\Nancy.0.23.2\lib\net40\Nancy.dll</HintPath>
+    </Reference>
+    <Reference Include="Nancy.Hosting.Self">
+      <HintPath>..\packages\Nancy.Hosting.Self.0.23.2\lib\net40\Nancy.Hosting.Self.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework, Version=2.6.3.13283, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
@@ -63,10 +69,15 @@
     <Compile Include="Bumblebee.KendoUI\Given_kendo_drop_down_list_when_clicking_an_option.cs" />
     <Compile Include="Bumblebee.KendoUI\Given_kendo_numeric_text_box_when_entering_value.cs" />
     <Compile Include="Bumblebee.KendoUI\Given_kendo_drop_down_list_and_no_options_selected.cs" />
+    <Compile Include="Bumblebee\Implementation\Given_radio_buttons.cs" />
     <Compile Include="Bumblebee\Implementation\Given_select_box_with_ability_to_select_multiple_values.cs" />
     <Compile Include="Bumblebee\Implementation\Given_date_field.cs" />
     <Compile Include="Bumblebee\Implementation\Given_numeric_field.cs" />
     <Compile Include="Bumblebee\Implementation\Given_text_field.cs" />
+    <Compile Include="Shared\Pages\Implementation\RadioButtonsPage.cs" />
+    <Compile Include="Shared\Hosting\Host.cs" />
+    <Compile Include="Shared\Hosting\HostTestFixture.cs" />
+    <Compile Include="Shared\Hosting\IHost.cs" />
     <Compile Include="Shared\Pages\Implementation\HtmlCodeTutorialSelectMultiplePage.cs" />
     <Compile Include="Shared\Pages\Implementation\WufooHtml5ExamplesPage.cs" />
     <Compile Include="Shared\Pages\KendoUI\KendoMultiSelectDemoPage.cs" />
@@ -103,6 +114,9 @@
     </Content>
     <Content Include="..\packages\Selenium.WebDriver.IEDriver.2.42.0.0\content\IEDriverServer.exe">
       <Link>IEDriverServer.exe</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\RadioButtons.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="phantomjs-license.txt">

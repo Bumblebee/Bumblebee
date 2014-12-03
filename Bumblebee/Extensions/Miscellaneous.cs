@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Bumblebee.Implementation;
-using Bumblebee.Interfaces;
-using Bumblebee.Setup;
 
 namespace Bumblebee.Extensions
 {

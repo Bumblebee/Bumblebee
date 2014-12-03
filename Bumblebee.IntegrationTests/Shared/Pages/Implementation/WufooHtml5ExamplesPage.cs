@@ -27,5 +27,10 @@ namespace Bumblebee.IntegrationTests.Shared.Pages.Implementation
         {
             get {  return new TextField<WufooHtml5ExamplesPage>(this, By.Name("placeholder-test"));}
         }
+
+        public string PlaceholderLabel
+        {
+            get {  return GetElement(By.CssSelector("#placeholder-test-wrap > label")).Text;}
+        }
     }
 }
