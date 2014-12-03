@@ -10,7 +10,7 @@
     <projectUrl>https://github.com/patrickherrmann/Bumblebee</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>Added a common WebBlock base that adds the ability to use a common wait timeout for finding elements.</releaseNotes>
+    <releaseNotes>Fixed the RadioButtons implementation bug to handle radio buttons with label elements.  [Previously did not work.]</releaseNotes>
     <copyright>Copyright 2012</copyright>
     <tags>acceptance ui automation system test testing</tags>
   </metadata>
