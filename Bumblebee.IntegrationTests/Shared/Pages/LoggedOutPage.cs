@@ -1,4 +1,5 @@
-﻿using Bumblebee.Setup;
+﻿using Bumblebee.Implementation;
+using Bumblebee.Setup;
 using OpenQA.Selenium;
 
 namespace Bumblebee.IntegrationTests.Shared.Pages

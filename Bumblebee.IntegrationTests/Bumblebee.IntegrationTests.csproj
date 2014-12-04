@@ -90,7 +90,6 @@
     <Compile Include="Shared\Sessions\DerivedSessionWithWrongArgs.cs" />
     <Compile Include="Shared\Sessions\DerivedSession.cs" />
     <Compile Include="Shared\Pages\LoggedOutPage.cs" />
-    <Compile Include="Shared\Pages\WebBlock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Bumblebee\Setup\ThreadedSessionTests.cs" />
   </ItemGroup>

@@ -3,7 +3,7 @@ using Bumblebee.Implementation;
 using Bumblebee.Setup;
 using OpenQA.Selenium;
 
-namespace Bumblebee.IntegrationTests.Bumblebee.Implementation
+namespace Bumblebee.IntegrationTests.Shared.Pages.Implementation
 {
     public class RadioButtonsPage : WebBlock
     {

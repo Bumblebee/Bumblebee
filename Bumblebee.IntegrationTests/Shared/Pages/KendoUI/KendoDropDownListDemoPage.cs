@@ -1,4 +1,6 @@
-﻿using Bumblebee.Interfaces;
+﻿using System;
+using Bumblebee.Implementation;
+using Bumblebee.Interfaces;
 using Bumblebee.KendoUI;
 using Bumblebee.Setup;
 
@@ -9,7 +11,7 @@ namespace Bumblebee.IntegrationTests.Shared.Pages.KendoUI
     public class KendoDropDownListDemoPage : WebBlock
     {
         public KendoDropDownListDemoPage(Session session)
-            : base(session)
+            : base(session, TimeSpan.FromSeconds(10))
         {
         }
 
