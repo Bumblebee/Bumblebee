@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using Bumblebee.Examples.Web.IntegrationTests.Infrastructure;
-using Bumblebee.Examples.Web.Pages;
+using Bumblebee.Examples.Web.Pages.Reddit;
 using Bumblebee.Extensions;
 using Bumblebee.Setup;
 using FluentAssertions;
