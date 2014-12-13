@@ -4,6 +4,7 @@ using Bumblebee.Examples.Web.IntegrationTests.Infrastructure;
 using Bumblebee.Examples.Web.Pages.Nirvana;
 using Bumblebee.Extensions;
 using Bumblebee.Setup;
+using FluentAssertions;
 using NUnit.Framework;
 
 namespace Bumblebee.Examples.Web.IntegrationTests
@@ -37,7 +38,7 @@ namespace Bumblebee.Examples.Web.IntegrationTests
                 .Save.Click()
                 .TaskLists.First(list => list.Name == "Actions")
                 .TaskRows.First(row => row.Name == taskInfo.Name)
-                .Verify("that row should exist", row => row != null)
+                .VerifyThat(row => row.Should().NotBeNull())
                 .Delete();
 
             Threaded<Session>
