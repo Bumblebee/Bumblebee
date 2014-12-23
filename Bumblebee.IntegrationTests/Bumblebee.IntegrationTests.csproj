@@ -32,13 +32,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FluentAssertions, Version=3.2.1.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
+    <Reference Include="FluentAssertions, Version=3.2.2.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\FluentAssertions.3.2.1\lib\net45\FluentAssertions.dll</HintPath>
+      <HintPath>..\packages\FluentAssertions.3.2.2\lib\net45\FluentAssertions.dll</HintPath>
     </Reference>
-    <Reference Include="FluentAssertions.Core, Version=3.2.1.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
+    <Reference Include="FluentAssertions.Core, Version=3.2.2.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\FluentAssertions.3.2.1\lib\net45\FluentAssertions.Core.dll</HintPath>
+      <HintPath>..\packages\FluentAssertions.3.2.2\lib\net45\FluentAssertions.Core.dll</HintPath>
     </Reference>
     <Reference Include="Nancy">
       <HintPath>..\packages\Nancy.0.23.2\lib\net40\Nancy.dll</HintPath>
@@ -46,9 +46,9 @@
     <Reference Include="Nancy.Hosting.Self">
       <HintPath>..\packages\Nancy.Hosting.Self.0.23.2\lib\net40\Nancy.Hosting.Self.dll</HintPath>
     </Reference>
-    <Reference Include="nunit.framework, Version=2.6.3.13283, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+    <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
+      <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -76,8 +76,11 @@
     <Compile Include="Bumblebee\Implementation\Given_date_field.cs" />
     <Compile Include="Bumblebee\Implementation\Given_numeric_field.cs" />
     <Compile Include="Bumblebee\Implementation\Given_generic_table.cs" />
+    <Compile Include="Bumblebee\Implementation\Given_complex_table.cs" />
     <Compile Include="Bumblebee\Implementation\Given_table.cs" />
     <Compile Include="Bumblebee\Implementation\Given_text_field.cs" />
+    <Compile Include="Shared\DriverEnvironments\LocalBrowserEnvironment.cs" />
+    <Compile Include="Shared\Pages\Implementation\ComplexTableRow.cs" />
     <Compile Include="Shared\Pages\Implementation\GenericTablePage.cs" />
     <Compile Include="Shared\Pages\Implementation\GenericTableRow.cs" />
     <Compile Include="Shared\Pages\Implementation\RadioButtonsPage.cs" />
@@ -85,6 +88,7 @@
     <Compile Include="Shared\Hosting\HostTestFixture.cs" />
     <Compile Include="Shared\Hosting\IHost.cs" />
     <Compile Include="Shared\Pages\Implementation\HtmlCodeTutorialSelectMultiplePage.cs" />
+    <Compile Include="Shared\Pages\Implementation\ComplexTablePage.cs" />
     <Compile Include="Shared\Pages\Implementation\WufooHtml5ExamplesPage.cs" />
     <Compile Include="Shared\Pages\KendoUI\KendoMultiSelectDemoPage.cs" />
     <Compile Include="Shared\Pages\KendoUI\KendoDropDownListDemoPage.cs" />
@@ -122,6 +126,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\RadioButtons.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\ComplexTable.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Table.html">

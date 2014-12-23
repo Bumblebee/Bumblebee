@@ -20,7 +20,10 @@ namespace Bumblebee.IntegrationTests.Shared.Pages.Implementation
 
         public ITable Table
         {
-            get { return new Table(this, By.Id("DataGrid")); }
+            get
+            {
+                return new Table(this, By.Id("DataGrid"));
+            }
         }
     }
 }

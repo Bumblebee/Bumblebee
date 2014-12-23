@@ -17,7 +17,10 @@ namespace Bumblebee.IntegrationTests.Shared.Pages.Implementation
 
         public RadioButtons<RadioButtonsPage> Beverages
         {
-            get { return new RadioButtons<RadioButtonsPage>(this, By.Name("beverages")); }
+            get
+            {
+                return new RadioButtons<RadioButtonsPage>(this, By.Name("beverages"));
+            }
         }
     }
 }
