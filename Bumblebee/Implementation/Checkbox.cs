@@ -9,10 +9,6 @@ namespace Bumblebee.Implementation
         {
         }
 
-        public Checkbox(IBlock parent, IWebElement tag) : base(parent, tag)
-        {
-        }
-
         public TCustomResult Check<TCustomResult>() where TCustomResult : IBlock
         {
             if (!Selected) Tag.Click();
@@ -35,10 +31,6 @@ namespace Bumblebee.Implementation
     public class Checkbox<TResult> : Checkbox, ICheckbox<TResult> where TResult : IBlock
     {
         public Checkbox(IBlock parent, By by) : base(parent, by)
-        {
-        }
-
-        public Checkbox(IBlock parent, IWebElement element) : base(parent, element)
         {
         }
 

@@ -9,10 +9,6 @@ namespace Bumblebee.Implementation
         {
         }
 
-        public TextField(IBlock parent, IWebElement tag) : base(parent, tag)
-        {
-        }
-
         public virtual TCustomResult EnterText<TCustomResult>(string text) where TCustomResult : IBlock
         {
             Tag.Clear();
@@ -35,11 +31,6 @@ namespace Bumblebee.Implementation
     {
         public TextField(IBlock parent, By by)
             : base(parent, by)
-        {
-        }
-
-        public TextField(IBlock parent, IWebElement element)
-            : base(parent, element)
         {
         }
 

@@ -10,9 +10,5 @@ namespace Bumblebee.Implementation
         public Copy(IBlock parent, By by) : base(parent, by)
         {
         }
-
-        public Copy(IBlock parent, IWebElement element) : base(parent, element)
-        {
-        }
     }
 }

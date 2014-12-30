@@ -10,11 +10,6 @@ namespace Bumblebee.Implementation
         {
         }
 
-        public Option(IBlock parent, IWebElement element)
-            : base(parent, element)
-        {
-        }
-
         public virtual TResult Click<TResult>() where TResult : IBlock
         {
             ParentBlock.Tag.Click();
@@ -26,10 +21,6 @@ namespace Bumblebee.Implementation
     public class Option<TResult> : Clickable<TResult>, IOption<TResult> where TResult : IBlock
     {
         public Option(IBlock parent, By by) : base(parent, by)
-        {
-        }
-
-        public Option(IBlock parent, IWebElement element) : base(parent, element)
         {
         }
     }
