@@ -10,7 +10,7 @@ namespace Bumblebee.Examples.Web.Pages.Nirvana
     {
         public MainArea(Session session) : base(session)
         {
-            Tag = GetElement(By.Id("main"));
+            SetFinder(By.Id("main"));
         }
 
         public IEnumerable<TaskList> TaskLists

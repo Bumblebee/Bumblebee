@@ -16,11 +16,6 @@ namespace Bumblebee.KendoUI
         {
         }
 
-        public KendoDatePicker(IBlock parent, IWebElement tag)
-            : base(parent, tag)
-        {
-        }
-
         public TCustomResult EnterDate<TCustomResult>(DateTime date) where TCustomResult : IBlock
         {
             var executor = (IJavaScriptExecutor)Session.Driver;
@@ -87,11 +82,6 @@ namespace Bumblebee.KendoUI
     {
         public KendoDatePicker(IBlock parent, By by)
             : base(parent, by)
-        {
-        }
-
-        public KendoDatePicker(IBlock parent, IWebElement tag)
-            : base(parent, tag)
         {
         }
 

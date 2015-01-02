@@ -17,11 +17,6 @@ namespace Bumblebee.KendoUI
         {
         }
 
-        public KendoNumericTextBox(IBlock parent, IWebElement tag)
-            : base(parent, tag)
-        {
-        }
-
         private IWebElement GetFakeElement()
         {
             return Tag.FindElement(By.XPath("..")).FindElements(By.TagName("input")).First();
@@ -92,11 +87,6 @@ namespace Bumblebee.KendoUI
     {
         public KendoNumericTextBox(IBlock parent, By by)
             : base(parent, by)
-        {
-        }
-
-        public KendoNumericTextBox(IBlock parent, IWebElement tag)
-            : base(parent, tag)
         {
         }
 

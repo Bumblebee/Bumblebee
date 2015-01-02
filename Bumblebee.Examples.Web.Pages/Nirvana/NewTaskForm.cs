@@ -9,7 +9,7 @@ namespace Bumblebee.Examples.Web.Pages.Nirvana
     {
         public NewTaskForm(Session session) : base(session)
         {
-            Tag = GetElement(By.ClassName("promptnewtask"));
+            SetFinder(By.ClassName("promptnewtask"));
         }
 
         public ITextField<NewTaskForm> Name

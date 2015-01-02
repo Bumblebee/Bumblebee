@@ -11,6 +11,11 @@ namespace Bumblebee.Implementation
         {
         }
 
+        public Clickable(IBlock parent, IWebElement el) : base(parent, el)
+        {
+
+        }
+
         public virtual TResult Click<TResult>() 
             where TResult : IBlock
         {
@@ -37,6 +42,11 @@ namespace Bumblebee.Implementation
         public Clickable(IBlock parent, By by)
             : base(parent, by)
         {
+        }
+
+        public Clickable(IBlock parent, IWebElement el) : base(parent, el)
+        {
+            
         }
 
         public virtual TResult Click()

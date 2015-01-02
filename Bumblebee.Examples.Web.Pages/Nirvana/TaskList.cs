@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Bumblebee.Extensions;
 using Bumblebee.Implementation;
@@ -9,7 +10,7 @@ namespace Bumblebee.Examples.Web.Pages.Nirvana
 {
     public class TaskList : SpecificBlock
     {
-        public TaskList(Session session, IWebElement tag) : base(session, tag)
+        public TaskList(Session session, Func<IWebElement> tag) : base(session, tag)
         {}
 
         public string Name

@@ -13,6 +13,11 @@ namespace Bumblebee.Implementation
             ParentBlock = parent;
         }
 
+        protected Element(IBlock parent, IWebElement el) : base(parent.Session, () => el)
+        {
+            ParentBlock = parent;
+        }
+
         public virtual string Text
         {
             get { return Tag.Text; }

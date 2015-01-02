@@ -23,6 +23,12 @@ namespace Bumblebee.Implementation
             _finder = finder;
         }
 
+        protected void SetFinder(By by)
+        {
+            _finder = () => Session.Driver.FindElement(by);
+        }
+        
+
         protected Block(Session session)
         {
             Session = session;
