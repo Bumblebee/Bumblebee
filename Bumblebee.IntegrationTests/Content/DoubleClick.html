@@ -1,0 +1,19 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Double Click</title>
+</head>
+<body>
+    <p><span id="doubleClickable" ondblclick="toggleText()">Double-click this paragraph to trigger a function.</span></p>
+    <p><span id="result"></span></p>
+
+    <script>
+        function toggleText() {
+            var element = document.getElementById("result");
+            element.innerText = element.innerText == "" ? "Hello, World!" : "";
+        }
+    </script>
+</body>
+</html>

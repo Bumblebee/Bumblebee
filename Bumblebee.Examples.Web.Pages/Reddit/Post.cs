@@ -1,11 +1,9 @@
-﻿using System.Linq;
-using Bumblebee.Extensions;
-using Bumblebee.Implementation;
+﻿using Bumblebee.Implementation;
 using Bumblebee.Interfaces;
 using Bumblebee.Setup;
 using OpenQA.Selenium;
 
-namespace Bumblebee.Examples.Web.Pages
+namespace Bumblebee.Examples.Web.Pages.Reddit
 {
     public class Post : SpecificBlock
     {

@@ -45,11 +45,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LoggedInPage.cs" />
-    <Compile Include="LoggedOutPage.cs" />
-    <Compile Include="Post.cs" />
+    <Compile Include="Nirvana\LoggedInPage.cs" />
+    <Compile Include="Nirvana\LoggedOutPage.cs" />
+    <Compile Include="Nirvana\MainArea.cs" />
+    <Compile Include="Nirvana\NewTaskForm.cs" />
+    <Compile Include="Nirvana\SideBar.cs" />
+    <Compile Include="Nirvana\TaskList.cs" />
+    <Compile Include="Nirvana\TaskRow.cs" />
+    <Compile Include="Nirvana\ToolBar.cs" />
+    <Compile Include="Nirvana\UpgradePromptPage.cs" />
+    <Compile Include="Reddit\LoggedInPage.cs" />
+    <Compile Include="Reddit\LoggedOutPage.cs" />
+    <Compile Include="Reddit\Post.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RedditPage.cs" />
+    <Compile Include="Reddit\RedditPage.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Bumblebee\Bumblebee.csproj">

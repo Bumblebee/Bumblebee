@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using System.Linq;
 using System.Threading.Tasks;
 using Bumblebee.Extensions;
 using Bumblebee.IntegrationTests.Shared.DriverEnvironments;
@@ -92,7 +93,13 @@ namespace Bumblebee.IntegrationTests.Bumblebee.Setup
                 sessions.TryAdd(Guid.NewGuid(), session);
             };
 
-            Parallel.Invoke(action, action);
+            var tasks = Enumerable.Repeat(0, 2)
+                .Select(x => Task.Factory.StartNew(action));
+
+            foreach (var task in tasks)
+            {
+                task.Wait();
+            }
 
             var session1 = sessions.ToArray()[0].Value;
             var session2 = sessions.ToArray()[1].Value;
