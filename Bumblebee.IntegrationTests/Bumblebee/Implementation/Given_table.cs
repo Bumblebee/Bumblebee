@@ -142,7 +142,7 @@ namespace Bumblebee.IntegrationTests.Bumblebee.Implementation
             Threaded<Session>
                 .CurrentBlock<TablePage>()
                 .Table
-                .CreateInstances<TableRow>()
+                .GetRows<TableRow>()
                 .VerifyThat(x => x
                     .Count()
                     .Should()
@@ -155,7 +155,7 @@ namespace Bumblebee.IntegrationTests.Bumblebee.Implementation
             Threaded<Session>
                 .CurrentBlock<TablePage>()
                 .Table
-                .CreateInstances<TableRow>()
+                .GetRows<TableRow>()
                 .VerifyThat(x => x
                     .Select(z => z.Item)
                     .Should()
@@ -168,7 +168,7 @@ namespace Bumblebee.IntegrationTests.Bumblebee.Implementation
             Threaded<Session>
                 .CurrentBlock<TablePage>()
                 .Table
-                .CreateInstances<TableRow>()
+                .GetRows<TableRow>()
                 .VerifyThat(x => x
                     .Select(z => z.Quantity)
                     .Should()
@@ -181,7 +181,7 @@ namespace Bumblebee.IntegrationTests.Bumblebee.Implementation
             Threaded<Session>
                 .CurrentBlock<TablePage>()
                 .Table
-                .CreateInstances<TableRow>()
+                .GetRows<TableRow>()
                 .VerifyThat(x => x
                     .Select(z => z.Price)
                     .Should()
