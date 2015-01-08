@@ -26,7 +26,8 @@ namespace Bumblebee.IntegrationTests.Bumblebee.Implementation
         [TestFixtureTearDown]
         public void Dispose()
         {
-            Threaded<Session>.End();
+            Threaded<Session>
+                .End();
         }
 
         [Test]

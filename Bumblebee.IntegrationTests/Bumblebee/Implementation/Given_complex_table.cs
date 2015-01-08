@@ -38,7 +38,7 @@ namespace Bumblebee.IntegrationTests.Bumblebee.Implementation
             Threaded<Session>
                 .CurrentBlock<ComplexTablePage>()
                 .Table
-                .VerifyThat(x => x.Columns
+                .VerifyThat(x => x.Headers
                     .Count()
                     .Should()
                     .Be(2));

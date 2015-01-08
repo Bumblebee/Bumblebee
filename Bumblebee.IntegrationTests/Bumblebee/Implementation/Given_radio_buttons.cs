@@ -24,8 +24,7 @@ namespace Bumblebee.IntegrationTests.Bumblebee.Implementation
         public void Dispose()
         {
             Threaded<Session>
-                .CurrentBlock<RadioButtonsPage>()
-                .Session.End();
+                .End();
         }
 
         [TestCase("Water", false)]

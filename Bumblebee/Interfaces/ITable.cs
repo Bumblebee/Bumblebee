@@ -12,11 +12,11 @@ namespace Bumblebee.Interfaces
 
     public interface ITable
     {
-        IEnumerable<string> Columns { get; }
+        IEnumerable<string> Headers { get; }
         IEnumerable<ITableRow> Rows { get; }
         IEnumerable<string> Footers { get; }
-        T GetHeader<T>() where T : Element;
-        IEnumerable<T> GetRows<T>();
-        T GetFooter<T>() where T : Element;
+        T HeaderAs<T>() where T : Element;
+        IEnumerable<T> RowsAs<T>();
+        T FooterAs<T>() where T : Element;
     }
 }

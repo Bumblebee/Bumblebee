@@ -29,8 +29,7 @@ namespace Bumblebee.IntegrationTests.Bumblebee.Implementation
         public void TestFixtureTearDown()
         {
             Threaded<Session>
-                .CurrentBlock<GenericTablePage>()
-                .Session.End();
+                .End();
         }
 
         [Test]
@@ -39,7 +38,7 @@ namespace Bumblebee.IntegrationTests.Bumblebee.Implementation
             Threaded<Session>
                 .CurrentBlock<GenericTablePage>()
                 .Table
-                .VerifyThat(x => x.Columns
+                .VerifyThat(x => x.Headers
                     .Count()
                     .Should()
                     .Be(3));

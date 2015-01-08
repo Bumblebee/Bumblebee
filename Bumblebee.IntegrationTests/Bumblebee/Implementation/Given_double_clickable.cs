@@ -23,8 +23,7 @@ namespace Bumblebee.IntegrationTests.Bumblebee.Implementation
         public void Dispose()
         {
             Threaded<Session>
-                .CurrentBlock<DoubleClickablePage>()
-                .Session.End();
+                .End();
         }
 
         [Test]

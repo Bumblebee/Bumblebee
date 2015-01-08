@@ -36,8 +36,7 @@ namespace Bumblebee.IntegrationTests.Bumblebee.Implementation
         public void TestFixtureTearDown()
         {
             Threaded<Session>
-                .CurrentBlock<TablePage>()
-                .Session.End();
+                .End();
         }
 
         [Test]
@@ -46,7 +45,7 @@ namespace Bumblebee.IntegrationTests.Bumblebee.Implementation
             Threaded<Session>
                 .CurrentBlock<TablePage>()
                 .Table
-                .VerifyThat(x => x.Columns
+                .VerifyThat(x => x.Headers
                     .Count()
                     .Should()
                     .Be(3));
@@ -142,7 +141,7 @@ namespace Bumblebee.IntegrationTests.Bumblebee.Implementation
             Threaded<Session>
                 .CurrentBlock<TablePage>()
                 .Table
-                .GetRows<TableRow>()
+                .RowsAs<TableRow>()
                 .VerifyThat(x => x
                     .Count()
                     .Should()
@@ -155,7 +154,7 @@ namespace Bumblebee.IntegrationTests.Bumblebee.Implementation
             Threaded<Session>
                 .CurrentBlock<TablePage>()
                 .Table
-                .GetRows<TableRow>()
+                .RowsAs<TableRow>()
                 .VerifyThat(x => x
                     .Select(z => z.Item)
                     .Should()
@@ -168,7 +167,7 @@ namespace Bumblebee.IntegrationTests.Bumblebee.Implementation
             Threaded<Session>
                 .CurrentBlock<TablePage>()
                 .Table
-                .GetRows<TableRow>()
+                .RowsAs<TableRow>()
                 .VerifyThat(x => x
                     .Select(z => z.Quantity)
                     .Should()
@@ -181,7 +180,7 @@ namespace Bumblebee.IntegrationTests.Bumblebee.Implementation
             Threaded<Session>
                 .CurrentBlock<TablePage>()
                 .Table
-                .GetRows<TableRow>()
+                .RowsAs<TableRow>()
                 .VerifyThat(x => x
                     .Select(z => z.Price)
                     .Should()

@@ -52,7 +52,7 @@ namespace Bumblebee.Implementation
         {
         }
 
-        public IEnumerable<string> Columns
+        public IEnumerable<string> Headers
         {
             get
             {
@@ -84,13 +84,13 @@ namespace Bumblebee.Implementation
             }
         }
 
-        public T GetHeader<T>()
+        public T HeaderAs<T>()
             where T : Element
         {
             return Create<T>(this, By.TagName("thead"));
         }
 
-        public IEnumerable<T> GetRows<T>()
+        public IEnumerable<T> RowsAs<T>()
         {
             return Rows
                 .Select(CreateInstance<T>);
@@ -110,14 +110,14 @@ namespace Bumblebee.Implementation
 
         private T CreateInstance<T>(IEnumerable<string> tableRow)
         {
-            var type = typeof(T);
+            var type = typeof (T);
 
             // we do this because the setters are not present on PropertyInfo objects acquired from inherited properties
             var properties = GetInheritanceChain(type)
                 .SelectMany(x => x.GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly))
                 .ToDictionary(k => k.Name, v => v, StringComparer.OrdinalIgnoreCase);
 
-            var cells = Columns
+            var cells = Headers
                 .Select(x => Regex.Replace(x, @"\s+", String.Empty))
                 .Zip(tableRow, (name, data) => new KeyValuePair<string, string>(name, data));
 
@@ -135,7 +135,7 @@ namespace Bumblebee.Implementation
             return result;
         }
 
-        public T GetFooter<T>()
+        public T FooterAs<T>()
             where T : Element
         {
             return Create<T>(this, By.TagName("tfoot"));
