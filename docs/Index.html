@@ -1,5 +1,6 @@
 <html>
 	<head>
+		<link rel="stylesheet" type="text/css" href="http://documentup.com/stylesheets/screen.css">
 		<script data-require="jquery" data-semver="2.1.1" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 		<script>
 			$(function(){
@@ -17,6 +18,8 @@
 					    document.open();
 					    document.write(response.html);
 					    document.close();
+
+							document.styleSheets[0].href = 'http://documentup.com/stylesheets/screen.css';
 					  }
 					}
 				})
