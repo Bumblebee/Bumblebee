@@ -13,5 +13,8 @@
     <releaseNotes>Added built-in, basic driver environments for Internet Explorer, Chrome, Firefox, and PhantomJS.  These have default implicit waits for 5 seconds, but that can be overridden.</releaseNotes>
     <copyright>Copyright 2012</copyright>
     <tags>acceptance ui automation system test testing</tags>
+    <dependencies>
+      <dependency id="Selenium.Support" version="2.42.0"></dependency>
+    </dependencies>
   </metadata>
 </package>
