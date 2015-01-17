@@ -3,7 +3,7 @@ using Bumblebee.Interfaces;
 using Bumblebee.Setup;
 using OpenQA.Selenium;
 
-namespace Bumblebee.Examples.Web.Pages
+namespace Bumblebee.Examples.Web.Pages.Reddit
 {
     public class LoggedOutPage : RedditPage
     {

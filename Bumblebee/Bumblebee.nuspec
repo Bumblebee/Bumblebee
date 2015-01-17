@@ -10,7 +10,7 @@
     <projectUrl>https://github.com/patrickherrmann/Bumblebee</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>Fixed the RadioButtons implementation bug to handle radio buttons with label elements.  [Previously did not work.]</releaseNotes>
+    <releaseNotes>Added Double-Click functionality to the Clickable implementation.</releaseNotes>
     <copyright>Copyright 2012</copyright>
     <tags>acceptance ui automation system test testing</tags>
   </metadata>

@@ -60,6 +60,7 @@
     <Compile Include="Infrastructure\LocalChromeEnvironment.cs" />
     <Compile Include="Infrastructure\LocalFirefoxEnvironment.cs" />
     <Compile Include="Infrastructure\LocalPhantomJsEnvironment.cs" />
+    <Compile Include="NirvanaTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RedditTests.cs" />
   </ItemGroup>
