@@ -67,11 +67,16 @@
     <Compile Include="Interfaces\IMonkeyable.cs" />
     <Compile Include="Interfaces\INumericField.cs" />
     <Compile Include="Interfaces\IPerformsDragAndDrop.cs" />
+    <Compile Include="Setup\DriverEnvironments\Chrome.cs" />
+    <Compile Include="Setup\DriverEnvironments\Firefox.cs" />
+    <Compile Include="Setup\DriverEnvironments\PhantomJS.cs" />
+    <Compile Include="Setup\DriverEnvironments\SimpleDriverEnvironment.cs" />
     <Compile Include="Setup\IDriverEnvironment.cs" />
     <Compile Include="Interfaces\IElement.cs" />
     <Compile Include="Interfaces\IRadioButtons.cs" />
     <Compile Include="Interfaces\ISpecificBlock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Setup\DriverEnvironments\InternetExplorer.cs" />
     <Compile Include="Setup\Session.cs" />
     <Compile Include="Implementation\Checkbox.cs" />
     <Compile Include="Implementation\Clickable.cs" />
