@@ -54,4 +54,12 @@ namespace Bumblebee.Setup
             Driver = null;
         }
     }
+
+    public class Session<TDriverEnvironment> : Session
+        where TDriverEnvironment : IDriverEnvironment, new()
+    {
+        public Session()
+            : base(new TDriverEnvironment())
+        { }
+    }
 }
