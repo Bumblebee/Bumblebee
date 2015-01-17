@@ -1,4 +1,7 @@
-﻿using Bumblebee.Setup;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Bumblebee.Setup;
 using Bumblebee.Setup.DriverEnvironments;
 using FluentAssertions;
 using NUnit.Framework;
@@ -22,12 +25,46 @@ namespace Bumblebee.IntegrationTests.Bumblebee.Setup
         public void given_driver_environment_when_creating_web_driver_should_be_correct_type()
         {
             var environment = new TDriverEnvironment();
-            var driver = environment.CreateWebDriver();
-            
-            driver.Should().BeOfType<TExpectedDriver>();
-            
-            driver.Close();
-            driver.Quit();
+            using (var driver = environment.CreateWebDriver())
+            {
+                driver.Should().BeOfType<TExpectedDriver>();
+            }
+        }
+    }
+
+    [TestFixture(typeof(Firefox))]
+    [TestFixture(typeof(InternetExplorer))]
+    [TestFixture(typeof(Chrome))]
+    [TestFixture(typeof(PhantomJS))]
+    public class DriverEnvironmentTests<TDriverEnvironment>
+        where TDriverEnvironment : IDriverEnvironment
+    {
+        [Test]
+        public void given_driver_environment_with_time_to_wait_when_creating_web_driver_should_not_throw()
+        {
+            Action action = ConstructDriverWithTimeSpan;
+            action.ShouldNotThrow();
+        }
+
+        private void ConstructDriverWithTimeSpan()
+        {
+            var type = typeof (TDriverEnvironment);
+            IList<Type> constructorSignature = new List<Type> {typeof (TimeSpan)};
+            IList<object> constructorArgs = new List<object> {TimeSpan.FromSeconds(2)};
+            var constructor = type.GetConstructor(constructorSignature.ToArray());
+
+            if (constructor == null)
+            {
+                var message =
+                    string.Format(
+                        "The result type specified ({0}) is not a valid SimpleDriverEnvironment<T>.  It must have a constructor overload that takes a TimeSpan.",
+                        typeof (TDriverEnvironment));
+                throw new ArgumentException(message);
+            }
+
+            var environment = constructor.Invoke(constructorArgs.ToArray()) as IDriverEnvironment;
+            using (environment.CreateWebDriver())
+            {}
         }
     }
 }
