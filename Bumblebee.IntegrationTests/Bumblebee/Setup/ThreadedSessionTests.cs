@@ -86,15 +86,14 @@ namespace Bumblebee.IntegrationTests.Bumblebee.Setup
         {
             var sessions = new ConcurrentDictionary<Guid, Session>();
 
-            Action action = () =>
-            {
-                var session = Threaded<Session>
-                    .With<LocalPhantomEnvironment>();
-                sessions.TryAdd(Guid.NewGuid(), session);
-            };
-
             var tasks = Enumerable.Repeat(0, 2)
-                .Select(x => Task.Factory.StartNew(action));
+                .Select(x => Guid.NewGuid())
+                .Select(x => Task.Run(() =>
+                {
+                    var session = Threaded<Session>
+                        .With<LocalPhantomEnvironment>();
+                    sessions.TryAdd(Guid.NewGuid(), session);
+                }));
 
             foreach (var task in tasks)
             {

@@ -134,57 +134,5 @@ namespace Bumblebee.IntegrationTests.Bumblebee.Implementation
                     .Should()
                     .Be("65.00"));
         }
-
-        [Test]
-        public void Should_create_row_instances_using_reflection()
-        {
-            Threaded<Session>
-                .CurrentBlock<TablePage>()
-                .Table
-                .RowsAs<TableRow>()
-                .VerifyThat(x => x
-                    .Count()
-                    .Should()
-                    .Be(3));
-        }
-
-        [Test]
-        public void Should_create_row_instances_using_reflection_and_hydrate_item_property()
-        {
-            Threaded<Session>
-                .CurrentBlock<TablePage>()
-                .Table
-                .RowsAs<TableRow>()
-                .VerifyThat(x => x
-                    .Select(z => z.Item)
-                    .Should()
-                    .BeEquivalentTo("Wine", "Beer", "Champagne"));
-        }
-
-        [Test]
-        public void Should_create_row_instances_using_reflection_and_hydrate_quantity_property()
-        {
-            Threaded<Session>
-                .CurrentBlock<TablePage>()
-                .Table
-                .RowsAs<TableRow>()
-                .VerifyThat(x => x
-                    .Select(z => z.Quantity)
-                    .Should()
-                    .BeEquivalentTo(4, 2, 3));
-        }
-
-        [Test]
-        public void Should_create_row_instances_using_reflection_and_hydrate_price_property()
-        {
-            Threaded<Session>
-                .CurrentBlock<TablePage>()
-                .Table
-                .RowsAs<TableRow>()
-                .VerifyThat(x => x
-                    .Select(z => z.Price)
-                    .Should()
-                    .BeEquivalentTo(65.0m, 10.0m, 100.0m));
-        }
     }
 }

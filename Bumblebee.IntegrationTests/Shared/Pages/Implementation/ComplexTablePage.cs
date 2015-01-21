@@ -18,11 +18,11 @@ namespace Bumblebee.IntegrationTests.Shared.Pages.Implementation
         {
         }
 
-        public ITable<ComplexTableRow> Table
+        public ITable Table
         {
             get
             {
-                return new Table<ComplexTableRow>(this, By.Id("DataGrid"));
+                return new Table(this, By.Id("DataGrid"));
             }
         }
     }

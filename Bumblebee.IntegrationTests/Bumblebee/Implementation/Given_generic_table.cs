@@ -62,7 +62,7 @@ namespace Bumblebee.IntegrationTests.Bumblebee.Implementation
             Threaded<Session>
                 .CurrentBlock<GenericTablePage>()
                 .Table
-                .VerifyThat(x => x.Rows
+                .VerifyThat(x => x.RowsAs<GenericTableRow>()
                     .First()
                     .Item
                     .Should()
@@ -75,7 +75,7 @@ namespace Bumblebee.IntegrationTests.Bumblebee.Implementation
             Threaded<Session>
                 .CurrentBlock<GenericTablePage>()
                 .Table
-                .VerifyThat(x => x.Rows
+                .VerifyThat(x => x.RowsAs<GenericTableRow>()
                     .First()
                     .Quantity
                     .Should()
@@ -88,7 +88,7 @@ namespace Bumblebee.IntegrationTests.Bumblebee.Implementation
             Threaded<Session>
                 .CurrentBlock<GenericTablePage>()
                 .Table
-                .VerifyThat(x => x.Rows
+                .VerifyThat(x => x.RowsAs<GenericTableRow>()
                     .First()
                     .Price
                     .Should()

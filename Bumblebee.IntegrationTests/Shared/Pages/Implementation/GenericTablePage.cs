@@ -18,9 +18,12 @@ namespace Bumblebee.IntegrationTests.Shared.Pages.Implementation
         {
         }
 
-        public ITable<GenericTableRow> Table
+        public ITable Table
         {
-            get { return new Table<GenericTableRow>(this, By.Id("DataGrid")); }
+            get
+            {
+                return new Table(this, By.Id("DataGrid"));
+            }
         }
     }
 }

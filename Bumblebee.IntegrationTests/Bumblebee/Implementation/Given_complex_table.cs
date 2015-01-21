@@ -62,7 +62,7 @@ namespace Bumblebee.IntegrationTests.Bumblebee.Implementation
             Threaded<Session>
                 .CurrentBlock<ComplexTablePage>()
                 .Table
-                .Rows.First()
+                .RowsAs<ComplexTableRow>().First()
                 .TablePageLink.Click()
                 .Table
                 .VerifyThat(x => x.Rows
@@ -79,7 +79,7 @@ namespace Bumblebee.IntegrationTests.Bumblebee.Implementation
             Threaded<Session>
                 .CurrentBlock<ComplexTablePage>()
                 .Table
-                .Rows.First()
+                .RowsAs<ComplexTableRow>().First()
                 .RadioButtonPageLink.Click()
                 .VerifyThat(p =>
                     p.Beverages.Options.WithText(text).Single().Selected

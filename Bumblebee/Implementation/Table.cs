@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using System.Text.RegularExpressions;
 
 using Bumblebee.Interfaces;
 
@@ -10,28 +8,6 @@ using OpenQA.Selenium;
 
 namespace Bumblebee.Implementation
 {
-    public class Table<T> : Table, ITable<T>
-        where T : Element
-    {
-        public Table(IBlock parent, By @by) : base(parent, @by)
-        {
-        }
-
-        public Table(IBlock parent, IWebElement tag) : base(parent, tag)
-        {
-        }
-
-        public new IEnumerable<T> Rows
-        {
-            get
-            {
-                return GetElement(By.TagName("tbody"))
-                    .FindElements(By.TagName("tr"))
-                    .Select(x => Create<T>(this, x));
-            }
-        }
-    }
-
     public class Table : Element, ITable
     {
         protected static T Create<T>(IBlock parent, By @by)
@@ -69,7 +45,7 @@ namespace Bumblebee.Implementation
             {
                 return GetElement(By.TagName("tbody"))
                     .FindElements(By.TagName("tr"))
-                    .Select(x => new TableRow(this, x));
+                    .Select((x, i) => new TableRow(this, By.CssSelector(String.Format("tbody > tr:nth-child({0})", i + 1))));
             }
         }
 
@@ -91,48 +67,11 @@ namespace Bumblebee.Implementation
         }
 
         public IEnumerable<T> RowsAs<T>()
+            where T : Element
         {
-            return Rows
-                .Select(CreateInstance<T>);
-        }
-
-        private static IEnumerable<Type> GetInheritanceChain(Type type)
-        {
-            var b = type;
-
-            while (b != null)
-            {
-                yield return b;
-
-                b = b.BaseType;
-            }
-        }
-
-        private T CreateInstance<T>(IEnumerable<string> tableRow)
-        {
-            var type = typeof (T);
-
-            // we do this because the setters are not present on PropertyInfo objects acquired from inherited properties
-            var properties = GetInheritanceChain(type)
-                .SelectMany(x => x.GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly))
-                .ToDictionary(k => k.Name, v => v, StringComparer.OrdinalIgnoreCase);
-
-            var cells = Headers
-                .Select(x => Regex.Replace(x, @"\s+", String.Empty))
-                .Zip(tableRow, (name, data) => new KeyValuePair<string, string>(name, data));
-
-            var result = Activator.CreateInstance<T>();
-
-            foreach (var cell in cells)
-            {
-                PropertyInfo property;
-                if (properties.TryGetValue(cell.Key, out property))
-                {
-                    property.SetValue(result, Convert.ChangeType(cell.Value, property.PropertyType));
-                }
-            }
-
-            return result;
+            return GetElement(By.TagName("tbody"))
+                .FindElements(By.TagName("tr"))
+                .Select((x, i) => Create<T>(this, By.CssSelector(String.Format("tbody > tr:nth-child({0})", i + 1))));
         }
 
         public T FooterAs<T>()
