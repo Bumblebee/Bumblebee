@@ -48,6 +48,8 @@
     <Compile Include="Implementation\RadioButtons.cs" />
     <Compile Include="Implementation\WebDragAndDropPerformer.cs" />
     <Compile Include="Implementation\NumericField.cs" />
+    <Compile Include="Implementation\Table.cs" />
+    <Compile Include="Implementation\TableRow.cs" />
     <Compile Include="Implementation\WebBlock.cs" />
     <Compile Include="Interfaces\IAllowsNoOp.cs" />
     <Compile Include="Interfaces\IBlock.cs" />
@@ -71,6 +73,8 @@
     <Compile Include="Setup\DriverEnvironments\Firefox.cs" />
     <Compile Include="Setup\DriverEnvironments\PhantomJS.cs" />
     <Compile Include="Setup\DriverEnvironments\SimpleDriverEnvironment.cs" />
+    <Compile Include="Interfaces\ITable.cs" />
+    <Compile Include="Interfaces\ITableRow.cs" />
     <Compile Include="Setup\IDriverEnvironment.cs" />
     <Compile Include="Interfaces\IElement.cs" />
     <Compile Include="Interfaces\IRadioButtons.cs" />
@@ -97,13 +101,13 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
-    <Reference Include="WebDriver, Version=2.42.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="WebDriver, Version=2.44.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Selenium.WebDriver.2.42.0\lib\net40\WebDriver.dll</HintPath>
+      <HintPath>..\packages\Selenium.WebDriver.2.44.0\lib\net40\WebDriver.dll</HintPath>
     </Reference>
-    <Reference Include="WebDriver.Support, Version=2.42.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="WebDriver.Support, Version=2.44.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Selenium.Support.2.42.0\lib\net40\WebDriver.Support.dll</HintPath>
+      <HintPath>..\packages\Selenium.Support.2.44.0\lib\net40\WebDriver.Support.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

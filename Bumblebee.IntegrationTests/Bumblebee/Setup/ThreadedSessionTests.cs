@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using System.Linq;
 using System.Threading.Tasks;
 using Bumblebee.Extensions;
-using Bumblebee.IntegrationTests.Shared.DriverEnvironments;
 using Bumblebee.IntegrationTests.Shared.Pages;
 using Bumblebee.IntegrationTests.Shared.Sessions;
 using Bumblebee.Setup;
+using Bumblebee.Setup.DriverEnvironments;
 using FluentAssertions;
 using NUnit.Framework;
 using OpenQA.Selenium.IE;
@@ -28,7 +29,7 @@ namespace Bumblebee.IntegrationTests.Bumblebee.Setup
         public void given_driver_environment_when_loading_with_driver_should_return_session_with_correct_driver()
         {
             Threaded<Session>
-                .With<LocalPhantomEnvironment>()
+                .With<PhantomJS>()
                 .Verify(x => x.Driver is PhantomJSDriver)
                 .End();
         }
@@ -39,12 +40,12 @@ namespace Bumblebee.IntegrationTests.Bumblebee.Setup
             Session previousSession;
 
             Threaded<Session>
-                .With<LocalPhantomEnvironment>()
+                .With<PhantomJS>()
                 .Store(out previousSession, s => s)
                 .Verify(x => x.Driver is PhantomJSDriver);
 
             Threaded<Session>
-                .With<LocalIeEnvironment>()
+                .With<InternetExplorer>()
                 .Verify(x => x.Driver is InternetExplorerDriver)
                 .End();
 
@@ -56,7 +57,7 @@ namespace Bumblebee.IntegrationTests.Bumblebee.Setup
         public void given_session_already_loaded_with_navigation_when_getting_matching_current_block_should_return_block()
         {
             Threaded<Session>
-                .With<LocalPhantomEnvironment>()
+                .With<PhantomJS>()
                 .NavigateTo<LoggedOutPage>("https://www.nirvanahq.com/account/login");
 
             Threaded<Session>
@@ -85,14 +86,19 @@ namespace Bumblebee.IntegrationTests.Bumblebee.Setup
         {
             var sessions = new ConcurrentDictionary<Guid, Session>();
 
-            Action action = () =>
-            {
-                var session = Threaded<Session>
-                    .With<LocalPhantomEnvironment>();
-                sessions.TryAdd(Guid.NewGuid(), session);
-            };
+            var tasks = Enumerable.Repeat(0, 2)
+                .Select(x => Guid.NewGuid())
+                .Select(x => Task.Run(() =>
+                {
+                    var session = Threaded<Session>
+                        .With<PhantomJS>();
+                    sessions.TryAdd(Guid.NewGuid(), session);
+                }));
 
-            Parallel.Invoke(action, action);
+            foreach (var task in tasks)
+            {
+                task.Wait();
+            }
 
             var session1 = sessions.ToArray()[0].Value;
             var session2 = sessions.ToArray()[1].Value;
@@ -109,11 +115,11 @@ namespace Bumblebee.IntegrationTests.Bumblebee.Setup
         public void given_multiple_sessions_in_single_thread_when_loading_with_drivers_should_maintain_distinct_sessions()
         {
             var session1 = Threaded<Session>
-                .With<LocalPhantomEnvironment>()
+                .With<PhantomJS>()
                 .Verify(s => s.Driver is PhantomJSDriver);
 
             var session2 = Threaded<DerivedSession>
-                .With<LocalPhantomEnvironment>()
+                .With<PhantomJS>()
                 .Verify(s => s.Driver is PhantomJSDriver);
 
             session1
@@ -132,7 +138,7 @@ namespace Bumblebee.IntegrationTests.Bumblebee.Setup
         public void given_session_type_with_wrong_constructor_args_when_loading_with_driver_should_throw()
         {
             Action action = () => Threaded<DerivedSessionWithWrongArgs>
-                .With<LocalPhantomEnvironment>();
+                .With<PhantomJS>();
 
             var expectedMessage =
                 string.Format(
@@ -148,7 +154,7 @@ namespace Bumblebee.IntegrationTests.Bumblebee.Setup
         public void given_session_type_when_loading_with_driver_explicitly_should_load_with_driver()
         {
             Threaded<Session>
-                .With(new LocalPhantomEnvironment())
+                .With(new PhantomJS())
                 .Verify(s => s.Driver is PhantomJSDriver)
                 .End();
         }
@@ -166,7 +172,7 @@ namespace Bumblebee.IntegrationTests.Bumblebee.Setup
         public void given_session_has_been_loaded_with_driver_when_ending_should_end_session()
         {
             Threaded<Session>
-                .With<LocalPhantomEnvironment>();
+                .With<PhantomJS>();
 
             Threaded<Session>
                 .End();
