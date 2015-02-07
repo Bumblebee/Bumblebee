@@ -82,23 +82,22 @@ namespace Bumblebee.IntegrationTests.Bumblebee.Setup
         }
 
         [Test]
-        public void given_different_thread_and_same_driver_envrionments_when_comparing_should_not_be_equal()
+        public void given_different_thread_and_same_driver_environments_when_comparing_should_not_be_equal()
         {
             var sessions = new ConcurrentDictionary<Guid, Session>();
 
-            var tasks = Enumerable.Repeat(0, 2)
-                .Select(x => Guid.NewGuid())
-                .Select(x => Task.Run(() =>
-                {
-                    var session = Threaded<Session>
-                        .With<PhantomJS>();
-                    sessions.TryAdd(Guid.NewGuid(), session);
-                }));
-
-            foreach (var task in tasks)
+            Action action = () =>
             {
-                task.Wait();
-            }
+                var session = Threaded<Session>
+                    .With<PhantomJS>();
+                sessions.TryAdd(Guid.NewGuid(), session);
+            };
+            
+            var tasks = Enumerable
+                .Repeat(0, 2)
+                .Select(x => Task.Run(action));
+
+            Task.WaitAll(tasks.ToArray());
 
             var session1 = sessions.ToArray()[0].Value;
             var session2 = sessions.ToArray()[1].Value;
