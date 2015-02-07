@@ -46,9 +46,9 @@
     <Reference Include="Nancy.Hosting.Self">
       <HintPath>..\packages\Nancy.Hosting.Self.0.23.2\lib\net40\Nancy.Hosting.Self.dll</HintPath>
     </Reference>
-    <Reference Include="nunit.framework, Version=2.6.3.13283, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+    <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
+      <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -58,8 +58,8 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="WebDriver">
-      <HintPath>..\packages\Selenium.WebDriver.2.42.0\lib\net40\WebDriver.dll</HintPath>
+    <Reference Include="WebDriver, Version=2.44.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Selenium.WebDriver.2.44.0\lib\net40\WebDriver.dll</HintPath>
     </Reference>
     <Reference Include="WebDriver.Support">
       <HintPath>..\packages\Selenium.Support.2.42.0\lib\net40\WebDriver.Support.dll</HintPath>
@@ -76,23 +76,28 @@
     <Compile Include="Bumblebee\Implementation\Given_select_box_with_ability_to_select_multiple_values.cs" />
     <Compile Include="Bumblebee\Implementation\Given_date_field.cs" />
     <Compile Include="Bumblebee\Implementation\Given_numeric_field.cs" />
+    <Compile Include="Bumblebee\Implementation\Given_generic_table.cs" />
+    <Compile Include="Bumblebee\Implementation\Given_complex_table.cs" />
+    <Compile Include="Bumblebee\Implementation\Given_table.cs" />
     <Compile Include="Bumblebee\Implementation\Given_text_field.cs" />
     <Compile Include="Bumblebee\Setup\DriverEnvironmentTests.cs" />
     <Compile Include="Bumblebee\Setup\SessionTests.cs" />
+    <Compile Include="Shared\Pages\Implementation\ComplexTableRow.cs" />
+    <Compile Include="Shared\Pages\Implementation\GenericTablePage.cs" />
+    <Compile Include="Shared\Pages\Implementation\GenericTableRow.cs" />
     <Compile Include="Shared\Pages\Implementation\DoubleClickablePage.cs" />
     <Compile Include="Shared\Pages\Implementation\RadioButtonsPage.cs" />
     <Compile Include="Shared\Hosting\Host.cs" />
     <Compile Include="Shared\Hosting\HostTestFixture.cs" />
     <Compile Include="Shared\Hosting\IHost.cs" />
     <Compile Include="Shared\Pages\Implementation\HtmlCodeTutorialSelectMultiplePage.cs" />
+    <Compile Include="Shared\Pages\Implementation\ComplexTablePage.cs" />
     <Compile Include="Shared\Pages\Implementation\WufooHtml5ExamplesPage.cs" />
     <Compile Include="Shared\Pages\KendoUI\KendoMultiSelectDemoPage.cs" />
     <Compile Include="Shared\Pages\KendoUI\KendoDropDownListDemoPage.cs" />
     <Compile Include="Shared\Pages\KendoUI\KendoDatePickerDemoPage.cs" />
     <Compile Include="Shared\Pages\KendoUI\KendoNumericTextBoxDemoPage.cs" />
     <Compile Include="Bumblebee\Extensions\VerificationTests.cs" />
-    <Compile Include="Shared\DriverEnvironments\LocalIeEnvironment.cs" />
-    <Compile Include="Shared\DriverEnvironments\LocalPhantomEnvironment.cs" />
     <Compile Include="Shared\Sessions\DerivedSessionWithWrongArgs.cs" />
     <Compile Include="Shared\Sessions\DerivedSession.cs" />
     <Compile Include="Shared\Pages\LoggedOutPage.cs" />
@@ -131,9 +136,16 @@
     <Content Include="Content\RadioButtons.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\ComplexTable.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Table.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="phantomjs-license.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Compile Include="Shared\Pages\Implementation\TablePage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />

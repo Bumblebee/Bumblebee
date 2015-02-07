@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Internal;
-using OpenQA.Selenium.Remote;
 
 namespace Bumblebee.Extensions
 {

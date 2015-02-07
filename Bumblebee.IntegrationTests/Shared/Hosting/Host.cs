@@ -1,4 +1,5 @@
 ﻿using System;
+
 using Nancy.Hosting.Self;
 
 namespace Bumblebee.IntegrationTests.Shared.Hosting

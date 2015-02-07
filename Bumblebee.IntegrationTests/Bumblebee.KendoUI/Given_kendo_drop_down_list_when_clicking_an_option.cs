@@ -1,8 +1,8 @@
 using System.Linq;
 using Bumblebee.Extensions;
-using Bumblebee.IntegrationTests.Shared.DriverEnvironments;
 using Bumblebee.IntegrationTests.Shared.Pages.KendoUI;
 using Bumblebee.Setup;
+using Bumblebee.Setup.DriverEnvironments;
 using FluentAssertions;
 using NUnit.Framework;
 
@@ -19,7 +19,7 @@ namespace Bumblebee.IntegrationTests.Bumblebee.KendoUI
         public void Init()
         {
             Threaded<Session>
-                .With<LocalIeEnvironment>()
+                .With<InternetExplorer>()
                 .NavigateTo<KendoDropDownListDemoPage>(Url)
                 .Sizes
                 .Options
