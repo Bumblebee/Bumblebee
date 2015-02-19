@@ -1,8 +1,8 @@
 using Bumblebee.Extensions;
-using Bumblebee.IntegrationTests.Shared.DriverEnvironments;
 using Bumblebee.IntegrationTests.Shared.Hosting;
 using Bumblebee.IntegrationTests.Shared.Pages.Implementation;
 using Bumblebee.Setup;
+using Bumblebee.Setup.DriverEnvironments;
 using FluentAssertions;
 using NUnit.Framework;
 
@@ -15,7 +15,7 @@ namespace Bumblebee.IntegrationTests.Bumblebee.Implementation
         public void Init()
         {
             Threaded<Session>
-                .With<LocalPhantomEnvironment>()
+                .With<PhantomJS>()
                 .NavigateTo<DoubleClickablePage>(BaseUrl + "/Content/DoubleClick.html");
         }
 
@@ -23,8 +23,7 @@ namespace Bumblebee.IntegrationTests.Bumblebee.Implementation
         public void Dispose()
         {
             Threaded<Session>
-                .CurrentBlock<DoubleClickablePage>()
-                .Session.End();
+                .End();
         }
 
         [Test]

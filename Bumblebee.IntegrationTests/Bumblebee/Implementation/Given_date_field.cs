@@ -1,10 +1,9 @@
 ﻿using System;
 
 using Bumblebee.Extensions;
-using Bumblebee.IntegrationTests.Shared.DriverEnvironments;
 using Bumblebee.IntegrationTests.Shared.Pages.Implementation;
 using Bumblebee.Setup;
-
+using Bumblebee.Setup.DriverEnvironments;
 using FluentAssertions;
 
 using NUnit.Framework;
@@ -21,14 +20,15 @@ namespace Bumblebee.IntegrationTests.Bumblebee.Implementation
         public void Init()
         {
             Threaded<Session>
-                .With<LocalPhantomEnvironment>()
+                .With<PhantomJS>()
                 .NavigateTo<WufooHtml5ExamplesPage>(Url);
         }
 
         [TestFixtureTearDown]
         public void Dispose()
         {
-            Threaded<Session>.End();
+            Threaded<Session>
+                .End();
         }
 
         [Test]

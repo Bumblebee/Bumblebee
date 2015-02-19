@@ -1,8 +1,8 @@
 ﻿using System.Linq;
-using Bumblebee.Examples.Web.IntegrationTests.Infrastructure;
 using Bumblebee.Examples.Web.Pages.Reddit;
 using Bumblebee.Extensions;
 using Bumblebee.Setup;
+using Bumblebee.Setup.DriverEnvironments;
 using FluentAssertions;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -16,7 +16,7 @@ namespace Bumblebee.Examples.Web.IntegrationTests
         public void GoToReddit()
         {
             Threaded<Session>
-                .With<LocalChromeEnvironment>()
+                .With<Chrome>()
                 .NavigateTo<LoggedOutPage>("http://www.reddit.com");
         }
 

@@ -1,0 +1,26 @@
+<html>
+	<head>
+		<script data-require="jquery" data-semver="2.1.1" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<script>
+			$(function(){
+				'use strict';
+				$.ajax({
+				url: 'http://documentup.com/compiled',
+				dataType: 'jsonp',
+				data: {
+				  content: '*test /r**First Header',
+				  name: "Test JSONP!"
+				},
+				success: function(response){
+					  if (response.status === 200) {
+					    // Write to your document
+					    document.open();
+					    document.write(response.html);
+					    document.close();
+					  }
+					}
+				})
+			});
+		</script>
+	</head>
+</html>

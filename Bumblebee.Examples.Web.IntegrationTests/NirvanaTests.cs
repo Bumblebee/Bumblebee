@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
-using Bumblebee.Examples.Web.IntegrationTests.Infrastructure;
 using Bumblebee.Examples.Web.Pages.Nirvana;
 using Bumblebee.Extensions;
 using Bumblebee.Setup;
+using Bumblebee.Setup.DriverEnvironments;
 using FluentAssertions;
 using NUnit.Framework;
 
@@ -20,7 +20,7 @@ namespace Bumblebee.Examples.Web.IntegrationTests
         public void given_valid_logged_in_user_when_adding_task_should_add_task()
         {
             Threaded<Session>
-                .With<LocalChromeEnvironment>()
+                .With<Chrome>()
                 .NavigateTo<LoggedOutPage>(Url)
                 .Username.EnterText(ValidUsername)
                 .Password.EnterText(Password)
