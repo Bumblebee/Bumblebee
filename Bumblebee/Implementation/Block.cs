@@ -9,9 +9,25 @@ namespace Bumblebee.Implementation
 {
     public abstract class Block : IBlock
     {
+        private Func<IWebElement> _finder;
+         
         public Session Session { get; private set; }
 
-        public IWebElement Tag { get; protected set; }
+        public IWebElement Tag
+        {
+            get { return _finder(); }
+        }
+
+        protected void SetFinder(Func<IWebElement> finder)
+        {
+            _finder = finder;
+        }
+
+        protected void SetFinder(By by)
+        {
+            _finder = () => Session.Driver.FindElement(by);
+        }
+        
 
         protected Block(Session session)
         {

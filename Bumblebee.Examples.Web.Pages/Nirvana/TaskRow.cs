@@ -1,14 +1,13 @@
 ﻿using Bumblebee.Extensions;
 using Bumblebee.Implementation;
 using Bumblebee.Interfaces;
-using Bumblebee.Setup;
 using OpenQA.Selenium;
 
 namespace Bumblebee.Examples.Web.Pages.Nirvana
 {
     public class TaskRow : SpecificBlock
     {
-        public TaskRow(Session session, IWebElement tag) : base(session, tag)
+        public TaskRow(IBlock parent, By by) : base(parent, by)
         {}
 
         public string Name

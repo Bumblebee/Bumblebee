@@ -1,4 +1,5 @@
-﻿using Bumblebee.Implementation;
+﻿using System;
+using Bumblebee.Implementation;
 using Bumblebee.Interfaces;
 using Bumblebee.Setup;
 using OpenQA.Selenium;
@@ -7,7 +8,7 @@ namespace Bumblebee.Examples.Web.Pages.Reddit
 {
     public class Post : SpecificBlock
     {
-        public Post(Session session, IWebElement tag) : base(session, tag)
+        public Post(Session session, Func<IWebElement> tag) : base(session, tag)
         {}
 
         public IClickable<WebBlock> Title

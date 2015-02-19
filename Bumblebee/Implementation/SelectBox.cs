@@ -5,17 +5,13 @@ using OpenQA.Selenium;
 
 namespace Bumblebee.Implementation
 {
-    public class SelectBox : Element, ISelectBox
+    public class SelectBox : SpecificBlock, ISelectBox
     {
         public SelectBox(IBlock parent, By by)
             : base(parent, by)
         {
         }
 
-        public SelectBox(IBlock parent, IWebElement element)
-            : base(parent, element)
-        {
-        }
 
         public virtual IEnumerable<IOption> Options
         {
@@ -23,13 +19,9 @@ namespace Bumblebee.Implementation
         }
     }
 
-    public class SelectBox<TResult> : Element, ISelectBox<TResult> where TResult : IBlock
+    public class SelectBox<TResult> : SpecificBlock, ISelectBox<TResult> where TResult : IBlock
     {
         public SelectBox(IBlock parent, By by) : base(parent, by)
-        {
-        }
-
-        public SelectBox(IBlock parent, IWebElement element) : base(parent, element)
         {
         }
 

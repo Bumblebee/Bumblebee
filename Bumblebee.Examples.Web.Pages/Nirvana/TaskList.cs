@@ -2,14 +2,14 @@
 using System.Linq;
 using Bumblebee.Extensions;
 using Bumblebee.Implementation;
-using Bumblebee.Setup;
+using Bumblebee.Interfaces;
 using OpenQA.Selenium;
 
 namespace Bumblebee.Examples.Web.Pages.Nirvana
 {
     public class TaskList : SpecificBlock
     {
-        public TaskList(Session session, IWebElement tag) : base(session, tag)
+        public TaskList(IBlock parent, By by) : base(parent, by)
         {}
 
         public string Name
@@ -23,7 +23,7 @@ namespace Bumblebee.Examples.Web.Pages.Nirvana
             {
                 return GetElement(By.ClassName("tasks"))
                     .GetElements(By.ClassName("task"))
-                    .Select(tag => new TaskRow(Session, tag));
+                    .Select(tag => new TaskRow(ParentBlock, tag));
             }
         }
     }

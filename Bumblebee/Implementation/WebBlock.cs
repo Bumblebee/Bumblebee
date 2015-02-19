@@ -26,7 +26,7 @@ namespace Bumblebee.Implementation
         {
             this.Pause(200);
             Wait = new WebDriverWait(Session.Driver, timeout);
-            Tag = Wait.Until(driver => driver.GetElement(By.TagName("body")));
+            SetFinder(()=> Wait.Until(driver => driver.GetElement(By.TagName("body"))));
         }
 
         /// <summary>

@@ -11,10 +11,6 @@ namespace Bumblebee.Implementation
         {
         }
 
-        public NumericField(IBlock parent, IWebElement tag) : base(parent, tag)
-        {
-        }
-
         public virtual TCustomResult EnterNumber<TCustomResult>(double number) where TCustomResult : IBlock
         {
             Tag.Clear();
@@ -36,11 +32,6 @@ namespace Bumblebee.Implementation
     {
         public NumericField(IBlock parent, By by)
             : base(parent, by)
-        {
-        }
-
-        public NumericField(IBlock parent, IWebElement element)
-            : base(parent, element)
         {
         }
 

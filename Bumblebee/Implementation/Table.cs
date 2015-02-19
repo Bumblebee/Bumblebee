@@ -8,7 +8,7 @@ using OpenQA.Selenium;
 
 namespace Bumblebee.Implementation
 {
-    public class Table : Element, ITable
+    public class Table : SpecificBlock, ITable
     {
         protected static T Create<T>(IBlock parent, By @by)
         {
@@ -61,13 +61,13 @@ namespace Bumblebee.Implementation
         }
 
         public T HeaderAs<T>()
-            where T : Element
+            where T : SpecificBlock
         {
             return Create<T>(this, By.TagName("thead"));
         }
 
         public IEnumerable<T> RowsAs<T>()
-            where T : Element
+            where T : SpecificBlock
         {
             return GetElement(By.TagName("tbody"))
                 .FindElements(By.TagName("tr"))
@@ -75,7 +75,7 @@ namespace Bumblebee.Implementation
         }
 
         public T FooterAs<T>()
-            where T : Element
+            where T : SpecificBlock
         {
             return Create<T>(this, By.TagName("tfoot"));
         }

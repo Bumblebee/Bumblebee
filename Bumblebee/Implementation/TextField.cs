@@ -3,13 +3,9 @@ using OpenQA.Selenium;
 
 namespace Bumblebee.Implementation
 {
-    public class TextField : Element, ITextField
+    public class TextField : SpecificBlock, ITextField
     {
         public TextField(IBlock parent, By by) : base(parent, by)
-        {
-        }
-
-        public TextField(IBlock parent, IWebElement tag) : base(parent, tag)
         {
         }
 
@@ -35,11 +31,6 @@ namespace Bumblebee.Implementation
     {
         public TextField(IBlock parent, By by)
             : base(parent, by)
-        {
-        }
-
-        public TextField(IBlock parent, IWebElement element)
-            : base(parent, element)
         {
         }
 

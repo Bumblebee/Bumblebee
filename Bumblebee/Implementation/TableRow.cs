@@ -8,7 +8,7 @@ using OpenQA.Selenium;
 
 namespace Bumblebee.Implementation
 {
-    public class TableRow : Element, ITableRow
+    public class TableRow : SpecificBlock, ITableRow
     {
         private readonly IDictionary<string, string> _data;
 

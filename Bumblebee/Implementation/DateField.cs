@@ -12,10 +12,6 @@ namespace Bumblebee.Implementation
         {
         }
 
-        public DateField(IBlock parent, IWebElement tag) : base(parent, tag)
-        {
-        }
-
         public virtual TCustomResult EnterDate<TCustomResult>(DateTime date) where TCustomResult : IBlock
         {
             var executor = (IJavaScriptExecutor)Session.Driver;
@@ -38,11 +34,6 @@ namespace Bumblebee.Implementation
     {
         public DateField(IBlock parent, By by)
             : base(parent, by)
-        {
-        }
-
-        public DateField(IBlock parent, IWebElement element)
-            : base(parent, element)
         {
         }
 

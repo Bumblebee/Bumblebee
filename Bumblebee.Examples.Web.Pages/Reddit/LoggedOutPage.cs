@@ -22,7 +22,7 @@ namespace Bumblebee.Examples.Web.Pages.Reddit
         public LoginArea(Session session)
             : base(session)
         {
-            Tag = GetElement(By.Id("login_login-main"));
+            SetFinder(By.Id("login_login-main"));
         }
 
         public ITextField<LoginArea> Email

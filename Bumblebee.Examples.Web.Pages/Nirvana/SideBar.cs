@@ -8,7 +8,7 @@ namespace Bumblebee.Examples.Web.Pages.Nirvana
     {
         public SideBar(Session session) : base(session)
         {
-            Tag = GetElement(By.Id("east"));
+            SetFinder(By.Id("east"));
         }
 
         public IWebElement Trash

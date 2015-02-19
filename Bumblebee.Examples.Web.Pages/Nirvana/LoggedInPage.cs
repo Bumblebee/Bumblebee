@@ -11,7 +11,7 @@ namespace Bumblebee.Examples.Web.Pages.Nirvana
             : base(session)
         {
             Wait.Until(driver => driver.GetElement(By.Id("north")));
-            Tag = Session.Driver.GetElement(By.TagName("body"));
+            SetFinder(()=> Session.Driver.GetElement(By.TagName("body")));
         }
 
         public ToolBar ToolBar
