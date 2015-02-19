@@ -10,11 +10,6 @@ namespace Bumblebee.Implementation
         {
         }
 
-        public RadioButton(IBlock parent, IWebElement el) : base(parent, el)
-        {
-        } 
-
-
         public override string Text
         {
             get { return ParentBlock.Tag.GetElement(By.CssSelector("label[for=\"" + Tag.GetID() + "\"]")).Text; }

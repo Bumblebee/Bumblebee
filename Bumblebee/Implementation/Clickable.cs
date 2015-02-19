@@ -4,16 +4,11 @@ using OpenQA.Selenium.Interactions;
 
 namespace Bumblebee.Implementation
 {
-    public class Clickable : Element, IDoubleClickable
+    public class Clickable : SpecificBlock, IDoubleClickable
     {
         public Clickable(IBlock parent, By by)
             : base(parent, by)
         {
-        }
-
-        public Clickable(IBlock parent, IWebElement el) : base(parent, el)
-        {
-
         }
 
         public virtual TResult Click<TResult>() 
@@ -42,11 +37,6 @@ namespace Bumblebee.Implementation
         public Clickable(IBlock parent, By by)
             : base(parent, by)
         {
-        }
-
-        public Clickable(IBlock parent, IWebElement el) : base(parent, el)
-        {
-            
         }
 
         public virtual TResult Click()

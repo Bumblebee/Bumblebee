@@ -3,7 +3,7 @@ using OpenQA.Selenium;
 
 namespace Bumblebee.Implementation
 {
-    public class Checkbox : Element, ICheckbox
+    public class Checkbox : SpecificBlock, ICheckbox
     {
         public Checkbox(IBlock parent, By by) : base(parent, by)
         {

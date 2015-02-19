@@ -3,17 +3,12 @@ using OpenQA.Selenium;
 
 namespace Bumblebee.Implementation
 {
-    public class Option : Element, IOption
+    public class Option : SpecificBlock, IOption
     {
         public Option(IBlock parent, By by)
             : base(parent, by)
         {
         }
-
-        public Option(IBlock parent, IWebElement el) : base(parent, el)
-        {
-        }
-
 
         public virtual TResult Click<TResult>() where TResult : IBlock
         {
@@ -28,10 +23,5 @@ namespace Bumblebee.Implementation
         public Option(IBlock parent, By by) : base(parent, by)
         {
         }
-
-        public Option(IBlock parent, IWebElement el) : base(parent, el)
-        {
-        }
-
     }
 }

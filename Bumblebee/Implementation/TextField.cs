@@ -3,7 +3,7 @@ using OpenQA.Selenium;
 
 namespace Bumblebee.Implementation
 {
-    public class TextField : Element, ITextField
+    public class TextField : SpecificBlock, ITextField
     {
         public TextField(IBlock parent, By by) : base(parent, by)
         {

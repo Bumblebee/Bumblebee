@@ -16,7 +16,7 @@ namespace Bumblebee.Examples.Web.Pages.Nirvana
         public IEnumerable<TaskList> TaskLists
         {
             get { return GetElements(By.ClassName("tasklist"))
-                .Select(x => new TaskList(Session, x)); }
+                .Select(x => new TaskList(this, x)); }
         }
     }
 }
