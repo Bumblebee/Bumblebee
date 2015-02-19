@@ -9,8 +9,8 @@ namespace Bumblebee.Interfaces
         IEnumerable<string> Headers { get; }
         IEnumerable<ITableRow> Rows { get; }
         IEnumerable<string> Footers { get; }
-        T HeaderAs<T>() where T : Element;
-        IEnumerable<T> RowsAs<T>() where T : Element;
-        T FooterAs<T>() where T : Element;
+        T HeaderAs<T>() where T : SpecificBlock;
+        IEnumerable<T> RowsAs<T>() where T : SpecificBlock;
+        T FooterAs<T>() where T : SpecificBlock;
     }
 }
