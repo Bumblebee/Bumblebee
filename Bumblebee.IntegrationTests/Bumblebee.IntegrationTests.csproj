@@ -52,25 +52,18 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
+    <Reference Include="System.XML" />
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="WebDriver, Version=2.44.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Selenium.WebDriver.2.44.0\lib\net40\WebDriver.dll</HintPath>
     </Reference>
     <Reference Include="WebDriver.Support">
-      <HintPath>..\packages\Selenium.Support.2.42.0\lib\net40\WebDriver.Support.dll</HintPath>
+      <HintPath>..\packages\Selenium.Support.2.44.0\lib\net40\WebDriver.Support.dll</HintPath>
+      <Private>True</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bumblebee.KendoUI\Given_kendo_date_picker.cs" />
-    <Compile Include="Bumblebee.KendoUI\Given_kendo_drop_down_list_with_multiple_values.cs" />
-    <Compile Include="Bumblebee.KendoUI\Given_kendo_drop_down_list_when_clicking_an_option.cs" />
-    <Compile Include="Bumblebee.KendoUI\Given_kendo_numeric_text_box_when_entering_value.cs" />
-    <Compile Include="Bumblebee.KendoUI\Given_kendo_drop_down_list_and_no_options_selected.cs" />
     <Compile Include="Bumblebee\Implementation\Given_double_clickable.cs" />
     <Compile Include="Bumblebee\Implementation\Given_radio_buttons.cs" />
     <Compile Include="Bumblebee\Implementation\Given_select_box_with_ability_to_select_multiple_values.cs" />
@@ -93,10 +86,6 @@
     <Compile Include="Shared\Pages\Implementation\HtmlCodeTutorialSelectMultiplePage.cs" />
     <Compile Include="Shared\Pages\Implementation\ComplexTablePage.cs" />
     <Compile Include="Shared\Pages\Implementation\WufooHtml5ExamplesPage.cs" />
-    <Compile Include="Shared\Pages\KendoUI\KendoMultiSelectDemoPage.cs" />
-    <Compile Include="Shared\Pages\KendoUI\KendoDropDownListDemoPage.cs" />
-    <Compile Include="Shared\Pages\KendoUI\KendoDatePickerDemoPage.cs" />
-    <Compile Include="Shared\Pages\KendoUI\KendoNumericTextBoxDemoPage.cs" />
     <Compile Include="Bumblebee\Extensions\VerificationTests.cs" />
     <Compile Include="Shared\Sessions\DerivedSessionWithWrongArgs.cs" />
     <Compile Include="Shared\Sessions\DerivedSession.cs" />
@@ -105,10 +94,6 @@
     <Compile Include="Bumblebee\Setup\ThreadedSessionTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Bumblebee.KendoUI\Bumblebee.KendoUI.csproj">
-      <Project>{8ee25b3e-3903-4e14-bd1f-ab6836c7b364}</Project>
-      <Name>Bumblebee.KendoUI</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Bumblebee\Bumblebee.csproj">
       <Project>{690961a6-7130-4afb-ae14-51d18dc6b223}</Project>
       <Name>Bumblebee</Name>

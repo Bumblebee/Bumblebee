@@ -1,12 +1,12 @@
 ﻿using System;
+
 using Bumblebee.Implementation;
 using Bumblebee.Interfaces;
-using Bumblebee.KendoUI;
 using Bumblebee.Setup;
 
 using OpenQA.Selenium;
 
-namespace Bumblebee.IntegrationTests.Shared.Pages.KendoUI
+namespace Bumblebee.KendoUI.IntegrationTests.Pages
 {
     public class KendoMultiSelectDemoPage : WebBlock
     {

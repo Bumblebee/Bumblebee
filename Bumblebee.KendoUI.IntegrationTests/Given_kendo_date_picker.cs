@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Globalization;
+
 using Bumblebee.Extensions;
-using Bumblebee.IntegrationTests.Shared.Pages.KendoUI;
+using Bumblebee.KendoUI.IntegrationTests.Pages;
 using Bumblebee.Setup;
 using Bumblebee.Setup.DriverEnvironments;
+
 using FluentAssertions;
+
 using NUnit.Framework;
 
-namespace Bumblebee.IntegrationTests.Bumblebee.KendoUI
+namespace Bumblebee.KendoUI.IntegrationTests
 {
     // ReSharper disable InconsistentNaming
     [TestFixture]
