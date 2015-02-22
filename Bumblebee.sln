@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bumblebee", "Bumblebee\Bumblebee.csproj", "{690961A6-7130-4AFB-AE14-51D18DC6B223}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bumblebee.IntegrationTests", "Bumblebee.IntegrationTests\Bumblebee.IntegrationTests.csproj", "{5B2C5CD0-1C34-433C-9100-59E50DC4DE1F}"
@@ -21,6 +23,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{4C9F5F56-DC0A-4090-BAA4-C935880C9762}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bumblebee.KendoUI", "Bumblebee.KendoUI\Bumblebee.KendoUI.csproj", "{8EE25B3E-3903-4E14-BD1F-AB6836C7B364}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bumblebee.KendoUI.IntegrationTests", "Bumblebee.KendoUI.IntegrationTests\Bumblebee.KendoUI.IntegrationTests.csproj", "{74ADC4D7-9473-4978-9FCF-5C7F70A66BA2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -48,13 +52,18 @@ Global
 		{8EE25B3E-3903-4E14-BD1F-AB6836C7B364}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8EE25B3E-3903-4E14-BD1F-AB6836C7B364}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8EE25B3E-3903-4E14-BD1F-AB6836C7B364}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74ADC4D7-9473-4978-9FCF-5C7F70A66BA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74ADC4D7-9473-4978-9FCF-5C7F70A66BA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74ADC4D7-9473-4978-9FCF-5C7F70A66BA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74ADC4D7-9473-4978-9FCF-5C7F70A66BA2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{5B2C5CD0-1C34-433C-9100-59E50DC4DE1F} = {4C9F5F56-DC0A-4090-BAA4-C935880C9762}
 		{0D8855FE-6C42-4EEB-ACA5-072908B0A917} = {9C95D93A-6D8A-4D9B-9FD6-8B99EB316892}
 		{B4FB11F0-5642-432E-934A-76EC189A28B9} = {9C95D93A-6D8A-4D9B-9FD6-8B99EB316892}
-		{5B2C5CD0-1C34-433C-9100-59E50DC4DE1F} = {4C9F5F56-DC0A-4090-BAA4-C935880C9762}
+		{74ADC4D7-9473-4978-9FCF-5C7F70A66BA2} = {4C9F5F56-DC0A-4090-BAA4-C935880C9762}
 	EndGlobalSection
 EndGlobal
