@@ -1,4 +1,7 @@
-﻿using Bumblebee.Extensions;
+﻿using System;
+
+using Bumblebee.Extensions;
+using Bumblebee.IntegrationTests.Shared.Hosting;
 using Bumblebee.IntegrationTests.Shared.Pages.Implementation;
 using Bumblebee.Setup;
 using Bumblebee.Setup.DriverEnvironments;
@@ -7,46 +10,34 @@ using NUnit.Framework;
 
 namespace Bumblebee.IntegrationTests.Bumblebee.Implementation
 {
-    // ReSharper disable InconsistentNaming
-    [TestFixture]
-    public class Given_text_field
-    {
-        private const string Url = "http://www.wufoo.com/html5/example/";
+	// ReSharper disable InconsistentNaming
+	[TestFixture]
+	public class Given_text_field : HostTestFixture
+	{
+		[TestFixtureSetUp]
+		public void Init()
+		{
+			Threaded<Session>
+				.With<PhantomJS>()
+				.NavigateTo<DateFieldPage>(String.Format("{0}/Content/TextField.html", BaseUrl));
+		}
 
-        [TestFixtureSetUp]
-        public void Init()
-        {
-            Threaded<Session>
-                .With<PhantomJS>()
-                .NavigateTo<WufooHtml5ExamplesPage>(Url);
-        }
+		[TestFixtureTearDown]
+		public void Dispose()
+		{
+			Threaded<Session>
+				.End();
+		}
 
-        [TestFixtureTearDown]
-        public void Dispose()
-        {
-            Threaded<Session>
-                .End();
-        }
+		[Test]
+		public void When_entering_text_Then_text_should_work()
+		{
+			const string expectedText = "This is the text.";
 
-        [Test]
-        public void When_entering_text_Then_text_should_work()
-        {
-            const string expectedText = "This is the text.";
-
-            Threaded<Session>
-                .CurrentBlock<WufooHtml5ExamplesPage>()
-                .Placeholder.EnterText(expectedText)
-                .VerifyThat(x => x.Placeholder.Text.Should().Be(expectedText));
-        }
-
-        [Test]
-        public void When_label_Then_text_should_work()
-        {
-            const string expectedText = "Placeholder";
-
-            Threaded<Session>
-                .CurrentBlock<WufooHtml5ExamplesPage>()
-                .VerifyThat(x => x.PlaceholderLabel.Should().Be(expectedText));
-        }
-    }
+			Threaded<Session>
+				.CurrentBlock<TextFieldPage>()
+				.Text.EnterText(expectedText)
+				.VerifyThat(x => x.Text.Text.Should().Be(expectedText));
+		}
+	}
 }

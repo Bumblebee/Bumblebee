@@ -71,6 +71,8 @@
     <Compile Include="Bumblebee.KendoUI\Given_kendo_drop_down_list_when_clicking_an_option.cs" />
     <Compile Include="Bumblebee.KendoUI\Given_kendo_numeric_text_box_when_entering_value.cs" />
     <Compile Include="Bumblebee.KendoUI\Given_kendo_drop_down_list_and_no_options_selected.cs" />
+    <Compile Include="Bumblebee\Implementation\Given_checkbox.cs" />
+    <Compile Include="Bumblebee\Implementation\Given_dialogs.cs" />
     <Compile Include="Bumblebee\Implementation\Given_double_clickable.cs" />
     <Compile Include="Bumblebee\Implementation\Given_radio_buttons.cs" />
     <Compile Include="Bumblebee\Implementation\Given_select_box_with_ability_to_select_multiple_values.cs" />
@@ -82,17 +84,21 @@
     <Compile Include="Bumblebee\Implementation\Given_text_field.cs" />
     <Compile Include="Bumblebee\Setup\DriverEnvironmentTests.cs" />
     <Compile Include="Bumblebee\Setup\SessionTests.cs" />
+    <Compile Include="Shared\Pages\Implementation\CheckboxPage.cs" />
     <Compile Include="Shared\Pages\Implementation\ComplexTableRow.cs" />
+    <Compile Include="Shared\Pages\Implementation\DateFieldPage.cs" />
+    <Compile Include="Shared\Pages\Implementation\DialogPage.cs" />
     <Compile Include="Shared\Pages\Implementation\GenericTablePage.cs" />
     <Compile Include="Shared\Pages\Implementation\GenericTableRow.cs" />
     <Compile Include="Shared\Pages\Implementation\DoubleClickablePage.cs" />
+    <Compile Include="Shared\Pages\Implementation\MultiSelectPage.cs" />
+    <Compile Include="Shared\Pages\Implementation\NumericFieldPage.cs" />
     <Compile Include="Shared\Pages\Implementation\RadioButtonsPage.cs" />
     <Compile Include="Shared\Hosting\Host.cs" />
     <Compile Include="Shared\Hosting\HostTestFixture.cs" />
     <Compile Include="Shared\Hosting\IHost.cs" />
-    <Compile Include="Shared\Pages\Implementation\HtmlCodeTutorialSelectMultiplePage.cs" />
     <Compile Include="Shared\Pages\Implementation\ComplexTablePage.cs" />
-    <Compile Include="Shared\Pages\Implementation\WufooHtml5ExamplesPage.cs" />
+    <Compile Include="Shared\Pages\Implementation\TextFieldPage.cs" />
     <Compile Include="Shared\Pages\KendoUI\KendoMultiSelectDemoPage.cs" />
     <Compile Include="Shared\Pages\KendoUI\KendoDropDownListDemoPage.cs" />
     <Compile Include="Shared\Pages\KendoUI\KendoDatePickerDemoPage.cs" />
@@ -130,7 +136,22 @@
       <Link>chromedriver.exe</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Checkbox.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\DateField.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Dialogs.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\DoubleClick.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\MultiSelect.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\NumericField.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\RadioButtons.html">
@@ -140,6 +161,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Table.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\TextField.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="phantomjs-license.txt">
