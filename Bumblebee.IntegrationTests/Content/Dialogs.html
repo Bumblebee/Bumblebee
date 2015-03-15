@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta charset="utf-8" />
+		<title>Dialogs</title>
+	</head>
+	<body>
+		<div align="center">
+			<button id="AlertButton" onclick=" showAlert(); ">Alert!</button><br />
+			<span id="AlertResult">Not Clicked</span><br />
+			<button id="ConfirmButton" onclick=" showConfirm(); ">Confirm!</button><br />
+			<span id="ConfirmResult">Not Clicked</span><br />
+			<button id="PromptButton" onclick=" showPrompt(); ">Prompt!</button><br />
+			<span id="PromptResult">Not Clicked</span>
+		</div>
+		<script>
+			function showAlert() {
+				window.alert('alert');
+
+				document.getElementById('AlertResult').innerHTML = 'Clicked';
+			}
+
+			function showConfirm() {
+				var result = window.confirm('confirm');
+
+				document.getElementById('ConfirmResult').innerHTML = result ? 'true' : 'false';
+			}
+
+			function showPrompt() {
+				var result = window.prompt('prompt', 'default');
+
+				document.getElementById('PromptResult').innerHTML = result || 'null';
+			}
+		</script>
+	</body>
+</html>
