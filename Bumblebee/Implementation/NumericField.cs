@@ -22,7 +22,7 @@ namespace Bumblebee.Implementation
             return Session.CurrentBlock<TCustomResult>(ParentBlock.Tag);
         }
 
-        public double? Value
+        public virtual double? Value
         {
             get
             {

@@ -24,7 +24,7 @@ namespace Bumblebee.Implementation
             return Session.CurrentBlock<TCustomResult>(ParentBlock.Tag);
         }
 
-        public DateTime? Value
+        public virtual DateTime? Value
         {
             get
             {
