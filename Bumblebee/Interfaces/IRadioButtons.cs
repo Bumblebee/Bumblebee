@@ -2,8 +2,8 @@
 
 namespace Bumblebee.Interfaces
 {
-    public interface IRadioButtons<out TResult> where TResult : IBlock
-    {
-        IEnumerable<IOption<TResult>> Options { get; }
-    }
+	public interface IRadioButtons<out TResult> where TResult : IBlock
+	{
+		IEnumerable<IOption<TResult>> Options { get; }
+	}
 }

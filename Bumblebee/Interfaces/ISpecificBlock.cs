@@ -1,6 +1,6 @@
 namespace Bumblebee.Interfaces
 {
-    public interface ISpecificBlock
-    {
-    }
+	public interface ISpecificBlock
+	{
+	}
 }

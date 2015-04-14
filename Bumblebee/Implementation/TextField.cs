@@ -1,56 +1,57 @@
 ﻿using Bumblebee.Interfaces;
+
 using OpenQA.Selenium;
 
 namespace Bumblebee.Implementation
 {
-    public class TextField : Element, ITextField
-    {
-        public TextField(IBlock parent, By by) : base(parent, by)
-        {
-        }
+	public class TextField : Element, ITextField
+	{
+		public TextField(IBlock parent, By by) : base(parent, by)
+		{
+		}
 
-        public TextField(IBlock parent, IWebElement tag) : base(parent, tag)
-        {
-        }
+		public TextField(IBlock parent, IWebElement tag) : base(parent, tag)
+		{
+		}
 
-        public virtual TCustomResult EnterText<TCustomResult>(string text) where TCustomResult : IBlock
-        {
-            Tag.Clear();
-            return AppendText<TCustomResult>(text);
-        }
+		public virtual TCustomResult EnterText<TCustomResult>(string text) where TCustomResult : IBlock
+		{
+			Tag.Clear();
 
-        public virtual TCustomResult AppendText<TCustomResult>(string text) where TCustomResult : IBlock
-        {
-            Tag.SendKeys(text);
-            return Session.CurrentBlock<TCustomResult>(ParentBlock.Tag);
-        }
+			return AppendText<TCustomResult>(text);
+		}
 
-        public override string Text
-        {
-            get { return Tag.GetAttribute("value"); }
-        }
-    }
+		public virtual TCustomResult AppendText<TCustomResult>(string text) where TCustomResult : IBlock
+		{
+			Tag.SendKeys(text);
 
-    public class TextField<TResult> : TextField, ITextField<TResult> where TResult : IBlock
-    {
-        public TextField(IBlock parent, By by)
-            : base(parent, by)
-        {
-        }
+			return Session.CurrentBlock<TCustomResult>(ParentBlock.Tag);
+		}
 
-        public TextField(IBlock parent, IWebElement element)
-            : base(parent, element)
-        {
-        }
+		public override string Text
+		{
+			get { return Tag.GetAttribute("value"); }
+		}
+	}
 
-        public virtual TResult EnterText(string text)
-        {
-            return EnterText<TResult>(text);
-        }
+	public class TextField<TResult> : TextField, ITextField<TResult> where TResult : IBlock
+	{
+		public TextField(IBlock parent, By by) : base(parent, by)
+		{
+		}
 
-        public virtual TResult AppendText(string text)
-        {
-            return AppendText<TResult>(text);
-        }
-    }
+		public TextField(IBlock parent, IWebElement element) : base(parent, element)
+		{
+		}
+
+		public virtual TResult EnterText(string text)
+		{
+			return EnterText<TResult>(text);
+		}
+
+		public virtual TResult AppendText(string text)
+		{
+			return AppendText<TResult>(text);
+		}
+	}
 }

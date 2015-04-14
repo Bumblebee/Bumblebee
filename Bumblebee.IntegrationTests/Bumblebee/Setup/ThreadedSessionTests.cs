@@ -2,179 +2,181 @@
 using System.Collections.Concurrent;
 using System.Linq;
 using System.Threading.Tasks;
+
 using Bumblebee.Extensions;
 using Bumblebee.IntegrationTests.Shared.Pages;
 using Bumblebee.IntegrationTests.Shared.Sessions;
 using Bumblebee.Setup;
 using Bumblebee.Setup.DriverEnvironments;
+
 using FluentAssertions;
+
 using NUnit.Framework;
+
 using OpenQA.Selenium.IE;
 using OpenQA.Selenium.PhantomJS;
 
 namespace Bumblebee.IntegrationTests.Bumblebee.Setup
 {
-    [TestFixture]
-    public class ThreadedSessionTests
-    {
-        [SetUp]
-        public void BeforeEach()
-        {
-            Threaded<Session>.End();
-            Threaded<DerivedSession>.End();
-            Threaded<DerivedSessionWithWrongArgs>.End();
-        }
+	//ReSharper disable InconsistentNaming
 
-        [Test]
-        public void given_driver_environment_when_loading_with_driver_should_return_session_with_correct_driver()
-        {
-            Threaded<Session>
-                .With<PhantomJS>()
-                .Verify(x => x.Driver is PhantomJSDriver)
-                .End();
-        }
+	[TestFixture]
+	public class ThreadedSessionTests
+	{
+		[SetUp]
+		public void BeforeEach()
+		{
+			Threaded<Session>.End();
+			Threaded<DerivedSession>.End();
+			Threaded<DerivedSessionWithWrongArgs>.End();
+		}
 
-        [Test]
-        public void given_session_already_loaded_when_loading_with_another_driver_should_end_previous_session_driver_and_return_session_with_correct_driver()
-        {
-            Session previousSession;
+		[Test]
+		public void given_driver_environment_when_loading_with_driver_should_return_session_with_correct_driver()
+		{
+			Threaded<Session>
+				.With<PhantomJS>()
+				.Verify(x => x.Driver is PhantomJSDriver)
+				.End();
+		}
 
-            Threaded<Session>
-                .With<PhantomJS>()
-                .Store(out previousSession, s => s)
-                .Verify(x => x.Driver is PhantomJSDriver);
+		[Test]
+		public void given_session_already_loaded_when_loading_with_another_driver_should_end_previous_session_driver_and_return_session_with_correct_driver()
+		{
+			Session previousSession;
 
-            Threaded<Session>
-                .With<InternetExplorer>()
-                .Verify(x => x.Driver is InternetExplorerDriver)
-                .End();
+			Threaded<Session>
+				.With<PhantomJS>()
+				.Store(out previousSession, s => s)
+				.Verify(x => x.Driver is PhantomJSDriver);
 
-            previousSession.Driver.Should().BeNull();
-            previousSession.End();
-        }
+			Threaded<Session>
+				.With<InternetExplorer>()
+				.Verify(x => x.Driver is InternetExplorerDriver)
+				.End();
 
-        [Test]
-        public void given_session_already_loaded_with_navigation_when_getting_matching_current_block_should_return_block()
-        {
-            Threaded<Session>
-                .With<PhantomJS>()
-                .NavigateTo<LoggedOutPage>("https://www.nirvanahq.com/account/login");
+			previousSession.Driver.Should().BeNull();
+			previousSession.End();
+		}
 
-            Threaded<Session>
-                .CurrentBlock<LoggedOutPage>()
-                .Verify(x => x.Session.Driver.PageSource.Contains("Username or Email Address"))
-                .Session.End();
-        }
+		[Test]
+		public void given_session_already_loaded_with_navigation_when_getting_matching_current_block_should_return_block()
+		{
+			Threaded<Session>
+				.With<PhantomJS>()
+				.NavigateTo<LoggedOutPage>("https://www.nirvanahq.com/account/login");
 
-        [Test]
-        public void given_session_not_loaded_with_navigation_when_getting_current_block_should_throw()
-        {
-            Action action = () =>
-                Threaded<Session>
-                .CurrentBlock<LoggedOutPage>()
-                .Verify(x => x.Session.Driver.PageSource.Contains("Username or Email Address"))
-                .Session.End();
+			Threaded<Session>
+				.CurrentBlock<LoggedOutPage>()
+				.Verify(x => x.Session.Driver.PageSource.Contains("Username or Email Address"))
+				.Session.End();
+		}
 
-            action
-                .ShouldThrow<NullReferenceException>()
-                .WithMessage(
-                    "You cannot access the CurrentBlock without first initializing the Session by calling With<TDriverEnvironment>().");
-        }
+		[Test]
+		public void given_session_not_loaded_with_navigation_when_getting_current_block_should_throw()
+		{
+			Action action = () =>
+				Threaded<Session>
+					.CurrentBlock<LoggedOutPage>()
+					.Verify(x => x.Session.Driver.PageSource.Contains("Username or Email Address"))
+					.Session.End();
 
-        [Test]
-        public void given_different_thread_and_same_driver_environments_when_comparing_should_not_be_equal()
-        {
-            var sessions = new ConcurrentDictionary<Guid, Session>();
+			action
+				.ShouldThrow<NullReferenceException>()
+				.WithMessage("You cannot access the CurrentBlock without first initializing the Session by calling With<TDriverEnvironment>().");
+		}
 
-            Action action = () =>
-            {
-                var session = Threaded<Session>
-                    .With<PhantomJS>();
-                sessions.TryAdd(Guid.NewGuid(), session);
-            };
-            
-            var tasks = Enumerable
-                .Repeat(0, 2)
-                .Select(x => Task.Run(action));
+		[Test]
+		public void given_different_thread_and_same_driver_environments_when_comparing_should_not_be_equal()
+		{
+			var sessions = new ConcurrentDictionary<Guid, Session>();
 
-            Task.WaitAll(tasks.ToArray());
+			Action action = () =>
+			{
+				var session = Threaded<Session>
+					.With<PhantomJS>();
+				sessions.TryAdd(Guid.NewGuid(), session);
+			};
 
-            var session1 = sessions.ToArray()[0].Value;
-            var session2 = sessions.ToArray()[1].Value;
+			var tasks = Enumerable
+				.Repeat(0, 2)
+				.Select(x => Task.Run(action));
 
-            session1.Should().NotBe(session2);
-            session1.Driver.Should().NotBeNull();
-            session2.Driver.Should().NotBeNull();
+			Task.WaitAll(tasks.ToArray());
 
-            session1.End();
-            session2.End();
-        }
+			var session1 = sessions.ToArray()[0].Value;
+			var session2 = sessions.ToArray()[1].Value;
 
-        [Test]
-        public void given_multiple_sessions_in_single_thread_when_loading_with_drivers_should_maintain_distinct_sessions()
-        {
-            var session1 = Threaded<Session>
-                .With<PhantomJS>()
-                .Verify(s => s.Driver is PhantomJSDriver);
+			session1.Should().NotBe(session2);
+			session1.Driver.Should().NotBeNull();
+			session2.Driver.Should().NotBeNull();
 
-            var session2 = Threaded<DerivedSession>
-                .With<PhantomJS>()
-                .Verify(s => s.Driver is PhantomJSDriver);
+			session1.End();
+			session2.End();
+		}
 
-            session1
-                .Verify(s => s is Session);
+		[Test]
+		public void given_multiple_sessions_in_single_thread_when_loading_with_drivers_should_maintain_distinct_sessions()
+		{
+			var session1 = Threaded<Session>
+				.With<PhantomJS>()
+				.Verify(s => s.Driver is PhantomJSDriver);
 
-            session2
-                .Verify(s => s is DerivedSession);
+			var session2 = Threaded<DerivedSession>
+				.With<PhantomJS>()
+				.Verify(s => s.Driver is PhantomJSDriver);
 
-            session1.Should().NotBe(session2);
+			session1
+				.Verify(s => s is Session);
 
-            session1.End();
-            session2.End();
-        }
+			session2
+				.Verify(s => s is DerivedSession);
 
-        [Test]
-        public void given_session_type_with_wrong_constructor_args_when_loading_with_driver_should_throw()
-        {
-            Action action = () => Threaded<DerivedSessionWithWrongArgs>
-                .With<PhantomJS>();
+			session1.Should().NotBe(session2);
 
-            var expectedMessage =
-                string.Format(
-                    "The result type specified ({0}) is not a valid session.  It must have a constructor that takes only an IDriverEnvironment.",
-                    typeof (DerivedSessionWithWrongArgs).FullName);
+			session1.End();
+			session2.End();
+		}
 
-            action
-                .ShouldThrow<ArgumentException>()
-                .WithMessage(expectedMessage);
-        }
+		[Test]
+		public void given_session_type_with_wrong_constructor_args_when_loading_with_driver_should_throw()
+		{
+			Action action = () => Threaded<DerivedSessionWithWrongArgs>
+				.With<PhantomJS>();
 
-        [Test]
-        public void given_session_type_when_loading_with_driver_explicitly_should_load_with_driver()
-        {
-            Threaded<Session>
-                .With(new PhantomJS())
-                .Verify(s => s.Driver is PhantomJSDriver)
-                .End();
-        }
+			var expectedMessage = String.Format("The result type specified ({0}) is not a valid session.  It must have a constructor that takes only an IDriverEnvironment.", typeof (DerivedSessionWithWrongArgs).FullName);
 
-        [Test]
-        public void given_session_has_not_been_loaded_with_driver_when_ending_should_not_throw()
-        {
-            Action action = Threaded<Session>
-                .End;
+			action
+				.ShouldThrow<ArgumentException>()
+				.WithMessage(expectedMessage);
+		}
 
-            action.ShouldNotThrow();
-        }
+		[Test]
+		public void given_session_type_when_loading_with_driver_explicitly_should_load_with_driver()
+		{
+			Threaded<Session>
+				.With(new PhantomJS())
+				.Verify(s => s.Driver is PhantomJSDriver)
+				.End();
+		}
 
-        [Test]
-        public void given_session_has_been_loaded_with_driver_when_ending_should_end_session()
-        {
-            Threaded<Session>
-                .With<PhantomJS>();
+		[Test]
+		public void given_session_has_not_been_loaded_with_driver_when_ending_should_not_throw()
+		{
+			Action action = Threaded<Session>
+				.End;
 
-            Threaded<Session>
-                .End();
-        }
-    }
+			action.ShouldNotThrow();
+		}
+
+		[Test]
+		public void given_session_has_been_loaded_with_driver_when_ending_should_end_session()
+		{
+			Threaded<Session>
+				.With<PhantomJS>();
+
+			Threaded<Session>
+				.End();
+		}
+	}
 }

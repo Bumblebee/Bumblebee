@@ -15,10 +15,7 @@ namespace Bumblebee.IntegrationTests.Shared.Pages.Implementation
 
 		public IDateField<DateFieldPage> Date
 		{
-			get
-			{
-				return new DateField<DateFieldPage>(this, By.Id("DateField"));
-			}
+			get { return new DateField<DateFieldPage>(this, By.Id("DateField")); }
 		}
 	}
 }

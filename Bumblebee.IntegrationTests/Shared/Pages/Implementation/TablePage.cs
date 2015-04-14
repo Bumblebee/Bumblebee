@@ -8,22 +8,19 @@ using OpenQA.Selenium;
 
 namespace Bumblebee.IntegrationTests.Shared.Pages.Implementation
 {
-    public class TablePage : WebBlock
-    {
-        public TablePage(Session session) : base(session)
-        {
-        }
+	public class TablePage : WebBlock
+	{
+		public TablePage(Session session) : base(session)
+		{
+		}
 
-        public TablePage(Session session, TimeSpan timeout) : base(session, timeout)
-        {
-        }
+		public TablePage(Session session, TimeSpan timeout) : base(session, timeout)
+		{
+		}
 
-        public ITable Table
-        {
-            get
-            {
-                return new Table(this, By.Id("DataGrid"));
-            }
-        }
-    }
+		public ITable Table
+		{
+			get { return new Table(this, By.Id("DataGrid")); }
+		}
+	}
 }

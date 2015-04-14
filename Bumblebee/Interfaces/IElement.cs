@@ -2,8 +2,8 @@
 
 namespace Bumblebee.Interfaces
 {
-    public interface IElement : IDraggable
-    {
-        Session Session { get; }
-    }
+	public interface IElement : IDraggable
+	{
+		Session Session { get; }
+	}
 }

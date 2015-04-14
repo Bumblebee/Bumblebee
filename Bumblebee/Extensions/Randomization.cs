@@ -4,53 +4,69 @@ using System.Linq;
 
 namespace Bumblebee.Extensions
 {
-    public static class Randomization
-    {
-        public static IEnumerable<T> Shuffle<T>(this IEnumerable<T> source)
-        {
-            var rng = new Random();
-            return source.Shuffle(rng);
-        }
+	public static class Randomization
+	{
+		public static IEnumerable<T> Shuffle<T>(this IEnumerable<T> source)
+		{
+			var rng = new Random();
 
-        public static IEnumerable<T> Shuffle<T>(this IEnumerable<T> source, Random rng)
-        {
-            if (source == null) throw new ArgumentNullException("source");
-            if (rng == null) throw new ArgumentNullException("rng");
+			return source.Shuffle(rng);
+		}
 
-            return source.ShuffleIterator(rng);
-        }
+		public static IEnumerable<T> Shuffle<T>(this IEnumerable<T> source, Random rng)
+		{
+			if (source == null)
+			{
+				throw new ArgumentNullException("source");
+			}
 
-        private static IEnumerable<T> ShuffleIterator<T>(this IEnumerable<T> source, Random rng)
-        {
-            var buffer = source.ToList();
+			if (rng == null)
+			{
+				throw new ArgumentNullException("rng");
+			}
 
-            for (var i = 0; i < buffer.Count; i++)
-            {
-                var j = rng.Next(i, buffer.Count);
-                yield return buffer[j];
+			return source.ShuffleIterator(rng);
+		}
 
-                buffer[j] = buffer[i];
-            }
-        }
+		private static IEnumerable<T> ShuffleIterator<T>(this IEnumerable<T> source, Random rng)
+		{
+			var buffer = source.ToList();
 
-        public static T Random<T>(this IEnumerable<T> source)
-        {
-            var rng = new Random();
-            return source.Random(rng);
-        }
+			for (var i = 0; i < buffer.Count; i++)
+			{
+				var j = rng.Next(i, buffer.Count);
+				yield return buffer[j];
 
-        public static T Random<T>(this IEnumerable<T> source, Random rng)
-        {
-            if (source == null) throw new ArgumentNullException("source");
-            if (rng == null) throw new ArgumentNullException("rng");
+				buffer[j] = buffer[i];
+			}
+		}
 
-            return RandomIterator(source, rng);
-        }
+		public static T Random<T>(this IEnumerable<T> source)
+		{
+			var rng = new Random();
 
-        private static T RandomIterator<T>(this IEnumerable<T> source, Random rng)
-        {
-            var buffer = source as IList<T> ?? source.ToList();
-            return buffer[rng.Next(buffer.Count)];
-        }
-    }
+			return source.Random(rng);
+		}
+
+		public static T Random<T>(this IEnumerable<T> source, Random rng)
+		{
+			if (source == null)
+			{
+				throw new ArgumentNullException("source");
+			}
+
+			if (rng == null)
+			{
+				throw new ArgumentNullException("rng");
+			}
+
+			return RandomIterator(source, rng);
+		}
+
+		private static T RandomIterator<T>(this IEnumerable<T> source, Random rng)
+		{
+			var buffer = source as IList<T> ?? source.ToList();
+			return buffer[rng.Next(buffer.Count)];
+		}
+	}
 }
