@@ -2,10 +2,10 @@
 
 namespace Bumblebee.IntegrationTests.Shared.Sessions
 {
-    public class DerivedSession : Session
-    {
-        public DerivedSession(IDriverEnvironment environment)
-            : base(environment)
-        {}
-    }
+	public class DerivedSession : Session
+	{
+		public DerivedSession(IDriverEnvironment environment) : base(environment)
+		{
+		}
+	}
 }

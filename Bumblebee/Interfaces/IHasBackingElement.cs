@@ -2,8 +2,8 @@
 
 namespace Bumblebee.Interfaces
 {
-    public interface IHasBackingElement
-    {
-        IWebElement Tag { get; }
-    }
+	public interface IHasBackingElement
+	{
+		IWebElement Tag { get; }
+	}
 }

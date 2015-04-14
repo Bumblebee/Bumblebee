@@ -2,8 +2,8 @@
 
 namespace Bumblebee.Setup
 {
-    public interface IDriverEnvironment
-    {
-        IWebDriver CreateWebDriver();
-    }
+	public interface IDriverEnvironment
+	{
+		IWebDriver CreateWebDriver();
+	}
 }

@@ -14,6 +14,7 @@ using NUnit.Framework;
 namespace Bumblebee.IntegrationTests.Bumblebee.Implementation
 {
 	// ReSharper disable InconsistentNaming
+
 	[TestFixture]
 	public class Given_select_box_with_ability_to_select_multiple_values : HostTestFixture
 	{

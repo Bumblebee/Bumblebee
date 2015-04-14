@@ -1,7 +1,7 @@
 ﻿namespace Bumblebee.Interfaces
 {
-    public interface ISelectable
-    {
-        bool Selected { get; }
-    }
+	public interface ISelectable
+	{
+		bool Selected { get; }
+	}
 }

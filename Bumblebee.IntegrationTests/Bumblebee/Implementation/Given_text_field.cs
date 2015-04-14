@@ -5,12 +5,15 @@ using Bumblebee.IntegrationTests.Shared.Hosting;
 using Bumblebee.IntegrationTests.Shared.Pages.Implementation;
 using Bumblebee.Setup;
 using Bumblebee.Setup.DriverEnvironments;
+
 using FluentAssertions;
+
 using NUnit.Framework;
 
 namespace Bumblebee.IntegrationTests.Bumblebee.Implementation
 {
 	// ReSharper disable InconsistentNaming
+
 	[TestFixture]
 	public class Given_text_field : HostTestFixture
 	{

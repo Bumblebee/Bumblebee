@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Bumblebee.Setup;
-using OpenQA.Selenium;
+﻿using System.Collections.Generic;
 
 namespace Bumblebee.Interfaces
 {
-    public interface IMonkey
-    {
-        void Invoke(IBlock block);
-        IList<string> Logs { get; } 
-        void VerifyState();
-    }
+	public interface IMonkey
+	{
+		void Invoke(IBlock block);
+		IList<string> Logs { get; }
+		void VerifyState();
+	}
 }
