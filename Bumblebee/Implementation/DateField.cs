@@ -28,8 +28,15 @@ namespace Bumblebee.Implementation
 		{
 			get
 			{
-				DateTime result;
-				return DateTime.TryParse(Text ?? String.Empty, out result) ? result : new DateTime?();
+				DateTime? result = null;
+
+				DateTime date;
+				if ((Text != null) && DateTime.TryParse(Text, out date))
+				{
+					result = date;
+				}
+
+				return result;
 			}
 		}
 	}

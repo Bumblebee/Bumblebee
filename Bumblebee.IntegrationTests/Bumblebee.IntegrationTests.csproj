@@ -72,6 +72,7 @@
     <Compile Include="Bumblebee\Implementation\Given_checkbox.cs" />
     <Compile Include="Bumblebee\Implementation\Given_dialogs.cs" />
     <Compile Include="Bumblebee\Implementation\Given_double_clickable.cs" />
+    <Compile Include="Bumblebee\Implementation\Given_list_of_complex_blocks.cs" />
     <Compile Include="Bumblebee\Implementation\Given_radio_buttons.cs" />
     <Compile Include="Bumblebee\Implementation\Given_select_box_with_ability_to_select_multiple_values.cs" />
     <Compile Include="Bumblebee\Implementation\Given_date_field.cs" />
@@ -89,6 +90,7 @@
     <Compile Include="Shared\Pages\Implementation\GenericTablePage.cs" />
     <Compile Include="Shared\Pages\Implementation\GenericTableRow.cs" />
     <Compile Include="Shared\Pages\Implementation\DoubleClickablePage.cs" />
+    <Compile Include="Shared\Pages\Implementation\ListOfComplexBlocksPage.cs" />
     <Compile Include="Shared\Pages\Implementation\MultiSelectPage.cs" />
     <Compile Include="Shared\Pages\Implementation\NumericFieldPage.cs" />
     <Compile Include="Shared\Pages\Implementation\RadioButtonsPage.cs" />
@@ -136,6 +138,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\DoubleClick.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\ListOfComplexBlocks.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\MultiSelect.html">

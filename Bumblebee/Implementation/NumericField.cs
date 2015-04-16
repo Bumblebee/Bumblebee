@@ -30,8 +30,15 @@ namespace Bumblebee.Implementation
 		{
 			get
 			{
-				double result;
-				return Double.TryParse(Text ?? String.Empty, out result) ? result : new double?();
+				double? result = null;
+
+				double x;
+				if ((Text != null) && Double.TryParse(Text, out x))
+				{
+					result = x;
+				}
+
+				return result;
 			}
 		}
 	}

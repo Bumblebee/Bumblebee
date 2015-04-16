@@ -2,8 +2,8 @@
 {
 	public interface ITextField : IElement, IHasText
 	{
-		TCustomResult EnterText<TCustomResult>(string text) where TCustomResult : IBlock;
-		TCustomResult AppendText<TCustomResult>(string text) where TCustomResult : IBlock;
+		TResult EnterText<TResult>(string text) where TResult : IBlock;
+		TResult AppendText<TResult>(string text) where TResult : IBlock;
 	}
 
 	public interface ITextField<out TResult> : ITextField

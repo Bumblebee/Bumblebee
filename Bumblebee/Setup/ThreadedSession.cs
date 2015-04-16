@@ -56,8 +56,7 @@ namespace Bumblebee.Setup
 
 			if (constructor == null)
 			{
-				throw new ArgumentException(String.Format("The result type specified ({0}) is not a valid session.  " +
-											"It must have a constructor that takes only an IDriverEnvironment.", type));
+				throw new ArgumentException(String.Format("The result type specified ({0}) is not a valid session.  It must have a constructor that takes only an IDriverEnvironment.", type));
 			}
 
 			CurrentSession = constructor.Invoke(constructorArgs.ToArray()) as TSession;

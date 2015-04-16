@@ -29,7 +29,7 @@ namespace Bumblebee.Implementation
 
 		private IAlert WaitForAlert()
 		{
-			var wait = new WebDriverWait(Session.Driver, new TimeSpan(0, 0, 5));
+			var wait = new WebDriverWait(Session.Driver, TimeSpan.FromSeconds(5));
 			return wait.Until(d => d.SwitchTo().Alert());
 		}
 

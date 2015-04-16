@@ -45,8 +45,13 @@ namespace Bumblebee.Extensions
 		/// <returns></returns>
 		public static TParent WaitUntil<TParent>(this TParent parent, Predicate<TParent> condition, int miliseconds = 10000) where TParent : IBlock
 		{
-			var wait = new DefaultWait<TParent>(parent) { Timeout = TimeSpan.FromMilliseconds(miliseconds) };
+			var wait = new DefaultWait<TParent>(parent)
+			{
+				Timeout = TimeSpan.FromMilliseconds(miliseconds)
+			};
+
 			wait.Until(condition.Invoke);
+
 			return parent;
 		}
 	}
@@ -86,14 +91,14 @@ namespace Bumblebee.Extensions
 		/// <summary>
 		/// Fluent syntax for indicating the drop element.
 		/// </summary>
-		/// <typeparam name="TCustomResult">The type of the custom result.</typeparam>
+		/// <typeparam name="TResult">The type of the custom result.</typeparam>
 		/// <param name="getDropzone">The get dropzone.</param>
 		/// <returns></returns>
-		public TCustomResult AndDrop<TCustomResult>(Func<TParent, IHasBackingElement> getDropzone) where TCustomResult : IBlock
+		public TResult AndDrop<TResult>(Func<TParent, IHasBackingElement> getDropzone) where TResult : IBlock
 		{
 			PerformDragAndDrop(getDropzone);
 
-			return Parent.Session.CurrentBlock<TCustomResult>();
+			return Parent.Session.CurrentBlock<TResult>();
 		}
 
 		/// <summary>
@@ -112,15 +117,15 @@ namespace Bumblebee.Extensions
 		/// <summary>
 		/// Fluent syntax for indicating the drop element.
 		/// </summary>
-		/// <typeparam name="TCustomResult">The type of the custom result.</typeparam>
+		/// <typeparam name="TResult">The type of the custom result.</typeparam>
 		/// <param name="xOffset">The x offset.</param>
 		/// <param name="yOffset">The y offset.</param>
 		/// <returns></returns>
-		public TCustomResult AndDrop<TCustomResult>(int xOffset, int yOffset) where TCustomResult : IBlock
+		public TResult AndDrop<TResult>(int xOffset, int yOffset) where TResult : IBlock
 		{
 			PerformDragAndDrop(xOffset, yOffset);
 
-			return Parent.Session.CurrentBlock<TCustomResult>();
+			return Parent.Session.CurrentBlock<TResult>();
 		}
 
 		private void PerformDragAndDrop(Func<TParent, IHasBackingElement> getDropzone)
