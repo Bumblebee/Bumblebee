@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-using Bumblebee.Extensions;
 using Bumblebee.Interfaces;
 using Bumblebee.Setup;
 
@@ -22,7 +21,7 @@ namespace Bumblebee.Implementation
 		public virtual string Text { get { return Tag.Text; } }
 		public virtual bool Selected { get { return Tag.Selected; } }
 
-		protected Element(IBlock parent, By @by) : this(parent, parent.Tag.GetElement(@by))
+		protected Element(IBlock parent, By @by) : this(parent, parent.Tag.FindElement(@by))
 		{
 		}
 

@@ -6,7 +6,7 @@ namespace Bumblebee.Implementation
 {
 	public class Option : Element, IOption
 	{
-		public Option(IBlock parent, By by) : base(parent, by)
+		public Option(IBlock parent, By by) : base(parent, @by)
 		{
 		}
 
@@ -26,7 +26,7 @@ namespace Bumblebee.Implementation
 
 	public class Option<TResult> : Option, IOption<TResult> where TResult : IBlock
 	{
-		public Option(IBlock parent, By by) : base(parent, by)
+		public Option(IBlock parent, By by) : base(parent, @by)
 		{
 		}
 

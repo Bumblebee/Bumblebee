@@ -132,31 +132,31 @@ namespace Bumblebee.Extensions
 			return hasText;
 		}
 
-		public static TBlock VerifyPresence<TBlock>(this TBlock block, By by) where TBlock : IBlock
+		public static TBlock VerifyPresence<TBlock>(this TBlock block, By @by) where TBlock : IBlock
 		{
-			return block.VerifyPresenceOf("element", by);
+			return block.VerifyPresenceOf("element", @by);
 		}
 
-		public static TBlock VerifyAbsence<TBlock>(this TBlock block, By by) where TBlock : IBlock
+		public static TBlock VerifyAbsence<TBlock>(this TBlock block, By @by) where TBlock : IBlock
 		{
-			return block.VerifyAbsenceOf("element", by);
+			return block.VerifyAbsenceOf("element", @by);
 		}
 
-		public static TBlock VerifyPresenceOf<TBlock>(this TBlock block, string element, By by) where TBlock : IBlock
+		public static TBlock VerifyPresenceOf<TBlock>(this TBlock block, string element, By @by) where TBlock : IBlock
 		{
-			if (block.Tag.GetElements(by).Any() == false)
+			if (block.Tag.FindElements(@by).Any() == false)
 			{
-				throw new VerificationException("Couldn't verify presence of {0} {1}".FormatWith(element, by));
+				throw new VerificationException("Couldn't verify presence of {0} {1}".FormatWith(element, @by));
 			}
 
 			return block;
 		}
 
-		public static TBlock VerifyAbsenceOf<TBlock>(this TBlock block, string element, By by) where TBlock : IBlock
+		public static TBlock VerifyAbsenceOf<TBlock>(this TBlock block, string element, By @by) where TBlock : IBlock
 		{
-			if (block.Tag.GetElements(by).Any())
+			if (block.Tag.FindElements(@by).Any())
 			{
-				throw new VerificationException("Couldn't verify absence of {0} {1}".FormatWith(element, by));
+				throw new VerificationException("Couldn't verify absence of {0} {1}".FormatWith(element, @by));
 			}
 
 			return block;

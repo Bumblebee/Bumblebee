@@ -12,7 +12,7 @@ namespace Bumblebee.KendoUI
 	{
 		private readonly IWebElement _tagList;
 
-		public KendoMultiSelectOption(IBlock parent, By by, IWebElement tagList) : base(parent, by)
+		public KendoMultiSelectOption(IBlock parent, By @by, IWebElement tagList) : base(parent, @by)
 		{
 			_tagList = tagList;
 		}
@@ -55,7 +55,7 @@ namespace Bumblebee.KendoUI
 	public class KendoMultiSelectOption<T> : KendoMultiSelectOption, IOption<T>
 		where T : IBlock
 	{
-		public KendoMultiSelectOption(IBlock parent, By by, IWebElement tagList) : base(parent, by, tagList)
+		public KendoMultiSelectOption(IBlock parent, By @by, IWebElement tagList) : base(parent, @by, tagList)
 		{
 		}
 

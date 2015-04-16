@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-using Bumblebee.Extensions;
 using Bumblebee.Interfaces;
 using Bumblebee.Setup;
 
@@ -57,24 +56,24 @@ namespace Bumblebee.Implementation
 			}
 		}
 
-		protected IList<IWebElement> GetElements(By by)
+		protected IList<IWebElement> GetElements(By @by)
 		{
 			if (Tag == null)
 			{
 				throw new NullReferenceException("You can't call GetElements on a block without first initializing Tag.");
 			}
 
-			return Tag.FindElements(by);
+			return Tag.FindElements(@by);
 		}
 
-		protected IWebElement GetElement(By by)
+		protected IWebElement GetElement(By @by)
 		{
 			if (Tag == null)
 			{
 				throw new NullReferenceException("You can't call GetElement on a block without first initializing Tag.");
 			}
 
-			return Tag.GetElement(by);
+			return Tag.FindElement(@by);
 		}
 
 		protected T FindRelated<T>() where T : IBlock

@@ -13,7 +13,7 @@ namespace Bumblebee.KendoUI
 	[DebuggerDisplay("KendoNumericTextBox {ToString}")]
 	public class KendoNumericTextBox : TextField, INumericField
 	{
-		public KendoNumericTextBox(IBlock parent, By by) : base(parent, by)
+		public KendoNumericTextBox(IBlock parent, By @by) : base(parent, @by)
 		{
 		}
 
@@ -89,7 +89,7 @@ namespace Bumblebee.KendoUI
 	public class KendoNumericTextBox<TResult> : KendoNumericTextBox, INumericField<TResult>, ITextField<TResult>
 		where TResult : IBlock
 	{
-		public KendoNumericTextBox(IBlock parent, By by) : base(parent, by)
+		public KendoNumericTextBox(IBlock parent, By @by) : base(parent, @by)
 		{
 		}
 

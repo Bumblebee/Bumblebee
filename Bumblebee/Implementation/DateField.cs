@@ -8,7 +8,7 @@ namespace Bumblebee.Implementation
 {
 	public class DateField : TextField, IDateField
 	{
-		public DateField(IBlock parent, By by) : base(parent, by)
+		public DateField(IBlock parent, By @by) : base(parent, @by)
 		{
 		}
 
@@ -19,7 +19,7 @@ namespace Bumblebee.Implementation
 		public virtual TResult EnterDate<TResult>(DateTime date) where TResult : IBlock
 		{
 			var executor = (IJavaScriptExecutor) Session.Driver;
-			executor.ExecuteScript(string.Format("arguments[0].value = '{0:yyyy-MM-dd}';", date), Tag);
+			executor.ExecuteScript(String.Format("arguments[0].value = '{0:yyyy-MM-dd}';", date), Tag);
 
 			return FindRelated<TResult>();
 		}
@@ -36,7 +36,7 @@ namespace Bumblebee.Implementation
 
 	public class DateField<TResult> : DateField, IDateField<TResult> where TResult : IBlock
 	{
-		public DateField(IBlock parent, By by) : base(parent, by)
+		public DateField(IBlock parent, By @by) : base(parent, @by)
 		{
 		}
 

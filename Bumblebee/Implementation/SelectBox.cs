@@ -8,7 +8,7 @@ namespace Bumblebee.Implementation
 {
 	public class SelectBox : Block, ISelectBox
 	{
-		public SelectBox(IBlock parent, By @by) : base(parent, by)
+		public SelectBox(IBlock parent, By @by) : base(parent, @by)
 		{
 		}
 
@@ -20,7 +20,7 @@ namespace Bumblebee.Implementation
 
 	public class SelectBox<TResult> : Block, ISelectBox<TResult> where TResult : IBlock
 	{
-		public SelectBox(IBlock parent, By @by) : base(parent, by)
+		public SelectBox(IBlock parent, By @by) : base(parent, @by)
 		{
 		}
 

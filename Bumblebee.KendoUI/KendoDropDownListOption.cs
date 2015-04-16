@@ -13,7 +13,7 @@ namespace Bumblebee.KendoUI
 	[DebuggerDisplay("KendoDropDownListOption {ToString()}")]
 	public class KendoDropDownListOption : Element, IOption
 	{
-		public KendoDropDownListOption(IBlock parent, By by) : base(parent, by)
+		public KendoDropDownListOption(IBlock parent, By @by) : base(parent, @by)
 		{
 		}
 
@@ -67,7 +67,7 @@ namespace Bumblebee.KendoUI
 	public class KendoDropDownListOption<T> : KendoDropDownListOption, IOption<T>
 		where T : IBlock
 	{
-		public KendoDropDownListOption(IBlock parent, By by) : base(parent, by)
+		public KendoDropDownListOption(IBlock parent, By @by) : base(parent, @by)
 		{
 		}
 

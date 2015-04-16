@@ -8,14 +8,14 @@ namespace Bumblebee.Extensions
 {
 	public static class WebElementConvenience
 	{
-		public static IList<IWebElement> GetElements(this ISearchContext driver, By by)
+		public static IList<IWebElement> GetElements(this ISearchContext driver, By @by)
 		{
-			return driver.FindElements(by);
+			return driver.FindElements(@by);
 		}
 
-		public static IWebElement GetElement(this ISearchContext driver, By by)
+		public static IWebElement GetElement(this ISearchContext driver, By @by)
 		{
-			return driver.FindElement(by);
+			return driver.FindElement(@by);
 		}
 
 		public static IWebDriver GetDriver(this IWebElement element)
