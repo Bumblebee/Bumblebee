@@ -1,6 +1,9 @@
+using Bumblebee.Setup;
+
 namespace Bumblebee.Interfaces
 {
-	public interface IBlock : IElement, IMonkeyable
+	public interface IBlock : IDraggable, IMonkeyable, IHasParent
 	{
+		Session Session { get; }
 	}
 }

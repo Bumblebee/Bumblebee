@@ -13,7 +13,6 @@ namespace Bumblebee.Examples.Web.Pages.Reddit
 		{
 			// Wait until we're logged in, then reselect the body to keep the DOM fresh
 			Wait.Until(driver => driver.GetElement(By.CssSelector(".user a")));
-			Tag = Session.Driver.GetElement(By.TagName("body"));
 		}
 
 		public IClickable<WebBlock> Profile

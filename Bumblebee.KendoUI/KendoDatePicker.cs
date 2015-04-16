@@ -19,31 +19,33 @@ namespace Bumblebee.KendoUI
 		{
 		}
 
-		public TCustomResult EnterDate<TCustomResult>(DateTime date) where TCustomResult : IBlock
+		public TResult EnterDate<TResult>(DateTime date) where TResult : IBlock
 		{
 			var executor = (IJavaScriptExecutor) Session.Driver;
+
 			executor.ExecuteScript("return $(arguments[0]).data('kendoDatePicker').value(kendo.parseDate(arguments[1]));", Tag, date.ToString("yyyy-MM-dd"));
-			return Session.CurrentBlock<TCustomResult>(ParentBlock.Tag);
+
+			return FindRelated<TResult>();
 		}
 
-		public override TCustomResult EnterText<TCustomResult>(string text)
+		public override TResult EnterText<TResult>(string text)
 		{
-			return AppendText<TCustomResult>(text, true);
+			return AppendText<TResult>(text, true);
 		}
 
-		public override TCustomResult AppendText<TCustomResult>(string text)
+		public override TResult AppendText<TResult>(string text)
 		{
-			return AppendText<TCustomResult>(text, false);
+			return AppendText<TResult>(text, false);
 		}
 
-		private TCustomResult AppendText<TCustomResult>(string text, bool clear) where TCustomResult : IBlock
+		private TResult AppendText<TResult>(string text, bool clear) where TResult : IBlock
 		{
 			if (clear)
 			{
 				Tag.Clear();
 			}
 
-			var result = base.AppendText<TCustomResult>(text);
+			var result = base.AppendText<TResult>(text);
 			EnsureValueIsUpdated();
 
 			return result;

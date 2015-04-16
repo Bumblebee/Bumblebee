@@ -14,18 +14,18 @@ namespace Bumblebee.Implementation
 		{
 		}
 
-		public virtual TCustomResult EnterText<TCustomResult>(string text) where TCustomResult : IBlock
+		public virtual TResult EnterText<TResult>(string text) where TResult : IBlock
 		{
 			Tag.Clear();
 
-			return AppendText<TCustomResult>(text);
+			return AppendText<TResult>(text);
 		}
 
-		public virtual TCustomResult AppendText<TCustomResult>(string text) where TCustomResult : IBlock
+		public virtual TResult AppendText<TResult>(string text) where TResult : IBlock
 		{
 			Tag.SendKeys(text);
 
-			return Session.CurrentBlock<TCustomResult>(ParentBlock.Tag);
+			return FindRelated<TResult>();
 		}
 
 		public override string Text

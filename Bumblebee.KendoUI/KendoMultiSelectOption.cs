@@ -28,11 +28,13 @@ namespace Bumblebee.KendoUI
 			{
 				// When an item is selected, a list item is created with a delete button in it.
 				var item = _tagList.FindElement(By.XPath("//*[contains(text(), '" + Text + "')]/following-sibling::*"));
+
 				item.Click();
 
 				// Await animation.
 				this.Pause(100);
-				return Session.CurrentBlock<TResult>(ParentBlock.Tag);
+
+				return FindRelated<TResult>();
 			}
 
 			return base.Click<TResult>();

@@ -9,11 +9,7 @@ namespace Bumblebee.KendoUI
 {
 	public class KendoMultiSelect : KendoDropDownList
 	{
-		public KendoMultiSelect(IBlock parent, By by) : base(parent, by)
-		{
-		}
-
-		public KendoMultiSelect(IBlock parent, IWebElement tag) : base(parent, tag)
+		public KendoMultiSelect(IBlock parent, By @by) : base(parent, by)
 		{
 		}
 
@@ -26,11 +22,7 @@ namespace Bumblebee.KendoUI
 	public class KendoMultiSelect<TResult> : KendoDropDownList, ISelectBox<TResult>
 		where TResult : IBlock
 	{
-		public KendoMultiSelect(IBlock parent, By by) : base(parent, by)
-		{
-		}
-
-		public KendoMultiSelect(IBlock parent, IWebElement tag) : base(parent, tag)
+		public KendoMultiSelect(IBlock parent, By @by) : base(parent, by)
 		{
 		}
 

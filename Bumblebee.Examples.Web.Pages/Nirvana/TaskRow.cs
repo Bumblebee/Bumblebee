@@ -1,15 +1,14 @@
 ﻿using Bumblebee.Extensions;
 using Bumblebee.Implementation;
 using Bumblebee.Interfaces;
-using Bumblebee.Setup;
 
 using OpenQA.Selenium;
 
 namespace Bumblebee.Examples.Web.Pages.Nirvana
 {
-	public class TaskRow : SpecificBlock
+	public class TaskRow : Block
 	{
-		public TaskRow(Session session, IWebElement tag) : base(session, tag)
+		public TaskRow(IBlock parent, By @by) : base(parent, @by)
 		{
 		}
 
@@ -26,13 +25,15 @@ namespace Bumblebee.Examples.Web.Pages.Nirvana
 		public void Delete()
 		{
 			var drag = GetElement(By.CssSelector("span.i.drag.project"));
-			var drop = new SideBar(Session).Trash;
+
+			var sidebar = FindRelated<SideBar>();
+
+			var drop = sidebar.Trash;
 
 			GetDragAndDropPerformer()
-				.DragAndDrop(drag, drop);
+				.DragAndDrop(drag, drop.Tag);
 
 			Session.Pause(200);
-
 		}
 	}
 }

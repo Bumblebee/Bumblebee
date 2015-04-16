@@ -2,7 +2,7 @@
 
 namespace Bumblebee.Interfaces
 {
-	public interface IElement : IDraggable
+	public interface IElement : IDraggable, IHasParent
 	{
 		Session Session { get; }
 	}

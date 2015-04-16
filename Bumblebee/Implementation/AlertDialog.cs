@@ -8,21 +8,23 @@ using OpenQA.Selenium.Support.UI;
 
 namespace Bumblebee.Implementation
 {
-	public class AlertDialog : Block, IAlertDialog
+	public class AlertDialog : IAlertDialog
 	{
-		private IWebElement Parent { get; set; }
+		public IWebElement Tag { get; private set; }
+		public IBlock ParentBlock { get; private set; }
+		public Session Session { get; private set; }
+
 		private IAlert Alert { get; set; }
 
-		public AlertDialog(Session session) : base(session)
+		public AlertDialog(Session session)
 		{
-			Parent = null;
+			Session = session;
 			Alert = WaitForAlert();
 		}
 
-		public AlertDialog(IWebElement parent, Session session) : base(session)
+		public AlertDialog(IBlock parent) : this(parent.Session)
 		{
-			Parent = parent;
-			Alert = WaitForAlert();
+			ParentBlock = parent;
 		}
 
 		private IAlert WaitForAlert()
@@ -34,13 +36,15 @@ namespace Bumblebee.Implementation
 		public virtual TResult Accept<TResult>() where TResult : IBlock
 		{
 			Alert.Accept();
-			return Session.CurrentBlock<TResult>(Parent);
+
+			return Session.CurrentBlock<TResult>();
 		}
 
 		public virtual TResult Dismiss<TResult>() where TResult : IBlock
 		{
 			Alert.Dismiss();
-			return Session.CurrentBlock<TResult>(Parent);
+
+			return Session.CurrentBlock<TResult>();
 		}
 
 		public virtual IAlertDialog EnterText(string text)
@@ -52,6 +56,16 @@ namespace Bumblebee.Implementation
 		public virtual string Text
 		{
 			get { return Alert.Text; }
+		}
+
+		public IPerformsDragAndDrop GetDragAndDropPerformer()
+		{
+			throw new NotImplementedException();
+		}
+
+		public void VerifyMonkeyState()
+		{
+			throw new NotImplementedException();
 		}
 	}
 }

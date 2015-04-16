@@ -1,4 +1,6 @@
-﻿namespace Bumblebee.Extensions
+﻿using System;
+
+namespace Bumblebee.Extensions
 {
 	/// <summary>
 	/// Extensions for the string data type.
@@ -13,7 +15,7 @@
 		/// <returns></returns>
 		public static string FormatWith(this string value, params object[] args)
 		{
-			return string.Format(value, args);
+			return String.Format(value, args);
 		}
 	}
 }

@@ -14,15 +14,14 @@ namespace Bumblebee.Examples.Web.Pages.Reddit
 
 		public LoginArea LoginArea
 		{
-			get { return new LoginArea(Session); }
+			get { return new LoginArea(this, By.Id("login_login-main")); }
 		}
 	}
 
-	public class LoginArea : WebBlock
+	public class LoginArea : Block
 	{
-		public LoginArea(Session session) : base(session)
+		public LoginArea(IBlock parent, By @by) : base(parent, @by)
 		{
-			Tag = GetElement(By.Id("login_login-main"));
 		}
 
 		public ITextField<LoginArea> Email

@@ -1,14 +1,13 @@
 ﻿using Bumblebee.Implementation;
 using Bumblebee.Interfaces;
-using Bumblebee.Setup;
 
 using OpenQA.Selenium;
 
 namespace Bumblebee.Examples.Web.Pages.Reddit
 {
-	public class Post : SpecificBlock
+	public class Post : Block
 	{
-		public Post(Session session, IWebElement tag) : base(session, tag)
+		public Post(IBlock parent, By @by) : base(parent, @by)
 		{
 		}
 

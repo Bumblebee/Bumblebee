@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+
 using Bumblebee.Exceptions;
 using Bumblebee.Interfaces;
+
 using OpenQA.Selenium;
 
 namespace Bumblebee.Extensions
@@ -16,7 +18,8 @@ namespace Bumblebee.Extensions
 		/// <summary>
 		/// The verification message format.
 		/// </summary>
-		public static readonly string VerificationMessage = "Unable to verify.  {0}";
+		public const string VerificationMessage = "Unable to verify.  {0}";
+
 		/// <summary>
 		/// Verification method that allows for passing a predicate expression to evaluate some condition and a message to display if predicate is not true.
 		/// </summary>
@@ -31,7 +34,7 @@ namespace Bumblebee.Extensions
 		/// <returns></returns>
 		public static T Verify<T>(this T obj, string verification, Predicate<T> predicate)
 		{
-			var message = VerificationMessage.FormatWith(verification ?? string.Empty).Trim();
+			var message = VerificationMessage.FormatWith(verification ?? String.Empty).Trim();
 
 			if (predicate(obj) == false)
 			{
@@ -54,6 +57,7 @@ namespace Bumblebee.Extensions
 		public static T Verify<T>(this T obj, Expression<Predicate<T>> predicateExpression)
 		{
 			var predicate = predicateExpression.Compile();
+
 			return obj.Verify("Expected {0}".FormatWith(predicateExpression.Body), predicate);
 		}
 
@@ -118,8 +122,7 @@ namespace Bumblebee.Extensions
 			return hasText;
 		}
 
-		public static THasText VerifyTextContains<THasText>(this THasText hasText, string text)
-			where THasText : IHasText
+		public static THasText VerifyTextContains<THasText>(this THasText hasText, string text) where THasText : IHasText
 		{
 			if (hasText.Text.Contains(text) == false)
 			{

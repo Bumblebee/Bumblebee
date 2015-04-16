@@ -25,17 +25,11 @@ namespace Bumblebee.Setup
 			return CurrentBlock<TBlock>();
 		}
 
-		public TBlock CurrentBlock<TBlock>(IWebElement tag = null) where TBlock : IBlock
+		public TBlock CurrentBlock<TBlock>() where TBlock : IBlock
 		{
 			var type = typeof (TBlock);
 			IList<Type> constructorSignature = new List<Type> { typeof (Session) };
 			IList<object> constructorArgs = new List<object> { this };
-
-			if (typeof (ISpecificBlock).IsAssignableFrom(typeof (TBlock)))
-			{
-				constructorSignature.Add(typeof (IWebElement));
-				constructorArgs.Add(tag);
-			}
 
 			var constructor = type.GetConstructor(constructorSignature.ToArray());
 

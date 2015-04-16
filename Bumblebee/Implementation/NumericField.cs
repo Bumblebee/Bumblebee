@@ -17,11 +17,13 @@ namespace Bumblebee.Implementation
 		{
 		}
 
-		public virtual TCustomResult EnterNumber<TCustomResult>(double number) where TCustomResult : IBlock
+		public virtual TResult EnterNumber<TResult>(double number) where TResult : IBlock
 		{
 			Tag.Clear();
+
 			Tag.SendKeys(number.ToString(CultureInfo.CurrentUICulture));
-			return Session.CurrentBlock<TCustomResult>(ParentBlock.Tag);
+
+			return FindRelated<TResult>();
 		}
 
 		public virtual double? Value

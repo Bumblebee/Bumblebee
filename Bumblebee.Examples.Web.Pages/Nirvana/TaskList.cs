@@ -1,17 +1,15 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 
-using Bumblebee.Extensions;
 using Bumblebee.Implementation;
-using Bumblebee.Setup;
+using Bumblebee.Interfaces;
 
 using OpenQA.Selenium;
 
 namespace Bumblebee.Examples.Web.Pages.Nirvana
 {
-	public class TaskList : SpecificBlock
+	public class TaskList : Block
 	{
-		public TaskList(Session session, IWebElement tag) : base(session, tag)
+		public TaskList(IBlock parent, By @by) : base(parent, @by)
 		{
 		}
 
@@ -22,12 +20,7 @@ namespace Bumblebee.Examples.Web.Pages.Nirvana
 
 		public IEnumerable<TaskRow> TaskRows
 		{
-			get
-			{
-				return GetElement(By.ClassName("tasks"))
-					.GetElements(By.ClassName("task"))
-					.Select(tag => new TaskRow(Session, tag));
-			}
+			get { return new BlockEnumerable<TaskRow>(this, By.CssSelector(".tasks .task")); }
 		}
 	}
 }

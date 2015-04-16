@@ -17,11 +17,7 @@ namespace Bumblebee.Examples.Web.Pages.Reddit
 
 		public IEnumerable<Post> Posts
 		{
-			get
-			{
-				return GetElements(By.CssSelector("#siteTable .link"))
-					.Select(tag => new Post(Session, tag));
-			}
+			get { return new BlockEnumerable<Post>(this, By.CssSelector("#siteTable .link")); }
 		}
 
 		public IEnumerable<Post> RankedPosts
@@ -43,9 +39,7 @@ namespace Bumblebee.Examples.Web.Pages.Reddit
 		{
 			get
 			{
-				return GetElements(By.CssSelector("#sr-bar a"))
-					.Where(a => a.Displayed)
-					.Select(a => new Clickable<RedditPage>(this, a));
+				return new ElementEnumerable<Clickable<RedditPage>>(this, By.CssSelector("#sr-bar a"));
 			}
 		}
 	}

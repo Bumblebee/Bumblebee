@@ -1,27 +1,21 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 
 using Bumblebee.Implementation;
-using Bumblebee.Setup;
+using Bumblebee.Interfaces;
 
 using OpenQA.Selenium;
 
 namespace Bumblebee.Examples.Web.Pages.Nirvana
 {
-	public class MainArea : WebBlock
+	public class MainArea : Block
 	{
-		public MainArea(Session session) : base(session)
+		public MainArea(IBlock parent, By @by) : base(parent, @by)
 		{
-			Tag = GetElement(By.Id("main"));
 		}
 
 		public IEnumerable<TaskList> TaskLists
 		{
-			get
-			{
-				return GetElements(By.ClassName("tasklist"))
-					.Select(x => new TaskList(Session, x));
-			}
+			get { return new BlockEnumerable<TaskList>(this, By.ClassName("tasklist")); }
 		}
 	}
 }

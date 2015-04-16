@@ -1,10 +1,12 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 
 using Bumblebee.Extensions;
 using Bumblebee.Implementation;
 using Bumblebee.Interfaces;
 
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 
 namespace Bumblebee.KendoUI
 {
@@ -24,7 +26,12 @@ namespace Bumblebee.KendoUI
 			ParentBlock.Tag.FindElement(By.XPath("..")).Click();
 
 			// Kendo animation may slow down the showing of the element.
-			this.WaitUntil(x => x.Tag.Displayed);
+			var wait = new DefaultWait<KendoDropDownListOption>(this)
+			{
+				Timeout = TimeSpan.FromMilliseconds(10000)
+			};
+
+			wait.Until(x => x.Tag.Displayed);
 
 			// Internet Explorer has weird behaviour if we don't pause a bit more.
 			this.Pause(100);
@@ -32,7 +39,8 @@ namespace Bumblebee.KendoUI
 
 			// Await animation.
 			this.Pause(100);
-			return Session.CurrentBlock<TResult>(ParentBlock.Tag);
+
+			return FindRelated<TResult>();
 		}
 
 		public override bool Selected
@@ -40,7 +48,7 @@ namespace Bumblebee.KendoUI
 			get
 			{
 				var selectedAttribute = Tag.GetAttribute("aria-selected");
-				return selectedAttribute != null && selectedAttribute == "true";
+				return (selectedAttribute != null) && (selectedAttribute == "true");
 			}
 		}
 

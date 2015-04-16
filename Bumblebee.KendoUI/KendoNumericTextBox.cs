@@ -26,34 +26,37 @@ namespace Bumblebee.KendoUI
 			return Tag.FindElement(By.XPath("..")).FindElements(By.TagName("input")).First();
 		}
 
-		public TCustomResult EnterNumber<TCustomResult>(double number) where TCustomResult : IBlock
+		public TResult EnterNumber<TResult>(double number) where TResult : IBlock
 		{
-			return EnterText<TCustomResult>(number.ToString(CultureInfo.CurrentUICulture));
+			return EnterText<TResult>(number.ToString(CultureInfo.CurrentUICulture));
 		}
 
-		public override TCustomResult EnterText<TCustomResult>(string text)
+		public override TResult EnterText<TResult>(string text)
 		{
-			return AppendText<TCustomResult>(text, true);
+			return AppendText<TResult>(text, true);
 		}
 
-		public override TCustomResult AppendText<TCustomResult>(string text)
+		public override TResult AppendText<TResult>(string text)
 		{
-			return AppendText<TCustomResult>(text, false);
+			return AppendText<TResult>(text, false);
 		}
 
-		private TCustomResult AppendText<TCustomResult>(string text, bool clear) where TCustomResult : IBlock
+		private TResult AppendText<TResult>(string text, bool clear) where TResult : IBlock
 		{
 			var fakeElement = GetFakeElement();
+
 			fakeElement.Click();
+
 			if (clear)
 			{
 				Tag.Clear();
 			}
 
 			Tag.SendKeys(text);
+
 			EnsureValueIsUpdated(fakeElement);
 
-			return Session.CurrentBlock<TCustomResult>(ParentBlock.Tag);
+			return FindRelated<TResult>();
 		}
 
 		private void EnsureValueIsUpdated(IWebElement fakeElement)

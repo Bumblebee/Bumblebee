@@ -8,7 +8,7 @@ using OpenQA.Selenium;
 
 namespace Bumblebee.Implementation
 {
-	public class Table : Element, ITable
+	public class Table : Block, ITable
 	{
 		protected static T Create<T>(IBlock parent, By @by)
 		{
@@ -21,10 +21,6 @@ namespace Bumblebee.Implementation
 		}
 
 		public Table(IBlock parent, By @by) : base(parent, @by)
-		{
-		}
-
-		public Table(IBlock parent, IWebElement tag) : base(parent, tag)
 		{
 		}
 
@@ -43,9 +39,7 @@ namespace Bumblebee.Implementation
 		{
 			get
 			{
-				return GetElement(By.TagName("tbody"))
-					.FindElements(By.TagName("tr"))
-					.Select((x, i) => new TableRow(this, By.CssSelector(String.Format("tbody > tr:nth-child({0})", i + 1))));
+				return new BlockEnumerable<TableRow>(this, By.CssSelector("tbody > tr"));
 			}
 		}
 
@@ -61,21 +55,19 @@ namespace Bumblebee.Implementation
 		}
 
 		public T HeaderAs<T>()
-			where T : Element
+			where T : IBlock
 		{
 			return Create<T>(this, By.TagName("thead"));
 		}
 
 		public IEnumerable<T> RowsAs<T>()
-			where T : Element
+			where T : IBlock
 		{
-			return GetElement(By.TagName("tbody"))
-				.FindElements(By.TagName("tr"))
-				.Select((x, i) => Create<T>(this, By.CssSelector(String.Format("tbody > tr:nth-child({0})", i + 1))));
+			return new BlockEnumerable<T>(this, By.CssSelector("tbody > tr"));
 		}
 
 		public T FooterAs<T>()
-			where T : Element
+			where T : IBlock
 		{
 			return Create<T>(this, By.TagName("tfoot"));
 		}

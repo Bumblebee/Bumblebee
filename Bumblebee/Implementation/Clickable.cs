@@ -15,11 +15,11 @@ namespace Bumblebee.Implementation
 		{
 		}
 
-		public virtual TResult Click<TResult>()
-			where TResult : IBlock
+		public virtual TResult Click<TResult>() where TResult : IBlock
 		{
 			Tag.Click();
-			return Session.CurrentBlock<TResult>(ParentBlock.Tag);
+
+			return FindRelated<TResult>();
 		}
 
 		public virtual TResult DoubleClick<TResult>()
@@ -31,7 +31,7 @@ namespace Bumblebee.Implementation
 				.Build()
 				.Perform();
 
-			return Session.CurrentBlock<TResult>(ParentBlock.Tag);
+			return FindRelated<TResult>();
 		}
 	}
 

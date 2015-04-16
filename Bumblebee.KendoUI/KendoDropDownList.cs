@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 using Bumblebee.Implementation;
@@ -9,21 +8,17 @@ using OpenQA.Selenium;
 
 namespace Bumblebee.KendoUI
 {
-	public class KendoDropDownList : Element, ISelectBox
+	public class KendoDropDownList : Block, ISelectBox
 	{
-		public KendoDropDownList(IBlock parent, By by) : base(parent, by)
-		{
-		}
-
-		public KendoDropDownList(IBlock parent, IWebElement tag) : base(parent, tag)
+		public KendoDropDownList(IBlock parent, By @by) : base(parent, @by)
 		{
 		}
 
 		protected IEnumerable<IWebElement> GetOptions()
 		{
-			// Kendo generates a new <div> everytime the data source of the drop down is refreshed. Therefore, we have to get the last one that exists.		+			return parentList.FindElements(By.TagName("li"));
-            var parentList = Session.Driver.FindElements(By.CssSelector("[id='" + Tag.GetAttribute("id") + "-list" + "']")).Last();
-            return parentList.FindElements(By.TagName("li"));
+			// Kendo generates a new <div> everytime the data source of the drop down is refreshed. Therefore, we have to get the last one that exists.
+			var parentList = Session.Driver.FindElements(By.CssSelector("[id='" + Tag.GetAttribute("id") + "-list" + "']")).Last();
+			return parentList.FindElements(By.TagName("li"));
 		}
 
 		public virtual IEnumerable<IOption> Options
@@ -35,13 +30,7 @@ namespace Bumblebee.KendoUI
 	public class KendoDropDownList<TResult> : KendoDropDownList, ISelectBox<TResult>
 		where TResult : IBlock
 	{
-		public KendoDropDownList(IBlock parent, By by)
-			: base(parent, by)
-		{
-		}
-
-		public KendoDropDownList(IBlock parent, IWebElement tag)
-			: base(parent, tag)
+		public KendoDropDownList(IBlock parent, By @by) : base(parent, @by)
 		{
 		}
 

@@ -1,20 +1,19 @@
 ﻿using Bumblebee.Implementation;
-using Bumblebee.Setup;
+using Bumblebee.Interfaces;
 
 using OpenQA.Selenium;
 
 namespace Bumblebee.Examples.Web.Pages.Nirvana
 {
-	public class SideBar : WebBlock
+	public class SideBar : Block
 	{
-		public SideBar(Session session) : base(session)
+		public SideBar(IBlock parent, By @by) : base(parent, @by)
 		{
-			Tag = GetElement(By.Id("east"));
 		}
 
-		public IWebElement Trash
+		public IClickable Trash
 		{
-			get { return GetElement(By.ClassName("trash")); }
+			get { return new Clickable(this, By.CssSelector("li.trash")); }
 		}
 	}
 }
