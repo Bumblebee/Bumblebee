@@ -40,6 +40,7 @@
     <Compile Include="Extensions\Filtering.cs" />
     <Compile Include="Extensions\Miscellaneous.cs" />
     <Compile Include="Extensions\Randomization.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Extensions\Verification.cs" />
     <Compile Include="Extensions\WebElementConvenience.cs" />
     <Compile Include="Implementation\Monkey.cs" />

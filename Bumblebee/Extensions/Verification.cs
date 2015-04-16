@@ -1,14 +1,22 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using Bumblebee.Exceptions;
 using Bumblebee.Interfaces;
 using OpenQA.Selenium;
 
 namespace Bumblebee.Extensions
 {
+	/// <summary>
+	/// Extension methods for verifying values.
+	/// </summary>
 	public static class Verification
 	{
+		/// <summary>
+		/// The verification message format.
+		/// </summary>
+		public static readonly string VerificationMessage = "Unable to verify.  {0}";
 		/// <summary>
 		/// Verification method that allows for passing a predicate expression to evaluate some condition and a message to display if predicate is not true.
 		/// </summary>
@@ -23,9 +31,11 @@ namespace Bumblebee.Extensions
 		/// <returns></returns>
 		public static T Verify<T>(this T obj, string verification, Predicate<T> predicate)
 		{
+			var message = VerificationMessage.FormatWith(verification ?? string.Empty).Trim();
+
 			if (predicate(obj) == false)
 			{
-				throw new VerificationException("Unable to verify " + verification);
+				throw new VerificationException(message);
 			}
 
 			return obj;
@@ -34,16 +44,17 @@ namespace Bumblebee.Extensions
 		/// <summary>
 		/// Verification method that allows for passing a predicate expression to evaluate some condition.
 		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="obj">The object.</param>
+		/// <param name="predicateExpression">The expression.</param>
+		/// <returns></returns>
 		/// <remarks>
 		/// If the predicate fails, the system will throw a verification exception with the message "Unable to verify custom verification."
 		/// </remarks>
-		/// <typeparam name="T"></typeparam>
-		/// <param name="obj"></param>
-		/// <param name="predicate"></param>
-		/// <returns></returns>
-		public static T Verify<T>(this T obj, Predicate<T> predicate)
+		public static T Verify<T>(this T obj, Expression<Predicate<T>> predicateExpression)
 		{
-			return obj.Verify("custom verification.", predicate);
+			var predicate = predicateExpression.Compile();
+			return obj.Verify("Expected {0}".FormatWith(predicateExpression.Body), predicate);
 		}
 
 		/// <summary>
@@ -65,15 +76,23 @@ namespace Bumblebee.Extensions
 			}
 			catch (Exception ex)
 			{
-				throw new VerificationException(String.Format("Unable to verify.\r\n{0}", ex.Message), ex);
+				throw new VerificationException(String.Format(VerificationMessage, ex.Message), ex);
 			}
 		}
 
+		/// <summary>
+		/// Verifies whether or not the element is selected.
+		/// </summary>
+		/// <typeparam name="TSelectable">The type of the selectable.</typeparam>
+		/// <param name="selectable">The selectable element.</param>
+		/// <param name="selected">if set to <c>true</c> verifies whether element is selected and vice versa.</param>
+		/// <returns></returns>
+		/// <exception cref="VerificationException">Selection verification failed. Expected: {0}, Actual: {1}..FormatWith(selected, selectable.Selected)</exception>
 		public static TSelectable VerifySelected<TSelectable>(this TSelectable selectable, bool selected) where TSelectable : ISelectable
 		{
 			if (selectable.Selected != selected)
 			{
-				throw new VerificationException(String.Format("Selection verification failed. Expected: {0}, Actual: {1}.", selected, selectable.Selected));
+				throw new VerificationException("Selection verification failed. Expected: {0}, Actual: {1}.".FormatWith(selected, selectable.Selected));
 			}
 
 			return selectable;
@@ -83,7 +102,7 @@ namespace Bumblebee.Extensions
 		{
 			if (hasText.Text != text)
 			{
-				throw new VerificationException("Text verification failed. Expected: " + text + ", Actual: " + hasText.Text + ".");
+				throw new VerificationException("Text verification failed. Expected:  {0}, Actual:  {1}.".FormatWith(text, hasText.Text));
 			}
 
 			return hasText;
@@ -93,7 +112,7 @@ namespace Bumblebee.Extensions
 		{
 			if (hasText.Text == text)
 			{
-				throw new VerificationException("Text mismatch verification failed. Unexpected: " + text + ", Actual: " + hasText.Text + ".");
+				throw new VerificationException("Text mismatch verification failed. Unexpected:  {0}, Actual:  {1}.".FormatWith(text, hasText.Text));
 			}
 
 			return hasText;
@@ -104,7 +123,7 @@ namespace Bumblebee.Extensions
 		{
 			if (hasText.Text.Contains(text) == false)
 			{
-				throw new VerificationException(String.Format("Expected \"{0}\" to contain \"{1}\"", hasText.Text, text));
+				throw new VerificationException("Expected \"{0}\" to contain \"{1}\"".FormatWith(hasText.Text, text));
 			}
 
 			return hasText;
@@ -124,7 +143,7 @@ namespace Bumblebee.Extensions
 		{
 			if (block.Tag.GetElements(by).Any() == false)
 			{
-				throw new VerificationException("Couldn't verify presence of " + element + " " + by);
+				throw new VerificationException("Couldn't verify presence of {0} {1}".FormatWith(element, by));
 			}
 
 			return block;
@@ -134,7 +153,7 @@ namespace Bumblebee.Extensions
 		{
 			if (block.Tag.GetElements(by).Any())
 			{
-				throw new VerificationException("Couldn't verify absence of " + element + " " + by);
+				throw new VerificationException("Couldn't verify absence of {0} {1}".FormatWith(element, by));
 			}
 
 			return block;
