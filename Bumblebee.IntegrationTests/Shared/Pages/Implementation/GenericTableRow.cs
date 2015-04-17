@@ -22,7 +22,7 @@ namespace Bumblebee.IntegrationTests.Shared.Pages.Implementation
 		{
 			get
 			{
-				return GetElements(By.TagName("td"))
+				return FindElements(By.TagName("td"))
 					.ElementAt(ItemColumnIndex)
 					.Text;
 			}
@@ -32,7 +32,7 @@ namespace Bumblebee.IntegrationTests.Shared.Pages.Implementation
 		{
 			get
 			{
-				var text = GetElements(By.TagName("td"))
+				var text = FindElements(By.TagName("td"))
 					.ElementAt(QuantityColumnIndex)
 					.Text;
 
@@ -44,7 +44,7 @@ namespace Bumblebee.IntegrationTests.Shared.Pages.Implementation
 		{
 			get
 			{
-				var text = GetElements(By.TagName("td"))
+				var text = FindElements(By.TagName("td"))
 					.ElementAt(PriceColumnIndex)
 					.Text;
 

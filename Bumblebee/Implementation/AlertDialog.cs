@@ -19,6 +19,7 @@ namespace Bumblebee.Implementation
 		public AlertDialog(Session session)
 		{
 			Session = session;
+
 			Alert = WaitForAlert();
 		}
 
@@ -50,6 +51,7 @@ namespace Bumblebee.Implementation
 		public virtual IAlertDialog EnterText(string text)
 		{
 			Alert.SendKeys(text);
+
 			return this;
 		}
 

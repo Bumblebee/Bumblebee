@@ -43,11 +43,12 @@
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Extensions\Verification.cs" />
     <Compile Include="Extensions\WebElementConvenience.cs" />
+    <Compile Include="Factory.cs" />
     <Compile Include="Implementation\BlockEnumerable.cs" />
     <Compile Include="Implementation\ElementEnumerable.cs" />
     <Compile Include="Implementation\Monkey.cs" />
     <Compile Include="Implementation\DateField.cs" />
-    <Compile Include="Implementation\NthItemSpecification.cs" />
+    <Compile Include="Implementation\ByOrdinal.cs" />
     <Compile Include="Implementation\RadioButton.cs" />
     <Compile Include="Implementation\RadioButtons.cs" />
     <Compile Include="Implementation\WebDragAndDropPerformer.cs" />

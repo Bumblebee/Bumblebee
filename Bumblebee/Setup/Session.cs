@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
+using Bumblebee.Implementation;
 using Bumblebee.Interfaces;
 
 using OpenQA.Selenium;
@@ -27,18 +28,7 @@ namespace Bumblebee.Setup
 
 		public TBlock CurrentBlock<TBlock>() where TBlock : IBlock
 		{
-			var type = typeof (TBlock);
-			IList<Type> constructorSignature = new List<Type> { typeof (Session) };
-			IList<object> constructorArgs = new List<object> { this };
-
-			var constructor = type.GetConstructor(constructorSignature.ToArray());
-
-			if (constructor == null)
-			{
-				throw new ArgumentException(String.Format("The result type specified ({0}) is not a valid block. It must have a constructor that takes only a session.", type));
-			}
-
-			return (TBlock) constructor.Invoke(constructorArgs.ToArray());
+			return Factory.CreateBlockFromSession<TBlock>(this);
 		}
 
 		public void End()

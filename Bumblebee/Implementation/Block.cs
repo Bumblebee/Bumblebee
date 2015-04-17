@@ -56,30 +56,30 @@ namespace Bumblebee.Implementation
 			}
 		}
 
-		protected IList<IWebElement> GetElements(By @by)
+		protected IList<IWebElement> FindElements(By @by)
 		{
-			if (Tag == null)
-			{
-				throw new NullReferenceException("You can't call GetElements on a block without first initializing Tag.");
-			}
-
 			return Tag.FindElements(@by);
 		}
 
+		[Obsolete("This method is obsolete. Please use FindElements instead.")]
+		protected IList<IWebElement> GetElements(By @by)
+		{
+			return FindElements(@by);
+		}
+
+		protected IWebElement FindElement(By @by)
+		{
+			return Tag.FindElement(@by);
+		}
+
+		[Obsolete("This method is obsolete. Please use FindElement instead.")]
 		protected IWebElement GetElement(By @by)
 		{
-			if (Tag == null)
-			{
-				throw new NullReferenceException("You can't call GetElement on a block without first initializing Tag.");
-			}
-
-			return Tag.FindElement(@by);
+			return FindElement(@by);
 		}
 
 		protected T FindRelated<T>() where T : IBlock
 		{
-			// TODO: make this search the entire property tree of parent types
-
 			IList<Type> typesAlreadySearched = new List<Type>();
 
 			IBlock ancestor = this;
@@ -88,7 +88,7 @@ namespace Bumblebee.Implementation
 
 			if (type != GetType())
 			{
-				var session = ancestor.Session;
+				var session = Session;
 
 				while ((ancestor != null) && (type.IsInstanceOfType(ancestor) == false))
 				{
@@ -105,7 +105,7 @@ namespace Bumblebee.Implementation
 
 				if (ancestor == null)
 				{
-					ancestor = (T) Activator.CreateInstance(type, session);
+					ancestor = Factory.CreateBlockFromSession<T>(session);
 				}
 			}
 

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -26,7 +25,7 @@ namespace Bumblebee.Implementation
 			var elements = new WebElementEnumerable(_parent, _by);
 
 			return elements
-				.Select((x, i) => (T) Activator.CreateInstance(typeof (T), _parent, new NthItemSpecification(elements, i)))
+				.Select((x, i) => Factory.CreateBlockFromParentAndSpecification<T>(_parent, new ByOrdinal(elements, i)))
 				.GetEnumerator();
 		}
 

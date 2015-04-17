@@ -12,7 +12,7 @@ namespace Bumblebee.Implementation
 {
 	public abstract class Element : IElement
 	{
-		private static readonly Type BlockType = typeof(IBlock);
+		private static readonly Type BlockType = typeof (IBlock);
 
 		public IBlock ParentBlock { get; private set; }
 		public IWebElement Tag { get; private set; }
@@ -34,14 +34,12 @@ namespace Bumblebee.Implementation
 
 		protected T FindRelated<T>() where T : IBlock
 		{
-			// TODO: make this search the entire property tree of parent types
-
 			IList<Type> typesAlreadySearched = new List<Type>();
 
 			var type = typeof (T);
 
 			var ancestor = ParentBlock;
-			var session = ancestor.Session;
+			var session = Session;
 
 			while ((ancestor != null) && (type.IsInstanceOfType(ancestor) == false))
 			{
@@ -58,21 +56,21 @@ namespace Bumblebee.Implementation
 
 			if (ancestor == null)
 			{
-				ancestor = (T)Activator.CreateInstance(type, session);
+				ancestor = Factory.CreateBlockFromSession<T>(session);
 			}
 
-			return (T)ancestor;
+			return (T) ancestor;
 		}
 
 		private static bool SearchDescendantsFor<T>(ref IList<Type> typesAlreadySearched, object current, out T result)
 		{
 			var success = false;
 
-			result = default(T);
+			result = default (T);
 
-			if (typeof(T).IsInstanceOfType(current))
+			if (typeof (T).IsInstanceOfType(current))
 			{
-				result = (T)current;
+				result = (T) current;
 
 				success = true;
 			}

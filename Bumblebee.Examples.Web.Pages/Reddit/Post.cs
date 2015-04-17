@@ -38,7 +38,7 @@ namespace Bumblebee.Examples.Web.Pages.Reddit
 
 		public string Rank
 		{
-			get { return GetElement(By.ClassName("rank")).Text; }
+			get { return FindElement(By.ClassName("rank")).Text; }
 		}
 	}
 }

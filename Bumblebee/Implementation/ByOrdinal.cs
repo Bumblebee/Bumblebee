@@ -5,12 +5,12 @@ using OpenQA.Selenium;
 
 namespace Bumblebee.Implementation
 {
-	public class NthItemSpecification : By
+	internal class ByOrdinal : By
 	{
 		private readonly IEnumerable<IWebElement> _source;
 		private readonly int _ordinal;
 
-		public NthItemSpecification(IEnumerable<IWebElement> source, int ordinal)
+		public ByOrdinal(IEnumerable<IWebElement> source, int ordinal)
 		{
 			_source = source;
 			_ordinal = ordinal;

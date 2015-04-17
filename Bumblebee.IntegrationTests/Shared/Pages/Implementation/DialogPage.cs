@@ -19,7 +19,7 @@ namespace Bumblebee.IntegrationTests.Shared.Pages.Implementation
 
 		public string AlertResult
 		{
-			get { return GetElement(By.Id("AlertResult")).Text; }
+			get { return FindElement(By.Id("AlertResult")).Text; }
 		}
 
 		public IClickable<IAlertDialog> ConfirmButton
@@ -29,7 +29,7 @@ namespace Bumblebee.IntegrationTests.Shared.Pages.Implementation
 
 		public string ConfirmResult
 		{
-			get { return GetElement(By.Id("ConfirmResult")).Text; }
+			get { return FindElement(By.Id("ConfirmResult")).Text; }
 		}
 
 		public IClickable<IAlertDialog> PromptButton
@@ -39,7 +39,7 @@ namespace Bumblebee.IntegrationTests.Shared.Pages.Implementation
 
 		public string PromptResult
 		{
-			get { return GetElement(By.Id("PromptResult")).Text; }
+			get { return FindElement(By.Id("PromptResult")).Text; }
 		}
 	}
 }

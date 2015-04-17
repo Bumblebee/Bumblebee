@@ -55,17 +55,17 @@ namespace Bumblebee.IntegrationTests.Shared.Pages.Implementation
 
 		public string TextBoxChanged
 		{
-			get { return GetElement(By.Id("TextBoxChanged")).Text; }
+			get { return FindElement(By.Id("TextBoxChanged")).Text; }
 		}
 
 		public string DropDownClicked
 		{
-			get { return GetElement(By.Id("DropDownClicked")).Text; }
+			get { return FindElement(By.Id("DropDownClicked")).Text; }
 		}
 
 		public string ButtonClicked
 		{
-			get { return GetElement(By.Id("ButtonClicked")).Text; }
+			get { return FindElement(By.Id("ButtonClicked")).Text; }
 		}
 	}
 }
