@@ -31,6 +31,11 @@ namespace Bumblebee.IntegrationTests.Shared.Hosting
 			_host.Stop();
 		}
 
+		protected string GetUrl(string page)
+		{
+			return String.Format("{0}{1}{2}", BaseUrl, "/Content/", page);
+		}
+
 		protected string BaseUrl { get; private set; }
 	}
 }

@@ -2,21 +2,17 @@
 using System.Collections.Concurrent;
 using System.Linq;
 using System.Threading.Tasks;
-
 using Bumblebee.Extensions;
 using Bumblebee.IntegrationTests.Shared.Pages;
 using Bumblebee.IntegrationTests.Shared.Sessions;
 using Bumblebee.Setup;
 using Bumblebee.Setup.DriverEnvironments;
-
 using FluentAssertions;
-
 using NUnit.Framework;
-
 using OpenQA.Selenium.IE;
 using OpenQA.Selenium.PhantomJS;
 
-namespace Bumblebee.IntegrationTests.Bumblebee.Setup
+namespace Bumblebee.IntegrationTests.Setup
 {
 	//ReSharper disable InconsistentNaming
 
@@ -32,11 +28,42 @@ namespace Bumblebee.IntegrationTests.Bumblebee.Setup
 		}
 
 		[Test]
-		public void given_driver_environment_when_loading_with_driver_should_return_session_with_correct_driver()
+		public void when_loading_with_driver_should_return_session_with_correct_driver_with_default_settings()
+		{
+			Threaded<Session>
+				.With(new PhantomJS())
+				.Verify(x => x.Driver is PhantomJSDriver)
+				.VerifyThat(x => x.Settings.ShouldBeEquivalentTo(new Settings()))
+				.End();
+		}
+
+		[Test]
+		public void when_loading_with_generic_driver_should_return_session_with_correct_driver_with_default_settings()
 		{
 			Threaded<Session>
 				.With<PhantomJS>()
 				.Verify(x => x.Driver is PhantomJSDriver)
+				.VerifyThat(x => x.Settings.ShouldBeEquivalentTo(new Settings()))
+				.End();
+		}
+
+		[Test]
+		public void when_loading_with_driver_and_custom_settings_should_return_session_with_custom_settings()
+		{
+			var customSettings = new Settings { ScreenCapturePath = @"C:\Temp" };
+			Threaded<Session>
+				.With(new PhantomJS(), customSettings)
+				.VerifyThat(x => x.Settings.Should().Be(customSettings))
+				.End();
+		}
+
+		[Test]
+		public void when_loading_with_generic_driver_and_custom_settings_should_return_session_with_custom_settings()
+		{
+			var customSettings = new Settings {ScreenCapturePath = @"C:\Temp"};
+			Threaded<Session>
+				.With<PhantomJS>(customSettings)
+				.VerifyThat(x => x.Settings.Should().Be(customSettings))
 				.End();
 		}
 
@@ -144,7 +171,7 @@ namespace Bumblebee.IntegrationTests.Bumblebee.Setup
 			Action action = () => Threaded<DerivedSessionWithWrongArgs>
 				.With<PhantomJS>();
 
-			var expectedMessage = String.Format("The result type specified ({0}) is not a valid session.  It must have a constructor that takes only an IDriverEnvironment.", typeof (DerivedSessionWithWrongArgs).FullName);
+			var expectedMessage = String.Format(Threaded<DerivedSessionWithWrongArgs>.InvalidSessionTypeFormat, typeof(DerivedSessionWithWrongArgs));
 
 			action
 				.ShouldThrow<ArgumentException>()

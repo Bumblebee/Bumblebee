@@ -1,27 +1,25 @@
-using System;
-
+﻿using System;
 using Bumblebee.Extensions;
 using Bumblebee.IntegrationTests.Shared.Hosting;
 using Bumblebee.IntegrationTests.Shared.Pages.Implementation;
 using Bumblebee.Setup;
 using Bumblebee.Setup.DriverEnvironments;
-
 using FluentAssertions;
-
 using NUnit.Framework;
 
-namespace Bumblebee.IntegrationTests.Bumblebee.Implementation
+namespace Bumblebee.IntegrationTests.Implementation
 {
 	// ReSharper disable InconsistentNaming
+
 	[TestFixture]
-	public class Given_numeric_field : HostTestFixture
+	public class Given_text_field : HostTestFixture
 	{
 		[TestFixtureSetUp]
 		public void Init()
 		{
 			Threaded<Session>
 				.With<PhantomJS>()
-				.NavigateTo<NumericFieldPage>(String.Format("{0}/Content/NumericField.html", BaseUrl));
+				.NavigateTo<DateFieldPage>(String.Format("{0}/Content/TextField.html", BaseUrl));
 		}
 
 		[TestFixtureTearDown]
@@ -32,13 +30,14 @@ namespace Bumblebee.IntegrationTests.Bumblebee.Implementation
 		}
 
 		[Test]
-		public void When_entering_number_Then_text_and_value_work()
+		public void When_entering_text_Then_text_should_work()
 		{
+			const string expectedText = "This is the text.";
+
 			Threaded<Session>
-				.CurrentBlock<NumericFieldPage>()
-				.Number.EnterNumber(5)
-				.VerifyThat(x => x.Number.Value.Should().Be(5))
-				.VerifyThat(x => x.Number.Text.Should().Be("5"));
+				.CurrentBlock<TextFieldPage>()
+				.Text.EnterText(expectedText)
+				.VerifyThat(x => x.Text.Text.Should().Be(expectedText));
 		}
 	}
 }

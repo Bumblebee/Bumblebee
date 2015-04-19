@@ -1,28 +1,25 @@
 ﻿using System;
-
 using Bumblebee.Extensions;
 using Bumblebee.IntegrationTests.Shared.Hosting;
 using Bumblebee.IntegrationTests.Shared.Pages.Implementation;
 using Bumblebee.Setup;
 using Bumblebee.Setup.DriverEnvironments;
-
 using FluentAssertions;
-
 using NUnit.Framework;
 
-namespace Bumblebee.IntegrationTests.Bumblebee.Implementation
+namespace Bumblebee.IntegrationTests.Implementation
 {
 	// ReSharper disable InconsistentNaming
 
 	[TestFixture]
-	public class Given_text_field : HostTestFixture
+	public class Given_date_field : HostTestFixture
 	{
 		[TestFixtureSetUp]
 		public void Init()
 		{
 			Threaded<Session>
 				.With<PhantomJS>()
-				.NavigateTo<DateFieldPage>(String.Format("{0}/Content/TextField.html", BaseUrl));
+				.NavigateTo<DateFieldPage>(String.Format("{0}/Content/DateField.html", BaseUrl));
 		}
 
 		[TestFixtureTearDown]
@@ -33,14 +30,15 @@ namespace Bumblebee.IntegrationTests.Bumblebee.Implementation
 		}
 
 		[Test]
-		public void When_entering_text_Then_text_should_work()
+		public void When_entering_date_Then_text_and_value_work()
 		{
-			const string expectedText = "This is the text.";
-
 			Threaded<Session>
-				.CurrentBlock<TextFieldPage>()
-				.Text.EnterText(expectedText)
-				.VerifyThat(x => x.Text.Text.Should().Be(expectedText));
+				.CurrentBlock<DateFieldPage>()
+				.Date.EnterDate(DateTime.Today)
+				.VerifyThat(x => x.Date.Value
+					.Should().Be(DateTime.Today))
+				.VerifyThat(x => x.Date.Text
+					.Should().Be(DateTime.Today.ToString("yyyy-MM-dd")));
 		}
 	}
 }

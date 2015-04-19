@@ -1,21 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
 using Bumblebee.Setup;
 using Bumblebee.Setup.DriverEnvironments;
-
 using FluentAssertions;
-
 using NUnit.Framework;
-
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
 using OpenQA.Selenium.PhantomJS;
 
-namespace Bumblebee.IntegrationTests.Bumblebee.Setup
+namespace Bumblebee.IntegrationTests.Setup
 {
 	//ReSharper disable InconsistentNaming
 

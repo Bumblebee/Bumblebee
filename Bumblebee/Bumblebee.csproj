@@ -38,6 +38,7 @@
     <Compile Include="Extensions\BlockConvenience.cs" />
     <Compile Include="Extensions\Debugging.cs" />
     <Compile Include="Extensions\Filtering.cs" />
+    <Compile Include="Extensions\MethodBaseExtensions.cs" />
     <Compile Include="Extensions\Miscellaneous.cs" />
     <Compile Include="Extensions\Randomization.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
@@ -82,6 +83,8 @@
     <Compile Include="Interfaces\ISpecificBlock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Setup\DriverEnvironments\InternetExplorer.cs" />
+    <Compile Include="Extensions\ObjectExtensions.cs" />
+    <Compile Include="Setup\ISettings.cs" />
     <Compile Include="Setup\Session.cs" />
     <Compile Include="Implementation\Checkbox.cs" />
     <Compile Include="Implementation\Clickable.cs" />
@@ -97,10 +100,12 @@
     <Compile Include="Interfaces\ISelectable.cs" />
     <Compile Include="Implementation\SpecificBlock.cs" />
     <Compile Include="Exceptions\VerificationException.cs" />
+    <Compile Include="Setup\Settings.cs" />
     <Compile Include="Setup\ThreadedSession.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Drawing" />
     <Reference Include="WebDriver, Version=2.44.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Selenium.WebDriver.2.44.0\lib\net40\WebDriver.dll</HintPath>

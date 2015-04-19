@@ -7,7 +7,7 @@ using NUnit.Framework;
 
 using OpenQA.Selenium.IE;
 
-namespace Bumblebee.IntegrationTests.Bumblebee.Setup
+namespace Bumblebee.IntegrationTests.Setup.SessionTests
 {
 	// ReSharper disable InconsistentNaming
 

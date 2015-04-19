@@ -1,17 +1,14 @@
 using System;
 using System.Linq;
-
 using Bumblebee.Extensions;
 using Bumblebee.IntegrationTests.Shared.Hosting;
 using Bumblebee.IntegrationTests.Shared.Pages.Implementation;
 using Bumblebee.Setup;
 using Bumblebee.Setup.DriverEnvironments;
-
 using FluentAssertions;
-
 using NUnit.Framework;
 
-namespace Bumblebee.IntegrationTests.Bumblebee.Implementation
+namespace Bumblebee.IntegrationTests.Implementation
 {
 	// ReSharper disable InconsistentNaming
 

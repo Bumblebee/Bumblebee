@@ -4,9 +4,10 @@ using Bumblebee.Extensions;
 using Bumblebee.Interfaces;
 using FluentAssertions;
 using NSubstitute;
+
 using NUnit.Framework;
 
-namespace Bumblebee.IntegrationTests.Bumblebee.Extensions
+namespace Bumblebee.IntegrationTests.Extensions
 {
 	// ReSharper disable InconsistentNaming
 

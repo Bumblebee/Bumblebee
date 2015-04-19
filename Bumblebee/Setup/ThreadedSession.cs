@@ -15,6 +15,7 @@ namespace Bumblebee.Setup
 	/// <typeparam name="TSession"></typeparam>
 	public class Threaded<TSession> where TSession : Session
 	{
+		public const string InvalidSessionTypeFormat = "The instance type specified ({0}) is not a valid session.  It must have a constructor that takes an IDriverEnvironment and/or ISettings.";
 		private static readonly ThreadLocal<TSession> _session = new ThreadLocal<TSession>();
 
 		private static TSession CurrentSession
@@ -33,14 +34,17 @@ namespace Bumblebee.Setup
 			return With(new TDriverEnvironment());
 		}
 
+		public static TSession With<TDriverEnvironment>(ISettings settings) where TDriverEnvironment : IDriverEnvironment, new()
+		{
+			return With(new TDriverEnvironment(), settings);
+		}
+
 		/// <summary>
 		/// Allows the creation of a Session-based type using an instance of a type of IDriverEnvironment.
 		/// </summary>
-		/// <typeparam name="TDriverEnvironment"></typeparam>
 		/// <param name="environment"></param>
 		/// <returns></returns>
-		public static TSession With<TDriverEnvironment>(TDriverEnvironment environment)
-			where TDriverEnvironment : IDriverEnvironment
+		public static TSession With(IDriverEnvironment environment)
 		{
 			if (CurrentSession != null)
 			{
@@ -48,20 +52,35 @@ namespace Bumblebee.Setup
 				CurrentSession = null;
 			}
 
-			var type = typeof (TSession);
-			IList<Type> constructorSignature = new List<Type> { typeof (IDriverEnvironment) };
-			IList<object> constructorArgs = new List<object> { environment };
+			CurrentSession = GetInstanceOf<TSession>(environment);
+			return CurrentSession;
+		}
 
-			var constructor = type.GetConstructor(constructorSignature.ToArray());
-
-			if (constructor == null)
+		public static TSession With(IDriverEnvironment environment, ISettings settings)
+		{
+			if (CurrentSession != null)
 			{
-				throw new ArgumentException(String.Format("The result type specified ({0}) is not a valid session.  " +
-											"It must have a constructor that takes only an IDriverEnvironment.", type));
+				CurrentSession.End();
+				CurrentSession = null;
 			}
 
-			CurrentSession = constructor.Invoke(constructorArgs.ToArray()) as TSession;
+			CurrentSession = GetInstanceOf<TSession>(environment, settings);
 			return CurrentSession;
+		}
+
+		private static T GetInstanceOf<T>(params object[] constructorArgs)
+			where T:Session
+		{
+			var type = typeof(T);
+
+			IList<Type> constructorSignature = constructorArgs.Select(arg => arg.GetType()).ToList();
+			
+			var constructor = type.GetConstructor(constructorSignature.ToArray());
+
+			if (constructor != null) return constructor.Invoke(constructorArgs.ToArray()) as T;
+
+			var message = String.Format(InvalidSessionTypeFormat, type);
+			throw new ArgumentException(message);
 		}
 
 		public static TBlock CurrentBlock<TBlock>(IWebElement tag = null) where TBlock : IBlock

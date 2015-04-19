@@ -1,28 +1,24 @@
-﻿using System;
-
+using System;
 using Bumblebee.Extensions;
 using Bumblebee.IntegrationTests.Shared.Hosting;
 using Bumblebee.IntegrationTests.Shared.Pages.Implementation;
 using Bumblebee.Setup;
 using Bumblebee.Setup.DriverEnvironments;
-
 using FluentAssertions;
-
 using NUnit.Framework;
 
-namespace Bumblebee.IntegrationTests.Bumblebee.Implementation
+namespace Bumblebee.IntegrationTests.Implementation
 {
 	// ReSharper disable InconsistentNaming
-
 	[TestFixture]
-	public class Given_date_field : HostTestFixture
+	public class Given_numeric_field : HostTestFixture
 	{
 		[TestFixtureSetUp]
 		public void Init()
 		{
 			Threaded<Session>
 				.With<PhantomJS>()
-				.NavigateTo<DateFieldPage>(String.Format("{0}/Content/DateField.html", BaseUrl));
+				.NavigateTo<NumericFieldPage>(String.Format("{0}/Content/NumericField.html", BaseUrl));
 		}
 
 		[TestFixtureTearDown]
@@ -33,15 +29,13 @@ namespace Bumblebee.IntegrationTests.Bumblebee.Implementation
 		}
 
 		[Test]
-		public void When_entering_date_Then_text_and_value_work()
+		public void When_entering_number_Then_text_and_value_work()
 		{
 			Threaded<Session>
-				.CurrentBlock<DateFieldPage>()
-				.Date.EnterDate(DateTime.Today)
-				.VerifyThat(x => x.Date.Value
-					.Should().Be(DateTime.Today))
-				.VerifyThat(x => x.Date.Text
-					.Should().Be(DateTime.Today.ToString("yyyy-MM-dd")));
+				.CurrentBlock<NumericFieldPage>()
+				.Number.EnterNumber(5)
+				.VerifyThat(x => x.Number.Value.Should().Be(5))
+				.VerifyThat(x => x.Number.Text.Should().Be("5"));
 		}
 	}
 }

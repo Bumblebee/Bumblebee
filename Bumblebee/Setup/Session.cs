@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
-
+using Bumblebee.Extensions;
 using Bumblebee.Interfaces;
 
 using OpenQA.Selenium;
@@ -10,12 +12,20 @@ namespace Bumblebee.Setup
 {
 	public class Session
 	{
+		public readonly ISettings Settings;
+
 		public IWebDriver Driver { get; private set; }
 
 		public IMonkey Monkey { get; protected set; }
 
 		public Session(IDriverEnvironment environment)
+			: this(environment, new Settings())
 		{
+		}
+
+		public Session(IDriverEnvironment environment, ISettings settings)
+		{
+			Settings = settings;
 			Driver = environment.CreateWebDriver();
 		}
 
@@ -58,6 +68,19 @@ namespace Bumblebee.Setup
 				Driver = null;
 			}
 		}
+
+		public Session CaptureScreen()
+		{
+			var path = Path.ChangeExtension(Path.Combine(Settings.ScreenCapturePath, this.GetParentMethodName()), "png");
+			return CaptureScreen(path);
+		}
+
+		public Session CaptureScreen(string path)
+		{
+			var screenshot = ((ITakesScreenshot) Driver).GetScreenshot();
+			screenshot.SaveAsFile(path, ImageFormat.Png);
+			return this;
+		}
 	}
 
 	public class Session<TDriverEnvironment> : Session
@@ -66,6 +89,12 @@ namespace Bumblebee.Setup
 		public Session()
 			: base(new TDriverEnvironment())
 		{
+		}
+
+		public Session(ISettings settings)
+			: base(new TDriverEnvironment(), settings)
+		{
+			
 		}
 	}
 }
