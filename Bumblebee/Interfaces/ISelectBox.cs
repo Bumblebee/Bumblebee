@@ -2,12 +2,12 @@
 
 namespace Bumblebee.Interfaces
 {
-	public interface ISelectBox : IElement
+	public interface ISelectBox : IBlock
 	{
 		IEnumerable<IOption> Options { get; }
 	}
 
-	public interface ISelectBox<out TResult> : IGenericElement<TResult>
+	public interface ISelectBox<out TResult> : ISelectBox
 		where TResult : IBlock
 	{
 		IEnumerable<IOption<TResult>> Options { get; }

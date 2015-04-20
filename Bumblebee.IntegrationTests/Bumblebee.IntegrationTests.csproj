@@ -69,20 +69,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bumblebee\Extensions\VerificationTests.cs" />
     <Compile Include="Bumblebee\Implementation\Given_checkbox.cs" />
+    <Compile Include="Bumblebee\Implementation\Given_complex_table.cs" />
+    <Compile Include="Bumblebee\Implementation\Given_date_field.cs" />
     <Compile Include="Bumblebee\Implementation\Given_dialogs.cs" />
     <Compile Include="Bumblebee\Implementation\Given_double_clickable.cs" />
+    <Compile Include="Bumblebee\Implementation\Given_generic_table.cs" />
     <Compile Include="Bumblebee\Implementation\Given_list_of_complex_blocks.cs" />
+    <Compile Include="Bumblebee\Implementation\Given_numeric_field.cs" />
     <Compile Include="Bumblebee\Implementation\Given_radio_buttons.cs" />
     <Compile Include="Bumblebee\Implementation\Given_select_box_with_ability_to_select_multiple_values.cs" />
-    <Compile Include="Bumblebee\Implementation\Given_date_field.cs" />
-    <Compile Include="Bumblebee\Implementation\Given_numeric_field.cs" />
-    <Compile Include="Bumblebee\Implementation\Given_generic_table.cs" />
-    <Compile Include="Bumblebee\Implementation\Given_complex_table.cs" />
     <Compile Include="Bumblebee\Implementation\Given_table.cs" />
     <Compile Include="Bumblebee\Implementation\Given_text_field.cs" />
     <Compile Include="Bumblebee\Setup\DriverEnvironmentTests.cs" />
     <Compile Include="Bumblebee\Setup\SessionTests.cs" />
+    <Compile Include="Bumblebee\Setup\ThreadedSessionTests.cs" />
     <Compile Include="Shared\Pages\Implementation\CheckboxPage.cs" />
     <Compile Include="Shared\Pages\Implementation\ComplexTableRow.cs" />
     <Compile Include="Shared\Pages\Implementation\DateFieldPage.cs" />
@@ -99,12 +101,10 @@
     <Compile Include="Shared\Hosting\IHost.cs" />
     <Compile Include="Shared\Pages\Implementation\ComplexTablePage.cs" />
     <Compile Include="Shared\Pages\Implementation\TextFieldPage.cs" />
-    <Compile Include="Bumblebee\Extensions\VerificationTests.cs" />
     <Compile Include="Shared\Sessions\DerivedSessionWithWrongArgs.cs" />
     <Compile Include="Shared\Sessions\DerivedSession.cs" />
     <Compile Include="Shared\Pages\LoggedOutPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Bumblebee\Setup\ThreadedSessionTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Bumblebee\Bumblebee.csproj">
@@ -116,15 +116,15 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\packages\PhantomJS.1.9.8\tools\phantomjs\phantomjs.exe">
+    <Content Include="..\packages\PhantomJS.2.0.0\tools\phantomjs\phantomjs.exe">
       <Link>phantomjs.exe</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\packages\Selenium.WebDriver.IEDriver.2.44.0.0\content\IEDriverServer.exe">
+    <Content Include="..\packages\Selenium.WebDriver.IEDriver.2.45.0.1\content\IEDriverServer.exe">
       <Link>IEDriverServer.exe</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\packages\WebDriver.ChromeDriver.win32.2.13.0.0\content\chromedriver.exe">
+    <Content Include="..\packages\WebDriver.ChromeDriver.win32.2.14.0.0\content\chromedriver.exe">
       <Link>chromedriver.exe</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -161,10 +161,10 @@
     <Content Include="Content\TextField.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Compile Include="Shared\Pages\Implementation\TablePage.cs" />
     <Content Include="phantomjs-license.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Compile Include="Shared\Pages\Implementation\TablePage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
@@ -173,7 +173,7 @@
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <PropertyGroup Label="DownloadIEDriverBuildTask">
     <CoreBuildDependsOn>DownloadIEDriver;$(CoreBuildDependsOn)</CoreBuildDependsOn>
-    <IEDriverInstallPath>$(SolutionDir)packages\Selenium.WebDriver.IEDriver.2.44.0.0\</IEDriverInstallPath>
+    <IEDriverInstallPath>$(SolutionDir)packages\Selenium.WebDriver.IEDriver.2.45.0.1\</IEDriverInstallPath>
     <IEDriverToolsPath>$(IEDriverInstallPath)tools\</IEDriverToolsPath>
     <IEDriverInitScriptPath>$(IEDriverToolsPath)Init.ps1</IEDriverInitScriptPath>
     <IEDriverPath>$(IEDriverInstallPath)content\IEDriverServer.exe</IEDriverPath>

@@ -45,6 +45,7 @@
     <Compile Include="Extensions\WebElementConvenience.cs" />
     <Compile Include="Factory.cs" />
     <Compile Include="Implementation\BlockEnumerable.cs" />
+    <Compile Include="Implementation\Copy.cs" />
     <Compile Include="Implementation\ElementEnumerable.cs" />
     <Compile Include="Implementation\Monkey.cs" />
     <Compile Include="Implementation\DateField.cs" />
@@ -64,7 +65,6 @@
     <Compile Include="Implementation\Element.cs" />
     <Compile Include="Extensions\JavaScriptExecution.cs" />
     <Compile Include="Interfaces\IAlertDialog.cs" />
-    <Compile Include="Implementation\Copy.cs" />
     <Compile Include="Interfaces\ICopy.cs" />
     <Compile Include="Interfaces\IDateField.cs" />
     <Compile Include="Interfaces\IDoubleClickable.cs" />
