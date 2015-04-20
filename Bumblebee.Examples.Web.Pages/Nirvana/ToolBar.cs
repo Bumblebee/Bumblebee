@@ -10,7 +10,7 @@ namespace Bumblebee.Examples.Web.Pages.Nirvana
 	{
 		public ToolBar(Session session) : base(session)
 		{
-			Tag = GetElement(By.Id("north"));
+			Tag = FindElement(By.Id("north"));
 		}
 
 		public ITextField<ToolBar> SearchField

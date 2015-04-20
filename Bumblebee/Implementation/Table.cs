@@ -32,7 +32,7 @@ namespace Bumblebee.Implementation
 		{
 			get
 			{
-				return GetElement(By.TagName("thead"))
+				return FindElement(By.TagName("thead"))
 					.FindElement(By.TagName("tr"))
 					.FindElements(By.TagName("th"))
 					.Select(x => x.Text);
@@ -43,7 +43,7 @@ namespace Bumblebee.Implementation
 		{
 			get
 			{
-				return GetElement(By.TagName("tbody"))
+				return FindElement(By.TagName("tbody"))
 					.FindElements(By.TagName("tr"))
 					.Select((x, i) => new TableRow(this, By.CssSelector(String.Format("tbody > tr:nth-child({0})", i + 1))));
 			}
@@ -53,7 +53,7 @@ namespace Bumblebee.Implementation
 		{
 			get
 			{
-				return GetElement(By.TagName("tfoot"))
+				return FindElement(By.TagName("tfoot"))
 					.FindElement(By.TagName("tr"))
 					.FindElements(By.TagName("td"))
 					.Select(x => x.Text);
@@ -69,7 +69,7 @@ namespace Bumblebee.Implementation
 		public IEnumerable<T> RowsAs<T>()
 			where T : Element
 		{
-			return GetElement(By.TagName("tbody"))
+			return FindElement(By.TagName("tbody"))
 				.FindElements(By.TagName("tr"))
 				.Select((x, i) => Create<T>(this, By.CssSelector(String.Format("tbody > tr:nth-child({0})", i + 1))));
 		}

@@ -1,5 +1,4 @@
-﻿using Bumblebee.Extensions;
-using Bumblebee.Interfaces;
+﻿using Bumblebee.Interfaces;
 
 using OpenQA.Selenium;
 
@@ -9,7 +8,7 @@ namespace Bumblebee.Implementation
 	{
 		public IBlock ParentBlock { get; private set; }
 
-		protected Element(IBlock parent, By by) : base(parent.Session, parent.Tag.GetElement(by))
+		protected Element(IBlock parent, By by) : base(parent.Session, parent.Tag.FindElement(by))
 		{
 			ParentBlock = parent;
 		}

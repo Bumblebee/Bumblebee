@@ -6,6 +6,7 @@ namespace Bumblebee.Extensions
 {
 	public static class BlockConvenience
 	{
+		[Obsolete("This method is misleading in how it works. It will be removed in a future version.")]
 		public static TScope ScopeTo<TScope>(this IBlock block)
 			where TScope : IBlock
 		{

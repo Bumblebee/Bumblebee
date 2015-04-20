@@ -19,7 +19,7 @@ namespace Bumblebee.Examples.Web.Pages.Reddit
 		{
 			get
 			{
-				return GetElements(By.CssSelector("#siteTable .link"))
+				return FindElements(By.CssSelector("#siteTable .link"))
 					.Select(tag => new Post(Session, tag));
 			}
 		}
@@ -43,7 +43,7 @@ namespace Bumblebee.Examples.Web.Pages.Reddit
 		{
 			get
 			{
-				return GetElements(By.CssSelector("#sr-bar a"))
+				return FindElements(By.CssSelector("#sr-bar a"))
 					.Where(a => a.Displayed)
 					.Select(a => new Clickable<RedditPage>(this, a));
 			}

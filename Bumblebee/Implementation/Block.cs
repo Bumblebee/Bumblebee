@@ -25,6 +25,17 @@ namespace Bumblebee.Implementation
 			}
 		}
 
+		public IList<IWebElement> FindElements(By by)
+		{
+			if (Tag == null)
+			{
+				throw new NullReferenceException("You can't call GetElements on a block without first initializing Tag.");
+			}
+
+			return Tag.FindElements(by);
+		}
+
+		[Obsolete("This method is obsolete. It will be removed in a future version. Please use FindElements instead.", true)]
 		public IList<IWebElement> GetElements(By by)
 		{
 			if (Tag == null)
@@ -35,6 +46,17 @@ namespace Bumblebee.Implementation
 			return Tag.FindElements(by);
 		}
 
+		public IWebElement FindElement(By by)
+		{
+			if (Tag == null)
+			{
+				throw new NullReferenceException("You can't call GetElement on a block without first initializing Tag.");
+			}
+
+			return Tag.FindElement(by);
+		}
+
+		[Obsolete("This method is obsolete. It will be removed in a future version. Please use FindElement instead.", true)]
 		public IWebElement GetElement(By by)
 		{
 			if (Tag == null)
@@ -42,7 +64,7 @@ namespace Bumblebee.Implementation
 				throw new NullReferenceException("You can't call GetElement on a block without first initializing Tag.");
 			}
 
-			return Tag.GetElement(by);
+			return Tag.FindElement(by);
 		}
 
 		public virtual IPerformsDragAndDrop GetDragAndDropPerformer()

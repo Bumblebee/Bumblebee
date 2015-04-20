@@ -12,14 +12,14 @@ namespace Bumblebee.Examples.Web.Pages.Nirvana
 	{
 		public MainArea(Session session) : base(session)
 		{
-			Tag = GetElement(By.Id("main"));
+			Tag = FindElement(By.Id("main"));
 		}
 
 		public IEnumerable<TaskList> TaskLists
 		{
 			get
 			{
-				return GetElements(By.ClassName("tasklist"))
+				return FindElements(By.ClassName("tasklist"))
 					.Select(x => new TaskList(Session, x));
 			}
 		}

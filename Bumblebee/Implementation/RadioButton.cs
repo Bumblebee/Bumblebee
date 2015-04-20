@@ -17,7 +17,7 @@ namespace Bumblebee.Implementation
 
 		public override string Text
 		{
-			get { return ParentBlock.Tag.GetElement(By.CssSelector("label[for=\"" + Tag.GetID() + "\"]")).Text; }
+			get { return ParentBlock.Tag.FindElement(By.CssSelector("label[for=\"" + Tag.GetID() + "\"]")).Text; }
 		}
 	}
 }

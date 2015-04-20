@@ -19,11 +19,12 @@ namespace Bumblebee.Implementation
 
 		public virtual IEnumerable<IOption> Options
 		{
-			get { return GetElements(By.TagName("option")).Select(opt => new Option(this, opt)); }
+			get { return FindElements(By.TagName("option")).Select(opt => new Option(this, opt)); }
 		}
 	}
 
-	public class SelectBox<TResult> : Element, ISelectBox<TResult> where TResult : IBlock
+	public class SelectBox<TResult> : SelectBox, ISelectBox<TResult>
+		where TResult : IBlock
 	{
 		public SelectBox(IBlock parent, By by) : base(parent, by)
 		{
@@ -35,7 +36,7 @@ namespace Bumblebee.Implementation
 
 		public virtual IEnumerable<IOption<TResult>> Options
 		{
-			get { return GetElements(By.TagName("option")).Select(opt => new Option<TResult>(ParentBlock, opt)); }
+			get { return FindElements(By.TagName("option")).Select(opt => new Option<TResult>(ParentBlock, opt)); }
 		}
 	}
 }

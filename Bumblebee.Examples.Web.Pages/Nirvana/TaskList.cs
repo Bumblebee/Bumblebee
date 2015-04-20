@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-using Bumblebee.Extensions;
 using Bumblebee.Implementation;
 using Bumblebee.Setup;
 
@@ -17,15 +16,15 @@ namespace Bumblebee.Examples.Web.Pages.Nirvana
 
 		public string Name
 		{
-			get { return GetElement(By.ClassName("name")).Text; }
+			get { return FindElement(By.ClassName("name")).Text; }
 		}
 
 		public IEnumerable<TaskRow> TaskRows
 		{
 			get
 			{
-				return GetElement(By.ClassName("tasks"))
-					.GetElements(By.ClassName("task"))
+				return FindElement(By.ClassName("tasks"))
+					.FindElements(By.ClassName("task"))
 					.Select(tag => new TaskRow(Session, tag));
 			}
 		}

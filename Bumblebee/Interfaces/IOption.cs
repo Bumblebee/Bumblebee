@@ -4,7 +4,7 @@ namespace Bumblebee.Interfaces
 	{
 	}
 
-	public interface IOption<out TResult> : IClickable<TResult>, ISelectable
+	public interface IOption<out TResult> : IOption, IClickable<TResult>
 		where TResult : IBlock
 	{
 	}

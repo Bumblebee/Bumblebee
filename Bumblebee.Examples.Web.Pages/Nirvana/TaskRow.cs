@@ -15,7 +15,7 @@ namespace Bumblebee.Examples.Web.Pages.Nirvana
 
 		public string Name
 		{
-			get { return GetElement(By.CssSelector("span.name.edittask")).Text; }
+			get { return FindElement(By.CssSelector("span.name.edittask")).Text; }
 		}
 
 		public IClickable<TaskRow> Complete
@@ -25,7 +25,7 @@ namespace Bumblebee.Examples.Web.Pages.Nirvana
 
 		public void Delete()
 		{
-			var drag = GetElement(By.CssSelector("span.i.drag.project"));
+			var drag = FindElement(By.CssSelector("span.i.drag.project"));
 			var drop = new SideBar(Session).Trash;
 
 			GetDragAndDropPerformer()

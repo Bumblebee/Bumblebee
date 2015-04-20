@@ -1,5 +1,4 @@
-﻿using Bumblebee.Extensions;
-using Bumblebee.Implementation;
+﻿using Bumblebee.Implementation;
 using Bumblebee.Setup;
 
 using OpenQA.Selenium;
@@ -11,8 +10,8 @@ namespace Bumblebee.Examples.Web.Pages.Nirvana
 		public LoggedInPage(Session session)
 			: base(session)
 		{
-			Wait.Until(driver => driver.GetElement(By.Id("north")));
-			Tag = Session.Driver.GetElement(By.TagName("body"));
+			Wait.Until(driver => driver.FindElement(By.Id("north")));
+			Tag = Session.Driver.FindElement(By.TagName("body"));
 		}
 
 		public ToolBar ToolBar
