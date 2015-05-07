@@ -14,6 +14,13 @@ namespace Bumblebee.Implementation
 		{
 		}
 
+		public TResult Press<TResult>(Key key) where TResult : IBlock
+		{
+			Tag.SendKeys(key.Value);
+
+			return Session.CurrentBlock<TResult>(ParentBlock.Tag);
+		}
+
 		public virtual TCustomResult EnterText<TCustomResult>(string text) where TCustomResult : IBlock
 		{
 			Tag.Clear();
@@ -21,11 +28,11 @@ namespace Bumblebee.Implementation
 			return AppendText<TCustomResult>(text);
 		}
 
-		public virtual TCustomResult AppendText<TCustomResult>(string text) where TCustomResult : IBlock
+		public virtual TResult AppendText<TResult>(string text) where TResult : IBlock
 		{
 			Tag.SendKeys(text);
 
-			return Session.CurrentBlock<TCustomResult>(ParentBlock.Tag);
+			return Session.CurrentBlock<TResult>(ParentBlock.Tag);
 		}
 
 		public override string Text
@@ -42,6 +49,11 @@ namespace Bumblebee.Implementation
 
 		public TextField(IBlock parent, IWebElement element) : base(parent, element)
 		{
+		}
+
+		public TResult Press(Key key)
+		{
+			return Press<TResult>(key);
 		}
 
 		public virtual TResult EnterText(string text)

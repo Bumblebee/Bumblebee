@@ -1,6 +1,8 @@
-﻿namespace Bumblebee.IntegrationTests.Shared.Hosting
+﻿using System;
+
+namespace Bumblebee.IntegrationTests.Shared.Hosting
 {
-	public interface IHost
+	public interface IHost : IDisposable
 	{
 		void Start();
 		void Stop();

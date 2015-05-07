@@ -96,6 +96,11 @@ namespace Bumblebee.KendoUI
 			return EnterDate<TResult>(date);
 		}
 
+		public TResult Press(Key key)
+		{
+			return Press<TResult>(key);
+		}
+
 		public virtual TResult EnterText(string text)
 		{
 			return EnterText<TResult>(text);
