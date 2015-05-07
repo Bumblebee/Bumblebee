@@ -34,7 +34,8 @@ namespace Bumblebee.Implementation
 		}
 	}
 
-	public class DateField<TResult> : DateField, IDateField<TResult> where TResult : IBlock
+	public class DateField<TResult> : DateField, IDateField<TResult>
+		where TResult : IBlock
 	{
 		public DateField(IBlock parent, By by) : base(parent, by)
 		{
@@ -47,6 +48,11 @@ namespace Bumblebee.Implementation
 		public virtual TResult EnterDate(DateTime date)
 		{
 			return EnterDate<TResult>(date);
+		}
+
+		public TResult Press(Key key)
+		{
+			return Press<TResult>(key);
 		}
 
 		public virtual TResult EnterText(string text)

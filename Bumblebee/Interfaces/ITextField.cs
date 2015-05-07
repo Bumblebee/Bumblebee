@@ -2,13 +2,15 @@
 {
 	public interface ITextField : IElement, IHasText
 	{
-		TCustomResult EnterText<TCustomResult>(string text) where TCustomResult : IBlock;
-		TCustomResult AppendText<TCustomResult>(string text) where TCustomResult : IBlock;
+		TResult Press<TResult>(Key key) where TResult : IBlock;
+		TResult EnterText<TResult>(string text) where TResult : IBlock;
+		TResult AppendText<TResult>(string text) where TResult : IBlock;
 	}
 
 	public interface ITextField<out TResult> : ITextField
 		where TResult : IBlock
 	{
+		TResult Press(Key key);
 		TResult EnterText(string text);
 		TResult AppendText(string text);
 	}
