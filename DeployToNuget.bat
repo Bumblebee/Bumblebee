@@ -6,12 +6,11 @@ nuget.exe update -self
 
 REM Delete Any Artifacts
 REM ====================
-cd build
-ECHO Y | DEL *.nupkg
+if exist build (
+	rd /s/q build
+)
 
-REM Build the Release Project
-REM =========================
-cd ..
+mkdir build
 
 REM Requests the API Key
 REM ====================
@@ -29,3 +28,4 @@ REM Push to Nuget
 REM =============
 cd build
 nuget.exe push *.nupkg
+cd ..
