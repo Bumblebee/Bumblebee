@@ -23,7 +23,7 @@ SET package="src\Bumblebee\Bumblebee.csproj"
 REM Create the Package
 REM ==================
 ECHO "Packing/Pushing project found here:  %package%."
-nuget.exe pack -OutputDirectory build %package% -Prop Configuration=Release
+nuget.exe pack -Build -OutputDirectory build %package% -Prop Configuration=Release
 
 REM Push to Nuget 
 REM =============
