@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta charset="utf-8"/>
+		<title>Keys</title>
+	</head>
+	<body>
+		<div align="center">
+			<textarea id="KeysTextArea" onkeydown="return onKeyDown(this, event);"></textarea><br />
+			<span id="KeyPressed"></span>
+		</div>
+		<script>
+		function controlKeyText(isControlPressed, isAltPressed, isShiftPressed, keyCode) {
+			var map = {
+					8: "Backspace",
+					9: "Tab",
+					13: "Enter",
+					16: "Shift",
+					17: "Control",
+					18: "Alt",
+					19: "Pause",
+					20: "CapsLock",
+					27: "Escape",
+					32: "Space",
+					33: "PageUp",
+					34: "PageDown",
+					35: "End",
+					36: "Home",
+					37: "Left",
+					38: "Up",
+					39: "Right",
+					40: "Down",
+					45: "Insert",
+					46: "Delete",
+					48: "0",
+					49: "1",
+					50: "2",
+					51: "3",
+					52: "4",
+					53: "5",
+					54: "6",
+					55: "7",
+					56: "8",
+					57: "9",
+					61: "Equal",
+					91: "Command",
+					96: "NumberPad0",
+					97: "NumberPad1",
+					98: "NumberPad2",
+					99: "NumberPad3",
+					100: "NumberPad4",
+					101: "NumberPad5",
+					102: "NumberPad6",
+					103: "NumberPad7",
+					104: "NumberPad8",
+					105: "NumberPad9",
+					106: "Multiply",
+					107: "Add",
+					109: "Subtract",
+					110: "Decimal",
+					111: "Divide",
+					112: "F1",
+					113: "F2",
+					114: "F3",
+					115: "F4",
+					116: "F5",
+					117: "F6",
+					118: "F7",
+					119: "F8",
+					120: "F9",
+					121: "F10",
+					122: "F11",
+					123: "F12",
+					186: ";",
+					187: "Equal",
+					188: ",",
+					190: ".",
+					191: "/",
+					192: "`",
+					219: "[",
+					220: "\\",
+					221: "]",
+					222: "'"
+				},
+				result = keyCode;
+
+			if (map[keyCode]) {
+				result = map[keyCode];
+			}
+			else if ((keyCode >= 65) && (keyCode <= 90)) {
+				result = String.fromCharCode(keyCode);
+			}
+
+			if (isShiftPressed && (keyCode !== 16)) {
+				result = 'Shift+' + result;
+			}
+
+			if (isAltPressed && (keyCode !== 18)) {
+				result = 'Alt+' + result;
+			}
+
+			if (isControlPressed && (keyCode !== 17)) {
+				result = 'Control+' + result;
+			}
+
+			return result;
+		}
+
+		function onKeyDown(source, e) {
+			var element = document.getElementById('KeyPressed'),
+				str = controlKeyText(e.ctrlKey, e.altKey, e.shiftKey, e.which);
+
+			element.innerHTML = str;
+
+			return false;
+		}
+	</script>
+	</body>
+</html>
