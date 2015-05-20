@@ -1,0 +1,20 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		<div align="center">
+			<a id="TheLink" href="#" onclick="return theLinkClick();">The Link</a>
+		</div>
+		<script>
+			function theLinkClick() {
+				window.top.document.getElementById('TheSpan').innerHTML = 'Clicked.';
+
+				return false;
+			}
+		</script>
+	</body>
+</html>
