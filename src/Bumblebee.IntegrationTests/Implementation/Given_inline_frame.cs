@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Bumblebee.Extensions;
+﻿using Bumblebee.Extensions;
 using Bumblebee.IntegrationTests.Shared.Hosting;
 using Bumblebee.IntegrationTests.Shared.Pages.Implementation;
 using Bumblebee.Setup;
@@ -37,7 +31,7 @@ namespace Bumblebee.IntegrationTests.Implementation
 		}
 
 		[Test]
-		public void Test()
+		public void When_parent_link_is_clicked_Then_parent_text_changes()
 		{
 			Threaded<Session>
 				.CurrentBlock<InlineFramesPage>()

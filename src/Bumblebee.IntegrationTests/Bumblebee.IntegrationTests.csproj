@@ -75,6 +75,8 @@
     <Compile Include="Implementation\Given_double_clickable.cs" />
     <Compile Include="Implementation\Given_inline_frame.cs" />
     <Compile Include="Implementation\Given_keys.cs" />
+    <Compile Include="Implementation\Given_list_of_complex_blocks.cs" />
+    <Compile Include="Implementation\Given_nested_inline_frames.cs" />
     <Compile Include="Implementation\Given_radio_buttons.cs" />
     <Compile Include="Implementation\Given_select_box_with_ability_to_select_multiple_values.cs" />
     <Compile Include="Implementation\Given_date_field.cs" />
@@ -100,6 +102,7 @@
     <Compile Include="Shared\Pages\Implementation\KeysPage.cs" />
     <Compile Include="Shared\Pages\Implementation\ListOfComplexBlocksPage.cs" />
     <Compile Include="Shared\Pages\Implementation\MultiSelectPage.cs" />
+    <Compile Include="Shared\Pages\Implementation\NestedInlineFramesPage.cs" />
     <Compile Include="Shared\Pages\Implementation\NumericFieldPage.cs" />
     <Compile Include="Shared\Pages\Implementation\RadioButtonsPage.cs" />
     <Compile Include="Shared\Hosting\Host.cs" />
@@ -134,6 +137,16 @@
       <Link>IEDriverServer.exe</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="..\packages\WebDriver.ChromeDriver.win32.2.14.0.0\content\chromedriver.exe">
+      <Link>chromedriver.exe</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\NestedInlineFramesGrandchild.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\NestedInlineFramesChild.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\InlineFrames.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -159,6 +172,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\MultiSelect.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\NestedInlineFrames.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\NumericField.html">

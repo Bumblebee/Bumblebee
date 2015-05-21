@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 
 using Bumblebee.Extensions;
 using Bumblebee.IntegrationTests.Shared.Hosting;
@@ -11,7 +10,7 @@ using FluentAssertions;
 
 using NUnit.Framework;
 
-namespace Bumblebee.IntegrationTests.Bumblebee.Implementation
+namespace Bumblebee.IntegrationTests.Implementation
 {
 	// ReSharper disable InconsistentNaming
 
@@ -23,7 +22,7 @@ namespace Bumblebee.IntegrationTests.Bumblebee.Implementation
 		{
 			Threaded<Session>
 				.With<PhantomJS>()
-				.NavigateTo<ListOfComplexBlocksPage>(String.Format("{0}/Content/ListOfComplexBlocks.html", BaseUrl));
+				.NavigateTo<ListOfComplexBlocksPage>(GetUrl("ListOfComplexBlocks.html"));
 		}
 
 		[TearDown]
