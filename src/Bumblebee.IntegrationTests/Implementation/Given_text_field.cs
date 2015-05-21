@@ -1,10 +1,11 @@
-﻿using System;
-using Bumblebee.Extensions;
+﻿using Bumblebee.Extensions;
 using Bumblebee.IntegrationTests.Shared.Hosting;
 using Bumblebee.IntegrationTests.Shared.Pages.Implementation;
 using Bumblebee.Setup;
 using Bumblebee.Setup.DriverEnvironments;
+
 using FluentAssertions;
+
 using NUnit.Framework;
 
 namespace Bumblebee.IntegrationTests.Implementation
@@ -15,15 +16,15 @@ namespace Bumblebee.IntegrationTests.Implementation
 	public class Given_text_field : HostTestFixture
 	{
 		[TestFixtureSetUp]
-		public void Init()
+		public void TestFixtureSetUp()
 		{
 			Threaded<Session>
 				.With<PhantomJS>()
-				.NavigateTo<DateFieldPage>(String.Format("{0}/Content/TextField.html", BaseUrl));
+				.NavigateTo<DateFieldPage>(GetUrl("TextField.html"));
 		}
 
 		[TestFixtureTearDown]
-		public void Dispose()
+		public void TestFixtureTearDown()
 		{
 			Threaded<Session>
 				.End();

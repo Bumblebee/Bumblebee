@@ -18,15 +18,15 @@ namespace Bumblebee.IntegrationTests.Implementation
 	public class Given_date_field : HostTestFixture
 	{
 		[TestFixtureSetUp]
-		public void Init()
+		public void TestFixtureSetUp()
 		{
 			Threaded<Session>
 				.With<PhantomJS>()
-				.NavigateTo<DateFieldPage>(String.Format("{0}/Content/DateField.html", BaseUrl));
+				.NavigateTo<DateFieldPage>(GetUrl("DateField.html"));
 		}
 
 		[TestFixtureTearDown]
-		public void Dispose()
+		public void TestFixtureTearDown()
 		{
 			Threaded<Session>
 				.End();

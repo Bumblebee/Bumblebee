@@ -1,23 +1,19 @@
-using System;
 using System.Linq;
+
 using Bumblebee.Extensions;
 using Bumblebee.IntegrationTests.Shared.Hosting;
 using Bumblebee.IntegrationTests.Shared.Pages.Implementation;
 using Bumblebee.Setup;
 using Bumblebee.Setup.DriverEnvironments;
+
 using FluentAssertions;
+
 using NUnit.Framework;
 
 namespace Bumblebee.IntegrationTests.Implementation
 {
-	public class TableRow
-	{
-		public string Item { get; set; }
-		public int Quantity { get; set; }
-		public decimal Price { get; set; }
-	}
-
 	// ReSharper disable InconsistentNaming
+
 	[TestFixture]
 	public class Given_table : HostTestFixture
 	{
@@ -26,7 +22,7 @@ namespace Bumblebee.IntegrationTests.Implementation
 		{
 			Threaded<Session>
 				.With<PhantomJS>()
-				.NavigateTo<TablePage>(String.Format("{0}{1}", BaseUrl, "/Content/Table.html"));
+				.NavigateTo<TablePage>(GetUrl("Table.html"));
 		}
 
 		[TestFixtureTearDown]
