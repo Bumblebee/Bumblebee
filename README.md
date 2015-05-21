@@ -1,6 +1,7 @@
 Bumblebee
 =========
 
+![Bumblebee](https://avatars1.githubusercontent.com/u/10162916?v=3&s=200 "Bumblebee")
 Bumblebee is a .NET layer on top of the Selenium browser automation framework that allows for the standardized creation of page objects, even for dynamic web pages. There are a few features that define Bumblebee's usability.
 
 -   Standardized UI interfaces
