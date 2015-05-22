@@ -14,12 +14,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{2202B6
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{9C95D93A-6D8A-4D9B-9FD6-8B99EB316892}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bumblebee.Examples.Web.Pages", "Bumblebee.Examples.Web.Pages\Bumblebee.Examples.Web.Pages.csproj", "{0D8855FE-6C42-4EEB-ACA5-072908B0A917}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bumblebee.Examples.Web.IntegrationTests", "Bumblebee.Examples.Web.IntegrationTests\Bumblebee.Examples.Web.IntegrationTests.csproj", "{B4FB11F0-5642-432E-934A-76EC189A28B9}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{4C9F5F56-DC0A-4090-BAA4-C935880C9762}"
 EndProject
 Global
@@ -36,21 +30,11 @@ Global
 		{5B2C5CD0-1C34-433C-9100-59E50DC4DE1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5B2C5CD0-1C34-433C-9100-59E50DC4DE1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5B2C5CD0-1C34-433C-9100-59E50DC4DE1F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0D8855FE-6C42-4EEB-ACA5-072908B0A917}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0D8855FE-6C42-4EEB-ACA5-072908B0A917}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0D8855FE-6C42-4EEB-ACA5-072908B0A917}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0D8855FE-6C42-4EEB-ACA5-072908B0A917}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B4FB11F0-5642-432E-934A-76EC189A28B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B4FB11F0-5642-432E-934A-76EC189A28B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B4FB11F0-5642-432E-934A-76EC189A28B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B4FB11F0-5642-432E-934A-76EC189A28B9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{5B2C5CD0-1C34-433C-9100-59E50DC4DE1F} = {4C9F5F56-DC0A-4090-BAA4-C935880C9762}
-		{0D8855FE-6C42-4EEB-ACA5-072908B0A917} = {9C95D93A-6D8A-4D9B-9FD6-8B99EB316892}
-		{B4FB11F0-5642-432E-934A-76EC189A28B9} = {9C95D93A-6D8A-4D9B-9FD6-8B99EB316892}
 	EndGlobalSection
 EndGlobal
