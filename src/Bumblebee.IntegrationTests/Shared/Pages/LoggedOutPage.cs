@@ -9,7 +9,7 @@ namespace Bumblebee.IntegrationTests.Shared.Pages
 	{
 		public LoggedOutPage(Session session) : base(session)
 		{
-			Tag = GetElement(By.Id("login"));
+			Tag = FindElement(By.Id("login"));
 		}
 	}
 }

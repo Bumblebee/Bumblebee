@@ -28,7 +28,7 @@ namespace Bumblebee.Implementation
 				.FindElement(By.TagName("thead"))
 				.FindElement(By.TagName("tr"))
 				.FindElements(By.TagName("th"))
-				.Zip(GetElements(By.TagName("td")), (header, cell) => new KeyValuePair<string, string>(header.Text, cell.Text))
+				.Zip(FindElements(By.TagName("td")), (header, cell) => new KeyValuePair<string, string>(header.Text, cell.Text))
 				.ToDictionary(x => x.Key, x => x.Value);
 		}
 
@@ -38,7 +38,7 @@ namespace Bumblebee.Implementation
 				.FindElement(By.TagName("thead"))
 				.FindElement(By.TagName("tr"))
 				.FindElements(By.TagName("th"))
-				.Zip(GetElements(By.TagName("td")), (header, cell) => new KeyValuePair<string, string>(header.Text, cell.Text))
+				.Zip(FindElements(By.TagName("td")), (header, cell) => new KeyValuePair<string, string>(header.Text, cell.Text))
 				.ToDictionary(x => x.Key, x => x.Value);
 		}
 

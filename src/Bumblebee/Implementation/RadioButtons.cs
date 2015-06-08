@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-using Bumblebee.Extensions;
 using Bumblebee.Interfaces;
 
 using OpenQA.Selenium;
@@ -23,7 +22,7 @@ namespace Bumblebee.Implementation
 		{
 			get
 			{
-				return ParentBlock.Tag.GetElements(By)
+				return ParentBlock.Tag.FindElements(By)
 					.Where(opt => opt.Displayed)
 					.Select(opt => new RadioButton<TResult>(ParentBlock, opt));
 			}

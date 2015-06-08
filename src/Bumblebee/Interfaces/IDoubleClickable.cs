@@ -12,7 +12,7 @@
 	/// Element that is double-clickable with a dynamic page return.
 	/// </summary>
 	/// <typeparam name="TResult">The type of page to return.</typeparam>
-	public interface IDoubleClickable<out TResult> : IDoubleClickable, IGenericElement<TResult>
+	public interface IDoubleClickable<out TResult> : IClickable<TResult>, IDoubleClickable
 		where TResult : IBlock
 	{
 		TResult DoubleClick();

@@ -12,7 +12,7 @@ namespace Bumblebee.Extensions
 			return block.Session.CurrentBlock<TScope>();
 		}
 
-		[Obsolete("There's no need to use this. If you need to change scope you can do it with ScopeTo<>.")]
+		[Obsolete("ScopeToParent<TScope>() will be deprecated/removed in a future version.  If you need to change scope you can do it with ScopeTo<TScope>().")]
 		public static TScope ScopeToParent<TScope>(this IAllowsNoOp<TScope> block)
 			where TScope : IBlock
 		{
