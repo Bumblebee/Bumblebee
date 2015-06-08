@@ -143,7 +143,7 @@ namespace Bumblebee.Extensions
 
 		public static TBlock VerifyPresenceOf<TBlock>(this TBlock block, string element, By by) where TBlock : IBlock
 		{
-			if (block.Tag.GetElements(by).Any() == false)
+			if (block.Tag.FindElements(by).Any() == false)
 			{
 				throw new VerificationException("Couldn't verify presence of {0} {1}".FormatWith(element, by));
 			}
@@ -153,7 +153,7 @@ namespace Bumblebee.Extensions
 
 		public static TBlock VerifyAbsenceOf<TBlock>(this TBlock block, string element, By by) where TBlock : IBlock
 		{
-			if (block.Tag.GetElements(by).Any())
+			if (block.Tag.FindElements(by).Any())
 			{
 				throw new VerificationException("Couldn't verify absence of {0} {1}".FormatWith(element, by));
 			}

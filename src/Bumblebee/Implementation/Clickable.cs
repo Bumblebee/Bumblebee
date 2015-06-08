@@ -5,7 +5,7 @@ using OpenQA.Selenium.Interactions;
 
 namespace Bumblebee.Implementation
 {
-	public class Clickable : Element, IDoubleClickable
+	public class Clickable : Element, IClickable, IDoubleClickable
 	{
 		public Clickable(IBlock parent, By by) : base(parent, by)
 		{
@@ -19,6 +19,7 @@ namespace Bumblebee.Implementation
 			where TResult : IBlock
 		{
 			Tag.Click();
+
 			return Session.CurrentBlock<TResult>(ParentBlock.Tag);
 		}
 

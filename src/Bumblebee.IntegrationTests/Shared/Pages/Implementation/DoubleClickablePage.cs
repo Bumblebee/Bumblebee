@@ -30,7 +30,7 @@ namespace Bumblebee.IntegrationTests.Shared.Pages.Implementation
 
 		public string Result
 		{
-			get { return GetElement(By.Id("result")).Text; }
+			get { return FindElement(By.Id("result")).Text; }
 		}
 	}
 }
