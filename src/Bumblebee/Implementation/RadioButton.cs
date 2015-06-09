@@ -19,7 +19,7 @@ namespace Bumblebee.Implementation
 
 		public override string Text
 		{
-			get { return ParentBlock.Tag.FindElement(By.CssSelector(String.Format("label[for=\"{0}\"]", Tag.GetID()))).Text; }
+			get { return ParentBlock.FindElement(By.CssSelector(String.Format("label[for=\"{0}\"]", Tag.GetID()))).Text; }
 		}
 	}
 }

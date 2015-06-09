@@ -32,6 +32,7 @@ namespace Bumblebee.Implementation
 				.ToDictionary(x => x.Key, x => x.Value);
 		}
 
+
 		IEnumerator IEnumerable.GetEnumerator()
 		{
 			return GetEnumerator();

@@ -69,23 +69,9 @@ namespace Bumblebee.Implementation
 			return Tag.FindElements(@by);
 		}
 
-		[Obsolete("This method is obsolete. Please use FindElements instead.")]
-		protected IList<IWebElement> GetElements(By @by)
-		{
-			return FindElements(@by).ToList();
-		}
-
 		public virtual IWebElement FindElement(By @by)
 		{
-
-
 			return Tag.FindElement(@by);
-		}
-
-		[Obsolete("This method is obsolete. Please use FindElement instead.")]
-		protected IWebElement GetElement(By @by)
-		{
-			return FindElement(@by);
 		}
 
 		protected T FindRelated<T>() where T : IBlock

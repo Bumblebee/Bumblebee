@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -8,11 +9,13 @@ namespace Bumblebee.Extensions
 {
 	public static class WebElementConvenience
 	{
+		[Obsolete("This method is obsolete. It will be removed in a future version. Please use the FindElements() instead.")]
 		public static IList<IWebElement> GetElements(this ISearchContext driver, By @by)
 		{
 			return driver.FindElements(@by);
 		}
 
+		[Obsolete("This method is obsolete. It will be removed in a future version. Please use the FindElement() instead.")]
 		public static IWebElement GetElement(this ISearchContext driver, By @by)
 		{
 			return driver.FindElement(@by);
