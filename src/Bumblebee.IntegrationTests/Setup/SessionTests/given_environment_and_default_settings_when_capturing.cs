@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
+using System.Reflection;
 
 using Bumblebee.Extensions;
 using Bumblebee.IntegrationTests.Shared.Hosting;
@@ -24,14 +26,16 @@ namespace Bumblebee.IntegrationTests.Setup.SessionTests
 		[TestFixtureSetUp]
 		public void Before()
 		{
-			var currentMethod = this.GetCurrentMethodName();
+			var currentMethod = String.Format("{0}.png", MethodBase.GetCurrentMethod().GetFullName());
 			var defaultSettings = new Settings();
-			path = Path.ChangeExtension(Path.Combine(defaultSettings.ScreenCapturePath, currentMethod), "png");
+
+			path = Path.Combine(defaultSettings.ScreenCapturePath, currentMethod);
 			File.Delete(path);
 
 			var environment = new InternetExplorer();
 			session = new Session(environment);
 			session.NavigateTo<CheckboxPage>(GetUrl("Checkbox.html"));
+
 			_returnSession = session.CaptureScreen();
 		}
 

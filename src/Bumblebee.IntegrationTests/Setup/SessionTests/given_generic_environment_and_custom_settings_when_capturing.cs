@@ -24,7 +24,7 @@ namespace Bumblebee.IntegrationTests.Setup.SessionTests
 		[TestFixtureSetUp]
 		public void Before()
 		{
-			var currentMethod = this.GetCurrentMethodName();
+			var currentMethod = this.GetCurrentMethodFullName();
 
 			const string path = @"C:\Temp";
 			_filePath = Path.ChangeExtension(Path.Combine(path, currentMethod), "png");

@@ -7,6 +7,7 @@ using Bumblebee.Extensions;
 using Bumblebee.Interfaces;
 
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.Extensions;
 
 namespace Bumblebee.Setup
 {
@@ -71,14 +72,17 @@ namespace Bumblebee.Setup
 
 		public Session CaptureScreen()
 		{
-			var path = Path.ChangeExtension(Path.Combine(Settings.ScreenCapturePath, this.GetParentMethodName()), "png");
+			var filename = String.Format("{0}.png", this.GetParentMethodFullName());
+			var path = Path.Combine(Settings.ScreenCapturePath, filename);
 			return CaptureScreen(path);
 		}
 
 		public Session CaptureScreen(string path)
 		{
-			var screenshot = ((ITakesScreenshot) Driver).GetScreenshot();
+			var screenshot = Driver.TakeScreenshot();
+
 			screenshot.SaveAsFile(path, ImageFormat.Png);
+
 			return this;
 		}
 	}

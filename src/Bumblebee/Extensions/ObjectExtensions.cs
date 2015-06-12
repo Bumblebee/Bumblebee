@@ -14,11 +14,9 @@ namespace Bumblebee.Extensions
 		/// <param name="value">The value.</param>
 		/// <returns></returns>
 		[MethodImpl(MethodImplOptions.NoInlining)]
-		public static string GetCurrentMethodName(this object value)
+		public static string GetCurrentMethodFullName(this object value)
 		{
-			var st = new StackTrace();
-			var sf = st.GetFrame(1);
-
+			var sf = new StackFrame(1, false);
 			return sf.GetMethod().GetFullName();
 		}
 
@@ -28,11 +26,9 @@ namespace Bumblebee.Extensions
 		/// <param name="value">The value.</param>
 		/// <returns></returns>
 		[MethodImpl(MethodImplOptions.NoInlining)]
-		public static string GetParentMethodName(this object value)
+		public static string GetParentMethodFullName(this object value)
 		{
-			var st = new StackTrace();
-			var sf = st.GetFrame(2);
-
+			var sf = new StackFrame(2, false);
 			return sf.GetMethod().GetFullName();
 		}
 	}
