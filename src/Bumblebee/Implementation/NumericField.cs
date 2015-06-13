@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 
+using Bumblebee.Extensions;
 using Bumblebee.Interfaces;
 
 using OpenQA.Selenium;
@@ -23,7 +24,7 @@ namespace Bumblebee.Implementation
 
 			Tag.SendKeys(number.ToString(CultureInfo.CurrentUICulture));
 
-			return FindRelated<TResult>();
+			return this.FindRelated<TResult>();
 		}
 
 		public virtual double? Value

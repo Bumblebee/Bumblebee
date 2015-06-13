@@ -1,4 +1,5 @@
-﻿using Bumblebee.Interfaces;
+﻿using Bumblebee.Extensions;
+using Bumblebee.Interfaces;
 
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
@@ -19,7 +20,7 @@ namespace Bumblebee.Implementation
 		{
 			Tag.Click();
 
-			return FindRelated<TResult>();
+			return this.FindRelated<TResult>();
 		}
 
 		public virtual TResult DoubleClick<TResult>()
@@ -31,7 +32,7 @@ namespace Bumblebee.Implementation
 				.Build()
 				.Perform();
 
-			return FindRelated<TResult>();
+			return this.FindRelated<TResult>();
 		}
 	}
 

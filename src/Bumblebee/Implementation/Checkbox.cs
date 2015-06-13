@@ -1,4 +1,5 @@
-﻿using Bumblebee.Interfaces;
+﻿using Bumblebee.Extensions;
+using Bumblebee.Interfaces;
 
 using OpenQA.Selenium;
 
@@ -21,7 +22,7 @@ namespace Bumblebee.Implementation
 				Tag.Click();
 			}
 
-			return FindRelated<TResult>();
+			return this.FindRelated<TResult>();
 		}
 
 		public TResult Uncheck<TResult>() where TResult : IBlock
@@ -31,14 +32,14 @@ namespace Bumblebee.Implementation
 				Tag.Click();
 			}
 
-			return FindRelated<TResult>();
+			return this.FindRelated<TResult>();
 		}
 
 		public TResult Toggle<TResult>() where TResult : IBlock
 		{
 			Tag.Click();
 
-			return FindRelated<TResult>();
+			return this.FindRelated<TResult>();
 		}
 	}
 

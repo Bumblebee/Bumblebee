@@ -175,7 +175,7 @@ namespace Bumblebee.IntegrationTests.Setup
 			Action action = () => Threaded<DerivedSessionWithWrongArgs>
 				.With<PhantomJS>();
 
-			var expectedMessage = String.Format(Threaded<DerivedSessionWithWrongArgs>.InvalidSessionTypeFormat, typeof(DerivedSessionWithWrongArgs));
+			var expectedMessage = String.Format(Threaded<DerivedSessionWithWrongArgs>.InvalidSessionTypeFormat, typeof (DerivedSessionWithWrongArgs));
 
 			action
 				.ShouldThrow<ArgumentException>()

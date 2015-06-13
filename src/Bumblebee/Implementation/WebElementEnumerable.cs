@@ -20,7 +20,7 @@ namespace Bumblebee.Implementation
 
 		public IEnumerator<IWebElement> GetEnumerator()
 		{
-			return _parent.Tag
+			return _parent
 				.FindElements(_by)
 				.GetEnumerator();
 		}

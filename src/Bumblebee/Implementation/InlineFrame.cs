@@ -21,21 +21,17 @@ namespace Bumblebee.Implementation
 
 		public override IWebElement FindElement(By @by)
 		{
-			SwitchToThisFrame();
-
-			return Session.Driver.FindElement(@by);
+			return SwitchToThisFrame().FindElement(@by);
 		}
 
 		public override IEnumerable<IWebElement> FindElements(By @by)
 		{
-			SwitchToThisFrame();
-
-			return Session.Driver.FindElements(@by);
+			return SwitchToThisFrame().FindElements(@by);
 		}
 
-		private void SwitchToThisFrame()
+		private IWebDriver SwitchToThisFrame()
 		{
-			Session.Driver.SwitchTo().Frame(Tag);
+			return Session.Driver.SwitchTo().Frame(Tag);
 		}
 	}
 }

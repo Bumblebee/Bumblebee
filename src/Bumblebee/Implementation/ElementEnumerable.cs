@@ -22,7 +22,7 @@ namespace Bumblebee.Implementation
 
 		public IEnumerator<T> GetEnumerator()
 		{
-			return _parent.Tag
+			return _parent
 				.FindElements(_by)
 				.Select(x => Factory.CreateElementFromParentAndElement<T>(_parent, x))
 				.GetEnumerator();

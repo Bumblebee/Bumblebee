@@ -24,7 +24,7 @@ namespace Bumblebee.Implementation
 
 		public TableRow(IBlock parent, By @by) : base(parent, @by)
 		{
-			_data = ParentBlock.Tag
+			_data = ParentBlock
 				.FindElement(By.TagName("thead"))
 				.FindElement(By.TagName("tr"))
 				.FindElements(By.TagName("th"))

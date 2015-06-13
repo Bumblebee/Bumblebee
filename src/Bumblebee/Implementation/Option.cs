@@ -1,3 +1,4 @@
+using Bumblebee.Extensions;
 using Bumblebee.Interfaces;
 
 using OpenQA.Selenium;
@@ -20,7 +21,7 @@ namespace Bumblebee.Implementation
 
 			Tag.Click();
 
-			return FindRelated<TResult>();
+			return this.FindRelated<TResult>();
 		}
 	}
 

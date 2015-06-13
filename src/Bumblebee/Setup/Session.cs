@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing.Imaging;
+﻿using System.Drawing.Imaging;
 using System.IO;
-using System.Linq;
+
 using Bumblebee.Extensions;
-using Bumblebee.Implementation;
 using Bumblebee.Interfaces;
 
 using OpenQA.Selenium;

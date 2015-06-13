@@ -1,4 +1,5 @@
-﻿using Bumblebee.Interfaces;
+﻿using Bumblebee.Extensions;
+using Bumblebee.Interfaces;
 
 using OpenQA.Selenium;
 
@@ -18,7 +19,7 @@ namespace Bumblebee.Implementation
 		{
 			Tag.SendKeys(key.Value);
 
-			return FindRelated<TResult>();
+			return this.FindRelated<TResult>();
 		}
 
 		public virtual TResult EnterText<TResult>(string text) where TResult : IBlock
@@ -32,7 +33,7 @@ namespace Bumblebee.Implementation
 		{
 			Tag.SendKeys(text);
 
-			return FindRelated<TResult>();
+			return this.FindRelated<TResult>();
 		}
 
 		public override string Text

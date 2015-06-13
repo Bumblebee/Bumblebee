@@ -36,6 +36,7 @@
   <ItemGroup>
     <Compile Include="Extensions\AdvancedSeleniumActions.cs" />
     <Compile Include="Extensions\BlockConvenience.cs" />
+    <Compile Include="Extensions\BlockSearchingExtensions.cs" />
     <Compile Include="Extensions\Debugging.cs" />
     <Compile Include="Extensions\Filtering.cs" />
     <Compile Include="Extensions\MethodBaseExtensions.cs" />
@@ -46,7 +47,6 @@
     <Compile Include="Extensions\WebElementConvenience.cs" />
     <Compile Include="Factory.cs" />
     <Compile Include="Implementation\BlockEnumerable.cs" />
-    <Compile Include="Implementation\Copy.cs" />
     <Compile Include="Implementation\ElementEnumerable.cs" />
     <Compile Include="Implementation\InlineFrame.cs" />
     <Compile Include="Implementation\Monkey.cs" />
@@ -60,18 +60,15 @@
     <Compile Include="Implementation\TableRow.cs" />
     <Compile Include="Implementation\WebBlock.cs" />
     <Compile Include="Implementation\WebElementEnumerable.cs" />
-    <Compile Include="Interfaces\IAllowsNoOp.cs" />
     <Compile Include="Interfaces\IBlock.cs" />
     <Compile Include="Implementation\AlertDialog.cs" />
     <Compile Include="Implementation\Block.cs" />
     <Compile Include="Implementation\Element.cs" />
     <Compile Include="Extensions\JavaScriptExecution.cs" />
     <Compile Include="Interfaces\IAlertDialog.cs" />
-    <Compile Include="Interfaces\ICopy.cs" />
     <Compile Include="Interfaces\IDateField.cs" />
     <Compile Include="Interfaces\IDoubleClickable.cs" />
     <Compile Include="Interfaces\IDraggable.cs" />
-    <Compile Include="Interfaces\IGenericElement.cs" />
     <Compile Include="Interfaces\IHasBackingElement.cs" />
     <Compile Include="Interfaces\IHasParent.cs" />
     <Compile Include="Interfaces\IMonkey.cs" />

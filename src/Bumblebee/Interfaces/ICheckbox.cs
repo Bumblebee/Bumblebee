@@ -7,7 +7,7 @@
 		TResult Toggle<TResult>() where TResult : IBlock;
 	}
 
-	public interface ICheckbox<out TResult> : ICheckbox, IGenericElement<TResult>
+	public interface ICheckbox<out TResult> : ICheckbox
 		where TResult : IBlock
 	{
 		TResult Check();

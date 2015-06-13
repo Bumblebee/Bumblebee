@@ -1,5 +1,6 @@
 ﻿using System;
 
+using Bumblebee.Extensions;
 using Bumblebee.Interfaces;
 
 using OpenQA.Selenium;
@@ -19,9 +20,10 @@ namespace Bumblebee.Implementation
 		public virtual TResult EnterDate<TResult>(DateTime date) where TResult : IBlock
 		{
 			var executor = (IJavaScriptExecutor) Session.Driver;
+
 			executor.ExecuteScript(String.Format("arguments[0].value = '{0:yyyy-MM-dd}';", date), Tag);
 
-			return FindRelated<TResult>();
+			return this.FindRelated<TResult>();
 		}
 
 		public virtual DateTime? Value
