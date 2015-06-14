@@ -30,7 +30,7 @@ namespace Bumblebee.IntegrationTests.Setup.SessionTests
 			_filePath = Path.ChangeExtension(Path.Combine(path, currentMethod), "png");
 			File.Delete(_filePath);
 
-			var settings = new Settings {ScreenCapturePath = path};
+			var settings = new Settings(path);
 
 			var environment = new InternetExplorer();
 			_session = new Session(environment, settings);

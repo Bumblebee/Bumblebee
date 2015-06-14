@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace Bumblebee.Setup
 {
@@ -8,11 +9,24 @@ namespace Bumblebee.Setup
 	public class Settings : ISettings
 	{
 		/// <summary>
-		/// Initializes a new instance of the <see cref="Settings"/> class.
+		/// Initializes a default instance of the <see cref="Settings"/> class with <see cref="ScreenCapturePath"/> of the current directory.
 		/// </summary>
-		public Settings()
+		public Settings() : this(Environment.CurrentDirectory)
 		{
-			ScreenCapturePath = Environment.CurrentDirectory;
+		}
+
+		/// <summary>
+		/// Initializes an instance of the <see cref="Settings"/> class with <see cref="ScreenCapturePath"/> of the <see cref="path"/>.
+		/// </summary>
+		/// <param name="path">The path to use for screenshots.</param>
+		public Settings(string path)
+		{
+			if (Directory.Exists(path) == false)
+			{
+				throw new ArgumentException("Not an existing directory.", "path");
+			}
+
+			ScreenCapturePath = path;
 		}
 
 		/// <summary>
@@ -21,6 +35,6 @@ namespace Bumblebee.Setup
 		/// <value>
 		/// The screen capture path.
 		/// </value>
-		public string ScreenCapturePath { get; set; }
+		public string ScreenCapturePath { get; private set; }
 	}
 }
