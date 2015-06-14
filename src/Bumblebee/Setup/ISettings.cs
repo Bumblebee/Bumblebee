@@ -11,6 +11,6 @@
 		/// <value>
 		/// The screen capture path.
 		/// </value>
-		string ScreenCapturePath { get; set; }
+		string ScreenCapturePath { get; }
 	}
 }

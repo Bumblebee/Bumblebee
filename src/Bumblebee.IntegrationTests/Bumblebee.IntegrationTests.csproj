@@ -87,6 +87,7 @@
     <Compile Include="Setup\SessionTests\given_environment_and_default_settings_when_capturing.cs" />
     <Compile Include="Setup\SessionTests\given_generic_environment_and_custom_settings_when_capturing.cs" />
     <Compile Include="Setup\SessionTests\given_generic_environment_and_default_settings_when_capturing.cs" />
+    <Compile Include="Setup\SessionTests\Given_session_with_default_settings.cs" />
     <Compile Include="Setup\SessionTests\SessionTests.cs" />
     <Compile Include="Shared\Pages\Implementation\CheckboxPage.cs" />
     <Compile Include="Shared\Pages\Implementation\ComplexTableRow.cs" />
