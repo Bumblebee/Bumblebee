@@ -25,21 +25,7 @@ namespace Bumblebee.IntegrationTests.Setup.SessionTests
 		}
 
 		[Test]
-		public void When_path_points_to_a_directory_that_does_not_exist_An_exception_is_thrown()
-		{
-			var drive = Path.GetPathRoot(Environment.CurrentDirectory);
-
-			var directoryname = String.Format("{0}", Guid.NewGuid());
-
-			var directory = Path.Combine(drive, directoryname);
-
-			Action fn = () => new Settings(directory);
-
-			fn.ShouldThrow<ArgumentException>();
-		}
-
-		[Test]
-		public void When_path_points_to_a_valid_directory_in_An_exception_is_not_thrown()
+		public void When_path_points_to_a_valid_directory_in_Then_an_exception_is_not_thrown()
 		{
 			var drive = Path.GetPathRoot(Environment.CurrentDirectory);
 
@@ -47,13 +33,33 @@ namespace Bumblebee.IntegrationTests.Setup.SessionTests
 				.Shuffle()
 				.FirstOrDefault();
 
-			Action fn = () => new Settings(directory);
+			Action fn = () => new Settings
+			{
+				ScreenCapturePath = directory
+			};
 
 			fn.ShouldNotThrow<ArgumentException>();
 		}
 
 		[Test]
-		public void When_path_points_to_a_file_An_exception_is_thrown()
+		public void When_path_points_to_a_directory_that_does_not_exist_Then_an_exception_is_thrown()
+		{
+			var drive = Path.GetPathRoot(Environment.CurrentDirectory);
+
+			var directoryname = String.Format("{0}", Guid.NewGuid());
+
+			var directory = Path.Combine(drive, directoryname);
+
+			Action fn = () => new Settings
+			{
+				ScreenCapturePath = directory
+			};
+
+			fn.ShouldThrow<ArgumentException>();
+		}
+
+		[Test]
+		public void When_path_points_to_a_file_Then_an_exception_is_thrown()
 		{
 			var drive = Path.GetPathRoot(Environment.CurrentDirectory);
 
@@ -63,7 +69,10 @@ namespace Bumblebee.IntegrationTests.Setup.SessionTests
 
 			File.WriteAllText(filename, "Hello, World.");
 
-			Action fn = () => new Settings(filename);
+			Action fn = () => new Settings
+			{
+				ScreenCapturePath = filename
+			};
 
 			fn.ShouldThrow<ArgumentException>();
 

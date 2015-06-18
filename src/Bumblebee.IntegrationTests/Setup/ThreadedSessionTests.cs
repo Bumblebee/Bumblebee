@@ -50,7 +50,10 @@ namespace Bumblebee.IntegrationTests.Setup
 		[Test]
 		public void when_loading_with_driver_and_custom_settings_should_return_session_with_custom_settings()
 		{
-			var customSettings = new Settings(@"C:\Temp");
+			var customSettings = new Settings
+			{
+				ScreenCapturePath = @"C:\Temp"
+			};
 
 			Threaded<Session>
 				.With(new PhantomJS(), customSettings)
@@ -61,7 +64,10 @@ namespace Bumblebee.IntegrationTests.Setup
 		[Test]
 		public void when_loading_with_generic_driver_and_custom_settings_should_return_session_with_custom_settings()
 		{
-			var customSettings = new Settings(@"C:\Temp");
+			var customSettings = new Settings
+			{
+				ScreenCapturePath = @"C:\Temp"
+			};
 
 			Threaded<Session>
 				.With<PhantomJS>(customSettings)

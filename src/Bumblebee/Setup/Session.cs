@@ -102,7 +102,7 @@ namespace Bumblebee.Setup
 			}
 			else
 			{
-				throw new Exception("Unable to determine image format. The supported formats are BMP, GIF, JPEG and PNG.");
+				throw new ArgumentException("Unable to determine image format. The supported formats are BMP, GIF, JPEG and PNG.", "path");
 			}
 
 			return this;

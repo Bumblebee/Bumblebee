@@ -32,7 +32,7 @@ namespace Bumblebee.IntegrationTests.Setup.SessionTests
 		{
 			if (File.Exists(filename) == false)
 			{
-				throw new FileNotFoundException(filename + " not found");
+				throw new FileNotFoundException(String.Format("File '{0}' not found", filename));
 			}
 
 			int numberOfBytesRead;
@@ -102,6 +102,14 @@ namespace Bumblebee.IntegrationTests.Setup.SessionTests
 			actual.Should().Be(expected);
 
 			File.Delete(path);
+		}
+
+		[Test]
+		public void When_CaptureScreen_is_called_with_invalid_file_extension_Then_an_exception_is_thrown()
+		{
+			Action fn = () => _session.CaptureScreen("screenshot.txt");
+
+			fn.ShouldThrow<ArgumentException>();
 		}
 	}
 }

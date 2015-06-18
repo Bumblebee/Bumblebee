@@ -30,7 +30,10 @@ namespace Bumblebee.IntegrationTests.Setup.SessionTests
 			_filePath = Path.ChangeExtension(Path.Combine(path, currentMethod), "png");
 			File.Delete(_filePath);
 
-			var settings = new Settings(path);
+			var settings = new Settings
+			{
+				ScreenCapturePath = path
+			};
 
 			_session = new Session<InternetExplorer>(settings);
 			_session.NavigateTo<CheckboxPage>(GetUrl("Checkbox.html"));

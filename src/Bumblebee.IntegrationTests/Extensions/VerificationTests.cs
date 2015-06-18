@@ -107,7 +107,7 @@ namespace Bumblebee.IntegrationTests.Extensions
 			Action action = () => element.VerifySelected(expected);
 			action
 				.ShouldThrow<VerificationException>()
-				.WithMessage("Selection verification failed. Expected: {0}, Actual: {1}.".FormatWith(expected, element.Selected));
+				.WithMessage(String.Format("Selection verification failed. Expected: {0}, Actual: {1}.", expected, element.Selected));
 		}
 	}
 }

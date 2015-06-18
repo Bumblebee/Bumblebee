@@ -16,10 +16,6 @@ namespace Bumblebee.Extensions
 	public static class Verification
 	{
 		/// <summary>
-		/// The verification message format.
-		/// </summary>
-		public static readonly string VerificationMessage = "Unable to verify.  {0}";
-		/// <summary>
 		/// Verification method that allows for passing a predicate expression to evaluate some condition and a message to display if predicate is not true.
 		/// </summary>
 		/// <remarks>
@@ -33,7 +29,7 @@ namespace Bumblebee.Extensions
 		/// <returns></returns>
 		public static T Verify<T>(this T obj, string verification, Predicate<T> predicate)
 		{
-			var message = VerificationMessage.FormatWith(verification ?? string.Empty).Trim();
+			var message = String.Format("Unable to verify.  {0}", verification ?? String.Empty).Trim();
 
 			if (predicate(obj) == false)
 			{
@@ -56,7 +52,7 @@ namespace Bumblebee.Extensions
 		public static T Verify<T>(this T obj, Expression<Predicate<T>> predicateExpression)
 		{
 			var predicate = predicateExpression.Compile();
-			return obj.Verify("Expected {0}".FormatWith(predicateExpression.Body), predicate);
+			return obj.Verify(String.Format("Expected {0}", predicateExpression.Body), predicate);
 		}
 
 		/// <summary>
@@ -78,7 +74,7 @@ namespace Bumblebee.Extensions
 			}
 			catch (Exception ex)
 			{
-				throw new VerificationException(String.Format(VerificationMessage, ex.Message), ex);
+				throw new VerificationException(String.Format("Unable to verify.  {0}", ex.Message), ex);
 			}
 		}
 
@@ -94,7 +90,7 @@ namespace Bumblebee.Extensions
 		{
 			if (selectable.Selected != selected)
 			{
-				throw new VerificationException("Selection verification failed. Expected: {0}, Actual: {1}.".FormatWith(selected, selectable.Selected));
+				throw new VerificationException(String.Format("Selection verification failed. Expected: {0}, Actual: {1}.", selected, selectable.Selected));
 			}
 
 			return selectable;
@@ -104,7 +100,7 @@ namespace Bumblebee.Extensions
 		{
 			if (hasText.Text != text)
 			{
-				throw new VerificationException("Text verification failed. Expected:  {0}, Actual:  {1}.".FormatWith(text, hasText.Text));
+				throw new VerificationException(String.Format("Text verification failed. Expected:  {0}, Actual:  {1}.", text, hasText.Text));
 			}
 
 			return hasText;
@@ -114,7 +110,7 @@ namespace Bumblebee.Extensions
 		{
 			if (hasText.Text == text)
 			{
-				throw new VerificationException("Text mismatch verification failed. Unexpected:  {0}, Actual:  {1}.".FormatWith(text, hasText.Text));
+				throw new VerificationException(String.Format("Text mismatch verification failed. Unexpected:  {0}, Actual:  {1}.", text, hasText.Text));
 			}
 
 			return hasText;
@@ -125,7 +121,7 @@ namespace Bumblebee.Extensions
 		{
 			if (hasText.Text.Contains(text) == false)
 			{
-				throw new VerificationException("Expected \"{0}\" to contain \"{1}\"".FormatWith(hasText.Text, text));
+				throw new VerificationException(String.Format("Expected \"{0}\" to contain \"{1}\"", hasText.Text, text));
 			}
 
 			return hasText;
@@ -145,7 +141,7 @@ namespace Bumblebee.Extensions
 		{
 			if (block.Tag.FindElements(by).Any() == false)
 			{
-				throw new VerificationException("Couldn't verify presence of {0} {1}".FormatWith(element, by));
+				throw new VerificationException(String.Format("Couldn't verify presence of {0} {1}", element, by));
 			}
 
 			return block;
@@ -155,7 +151,7 @@ namespace Bumblebee.Extensions
 		{
 			if (block.Tag.FindElements(by).Any())
 			{
-				throw new VerificationException("Couldn't verify absence of {0} {1}".FormatWith(element, by));
+				throw new VerificationException(String.Format("Couldn't verify absence of {0} {1}", element, by));
 			}
 
 			return block;
@@ -181,15 +177,13 @@ namespace Bumblebee.Extensions
 
 			if (missingClasses.Any())
 			{
-				var message = "Block is missing the following expected classes: ";
-				message += missingClasses.Aggregate((current, missingClass) => current + ", " + missingClass);
-				throw new VerificationException(message);
+				throw new VerificationException(String.Format("Block is missing the following expected classes: {0}", String.Join(", ", missingClasses)));
 			}
 		}
 
 		public static void VerifyClasses(this IWebElement element, params string[] expectedClasses)
 		{
-			element.VerifyClasses((IEnumerable<string>) expectedClasses);
+			element.VerifyClasses(expectedClasses.AsEnumerable());
 		}
 
 		public static TBlock Store<TBlock, TData>(this TBlock block, out TData data, Func<TBlock, TData> exp)
