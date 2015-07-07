@@ -16,7 +16,7 @@ namespace Bumblebee.Setup
 		public Settings()
 		{
 			ScreenCapturePath = Environment.CurrentDirectory;
-			ScreenCaptureOnFailure = false;
+			CaptureScreenOnVerificationFailure = false;
 		}
 
 		/// <summary>
@@ -39,6 +39,6 @@ namespace Bumblebee.Setup
 			}
 		}
 
-		public bool ScreenCaptureOnFailure { get; set; }
+		public bool CaptureScreenOnVerificationFailure { get; set; }
 	}
 }

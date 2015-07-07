@@ -34,6 +34,7 @@
     <DocumentationFile>bin\Release\Bumblebee.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="CallStack.cs" />
     <Compile Include="Extensions\AdvancedSeleniumActions.cs" />
     <Compile Include="Extensions\BlockConvenience.cs" />
     <Compile Include="Extensions\Debugging.cs" />
@@ -41,7 +42,6 @@
     <Compile Include="Extensions\MethodBaseExtensions.cs" />
     <Compile Include="Extensions\Miscellaneous.cs" />
     <Compile Include="Extensions\Randomization.cs" />
-    <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Extensions\Verification.cs" />
     <Compile Include="Extensions\WebElementConvenience.cs" />
     <Compile Include="Implementation\Monkey.cs" />
@@ -84,7 +84,6 @@
     <Compile Include="Interfaces\ISpecificBlock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Setup\DriverEnvironments\InternetExplorer.cs" />
-    <Compile Include="Extensions\ObjectExtensions.cs" />
     <Compile Include="Setup\ISettings.cs" />
     <Compile Include="Setup\Session.cs" />
     <Compile Include="Implementation\Checkbox.cs" />

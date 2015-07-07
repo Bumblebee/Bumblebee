@@ -72,7 +72,7 @@ namespace Bumblebee.IntegrationTests.Extensions
 
 			action
 				.ShouldThrow<VerificationException>()
-				.WithMessage(string.Format("Unable to verify.  {0}", expectedMessage))
+				.WithMessage(String.Format("Unable to verify.  {0}", expectedMessage))
 				.WithInnerException<AssertionException>()
 				.WithInnerMessage(expectedMessage);
 		}

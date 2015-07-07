@@ -72,7 +72,7 @@ namespace Bumblebee.Setup
 
 		public Session CaptureScreen()
 		{
-			var filename = String.Format("{0}.png", this.GetParentMethodFullName());
+			var filename = String.Format("{0}.png", CallStack.GetCallingMethod().GetFullName());
 			var path = Path.Combine(Settings.ScreenCapturePath, filename);
 			return CaptureScreen(path);
 		}

@@ -16,6 +16,6 @@
 		/// <summary>
 		/// Gets whether or not to implicitly capture screenshots on a verification failure.
 		/// </summary>
-		bool ScreenCaptureOnFailure { get; }
+		bool CaptureScreenOnVerificationFailure { get; }
 	}
 }

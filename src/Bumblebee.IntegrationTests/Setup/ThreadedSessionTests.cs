@@ -2,13 +2,17 @@
 using System.Collections.Concurrent;
 using System.Linq;
 using System.Threading.Tasks;
+
 using Bumblebee.Extensions;
 using Bumblebee.IntegrationTests.Shared.Pages;
 using Bumblebee.IntegrationTests.Shared.Sessions;
 using Bumblebee.Setup;
 using Bumblebee.Setup.DriverEnvironments;
+
 using FluentAssertions;
+
 using NUnit.Framework;
+
 using OpenQA.Selenium.IE;
 using OpenQA.Selenium.PhantomJS;
 
