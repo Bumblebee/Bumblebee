@@ -29,16 +29,46 @@ namespace Bumblebee
 		{
 			var trace = new StackTrace(false);
 
-			if (trace.GetFrame(1).GetMethod().IsConstructor == false)
+			var frames = trace.GetFrames();
+
+			if (frames == null)
+			{
+				throw new Exception("Unable to get the StackFrames from the StackTrace.");
+			}
+
+			if (frames[1].GetMethod().IsConstructor == false)
 			{
 				throw new ArgumentException("You may only call GetConstructingMethod from a Constructor.");
 			}
 
-			var frame = trace.GetFrames()
+			var frame = frames
 				.Skip(1)
-				.FirstOrDefault(x => x.GetMethod().IsConstructor == false);
+				.First(x => x.GetMethod().IsConstructor == false);
 
 			return frame.GetMethod();
+		}
+
+		[MethodImpl(MethodImplOptions.NoInlining)]
+		public static MethodBase GetFirstNonBumblebeeMethod()
+		{
+			var trace = new StackTrace(false);
+
+			var frames = trace.GetFrames();
+
+			if (frames == null)
+			{
+				throw new Exception("Unable to get the StackFrames from the StackTrace.");
+			}
+
+			var method = frames
+				.Select(x => x.GetMethod())
+				.First(x => (x.DeclaringType != null)
+					&& (x.DeclaringType.Assembly != typeof (CallStack).Assembly)
+					&& (Attribute.IsDefined(x.DeclaringType, typeof (InvisibleAttribute)) == false)
+					&& (Attribute.IsDefined(x, typeof (CompilerGeneratedAttribute)) == false)
+					&& (Attribute.IsDefined(x.DeclaringType, typeof (CompilerGeneratedAttribute)) == false));
+
+			return method;
 		}
 	}
 }

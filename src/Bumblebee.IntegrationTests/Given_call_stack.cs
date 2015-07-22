@@ -21,8 +21,14 @@ namespace Bumblebee.IntegrationTests
 
 	public class InheritsFromCallsGetConstructingMethodInConstructor : CallsGetConstructingMethodInConstructor
 	{
-		public InheritsFromCallsGetConstructingMethodInConstructor() : base()
+	}
+
+	[Invisible]
+	public static class InvisibleClass
+	{
+		public static MethodBase InvisibleMethod()
 		{
+			return CallStack.GetFirstNonBumblebeeMethod();
 		}
 	}
 
@@ -39,7 +45,7 @@ namespace Bumblebee.IntegrationTests
 		public void When_GetCallingMethod_is_called_Then_this_method_is_returned()
 		{
 			// ReSharper disable once ConvertClosureToMethodGroup
-			// if we convert this to a MethodGroup, then the System.RuntimeMethodHandle.InvokeMethod is the calling method
+			// if we convert this to a MethodGroup, then the System.RuntimeMethodHandle.InvokeMethod is the calling method, which is not what we want
 			Func<MethodBase> fn = () => CallStack.GetCallingMethod();
 
 			fn().Should().Be(MethodBase.GetCurrentMethod());
@@ -67,6 +73,36 @@ namespace Bumblebee.IntegrationTests
 			var obj = new InheritsFromCallsGetConstructingMethodInConstructor();
 
 			obj.ConstructingMethod.Should().Be(MethodBase.GetCurrentMethod());
+		}
+
+		[Test]
+		public void When_GetFirstNonBumblebeeMethod_is_called_Then_this_method_is_returned()
+		{
+			CallStack.GetFirstNonBumblebeeMethod().Should().Be(MethodBase.GetCurrentMethod());
+		}
+
+		[Test]
+		public void When_GetFirstNonBumblebeeMethod_is_called_from_method_in_type_marked_invisible_Then_this_method_is_returned()
+		{
+			InvisibleClass.InvisibleMethod().Should().Be(MethodBase.GetCurrentMethod());
+		}
+
+		[Test]
+		public void When_GetFirstNonBumblebeeMethod_is_called_from_lambda_Then_this_method_is_returned()
+		{
+			// ReSharper disable once ConvertClosureToMethodGroup
+			// if we convert this to a MethodGroup, then the System.RuntimeMethodHandle.InvokeMethod is the calling method, which is not what we want
+			Func<MethodBase> fn = () => CallStack.GetFirstNonBumblebeeMethod();
+
+			fn().Should().Be(MethodBase.GetCurrentMethod());
+		}
+
+		[Test]
+		public void When_GetFirstNonBumblebeeMethod_is_called_as_a_method_group_Then_this_method_is_returned()
+		{
+			Func<MethodBase> fn = CallStack.GetFirstNonBumblebeeMethod;
+
+			fn().Should().Be(MethodBase.GetCurrentMethod());
 		}
 	}
 }
