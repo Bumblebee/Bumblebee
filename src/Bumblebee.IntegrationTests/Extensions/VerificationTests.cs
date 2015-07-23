@@ -19,23 +19,6 @@ using OpenQA.Selenium;
 
 namespace Bumblebee.IntegrationTests.Extensions
 {
-	public class TestClickable : IClickable
-	{
-		public IWebElement Tag { get; set; }
-		public Session Session { get; set; }
-		public string Text { get; set; }
-
-		public TResult Click<TResult>() where TResult : IBlock
-		{
-			throw new NotImplementedException();
-		}
-
-		public IPerformsDragAndDrop GetDragAndDropPerformer()
-		{
-			throw new NotImplementedException();
-		}
-	}
-
 	[TestFixture]
 	public class VerificationTests
 	{
@@ -137,7 +120,7 @@ namespace Bumblebee.IntegrationTests.Extensions
 		}
 
 		[Test]
-		public void Given_verification_on_IClickable_When_verification_fails_and_take_screenshot_is_true_Then_screenshot_is_taken()
+		public void Given_verification_on_IClickable_and_take_screenshot_is_true_When_verification_fails_Then_screenshot_is_taken()
 		{
 			var driver = Substitute.For<IWebDriver>();
 			var driverEnvironment = Substitute.For<IDriverEnvironment>();
@@ -170,7 +153,7 @@ namespace Bumblebee.IntegrationTests.Extensions
 		}
 
 		[Test]
-		public void Given_verification_on_IClickable_When_verification_succeeds_and_take_screenshot_is_true_Then_screenshot_is_not_taken()
+		public void Given_verification_on_IClickable_and_take_screenshot_is_true_When_verification_succeeds_Then_screenshot_is_not_taken()
 		{
 			var driver = Substitute.For<IWebDriver>();
 			var driverEnvironment = Substitute.For<IDriverEnvironment>();
@@ -203,7 +186,7 @@ namespace Bumblebee.IntegrationTests.Extensions
 		}
 
 		[Test]
-		public void Given_verification_on_IClickable_When_verification_fails_and_take_screenshot_is_false_Then_screenshot_is_not_taken()
+		public void Given_verification_on_IClickable_and_take_screenshot_is_false_When_verification_fails_Then_screenshot_is_not_taken()
 		{
 			var driver = Substitute.For<IWebDriver>();
 			var driverEnvironment = Substitute.For<IDriverEnvironment>();
@@ -238,7 +221,7 @@ namespace Bumblebee.IntegrationTests.Extensions
 		}
 
 		[Test]
-		public void Given_verification_on_IClickable_When_verification_succeeds_and_take_screenshot_is_false_Then_screenshot_is_not_taken()
+		public void Given_verification_on_IClickable_and_take_screenshot_is_false_When_verification_succeeds_Then_screenshot_is_not_taken()
 		{
 			var driver = Substitute.For<IWebDriver>();
 			var driverEnvironment = Substitute.For<IDriverEnvironment>();
@@ -262,6 +245,23 @@ namespace Bumblebee.IntegrationTests.Extensions
 			session.DidNotReceiveWithAnyArgs().CaptureScreen();
 
 			session.End();
+		}
+	}
+
+	public class TestClickable : IClickable
+	{
+		public IWebElement Tag { get; set; }
+		public Session Session { get; set; }
+		public string Text { get; set; }
+
+		public TResult Click<TResult>() where TResult : IBlock
+		{
+			throw new NotImplementedException();
+		}
+
+		public IPerformsDragAndDrop GetDragAndDropPerformer()
+		{
+			throw new NotImplementedException();
 		}
 	}
 }

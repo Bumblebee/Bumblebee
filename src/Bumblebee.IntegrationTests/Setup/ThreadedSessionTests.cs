@@ -32,7 +32,7 @@ namespace Bumblebee.IntegrationTests.Setup
 		}
 
 		[Test]
-		public void when_loading_with_driver_should_return_session_with_correct_driver_with_default_settings()
+		public void When_loading_with_driver_Then_should_return_session_with_correct_driver_with_default_settings()
 		{
 			Threaded<Session>
 				.With(new PhantomJS())
@@ -42,7 +42,7 @@ namespace Bumblebee.IntegrationTests.Setup
 		}
 
 		[Test]
-		public void when_loading_with_generic_driver_should_return_session_with_correct_driver_with_default_settings()
+		public void When_loading_with_generic_driver_Then_should_return_session_with_correct_driver_with_default_settings()
 		{
 			Threaded<Session>
 				.With<PhantomJS>()
@@ -52,7 +52,7 @@ namespace Bumblebee.IntegrationTests.Setup
 		}
 
 		[Test]
-		public void when_loading_with_driver_and_custom_settings_should_return_session_with_custom_settings()
+		public void When_loading_with_driver_and_custom_settings_Then_should_return_session_with_custom_settings()
 		{
 			var customSettings = new Settings
 			{
@@ -66,7 +66,7 @@ namespace Bumblebee.IntegrationTests.Setup
 		}
 
 		[Test]
-		public void when_loading_with_generic_driver_and_custom_settings_should_return_session_with_custom_settings()
+		public void When_loading_with_generic_driver_and_custom_settings_Then_should_return_session_with_custom_settings()
 		{
 			var customSettings = new Settings
 			{
@@ -80,7 +80,7 @@ namespace Bumblebee.IntegrationTests.Setup
 		}
 
 		[Test]
-		public void given_session_already_loaded_when_loading_with_another_driver_should_end_previous_session_driver_and_return_session_with_correct_driver()
+		public void Given_session_already_loaded_When_loading_with_another_driver_Then_should_end_previous_session_driver_and_return_session_with_correct_driver()
 		{
 			Session previousSession;
 
@@ -99,7 +99,7 @@ namespace Bumblebee.IntegrationTests.Setup
 		}
 
 		[Test]
-		public void given_session_already_loaded_with_navigation_when_getting_matching_current_block_should_return_block()
+		public void Given_session_already_loaded_with_navigation_When_getting_matching_current_block_Then_should_return_block()
 		{
 			Threaded<Session>
 				.With<PhantomJS>()
@@ -112,7 +112,7 @@ namespace Bumblebee.IntegrationTests.Setup
 		}
 
 		[Test]
-		public void given_session_not_loaded_with_navigation_when_getting_current_block_should_throw()
+		public void Given_session_not_loaded_with_navigation_When_getting_current_block_Then_should_throw()
 		{
 			Action action = () =>
 				Threaded<Session>
@@ -126,7 +126,7 @@ namespace Bumblebee.IntegrationTests.Setup
 		}
 
 		[Test]
-		public void given_different_thread_and_same_driver_environments_when_comparing_should_not_be_equal()
+		public void Given_different_thread_and_same_driver_environments_When_comparing_Then_should_not_be_equal()
 		{
 			var sessions = new ConcurrentDictionary<Guid, Session>();
 
@@ -155,7 +155,7 @@ namespace Bumblebee.IntegrationTests.Setup
 		}
 
 		[Test]
-		public void given_multiple_sessions_in_single_thread_when_loading_with_drivers_should_maintain_distinct_sessions()
+		public void Given_multiple_sessions_in_single_thread_When_loading_with_drivers_Then_should_maintain_distinct_sessions()
 		{
 			var session1 = Threaded<Session>
 				.With<PhantomJS>()
@@ -178,7 +178,7 @@ namespace Bumblebee.IntegrationTests.Setup
 		}
 
 		[Test]
-		public void given_session_type_with_wrong_constructor_args_when_loading_with_driver_should_throw()
+		public void Given_session_type_with_wrong_constructor_args_When_loading_with_driver_Then_should_throw()
 		{
 			Action action = () => Threaded<DerivedSessionWithWrongArgs>
 				.With<PhantomJS>();
@@ -191,7 +191,7 @@ namespace Bumblebee.IntegrationTests.Setup
 		}
 
 		[Test]
-		public void given_session_type_when_loading_with_driver_explicitly_should_load_with_driver()
+		public void Given_session_type_When_loading_with_driver_explicitly_Then_should_load_with_driver()
 		{
 			Threaded<Session>
 				.With(new PhantomJS())
@@ -200,7 +200,7 @@ namespace Bumblebee.IntegrationTests.Setup
 		}
 
 		[Test]
-		public void given_session_has_not_been_loaded_with_driver_when_ending_should_not_throw()
+		public void Given_session_has_not_been_loaded_with_driver_When_ending_Then_should_not_throw()
 		{
 			Action action = Threaded<Session>
 				.End;
@@ -209,7 +209,7 @@ namespace Bumblebee.IntegrationTests.Setup
 		}
 
 		[Test]
-		public void given_session_has_been_loaded_with_driver_when_ending_should_end_session()
+		public void Given_session_has_been_loaded_with_driver_When_ending_THen_should_end_session()
 		{
 			Threaded<Session>
 				.With<PhantomJS>();
