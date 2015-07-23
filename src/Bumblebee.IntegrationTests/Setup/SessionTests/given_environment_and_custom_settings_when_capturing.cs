@@ -15,7 +15,7 @@ using NUnit.Framework;
 namespace Bumblebee.IntegrationTests.Setup.SessionTests
 {
 	[TestFixture]
-	public class given_environment_and_custom_settings_when_capturing : HostTestFixture
+	public class Given_environment_and_custom_settings_When_capturing : HostTestFixture
 	{
 		private string _filePath;
 		private Session _session;
@@ -24,13 +24,16 @@ namespace Bumblebee.IntegrationTests.Setup.SessionTests
 		[TestFixtureSetUp]
 		public void Before()
 		{
-			var currentMethod = this.GetCurrentMethodFullName();
+			var currentMethod = CallStack.GetCurrentMethod().GetFullName();
 
 			const string path = @"C:\Temp";
 			_filePath = Path.ChangeExtension(Path.Combine(path, currentMethod), "png");
 			File.Delete(_filePath);
 
-			var settings = new Settings {ScreenCapturePath = path};
+			var settings = new Settings
+			{
+				ScreenCapturePath = path
+			};
 
 			var environment = new InternetExplorer();
 			_session = new Session(environment, settings);

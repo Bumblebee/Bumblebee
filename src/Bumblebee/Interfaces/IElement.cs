@@ -1,9 +1,6 @@
-﻿using Bumblebee.Setup;
-
-namespace Bumblebee.Interfaces
+﻿namespace Bumblebee.Interfaces
 {
-	public interface IElement : IDraggable
+	public interface IElement : IDraggable, IHasSession
 	{
-		Session Session { get; }
 	}
 }

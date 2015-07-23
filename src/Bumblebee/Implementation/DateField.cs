@@ -19,7 +19,7 @@ namespace Bumblebee.Implementation
 		public virtual TCustomResult EnterDate<TCustomResult>(DateTime date) where TCustomResult : IBlock
 		{
 			var executor = (IJavaScriptExecutor) Session.Driver;
-			executor.ExecuteScript(string.Format("arguments[0].value = '{0:yyyy-MM-dd}';", date), Tag);
+			executor.ExecuteScript(String.Format("arguments[0].value = '{0:yyyy-MM-dd}';", date), Tag);
 
 			return Session.CurrentBlock<TCustomResult>(ParentBlock.Tag);
 		}

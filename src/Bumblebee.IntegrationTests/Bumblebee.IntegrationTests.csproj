@@ -70,6 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extensions\FilteringTests.cs" />
+    <Compile Include="Given_call_stack.cs" />
     <Compile Include="Implementation\Given_checkbox.cs" />
     <Compile Include="Implementation\Given_dialogs.cs" />
     <Compile Include="Implementation\Given_double_clickable.cs" />
@@ -83,10 +84,12 @@
     <Compile Include="Implementation\Given_table.cs" />
     <Compile Include="Implementation\Given_text_field.cs" />
     <Compile Include="Setup\DriverEnvironmentTests.cs" />
-    <Compile Include="Setup\SessionTests\given_environment_and_custom_settings_when_capturing.cs" />
-    <Compile Include="Setup\SessionTests\given_environment_and_default_settings_when_capturing.cs" />
-    <Compile Include="Setup\SessionTests\given_generic_environment_and_custom_settings_when_capturing.cs" />
-    <Compile Include="Setup\SessionTests\given_generic_environment_and_default_settings_when_capturing.cs" />
+    <Compile Include="Setup\SessionTests\Given_default_implementation_of_ISettings.cs" />
+    <Compile Include="Setup\SessionTests\Given_environment_and_custom_settings_When_capturing.cs" />
+    <Compile Include="Setup\SessionTests\Given_environment_and_default_settings_When_capturing.cs" />
+    <Compile Include="Setup\SessionTests\Given_generic_environment_and_custom_settings_When_capturing.cs" />
+    <Compile Include="Setup\SessionTests\Given_generic_environment_and_default_settings_When_capturing.cs" />
+    <Compile Include="Setup\SessionTests\Given_session_with_default_settings.cs" />
     <Compile Include="Setup\SessionTests\SessionTests.cs" />
     <Compile Include="Shared\Pages\Implementation\CheckboxPage.cs" />
     <Compile Include="Shared\Pages\Implementation\ComplexTableRow.cs" />

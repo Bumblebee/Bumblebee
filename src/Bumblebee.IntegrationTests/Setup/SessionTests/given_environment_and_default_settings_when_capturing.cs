@@ -17,7 +17,7 @@ using NUnit.Framework;
 namespace Bumblebee.IntegrationTests.Setup.SessionTests
 {
 	[TestFixture]
-	public class given_environment_and_default_settings_when_capturing : HostTestFixture
+	public class Given_environment_and_default_settings_When_capturing : HostTestFixture
 	{
 		private string path;
 		private Session session;

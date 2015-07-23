@@ -2,13 +2,17 @@
 using System.Collections.Concurrent;
 using System.Linq;
 using System.Threading.Tasks;
+
 using Bumblebee.Extensions;
 using Bumblebee.IntegrationTests.Shared.Pages;
 using Bumblebee.IntegrationTests.Shared.Sessions;
 using Bumblebee.Setup;
 using Bumblebee.Setup.DriverEnvironments;
+
 using FluentAssertions;
+
 using NUnit.Framework;
+
 using OpenQA.Selenium.IE;
 using OpenQA.Selenium.PhantomJS;
 
@@ -50,7 +54,11 @@ namespace Bumblebee.IntegrationTests.Setup
 		[Test]
 		public void when_loading_with_driver_and_custom_settings_should_return_session_with_custom_settings()
 		{
-			var customSettings = new Settings { ScreenCapturePath = @"C:\Temp" };
+			var customSettings = new Settings
+			{
+				ScreenCapturePath = @"C:\Temp"
+			};
+
 			Threaded<Session>
 				.With(new PhantomJS(), customSettings)
 				.VerifyThat(x => x.Settings.Should().Be(customSettings))
@@ -60,7 +68,11 @@ namespace Bumblebee.IntegrationTests.Setup
 		[Test]
 		public void when_loading_with_generic_driver_and_custom_settings_should_return_session_with_custom_settings()
 		{
-			var customSettings = new Settings {ScreenCapturePath = @"C:\Temp"};
+			var customSettings = new Settings
+			{
+				ScreenCapturePath = @"C:\Temp"
+			};
+
 			Threaded<Session>
 				.With<PhantomJS>(customSettings)
 				.VerifyThat(x => x.Settings.Should().Be(customSettings))

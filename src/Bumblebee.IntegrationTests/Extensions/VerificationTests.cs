@@ -1,15 +1,40 @@
 ﻿using System;
+using System.IO;
+using System.Reflection;
+
 using Bumblebee.Exceptions;
 using Bumblebee.Extensions;
 using Bumblebee.Interfaces;
+using Bumblebee.Setup;
+
 using FluentAssertions;
+
 using NSubstitute;
 
 using NUnit.Framework;
 
+using OpenQA.Selenium;
+
+// ReSharper disable InconsistentNaming
+
 namespace Bumblebee.IntegrationTests.Extensions
 {
-	// ReSharper disable InconsistentNaming
+	public class TestClickable : IClickable
+	{
+		public IWebElement Tag { get; set; }
+		public Session Session { get; set; }
+		public string Text { get; set; }
+
+		public TResult Click<TResult>() where TResult : IBlock
+		{
+			throw new NotImplementedException();
+		}
+
+		public IPerformsDragAndDrop GetDragAndDropPerformer()
+		{
+			throw new NotImplementedException();
+		}
+	}
 
 	[TestFixture]
 	public class VerificationTests
@@ -17,7 +42,7 @@ namespace Bumblebee.IntegrationTests.Extensions
 		[TestCase(null, "Unable to verify.")]
 		[TestCase("", "Unable to verify.")]
 		[TestCase("Last name should equal 'Barson'.", "Unable to verify.  Last name should equal 'Barson'.")]
-		public void given_value_and_verification_and_predicate_that_fails_when_verifying_should_throw_exception_with_verification_message(string verification, string verificationMessage)
+		public void Given_value_and_verification_and_predicate_that_fails_when_verifying_should_throw_exception_with_verification_message(string verification, string verificationMessage)
 		{
 			var value = new { FirstName = "Todd", LastName = "Meinershagen" };
 
@@ -27,7 +52,7 @@ namespace Bumblebee.IntegrationTests.Extensions
 		}
 
 		[Test]
-		public void given_value_and_verification_and_predicate_that_succeeds_when_verifying_should_return_original_value()
+		public void Given_value_and_verification_and_predicate_that_succeeds_when_verifying_should_return_original_value()
 		{
 			var value = new { FirstName = "Todd", LastName = "Meinershagen" };
 
@@ -37,7 +62,7 @@ namespace Bumblebee.IntegrationTests.Extensions
 		}
 
 		[Test]
-		public void given_value_and_predicate_that_fails_when_verifying_should_throw_exception_with_standard_message()
+		public void Given_value_and_predicate_that_fails_when_verifying_should_throw_exception_with_standard_message()
 		{
 			var value = new { FirstName = "Todd", LastName = "Meinershagen" };
 
@@ -49,7 +74,7 @@ namespace Bumblebee.IntegrationTests.Extensions
 		}
 
 		[Test]
-		public void given_value_and_predicate_that_succeeds_when_verifying_should_return_original_value()
+		public void Given_value_and_predicate_that_succeeds_when_verifying_should_return_original_value()
 		{
 			var value = new { FirstName = "Todd", LastName = "Meinershagen" };
 
@@ -59,7 +84,7 @@ namespace Bumblebee.IntegrationTests.Extensions
 		}
 
 		[Test]
-		public void given_assertion_that_fails_should_throw()
+		public void Given_assertion_that_fails_should_throw()
 		{
 			var value = new { };
 			const string expectedMessage = "This is the message.";
@@ -78,7 +103,7 @@ namespace Bumblebee.IntegrationTests.Extensions
 		}
 
 		[Test]
-		public void given_assertion_that_does_not_fail_should_return_original_value()
+		public void Given_assertion_that_does_not_fail_should_return_original_value()
 		{
 			var message = new { Name = "Todd" };
 			var result = message.VerifyThat(m => m.Name.Should().Be("Todd"));
@@ -88,7 +113,7 @@ namespace Bumblebee.IntegrationTests.Extensions
 
 		[TestCase(true)]
 		[TestCase(false)]
-		public void given_selection_verification_passes_when_verifying_selected_should_return_element(bool expected)
+		public void Given_selection_verification_passes_when_verifying_selected_should_return_element(bool expected)
 		{
 			var element = Substitute.For<ISelectable>();
 			element.Selected.Returns(expected);
@@ -99,15 +124,144 @@ namespace Bumblebee.IntegrationTests.Extensions
 
 		[TestCase(true)]
 		[TestCase(false)]
-		public void given_selection_verification_fails_when_verifying_selected_should_throw_exception(bool expected)
+		public void Given_selection_verification_fails_when_verifying_selected_should_throw_exception(bool expected)
 		{
 			var element = Substitute.For<ISelectable>();
 			element.Selected.Returns(!expected);
 
 			Action action = () => element.VerifySelected(expected);
+
 			action
 				.ShouldThrow<VerificationException>()
-				.WithMessage("Selection verification failed. Expected: {0}, Actual: {1}.".FormatWith(expected, element.Selected));
+				.WithMessage(String.Format("Selection verification failed. Expected: {0}, Actual: {1}.", expected, element.Selected));
+		}
+
+		[Test]
+		public void Given_verification_on_IClickable_When_verification_fails_and_take_screenshot_is_true_Then_screenshot_is_taken()
+		{
+			var driver = Substitute.For<IWebDriver>();
+			var driverEnvironment = Substitute.For<IDriverEnvironment>();
+			var settings = Substitute.For<ISettings>();
+			var session = Substitute.For<Session>(driverEnvironment);
+
+			var clickable = new TestClickable
+			{
+				Session = session,
+				Text = "Not the right text"
+			};
+
+			driverEnvironment.CreateWebDriver().Returns(driver);
+
+			settings.CaptureScreenOnVerificationFailure.Returns(true);
+
+			session.Settings.Returns(settings);
+
+			try
+			{
+				clickable.Verify(x => x.Text == "The right text");
+			}
+			catch (VerificationException)
+			{
+			}
+
+			session.Received().CaptureScreen(Path.Combine(Environment.CurrentDirectory, String.Format("{0}.png", MethodBase.GetCurrentMethod().GetFullName())));
+
+			session.End();
+		}
+
+		[Test]
+		public void Given_verification_on_IClickable_When_verification_succeeds_and_take_screenshot_is_true_Then_screenshot_is_not_taken()
+		{
+			var driver = Substitute.For<IWebDriver>();
+			var driverEnvironment = Substitute.For<IDriverEnvironment>();
+			var settings = Substitute.For<ISettings>();
+			var session = Substitute.For<Session>(driverEnvironment);
+
+			driverEnvironment.CreateWebDriver().Returns(driver);
+
+			settings.CaptureScreenOnVerificationFailure.Returns(true);
+
+			session.Settings.Returns(settings);
+
+			var clickable = new TestClickable
+			{
+				Session = session,
+				Text = "The right text"
+			};
+
+			try
+			{
+				clickable.Verify(x => x.Text == "The right text");
+			}
+			catch (VerificationException)
+			{
+			}
+
+			session.DidNotReceiveWithAnyArgs().CaptureScreen();
+
+			session.End();
+		}
+
+		[Test]
+		public void Given_verification_on_IClickable_When_verification_fails_and_take_screenshot_is_false_Then_screenshot_is_not_taken()
+		{
+			var driver = Substitute.For<IWebDriver>();
+			var driverEnvironment = Substitute.For<IDriverEnvironment>();
+			var settings = Substitute.For<ISettings>();
+			var session = Substitute.For<Session>(driverEnvironment);
+
+			driverEnvironment.CreateWebDriver().Returns(driver);
+
+			settings.CaptureScreenOnVerificationFailure.Returns(false);
+
+			session.Settings.Returns(settings);
+
+			var clickable = new TestClickable
+			{
+				Session = session,
+				Text = "Not the right text"
+			};
+
+			try
+			{
+				clickable.Verify(x => x.Text == "The right text");
+			}
+			catch (VerificationException)
+			{
+			}
+
+			session.DidNotReceive().CaptureScreen(Path.Combine(Environment.CurrentDirectory, String.Format("{0}.png", MethodBase.GetCurrentMethod().GetFullName())));
+
+			session.DidNotReceiveWithAnyArgs().CaptureScreen();
+
+			session.End();
+		}
+
+		[Test]
+		public void Given_verification_on_IClickable_When_verification_succeeds_and_take_screenshot_is_false_Then_screenshot_is_not_taken()
+		{
+			var driver = Substitute.For<IWebDriver>();
+			var driverEnvironment = Substitute.For<IDriverEnvironment>();
+			var settings = Substitute.For<ISettings>();
+			var session = Substitute.For<Session>(driverEnvironment);
+
+			driverEnvironment.CreateWebDriver().Returns(driver);
+
+			settings.CaptureScreenOnVerificationFailure.Returns(false);
+
+			session.Settings.Returns(settings);
+
+			var clickable = new TestClickable
+			{
+				Session = session,
+				Text = "The right text"
+			};
+
+			clickable.Verify(x => x.Text == "The right text");
+
+			session.DidNotReceiveWithAnyArgs().CaptureScreen();
+
+			session.End();
 		}
 	}
 }
