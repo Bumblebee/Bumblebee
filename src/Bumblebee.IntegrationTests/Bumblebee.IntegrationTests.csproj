@@ -87,6 +87,7 @@
     <Compile Include="Setup\SessionTests\Given_default_implementation_of_ISettings.cs" />
     <Compile Include="Setup\SessionTests\Given_environment_and_custom_settings_When_capturing.cs" />
     <Compile Include="Setup\SessionTests\Given_environment_and_default_settings_When_capturing.cs" />
+    <Compile Include="Setup\SessionTests\Given_environment_and_default_settings_When_capturing_from_generic_method.cs" />
     <Compile Include="Setup\SessionTests\Given_generic_environment_and_custom_settings_When_capturing.cs" />
     <Compile Include="Setup\SessionTests\Given_generic_environment_and_default_settings_When_capturing.cs" />
     <Compile Include="Setup\SessionTests\Given_session_with_default_settings.cs" />
