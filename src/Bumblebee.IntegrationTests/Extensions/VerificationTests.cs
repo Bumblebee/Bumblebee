@@ -172,13 +172,7 @@ namespace Bumblebee.IntegrationTests.Extensions
 				Text = "The right text"
 			};
 
-			try
-			{
-				clickable.Verify(x => x.Text == "The right text");
-			}
-			catch (VerificationException)
-			{
-			}
+			clickable.Verify(x => x.Text == "The right text");
 
 			session.DidNotReceiveWithAnyArgs().CaptureScreen();
 
