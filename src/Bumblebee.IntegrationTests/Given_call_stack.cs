@@ -32,6 +32,22 @@ namespace Bumblebee.IntegrationTests
 		}
 	}
 
+	public static class GenericClass<T>
+	{
+		public static Tuple<MethodBase, MethodBase> GetMethodBase()
+		{
+			return new Tuple<MethodBase, MethodBase>(MethodBase.GetCurrentMethod(), CallStack.GetFirstNonBumblebeeMethod());
+		}
+	}
+
+	public static class NonGenericClass
+	{
+		public static Tuple<MethodBase, MethodBase> GenericMethod<T>()
+		{
+			return new Tuple<MethodBase, MethodBase>(MethodBase.GetCurrentMethod(), CallStack.GetFirstNonBumblebeeMethod());
+		}
+	}
+
 	[TestFixture]
 	public class Given_call_stack
 	{
@@ -103,6 +119,22 @@ namespace Bumblebee.IntegrationTests
 			Func<MethodBase> fn = CallStack.GetFirstNonBumblebeeMethod;
 
 			fn().Should().Be(MethodBase.GetCurrentMethod());
+		}
+
+		[Test]
+		public void When_GetFirstNonBumblebeeMethod_is_called_from_a_generic_method_Then_generic_method_definition_is_returned()
+		{
+			var result = NonGenericClass.GenericMethod<int>();
+
+			result.Item2.Should().Be(result.Item1);
+		}
+
+		[Test]
+		public void When_GetFirstNonBumblebeeMethod_is_called_from_a_method_on_a_generic_class_Then_method_definition_on_generic_class_is_returned()
+		{
+			var result = GenericClass<int>.GetMethodBase();
+
+			result.Item2.Should().Be(result.Item1);
 		}
 	}
 }
