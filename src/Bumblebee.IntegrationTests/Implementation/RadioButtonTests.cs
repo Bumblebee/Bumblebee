@@ -12,7 +12,7 @@ namespace Bumblebee.IntegrationTests.Implementation
 	// ReSharper disable InconsistentNaming
 
 	[TestFixture]
-	public class Given_radio_buttons : HostTestFixture
+	public class RadioButtonTests : HostTestFixture
 	{
 		[TestFixtureSetUp]
 		public void Init()

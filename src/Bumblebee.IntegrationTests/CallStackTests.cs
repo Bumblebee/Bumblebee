@@ -7,49 +7,8 @@ using NUnit.Framework;
 
 namespace Bumblebee.IntegrationTests
 {
-	// ReSharper disable InconsistentNaming
-
-	public class CallsGetConstructingMethodInConstructor
-	{
-		public MethodBase ConstructingMethod { get; private set; }
-
-		public CallsGetConstructingMethodInConstructor()
-		{
-			ConstructingMethod = CallStack.GetConstructingMethod();
-		}
-	}
-
-	public class InheritsFromCallsGetConstructingMethodInConstructor : CallsGetConstructingMethodInConstructor
-	{
-	}
-
-	[Invisible]
-	public static class InvisibleClass
-	{
-		public static MethodBase InvisibleMethod()
-		{
-			return CallStack.GetFirstNonBumblebeeMethod();
-		}
-	}
-
-	public static class GenericClass<T>
-	{
-		public static Tuple<MethodBase, MethodBase> GetMethodBase()
-		{
-			return new Tuple<MethodBase, MethodBase>(MethodBase.GetCurrentMethod(), CallStack.GetFirstNonBumblebeeMethod());
-		}
-	}
-
-	public static class NonGenericClass
-	{
-		public static Tuple<MethodBase, MethodBase> GenericMethod<T>()
-		{
-			return new Tuple<MethodBase, MethodBase>(MethodBase.GetCurrentMethod(), CallStack.GetFirstNonBumblebeeMethod());
-		}
-	}
-
 	[TestFixture]
-	public class Given_call_stack
+    public class Given_call_stack
 	{
 		[Test]
 		public void When_GetCurrentMethod_is_called_Then_current_method_is_returned()
@@ -137,4 +96,45 @@ namespace Bumblebee.IntegrationTests
 			result.Item2.Should().Be(result.Item1);
 		}
 	}
+
+    // ReSharper disable InconsistentNaming
+
+    public class CallsGetConstructingMethodInConstructor
+    {
+        public MethodBase ConstructingMethod { get; private set; }
+
+        public CallsGetConstructingMethodInConstructor()
+        {
+            ConstructingMethod = CallStack.GetConstructingMethod();
+        }
+    }
+
+    public class InheritsFromCallsGetConstructingMethodInConstructor : CallsGetConstructingMethodInConstructor
+    {
+    }
+
+    [Bumblebee]
+    public static class InvisibleClass
+    {
+        public static MethodBase InvisibleMethod()
+        {
+            return CallStack.GetFirstNonBumblebeeMethod();
+        }
+    }
+
+    public static class GenericClass<T>
+    {
+        public static Tuple<MethodBase, MethodBase> GetMethodBase()
+        {
+            return new Tuple<MethodBase, MethodBase>(MethodBase.GetCurrentMethod(), CallStack.GetFirstNonBumblebeeMethod());
+        }
+    }
+
+    public static class NonGenericClass
+    {
+        public static Tuple<MethodBase, MethodBase> GenericMethod<T>()
+        {
+            return new Tuple<MethodBase, MethodBase>(MethodBase.GetCurrentMethod(), CallStack.GetFirstNonBumblebeeMethod());
+        }
+    }
 }

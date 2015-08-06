@@ -73,7 +73,7 @@
     <Compile Include="Interfaces\IMonkeyable.cs" />
     <Compile Include="Interfaces\INumericField.cs" />
     <Compile Include="Interfaces\IPerformsDragAndDrop.cs" />
-    <Compile Include="InvisibleAttribute.cs" />
+    <Compile Include="BumblebeeAttribute.cs" />
     <Compile Include="Key.cs" />
     <Compile Include="Setup\DriverEnvironments\Chrome.cs" />
     <Compile Include="Setup\DriverEnvironments\Firefox.cs" />

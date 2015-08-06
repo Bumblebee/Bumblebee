@@ -64,7 +64,7 @@ namespace Bumblebee
 				.Select(x => x.GetMethod())
 				.First(x => (x.DeclaringType != null)
 					&& (x.DeclaringType.Assembly != typeof (CallStack).Assembly)
-					&& (Attribute.IsDefined(x.DeclaringType, typeof (InvisibleAttribute)) == false)
+					&& (Attribute.IsDefined(x.DeclaringType, typeof (BumblebeeAttribute)) == false)
 					&& (Attribute.IsDefined(x, typeof (CompilerGeneratedAttribute)) == false)
 					&& (Attribute.IsDefined(x.DeclaringType, typeof (CompilerGeneratedAttribute)) == false));
 
