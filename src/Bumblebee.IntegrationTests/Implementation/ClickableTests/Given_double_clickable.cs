@@ -8,7 +8,7 @@ using FluentAssertions;
 
 using NUnit.Framework;
 
-namespace Bumblebee.IntegrationTests.Implementation
+namespace Bumblebee.IntegrationTests.Implementation.ClickableTests
 {
 	// ReSharper disable InconsistentNaming
 

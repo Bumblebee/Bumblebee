@@ -10,7 +10,7 @@ using FluentAssertions;
 
 using NUnit.Framework;
 
-namespace Bumblebee.IntegrationTests.Implementation
+namespace Bumblebee.IntegrationTests.Implementation.TableTests
 {
 	// ReSharper disable InconsistentNaming
 

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+
 using Bumblebee.Interfaces;
 
 namespace Bumblebee.Extensions

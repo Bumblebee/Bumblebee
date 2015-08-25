@@ -20,6 +20,7 @@ namespace Bumblebee.Implementation
 		public virtual TResult EnterDate<TResult>(DateTime date) where TResult : IBlock
 		{
 			var executor = (IJavaScriptExecutor) Session.Driver;
+			executor.ExecuteScript(String.Format("arguments[0].value = '{0:yyyy-MM-dd}';", date), Tag);
 
 			executor.ExecuteScript(String.Format("arguments[0].value = '{0:yyyy-MM-dd}';", date), Tag);
 

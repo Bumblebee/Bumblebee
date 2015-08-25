@@ -14,9 +14,10 @@ namespace Bumblebee.Setup
 		where TSession : Session
 	{
 		public const string InvalidSessionTypeFormat = "The instance type specified ({0}) is not a valid session.  It must have a constructor that takes an IDriverEnvironment and/or ISettings.";
+
 		private static readonly ThreadLocal<TSession> ThreadLocalSession = new ThreadLocal<TSession>();
 
-		private static TSession CurrentSession
+		private static TSession Current
 		{
 			get { return ThreadLocalSession.Value; }
 			set { ThreadLocalSession.Value = value; }
@@ -44,30 +45,27 @@ namespace Bumblebee.Setup
 		/// <returns></returns>
 		public static TSession With(IDriverEnvironment environment)
 		{
-			if (CurrentSession != null)
+			if (Current != null)
 			{
-				CurrentSession.End();
-
-				CurrentSession = null;
+				Current.End();
+				Current = null;
 			}
 
-			CurrentSession = GetInstanceOf<TSession>(environment);
+			Current = GetInstanceOf<TSession>(environment);
 
-			return CurrentSession;
+			return Current;
 		}
 
 		public static TSession With(IDriverEnvironment environment, ISettings settings)
 		{
-			if (CurrentSession != null)
+			if (Current != null)
 			{
-				CurrentSession.End();
-
-				CurrentSession = null;
+				Current.End();
+				Current = null;
 			}
 
-			CurrentSession = GetInstanceOf<TSession>(environment, settings);
-
-			return CurrentSession;
+			Current = GetInstanceOf<TSession>(environment, settings);
+			return Current;
 		}
 
 		private static T GetInstanceOf<T>(params object[] constructorArgs) where T : Session
@@ -92,21 +90,21 @@ namespace Bumblebee.Setup
 
 		public static TBlock CurrentBlock<TBlock>() where TBlock : IBlock
 		{
-			if (CurrentSession == null)
+			if (Current == null)
 			{
 				throw new NullReferenceException("You cannot access the CurrentBlock without first initializing the Session by calling With<TDriverEnvironment>().");
 			}
 
-			return CurrentSession.CurrentBlock<TBlock>();
+			return Current.CurrentBlock<TBlock>();
 		}
 
 		public static void End()
 		{
-			if (CurrentSession != null)
+			if (Current != null)
 			{
-				CurrentSession.End();
+				Current.End();
 
-				CurrentSession = null;
+				Current = null;
 			}
 		}
 	}

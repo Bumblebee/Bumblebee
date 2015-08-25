@@ -14,6 +14,7 @@ namespace Bumblebee.Extensions
 
 			if (method.DeclaringType == null)
 			{
+				// this only happens for C++/CLI defined global free functions (e.g. basically never)
 				throw new ArgumentNullException("method.DeclaringType");
 			}
 
