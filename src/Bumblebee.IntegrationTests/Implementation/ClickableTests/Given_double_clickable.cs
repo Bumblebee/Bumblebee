@@ -3,10 +3,12 @@ using Bumblebee.IntegrationTests.Shared.Hosting;
 using Bumblebee.IntegrationTests.Shared.Pages.Implementation;
 using Bumblebee.Setup;
 using Bumblebee.Setup.DriverEnvironments;
+
 using FluentAssertions;
+
 using NUnit.Framework;
 
-namespace Bumblebee.IntegrationTests.Implementation
+namespace Bumblebee.IntegrationTests.Implementation.ClickableTests
 {
 	// ReSharper disable InconsistentNaming
 
@@ -18,7 +20,7 @@ namespace Bumblebee.IntegrationTests.Implementation
 		{
 			Threaded<Session>
 				.With<PhantomJS>()
-				.NavigateTo<DoubleClickablePage>(BaseUrl + "/Content/DoubleClick.html");
+				.NavigateTo<DoubleClickablePage>(GetUrl("DoubleClick.html"));
 		}
 
 		[TestFixtureTearDown]

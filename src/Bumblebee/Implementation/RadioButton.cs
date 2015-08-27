@@ -1,4 +1,6 @@
-﻿using Bumblebee.Extensions;
+﻿using System;
+
+using Bumblebee.Extensions;
 using Bumblebee.Interfaces;
 
 using OpenQA.Selenium;
@@ -7,7 +9,7 @@ namespace Bumblebee.Implementation
 {
 	public class RadioButton<TResult> : Option<TResult> where TResult : IBlock
 	{
-		public RadioButton(IBlock parent, By by) : base(parent, by)
+		public RadioButton(IBlock parent, By @by) : base(parent, @by)
 		{
 		}
 
@@ -17,7 +19,7 @@ namespace Bumblebee.Implementation
 
 		public override string Text
 		{
-			get { return ParentBlock.Tag.FindElement(By.CssSelector("label[for=\"" + Tag.GetID() + "\"]")).Text; }
+			get { return ParentBlock.FindElement(By.CssSelector(String.Format("label[for=\"{0}\"]", Tag.GetID()))).Text; }
 		}
 	}
 }

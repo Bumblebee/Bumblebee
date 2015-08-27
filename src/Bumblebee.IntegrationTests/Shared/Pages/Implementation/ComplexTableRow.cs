@@ -5,13 +5,9 @@ using OpenQA.Selenium;
 
 namespace Bumblebee.IntegrationTests.Shared.Pages.Implementation
 {
-	public class ComplexTableRow : Element
+	public class ComplexTableRow : Block
 	{
 		public ComplexTableRow(IBlock parent, By @by) : base(parent, @by)
-		{
-		}
-
-		public ComplexTableRow(IBlock parent, IWebElement tag) : base(parent, tag)
 		{
 		}
 

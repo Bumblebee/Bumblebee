@@ -8,17 +8,13 @@ using OpenQA.Selenium;
 
 namespace Bumblebee.IntegrationTests.Shared.Pages.Implementation
 {
-	public class GenericTableRow : Element
+	public class GenericTableRow : Block
 	{
 		private const int ItemColumnIndex = 0;
 		private const int QuantityColumnIndex = 1;
 		private const int PriceColumnIndex = 2;
 
 		public GenericTableRow(IBlock parent, By @by) : base(parent, @by)
-		{
-		}
-
-		public GenericTableRow(IBlock parent, IWebElement tag) : base(parent, tag)
 		{
 		}
 

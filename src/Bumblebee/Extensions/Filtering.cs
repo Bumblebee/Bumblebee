@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+
 using Bumblebee.Interfaces;
 
 namespace Bumblebee.Extensions
@@ -18,7 +19,7 @@ namespace Bumblebee.Extensions
 
 		public static IEnumerable<TSelectable> Unselected<TSelectable>(this IEnumerable<TSelectable> options) where TSelectable : ISelectable
 		{
-			return options.Where(option => !option.Selected);
+			return options.Where(option => option.Selected == false);
 		}
 
 		public static IEnumerable<TSelectable> Selected<TSelectable>(this IEnumerable<TSelectable> options) where TSelectable : ISelectable

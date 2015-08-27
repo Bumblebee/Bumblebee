@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 using Bumblebee.Interfaces;
 using Bumblebee.Setup;
@@ -10,13 +9,37 @@ namespace Bumblebee.Implementation
 {
 	public abstract class Block : IBlock
 	{
+		public IBlock ParentBlock { get; private set; }
 		public Session Session { get; private set; }
+		public By Specification { get; private set; }
 
-		public IWebElement Tag { get; protected set; }
+		public virtual IWebElement Tag
+		{
+			get
+			{
+				IWebElement result;
 
-		protected Block(Session session)
+				if (ParentBlock == null)
+				{
+					result = Session.Driver
+						.SwitchTo()
+						.DefaultContent()
+						.FindElement(Specification);
+				}
+				else
+				{
+					result = ParentBlock
+						.FindElement(Specification);
+				}
+
+				return result;
+			}
+		}
+
+		protected Block(Session session, By @by)
 		{
 			Session = session;
+			Specification = @by;
 
 			if (Session.Monkey != null)
 			{
@@ -24,46 +47,26 @@ namespace Bumblebee.Implementation
 			}
 		}
 
-		public IList<IWebElement> FindElements(By by)
+		protected Block(IBlock parent, By @by)
 		{
-			if (Tag == null)
-			{
-				throw new NullReferenceException("You can't call GetElements on a block without first initializing Tag.");
-			}
+			Session = parent.Session;
+			Specification = @by;
+			ParentBlock = parent;
 
-			return Tag.FindElements(by);
+			if (Session.Monkey != null)
+			{
+				Session.Monkey.Invoke(this);
+			}
 		}
 
-		[Obsolete("This method is obsolete. It will be removed in a future version. Please use FindElements() instead.")]
-		public IList<IWebElement> GetElements(By by)
+		public virtual IEnumerable<IWebElement> FindElements(By @by)
 		{
-			if (Tag == null)
-			{
-				throw new NullReferenceException("You can't call GetElements on a block without first initializing Tag.");
-			}
-
-			return Tag.FindElements(by);
+			return Tag.FindElements(@by);
 		}
 
-		public IWebElement FindElement(By by)
+		public virtual IWebElement FindElement(By @by)
 		{
-			if (Tag == null)
-			{
-				throw new NullReferenceException("You can't call GetElement on a block without first initializing Tag.");
-			}
-
-			return Tag.FindElement(by);
-		}
-
-		[Obsolete("This method is obsolete. It will be removed in a future version. Please use FindElement() instead.")]
-		public IWebElement GetElement(By by)
-		{
-			if (Tag == null)
-			{
-				throw new NullReferenceException("You can't call GetElement on a block without first initializing Tag.");
-			}
-
-			return Tag.FindElement(by);
+			return Tag.FindElement(@by);
 		}
 
 		public virtual IPerformsDragAndDrop GetDragAndDropPerformer()

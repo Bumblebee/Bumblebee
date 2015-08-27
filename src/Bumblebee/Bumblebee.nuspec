@@ -14,7 +14,7 @@
     <copyright>Copyright 2012</copyright>
     <tags>acceptance ui automation system test testing</tags>
     <dependencies>
-      <dependency id="Selenium.Support" version="2.44.0"></dependency>
+      <dependency id="Selenium.Support" version="2.45.0"></dependency>
     </dependencies>
   </metadata>
 </package>

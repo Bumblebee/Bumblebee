@@ -5,11 +5,10 @@ using OpenQA.Selenium;
 
 namespace Bumblebee.IntegrationTests.Shared.Pages
 {
-	public class LoggedOutPage : WebBlock
+	public class LoggedOutPage : Block
 	{
-		public LoggedOutPage(Session session) : base(session)
+		public LoggedOutPage(Session session) : base(session, By.Id("login"))
 		{
-			Tag = FindElement(By.Id("login"));
 		}
 	}
 }

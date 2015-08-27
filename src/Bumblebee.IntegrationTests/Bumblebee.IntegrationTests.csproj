@@ -70,23 +70,27 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extensions\FilteringTests.cs" />
-    <Compile Include="Implementation\Given_checkbox.cs" />
-    <Compile Include="Implementation\Given_dialogs.cs" />
-    <Compile Include="Implementation\Given_double_clickable.cs" />
-    <Compile Include="Implementation\Given_keys.cs" />
-    <Compile Include="Implementation\Given_radio_buttons.cs" />
-    <Compile Include="Implementation\Given_select_box_with_ability_to_select_multiple_values.cs" />
-    <Compile Include="Implementation\Given_date_field.cs" />
-    <Compile Include="Implementation\Given_numeric_field.cs" />
-    <Compile Include="Implementation\Given_generic_table.cs" />
-    <Compile Include="Implementation\Given_complex_table.cs" />
-    <Compile Include="Implementation\Given_table.cs" />
-    <Compile Include="Implementation\Given_text_field.cs" />
+    <Compile Include="CallStackTests.cs" />
+    <Compile Include="Implementation\CheckboxTests.cs" />
+    <Compile Include="Implementation\AlertDialogTests.cs" />
+    <Compile Include="Implementation\ClickableTests\Given_double_clickable.cs" />
+    <Compile Include="KeyTests.cs" />
+    <Compile Include="Implementation\RadioButtonTests.cs" />
+    <Compile Include="Implementation\SelectBoxTests.cs" />
+    <Compile Include="Implementation\DateFieldTests.cs" />
+    <Compile Include="Implementation\NumericFieldTests.cs" />
+    <Compile Include="Implementation\TableTests\Given_generic_table.cs" />
+    <Compile Include="Implementation\TableTests\Given_complex_table.cs" />
+    <Compile Include="Implementation\TableTests\Given_table.cs" />
+    <Compile Include="Implementation\TestFieldTests.cs" />
     <Compile Include="Setup\DriverEnvironmentTests.cs" />
-    <Compile Include="Setup\SessionTests\given_environment_and_custom_settings_when_capturing.cs" />
-    <Compile Include="Setup\SessionTests\given_environment_and_default_settings_when_capturing.cs" />
-    <Compile Include="Setup\SessionTests\given_generic_environment_and_custom_settings_when_capturing.cs" />
-    <Compile Include="Setup\SessionTests\given_generic_environment_and_default_settings_when_capturing.cs" />
+    <Compile Include="Setup\SessionTests\Given_default_implementation_of_ISettings.cs" />
+    <Compile Include="Setup\SessionTests\Given_environment_and_custom_settings_When_capturing.cs" />
+    <Compile Include="Setup\SessionTests\Given_environment_and_default_settings_When_capturing.cs" />
+    <Compile Include="Setup\SessionTests\Given_environment_and_default_settings_When_capturing_from_generic_method.cs" />
+    <Compile Include="Setup\SessionTests\Given_generic_environment_and_custom_settings_When_capturing.cs" />
+    <Compile Include="Setup\SessionTests\Given_generic_environment_and_default_settings_When_capturing.cs" />
+    <Compile Include="Setup\SessionTests\Given_session_with_default_settings.cs" />
     <Compile Include="Setup\SessionTests\SessionTests.cs" />
     <Compile Include="Shared\Pages\Implementation\CheckboxPage.cs" />
     <Compile Include="Shared\Pages\Implementation\ComplexTableRow.cs" />
@@ -95,8 +99,11 @@
     <Compile Include="Shared\Pages\Implementation\GenericTablePage.cs" />
     <Compile Include="Shared\Pages\Implementation\GenericTableRow.cs" />
     <Compile Include="Shared\Pages\Implementation\DoubleClickablePage.cs" />
+    <Compile Include="Shared\Pages\Implementation\InlineFramesPage.cs" />
     <Compile Include="Shared\Pages\Implementation\KeysPage.cs" />
+    <Compile Include="Shared\Pages\Implementation\ListOfComplexBlocksPage.cs" />
     <Compile Include="Shared\Pages\Implementation\MultiSelectPage.cs" />
+    <Compile Include="Shared\Pages\Implementation\NestedInlineFramesPage.cs" />
     <Compile Include="Shared\Pages\Implementation\NumericFieldPage.cs" />
     <Compile Include="Shared\Pages\Implementation\RadioButtonsPage.cs" />
     <Compile Include="Shared\Hosting\Host.cs" />
@@ -131,8 +138,20 @@
       <Link>IEDriverServer.exe</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\packages\WebDriver.ChromeDriver.win32.2.13.0.0\content\chromedriver.exe">
+    <Content Include="..\packages\WebDriver.ChromeDriver.win32.2.14.0.0\content\chromedriver.exe">
       <Link>chromedriver.exe</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\NestedInlineFramesGrandchild.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\NestedInlineFramesChild.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\InlineFrames.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\InlineFramesChild.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Keys.html">
@@ -150,7 +169,13 @@
     <Content Include="Content\DoubleClick.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\ListOfComplexBlocks.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\MultiSelect.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\NestedInlineFrames.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\NumericField.html">
@@ -168,10 +193,10 @@
     <Content Include="Content\TextField.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Compile Include="Shared\Pages\Implementation\TablePage.cs" />
     <Content Include="phantomjs-license.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Compile Include="Shared\Pages\Implementation\TablePage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />

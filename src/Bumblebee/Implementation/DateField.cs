@@ -1,5 +1,6 @@
 ﻿using System;
 
+using Bumblebee.Extensions;
 using Bumblebee.Interfaces;
 
 using OpenQA.Selenium;
@@ -8,7 +9,7 @@ namespace Bumblebee.Implementation
 {
 	public class DateField : TextField, IDateField
 	{
-		public DateField(IBlock parent, By by) : base(parent, by)
+		public DateField(IBlock parent, By @by) : base(parent, @by)
 		{
 		}
 
@@ -16,20 +17,29 @@ namespace Bumblebee.Implementation
 		{
 		}
 
-		public virtual TCustomResult EnterDate<TCustomResult>(DateTime date) where TCustomResult : IBlock
+		public virtual TResult EnterDate<TResult>(DateTime date) where TResult : IBlock
 		{
 			var executor = (IJavaScriptExecutor) Session.Driver;
-			executor.ExecuteScript(string.Format("arguments[0].value = '{0:yyyy-MM-dd}';", date), Tag);
+			executor.ExecuteScript(String.Format("arguments[0].value = '{0:yyyy-MM-dd}';", date), Tag);
 
-			return Session.CurrentBlock<TCustomResult>(ParentBlock.Tag);
+			executor.ExecuteScript(String.Format("arguments[0].value = '{0:yyyy-MM-dd}';", date), Tag);
+
+			return this.FindRelated<TResult>();
 		}
 
 		public virtual DateTime? Value
 		{
 			get
 			{
-				DateTime result;
-				return DateTime.TryParse(Text ?? String.Empty, out result) ? result : new DateTime?();
+				DateTime? result = null;
+
+				DateTime date;
+				if ((Text != null) && DateTime.TryParse(Text, out date))
+				{
+					result = date;
+				}
+
+				return result;
 			}
 		}
 	}
@@ -37,7 +47,7 @@ namespace Bumblebee.Implementation
 	public class DateField<TResult> : DateField, IDateField<TResult>
 		where TResult : IBlock
 	{
-		public DateField(IBlock parent, By by) : base(parent, by)
+		public DateField(IBlock parent, By @by) : base(parent, @by)
 		{
 		}
 

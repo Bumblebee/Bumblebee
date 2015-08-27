@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 
+using Bumblebee.Extensions;
 using Bumblebee.Interfaces;
 
 using OpenQA.Selenium;
@@ -9,7 +10,7 @@ namespace Bumblebee.Implementation
 {
 	public class NumericField : TextField, INumericField
 	{
-		public NumericField(IBlock parent, By by) : base(parent, by)
+		public NumericField(IBlock parent, By @by) : base(parent, @by)
 		{
 		}
 
@@ -17,26 +18,35 @@ namespace Bumblebee.Implementation
 		{
 		}
 
-		public virtual TCustomResult EnterNumber<TCustomResult>(double number) where TCustomResult : IBlock
+		public virtual TResult EnterNumber<TResult>(double number) where TResult : IBlock
 		{
 			Tag.Clear();
+
 			Tag.SendKeys(number.ToString(CultureInfo.CurrentUICulture));
-			return Session.CurrentBlock<TCustomResult>(ParentBlock.Tag);
+
+			return this.FindRelated<TResult>();
 		}
 
 		public virtual double? Value
 		{
 			get
 			{
-				double result;
-				return Double.TryParse(Text ?? String.Empty, out result) ? result : new double?();
+				double? result = null;
+
+				double x;
+				if ((Text != null) && Double.TryParse(Text, out x))
+				{
+					result = x;
+				}
+
+				return result;
 			}
 		}
 	}
 
 	public class NumericField<TResult> : NumericField, INumericField<TResult> where TResult : IBlock
 	{
-		public NumericField(IBlock parent, By by) : base(parent, by)
+		public NumericField(IBlock parent, By @by) : base(parent, @by)
 		{
 		}
 

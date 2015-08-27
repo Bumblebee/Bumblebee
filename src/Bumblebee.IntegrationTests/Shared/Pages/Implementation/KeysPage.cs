@@ -24,7 +24,7 @@ namespace Bumblebee.IntegrationTests.Shared.Pages.Implementation
 		{
 			get
 			{
-				return GetElement(By.Id("KeyPressed")).Text;
+				return FindElement(By.Id("KeyPressed")).Text;
 			}
 		}
 	}

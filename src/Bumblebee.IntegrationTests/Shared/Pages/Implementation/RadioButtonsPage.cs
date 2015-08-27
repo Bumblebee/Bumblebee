@@ -1,6 +1,7 @@
 using System;
 
 using Bumblebee.Implementation;
+using Bumblebee.Interfaces;
 using Bumblebee.Setup;
 
 using OpenQA.Selenium;
@@ -17,7 +18,7 @@ namespace Bumblebee.IntegrationTests.Shared.Pages.Implementation
 		{
 		}
 
-		public RadioButtons<RadioButtonsPage> Beverages
+		public IRadioButtons<RadioButtonsPage> Beverages
 		{
 			get { return new RadioButtons<RadioButtonsPage>(this, By.Name("beverages")); }
 		}
