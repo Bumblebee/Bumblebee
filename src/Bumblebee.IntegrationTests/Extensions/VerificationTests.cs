@@ -249,6 +249,20 @@ namespace Bumblebee.IntegrationTests.Extensions
 		public Session Session { get; set; }
 		public string Text { get; set; }
 
+		public TParent ParentAs<TParent>() where TParent : IBlock
+		{
+			var type = typeof (TParent);
+
+			var result = default (TParent);
+
+			if (type.IsInstanceOfType(ParentBlock))
+			{
+				result = (TParent)ParentBlock;
+			}
+
+			return result;
+		}
+
 		public TResult Click<TResult>() where TResult : IBlock
 		{
 			throw new NotImplementedException();
@@ -258,6 +272,5 @@ namespace Bumblebee.IntegrationTests.Extensions
 		{
 			throw new NotImplementedException();
 		}
-
 	}
 }

@@ -59,6 +59,20 @@ namespace Bumblebee.Implementation
 			}
 		}
 
+		public TParent ParentAs<TParent>() where TParent : IBlock
+		{
+			var type = typeof (TParent);
+
+			var result = default (TParent);
+
+			if (type.IsInstanceOfType(ParentBlock))
+			{
+				result = (TParent) ParentBlock;
+			}
+
+			return result;
+		}
+
 		public virtual IEnumerable<IWebElement> FindElements(By @by)
 		{
 			return Tag.FindElements(@by);

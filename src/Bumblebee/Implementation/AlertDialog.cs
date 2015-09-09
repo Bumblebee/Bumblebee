@@ -29,6 +29,20 @@ namespace Bumblebee.Implementation
 			ParentBlock = parent;
 		}
 
+		public TParent ParentAs<TParent>() where TParent : IBlock
+		{
+			var type = typeof (TParent);
+
+			var result = default (TParent);
+
+			if (type.IsInstanceOfType(ParentBlock))
+			{
+				result = (TParent)ParentBlock;
+			}
+
+			return result;
+		}
+
 		public IWebElement FindElement(By @by)
 		{
 			throw new NotImplementedException();

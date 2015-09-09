@@ -25,6 +25,20 @@ namespace Bumblebee.Implementation
 			Tag = tag;
 		}
 
+		public TParent ParentAs<TParent>() where TParent : IBlock
+		{
+			var type = typeof (TParent);
+
+			var result = default (TParent);
+
+			if (type.IsInstanceOfType(ParentBlock))
+			{
+				result = (TParent)ParentBlock;
+			}
+
+			return result;
+		}
+
 		public IPerformsDragAndDrop GetDragAndDropPerformer()
 		{
 			return new WebDragAndDropPerformer(Session.Driver);
