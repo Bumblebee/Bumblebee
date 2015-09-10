@@ -74,9 +74,9 @@
     <Compile Include="Implementation\CheckboxTests.cs" />
     <Compile Include="Implementation\AlertDialogTests.cs" />
     <Compile Include="Implementation\ClickableTests\Given_double_clickable.cs" />
-    <Compile Include="Implementation\Given_inline_frame.cs" />
-    <Compile Include="Implementation\Given_list_of_complex_blocks.cs" />
-    <Compile Include="Implementation\Given_nested_inline_frames.cs" />
+    <Compile Include="Implementation\InlineFrameTests\Given_inline_frame.cs" />
+    <Compile Include="Implementation\IEnumerableOfBlocksTests.cs" />
+    <Compile Include="Implementation\InlineFrameTests\Given_nested_inline_frames.cs" />
     <Compile Include="KeyTests.cs" />
     <Compile Include="Implementation\RadioButtonTests.cs" />
     <Compile Include="Implementation\SelectBoxTests.cs" />
