@@ -10,7 +10,10 @@
     <projectUrl>https://github.com/patrickherrmann/Bumblebee</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>This is a pre-release version of Bumblebee 2.0 that handles stale elements better by maintaining element specification logic.  Note, there are some breaking changes.</releaseNotes>
+    <releaseNotes>This is a pre-release version of Bumblebee 2.0 that handles stale elements better by maintaining element specification logic.  Note, there are some breaking changes.
+    This version includes a fix for an issue when attempting to use the Tag property of the InlineFrame class to find elements within the frame.
+    Also, renamed ParentBlock property to Property for readability and add a convenience method to get the Parent cast as a specific type - ParentAs().
+    </releaseNotes>
     <copyright>Copyright 2012</copyright>
     <tags>acceptance ui automation system test testing</tags>
     <dependencies>
