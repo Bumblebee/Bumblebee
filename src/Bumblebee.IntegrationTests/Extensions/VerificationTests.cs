@@ -244,10 +244,24 @@ namespace Bumblebee.IntegrationTests.Extensions
 
 	public class TestClickable : IClickable
 	{
-		public IBlock ParentBlock { get; set; }
+		public IBlock Parent { get; set; }
 		public IWebElement Tag { get; set; }
 		public Session Session { get; set; }
 		public string Text { get; set; }
+
+		public TParent ParentAs<TParent>() where TParent : IBlock
+		{
+			var type = typeof (TParent);
+
+			var result = default (TParent);
+
+			if (type.IsInstanceOfType(Parent))
+			{
+				result = (TParent)Parent;
+			}
+
+			return result;
+		}
 
 		public TResult Click<TResult>() where TResult : IBlock
 		{
@@ -258,6 +272,5 @@ namespace Bumblebee.IntegrationTests.Extensions
 		{
 			throw new NotImplementedException();
 		}
-
 	}
 }

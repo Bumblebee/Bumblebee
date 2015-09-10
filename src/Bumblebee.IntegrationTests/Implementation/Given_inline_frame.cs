@@ -1,4 +1,6 @@
-﻿using Bumblebee.Extensions;
+﻿using System.Linq;
+
+using Bumblebee.Extensions;
 using Bumblebee.IntegrationTests.Shared.Hosting;
 using Bumblebee.IntegrationTests.Shared.Pages.Implementation;
 using Bumblebee.Setup;
@@ -7,6 +9,8 @@ using Bumblebee.Setup.DriverEnvironments;
 using FluentAssertions;
 
 using NUnit.Framework;
+
+using OpenQA.Selenium;
 
 namespace Bumblebee.IntegrationTests.Implementation
 {
@@ -28,6 +32,26 @@ namespace Bumblebee.IntegrationTests.Implementation
 		{
 			Threaded<Session>
 				.End();
+		}
+
+		[Test]
+		public void When_tag_is_used_Child_elements_can_be_found()
+		{
+			Threaded<Session>
+				.CurrentBlock<InlineFramesPage>()
+				.Child.Tag.FindElements(By.Id(ChildFrame.TheLinkId))
+				.Count()
+				.Should().BeGreaterThan(0);
+		}
+
+		[Test]
+		public void When_FindElements_is_used_Child_elements_can_be_found()
+		{
+			Threaded<Session>
+				.CurrentBlock<InlineFramesPage>()
+				.Child.FindElements(By.Id(ChildFrame.TheLinkId))
+				.Count()
+				.Should().BeGreaterThan(0);
 		}
 
 		[Test]

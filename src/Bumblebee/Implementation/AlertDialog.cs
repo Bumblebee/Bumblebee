@@ -12,7 +12,7 @@ namespace Bumblebee.Implementation
 	public class AlertDialog : IAlertDialog
 	{
 		public IWebElement Tag { get; private set; }
-		public IBlock ParentBlock { get; private set; }
+		public IBlock Parent { get; private set; }
 		public Session Session { get; private set; }
 
 		private IAlert Alert { get; set; }
@@ -26,7 +26,21 @@ namespace Bumblebee.Implementation
 
 		public AlertDialog(IBlock parent) : this(parent.Session)
 		{
-			ParentBlock = parent;
+			Parent = parent;
+		}
+
+		public TParent ParentAs<TParent>() where TParent : IBlock
+		{
+			var type = typeof (TParent);
+
+			var result = default (TParent);
+
+			if (type.IsInstanceOfType(Parent))
+			{
+				result = (TParent)Parent;
+			}
+
+			return result;
 		}
 
 		public IWebElement FindElement(By @by)

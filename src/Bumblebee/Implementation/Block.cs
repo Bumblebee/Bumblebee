@@ -9,7 +9,7 @@ namespace Bumblebee.Implementation
 {
 	public abstract class Block : IBlock
 	{
-		public IBlock ParentBlock { get; private set; }
+		public IBlock Parent { get; private set; }
 		public Session Session { get; private set; }
 		public By Specification { get; private set; }
 
@@ -19,7 +19,7 @@ namespace Bumblebee.Implementation
 			{
 				IWebElement result;
 
-				if (ParentBlock == null)
+				if (Parent == null)
 				{
 					result = Session.Driver
 						.SwitchTo()
@@ -28,7 +28,7 @@ namespace Bumblebee.Implementation
 				}
 				else
 				{
-					result = ParentBlock
+					result = Parent
 						.FindElement(Specification);
 				}
 
@@ -51,12 +51,26 @@ namespace Bumblebee.Implementation
 		{
 			Session = parent.Session;
 			Specification = @by;
-			ParentBlock = parent;
+			Parent = parent;
 
 			if (Session.Monkey != null)
 			{
 				Session.Monkey.Invoke(this);
 			}
+		}
+
+		public TParent ParentAs<TParent>() where TParent : IBlock
+		{
+			var type = typeof (TParent);
+
+			var result = default (TParent);
+
+			if (type.IsInstanceOfType(Parent))
+			{
+				result = (TParent) Parent;
+			}
+
+			return result;
 		}
 
 		public virtual IEnumerable<IWebElement> FindElements(By @by)
