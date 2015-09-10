@@ -244,7 +244,7 @@ namespace Bumblebee.IntegrationTests.Extensions
 
 	public class TestClickable : IClickable
 	{
-		public IBlock ParentBlock { get; set; }
+		public IBlock Parent { get; set; }
 		public IWebElement Tag { get; set; }
 		public Session Session { get; set; }
 		public string Text { get; set; }
@@ -255,9 +255,9 @@ namespace Bumblebee.IntegrationTests.Extensions
 
 			var result = default (TParent);
 
-			if (type.IsInstanceOfType(ParentBlock))
+			if (type.IsInstanceOfType(Parent))
 			{
-				result = (TParent)ParentBlock;
+				result = (TParent)Parent;
 			}
 
 			return result;

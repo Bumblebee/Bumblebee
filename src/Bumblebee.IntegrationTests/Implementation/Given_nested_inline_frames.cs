@@ -51,7 +51,7 @@ namespace Bumblebee.IntegrationTests.Implementation
 				.ChildFrame
 				.ChildFrame
 				.ParentLink.Click()
-				.VerifyThat(page => page.ParentBlock
+				.VerifyThat(page => page.Parent
 					.As<NestedInlineFramesPage>()
 					.Text
 					.Should()

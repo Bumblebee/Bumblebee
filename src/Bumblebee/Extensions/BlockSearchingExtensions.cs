@@ -18,7 +18,7 @@ namespace Bumblebee.Extensions
 				throw new ArgumentNullException("element");
 			}
 
-			return FindRelated<T>(element.ParentBlock);
+			return FindRelated<T>(element.Parent);
 		}
 
 		public static T FindRelated<T>(this IBlock block) where T : IBlock
@@ -44,7 +44,7 @@ namespace Bumblebee.Extensions
 					}
 					else
 					{
-						ancestor = ancestor.ParentBlock;
+						ancestor = ancestor.Parent;
 					}
 				}
 

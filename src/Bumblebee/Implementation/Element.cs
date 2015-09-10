@@ -7,7 +7,7 @@ namespace Bumblebee.Implementation
 {
 	public abstract class Element : IElement
 	{
-		public IBlock ParentBlock { get; private set; }
+		public IBlock Parent { get; private set; }
 		public IWebElement Tag { get; private set; }
 		public Session Session { get; private set; }
 
@@ -20,7 +20,7 @@ namespace Bumblebee.Implementation
 
 		protected Element(IBlock parent, IWebElement tag)
 		{
-			ParentBlock = parent;
+			Parent = parent;
 			Session = parent.Session;
 			Tag = tag;
 		}
@@ -31,9 +31,9 @@ namespace Bumblebee.Implementation
 
 			var result = default (TParent);
 
-			if (type.IsInstanceOfType(ParentBlock))
+			if (type.IsInstanceOfType(Parent))
 			{
-				result = (TParent)ParentBlock;
+				result = (TParent)Parent;
 			}
 
 			return result;
