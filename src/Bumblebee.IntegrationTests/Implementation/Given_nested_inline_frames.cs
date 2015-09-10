@@ -51,8 +51,7 @@ namespace Bumblebee.IntegrationTests.Implementation
 				.ChildFrame
 				.ChildFrame
 				.ParentLink.Click()
-				.VerifyThat(page => page.Parent
-					.As<NestedInlineFramesPage>()
+				.VerifyThat(page => page.ParentAs<NestedInlineFramesPage>()
 					.Text
 					.Should()
 					.Be("Not clicked."));
