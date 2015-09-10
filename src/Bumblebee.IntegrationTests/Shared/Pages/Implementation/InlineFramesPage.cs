@@ -27,13 +27,15 @@ namespace Bumblebee.IntegrationTests.Shared.Pages.Implementation
 
 	public class ChildFrame : InlineFrame
 	{
+		public const string TheLinkId = "TheLink";
+
 		public ChildFrame(IBlock parent, By @by) : base(parent, @by)
 		{
 		}
 
 		public IClickable<InlineFramesPage> TheLink
 		{
-			get { return new Clickable<InlineFramesPage>(this, By.Id("TheLink")); }
+			get { return new Clickable<InlineFramesPage>(this, By.Id(TheLinkId)); }
 		}
 	}
 }

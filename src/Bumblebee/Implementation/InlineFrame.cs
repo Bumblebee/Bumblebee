@@ -1,37 +1,34 @@
-﻿using System.Collections.Generic;
-
-using Bumblebee.Interfaces;
+﻿using Bumblebee.Interfaces;
 using Bumblebee.Setup;
 
 using OpenQA.Selenium;
 
 namespace Bumblebee.Implementation
 {
+	/// <summary>
+	/// This represents and &lt;iframe&gt; element.
+	/// </summary>
+	/// <remarks>
+	/// Note that for the <see cref="Tag" /> property, we make the assumption that the page inside the frame has a &lt;body&gt; element.
+	/// </remarks>
 	public abstract class InlineFrame : Block
 	{
+		public override IWebElement Tag
+		{
+			get
+			{
+				return Session.Driver
+					.SwitchTo().Frame(base.Tag)
+					.FindElement(By.TagName("body"));
+			}
+		}
+
 		protected InlineFrame(Session session, By @by) : base(session, @by)
 		{
-			SwitchToThisFrame();
 		}
 
 		protected InlineFrame(IBlock parent, By @by) : base(parent, @by)
 		{
-			SwitchToThisFrame();
-		}
-
-		public override IWebElement FindElement(By @by)
-		{
-			return SwitchToThisFrame().FindElement(@by);
-		}
-
-		public override IEnumerable<IWebElement> FindElements(By @by)
-		{
-			return SwitchToThisFrame().FindElements(@by);
-		}
-
-		private IWebDriver SwitchToThisFrame()
-		{
-			return Session.Driver.SwitchTo().Frame(Tag);
 		}
 	}
 }
