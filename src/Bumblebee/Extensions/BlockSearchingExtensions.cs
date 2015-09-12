@@ -33,25 +33,22 @@ namespace Bumblebee.Extensions
 
 			IDictionary<Type, bool> typesAlreadySearched = new Dictionary<Type, bool>();
 
-			if (ancestor.GetType() != type)
+			while ((ancestor != null) && (type.IsInstanceOfType(ancestor) == false))
 			{
-				while ((ancestor != null) && (type.IsInstanceOfType(ancestor) == false))
+				T result;
+				if (SearchDescendantsFor(ref typesAlreadySearched, ancestor, out result))
 				{
-					T result;
-					if (SearchDescendantsFor(ref typesAlreadySearched, ancestor, out result))
-					{
-						ancestor = result;
-					}
-					else
-					{
-						ancestor = ancestor.Parent;
-					}
+					ancestor = result;
 				}
+				else
+				{
+					ancestor = ancestor.Parent;
+				}
+			}
 
-				if (ancestor == null)
-				{
-					ancestor = Factory.CreateBlockFromSession<T>(block.Session);
-				}
+			if (ancestor == null)
+			{
+				ancestor = Factory.CreateBlockFromSession<T>(block.Session);
 			}
 
 			return (T) ancestor;
