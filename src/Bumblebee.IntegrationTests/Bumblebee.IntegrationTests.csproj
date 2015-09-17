@@ -71,6 +71,7 @@
   <ItemGroup>
     <Compile Include="Extensions\FilteringTests.cs" />
     <Compile Include="CallStackTests.cs" />
+    <Compile Include="Extensions\FindRelatedTests.cs" />
     <Compile Include="Implementation\CheckboxTests.cs" />
     <Compile Include="Implementation\AlertDialogTests.cs" />
     <Compile Include="Implementation\ClickableTests\Given_double_clickable.cs" />
