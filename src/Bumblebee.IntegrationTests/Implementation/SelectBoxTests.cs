@@ -18,7 +18,7 @@ namespace Bumblebee.IntegrationTests.Implementation
 	public class Given_select_box_with_ability_to_select_multiple_values : HostTestFixture
 	{
 		[TestFixtureSetUp]
-		public void Init()
+		public void SetUpFixture()
 		{
 			Threaded<Session>
 				.With<PhantomJS>()
@@ -26,7 +26,7 @@ namespace Bumblebee.IntegrationTests.Implementation
 		}
 
 		[TestFixtureTearDown]
-		public void Dispose()
+		public void DisposeFixture()
 		{
 			Threaded<Session>
 				.End();

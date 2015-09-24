@@ -16,7 +16,7 @@ namespace Bumblebee.IntegrationTests.Implementation.ClickableTests
 	public class Given_double_clickable : HostTestFixture
 	{
 		[TestFixtureSetUp]
-		public void Init()
+		public void SetUpFixture()
 		{
 			Threaded<Session>
 				.With<PhantomJS>()
@@ -24,7 +24,7 @@ namespace Bumblebee.IntegrationTests.Implementation.ClickableTests
 		}
 
 		[TestFixtureTearDown]
-		public void Dispose()
+		public void DisposeFixture()
 		{
 			Threaded<Session>
 				.End();
