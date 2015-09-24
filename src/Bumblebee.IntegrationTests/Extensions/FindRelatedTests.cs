@@ -187,23 +187,29 @@ namespace Bumblebee.IntegrationTests.Extensions
 		}
 	}
 
-	public class GrandparentBlock : Block
+	public abstract class InstanceGuidBlock : Block
 	{
-		public Guid InstanceId { get; private set; }
+		private readonly Guid _instanceId = Guid.NewGuid();
 
+		public Guid InstanceId { get { return _instanceId; } }
+
+		protected InstanceGuidBlock(Session session, By @by) : base(session, @by)
+		{
+		}
+
+		protected InstanceGuidBlock(IBlock parent, By @by) : base(parent, @by)
+		{
+		}
+	}
+
+	public class GrandparentBlock : InstanceGuidBlock
+	{
 		public GrandparentBlock(Session session, By @by) : base(session, @by)
 		{
-			Init();
 		}
 
 		public GrandparentBlock(IBlock parent, By @by) : base(parent, @by)
 		{
-			Init();
-		}
-
-		private void Init()
-		{
-			InstanceId = Guid.NewGuid();    
 		}
 
 		public ParentBlockA ParentBlockA
@@ -223,23 +229,14 @@ namespace Bumblebee.IntegrationTests.Extensions
 		}
 	}
 
-	public class ParentBlockA : Block
+	public class ParentBlockA : InstanceGuidBlock
 	{
-		public Guid InstanceId { get; private set; }
-
 		public ParentBlockA(Session session, By @by) : base(session, @by)
 		{
-			Init();
 		}
 
 		public ParentBlockA(IBlock parent, By @by) : base(parent, @by)
 		{
-			Init();
-		}
-
-		private void Init()
-		{
-			InstanceId = Guid.NewGuid();    
 		}
 
 		public ChildBlock1 ChildBlock1
@@ -259,24 +256,15 @@ namespace Bumblebee.IntegrationTests.Extensions
 		}
 	}
 
-	public class ParentBlockB : Block
+	public class ParentBlockB : InstanceGuidBlock
 	{
-	    public Guid InstanceId { get; private set; }
-
-	    public ParentBlockB(Session session, By @by) : base(session, @by)
+		public ParentBlockB(Session session, By @by) : base(session, @by)
 		{
-		    Init();
 		}
 
 		public ParentBlockB(IBlock parent, By @by) : base(parent, @by)
 		{
-		    Init();
 		}
-
-        private void Init()
-	    {
-	        InstanceId = Guid.NewGuid();    
-	    }
 
 		public ChildBlock2 ChildBlock2
 		{
@@ -295,83 +283,47 @@ namespace Bumblebee.IntegrationTests.Extensions
 		}
 	}
 
-	public class ChildBlock1 : Block
+	public class ChildBlock1 : InstanceGuidBlock
 	{
-	    public Guid InstanceId { get; private set; }
-
-	    public ChildBlock1(Session session, By @by) : base(session, @by)
-	    {
-	        Init();
-	    }
+		public ChildBlock1(Session session, By @by) : base(session, @by)
+		{
+		}
 
 		public ChildBlock1(IBlock parent, By @by) : base(parent, @by)
 		{
-		    Init();
 		}
-
-        private void Init()
-	    {
-	        InstanceId = Guid.NewGuid();    
-	    }
 	}
 
-	public class ChildBlock2 : Block
+	public class ChildBlock2 : InstanceGuidBlock
 	{
-	    public Guid InstanceId { get; private set; }
-
-	    public ChildBlock2(Session session, By @by) : base(session, @by)
-	    {
-	        Init();
-	    }
+		public ChildBlock2(Session session, By @by) : base(session, @by)
+		{
+		}
 
 		public ChildBlock2(IBlock parent, By @by) : base(parent, @by)
 		{
-		    Init();
 		}
-
-        private void Init()
-	    {
-	        InstanceId = Guid.NewGuid();    
-	    }
 	}
 
-	public class ChildBlock3 : Block
+	public class ChildBlock3 : InstanceGuidBlock
 	{
-	    public Guid InstanceId { get; private set; }
-
-	    public ChildBlock3(Session session, By @by) : base(session, @by)
-	    {
-	        Init();
-	    }
+		public ChildBlock3(Session session, By @by) : base(session, @by)
+		{
+		}
 
 		public ChildBlock3(IBlock parent, By @by) : base(parent, @by)
 		{
-		    Init();
 		}
-
-        private void Init()
-	    {
-	        InstanceId = Guid.NewGuid();    
-	    }
 	}
 
-	public class ChildBlock4 : Block
+	public class ChildBlock4 : InstanceGuidBlock
 	{
-	    public Guid InstanceId { get; private set; }
-
-	    public ChildBlock4(Session session, By @by) : base(session, @by)
-	    {
-	        Init();
-	    }
+		public ChildBlock4(Session session, By @by) : base(session, @by)
+		{
+		}
 
 		public ChildBlock4(IBlock parent, By @by) : base(parent, @by)
 		{
-		    Init();
 		}
-
-        private void Init()
-        {
-            InstanceId = Guid.NewGuid();
-        }
 	}
 }
