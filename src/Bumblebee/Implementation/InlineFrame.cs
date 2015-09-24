@@ -6,7 +6,7 @@ using OpenQA.Selenium;
 namespace Bumblebee.Implementation
 {
 	/// <summary>
-	/// This represents and &lt;iframe&gt; element.
+	/// This represents an &lt;iframe&gt; element.
 	/// </summary>
 	/// <remarks>
 	/// Note that for the <see cref="Tag" /> property, we make the assumption that the page inside the frame has a &lt;body&gt; element.

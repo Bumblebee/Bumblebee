@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 
+using Bumblebee.Interfaces;
+
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.Extensions;
 

@@ -33,25 +33,22 @@ namespace Bumblebee.Extensions
 
 			IDictionary<Type, bool> typesAlreadySearched = new Dictionary<Type, bool>();
 
-			if (ancestor.GetType() != type)
+			while ((ancestor != null) && (type.IsInstanceOfType(ancestor) == false))
 			{
-				while ((ancestor != null) && (type.IsInstanceOfType(ancestor) == false))
+				T result;
+				if (SearchDescendantsFor(ref typesAlreadySearched, ancestor, out result))
 				{
-					T result;
-					if (SearchDescendantsFor(ref typesAlreadySearched, ancestor, out result))
-					{
-						ancestor = result;
-					}
-					else
-					{
-						ancestor = ancestor.Parent;
-					}
+					ancestor = result;
 				}
+				else
+				{
+					ancestor = ancestor.Parent;
+				}
+			}
 
-				if (ancestor == null)
-				{
-					ancestor = Factory.CreateBlockFromSession<T>(block.Session);
-				}
+			if (ancestor == null)
+			{
+				ancestor = Factory.CreateBlockFromSession<T>(block.Session);
 			}
 
 			return (T) ancestor;
@@ -75,17 +72,20 @@ namespace Bumblebee.Extensions
 
 				typesAlreadySearched[currentType] = true;
 
-				var properties = GetBlockPropertiesThatHaveNotBeenSearched(currentType, typesAlreadySearched);
+				var properties = GetBlockProperties(currentType);
 
 				foreach (var property in properties)
 				{
-					var child = property.GetValue(current);
-
-					if (SearchDescendantsFor(ref typesAlreadySearched, child, out result))
+					if (typesAlreadySearched.ContainsKey(property.PropertyType) == false)
 					{
-						success = true;
+						var child = property.GetValue(current);
 
-						break;
+						if (SearchDescendantsFor(ref typesAlreadySearched, child, out result))
+						{
+							success = true;
+
+							break;
+						}
 					}
 				}
 			}
@@ -93,12 +93,11 @@ namespace Bumblebee.Extensions
 			return success;
 		}
 
-		private static IEnumerable<PropertyInfo> GetBlockPropertiesThatHaveNotBeenSearched(Type current, IDictionary<Type, bool> typesAlreadySearched)
+		private static IEnumerable<PropertyInfo> GetBlockProperties(Type current)
 		{
 			var unsearchedProperties = current
 				.GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly)
-				.Where(x => BlockType.IsAssignableFrom(x.PropertyType))
-				.Where(x => typesAlreadySearched.ContainsKey(x.PropertyType) == false);
+				.Where(x => BlockType.IsAssignableFrom(x.PropertyType));
 
 			return unsearchedProperties;
 		}

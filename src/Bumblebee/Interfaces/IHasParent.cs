@@ -1,8 +1,7 @@
 namespace Bumblebee.Interfaces
 {
-	public interface IHasParent : IHasBackingElement
+	public interface IHasParent
 	{
 		IBlock Parent { get; }
-		TParent ParentAs<TParent>() where TParent : IBlock;
 	}
 }

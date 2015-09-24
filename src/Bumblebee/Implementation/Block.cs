@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 using Bumblebee.Interfaces;
 using Bumblebee.Setup;
@@ -38,6 +39,16 @@ namespace Bumblebee.Implementation
 
 		protected Block(Session session, By @by)
 		{
+			if (session == null)
+			{
+				throw new ArgumentNullException("session");
+			}
+
+			if (@by == null)
+			{
+				throw new ArgumentNullException("by");
+			}
+
 			Session = session;
 			Specification = @by;
 
@@ -49,28 +60,24 @@ namespace Bumblebee.Implementation
 
 		protected Block(IBlock parent, By @by)
 		{
+			if (parent == null)
+			{
+				throw new ArgumentNullException("parent");
+			}
+
+			if (@by == null)
+			{
+				throw new ArgumentNullException("by");
+			}
+
+			Parent = parent;
 			Session = parent.Session;
 			Specification = @by;
-			Parent = parent;
 
 			if (Session.Monkey != null)
 			{
 				Session.Monkey.Invoke(this);
 			}
-		}
-
-		public TParent ParentAs<TParent>() where TParent : IBlock
-		{
-			var type = typeof (TParent);
-
-			var result = default (TParent);
-
-			if (type.IsInstanceOfType(Parent))
-			{
-				result = (TParent) Parent;
-			}
-
-			return result;
 		}
 
 		public virtual IEnumerable<IWebElement> FindElements(By @by)

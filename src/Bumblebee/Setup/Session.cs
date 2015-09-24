@@ -99,7 +99,6 @@ namespace Bumblebee.Setup
 
 		public Session(ISettings settings) : base(new TDriverEnvironment(), settings)
 		{
-			
 		}
 	}
 }
