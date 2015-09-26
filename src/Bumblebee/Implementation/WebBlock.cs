@@ -27,17 +27,6 @@ namespace Bumblebee.Implementation
 		}
 
 		/// <summary>
-		/// Constructor that allows for overriding the default timeout for waits.
-		/// </summary>
-		/// <param name="session">The session to be used for finding elements in the derived page.</param>
-		/// <param name="timeout">The timeout period for waits represented as a TimeSpan</param>
-		protected WebBlock(Session session, TimeSpan timeout) : base(session, By.TagName("body"))
-		{
-			this.Pause(200);
-			Wait = new WebDriverWait(Session.Driver, timeout);
-		}
-
-		/// <summary>
 		/// Default constructor.
 		/// </summary>
 		/// <remarks>
@@ -46,6 +35,17 @@ namespace Bumblebee.Implementation
 		/// <param name="session">The sessionto be used for finding elements in the derived page.</param>
 		protected WebBlock(Session session) : this(session, TimeSpan.FromTicks(3000))
 		{
+		}
+
+		/// <summary>
+		/// Constructor that allows for overriding the default timeout for waits.
+		/// </summary>
+		/// <param name="session">The session to be used for finding elements in the derived page.</param>
+		/// <param name="timeout">The timeout period for waits represented as a TimeSpan</param>
+		protected WebBlock(Session session, TimeSpan timeout) : base(session, By.TagName("body"))
+		{
+			this.Pause(200);
+			Wait = new WebDriverWait(Session.Driver, timeout);
 		}
 	}
 }
