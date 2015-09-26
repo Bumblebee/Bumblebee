@@ -22,10 +22,9 @@ namespace Bumblebee.Implementation
 
 		public IEnumerator<T> GetEnumerator()
 		{
-			var elements = new WebElementEnumerable(_parent, _by);
-
-			return elements
-				.Select((x, i) => Factory.CreateBlockFromParentAndSpecification<T>(_parent, new ByOrdinal(elements, i)))
+			return _parent
+				.FindElements(_by)
+				.Select((x, i) => Factory.CreateBlockFromParentAndSpecification<T>(_parent, new ByOrdinal(_by, i)))
 				.GetEnumerator();
 		}
 
