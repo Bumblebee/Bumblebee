@@ -4,7 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 
 using Bumblebee.Extensions;
-using Bumblebee.IntegrationTests.Shared.Pages;
+using Bumblebee.IntegrationTests.Shared.Hosting;
+using Bumblebee.IntegrationTests.Shared.Pages.Implementation;
 using Bumblebee.IntegrationTests.Shared.Sessions;
 using Bumblebee.Setup;
 using Bumblebee.Setup.DriverEnvironments;
@@ -16,12 +17,12 @@ using NUnit.Framework;
 using OpenQA.Selenium.IE;
 using OpenQA.Selenium.PhantomJS;
 
+// ReSharper disable InconsistentNaming
+
 namespace Bumblebee.IntegrationTests.Setup
 {
-	//ReSharper disable InconsistentNaming
-
 	[TestFixture]
-	public class ThreadedSessionTests
+	public class ThreadedSessionTests : HostTestFixture
 	{
 		[SetUp]
 		public void BeforeEach()
@@ -103,11 +104,11 @@ namespace Bumblebee.IntegrationTests.Setup
 		{
 			Threaded<Session>
 				.With<PhantomJS>()
-				.NavigateTo<LoggedOutPage>("https://www.nirvanahq.com/account/login");
+				.NavigateTo<CheckboxPage>(GetUrl("Checkbox.html"));
 
 			Threaded<Session>
-				.CurrentBlock<LoggedOutPage>()
-				.Verify(x => x.Session.Driver.PageSource.Contains("Username or Email Address"))
+				.CurrentBlock<CheckboxPage>()
+				.Verify(x => x.Session.Driver.PageSource.Contains("Unchecked"))
 				.Session.End();
 		}
 
@@ -116,8 +117,8 @@ namespace Bumblebee.IntegrationTests.Setup
 		{
 			Action action = () =>
 				Threaded<Session>
-					.CurrentBlock<LoggedOutPage>()
-					.Verify(x => x.Session.Driver.PageSource.Contains("Username or Email Address"))
+					.CurrentBlock<CheckboxPage>()
+					.Verify(x => x.Session.Driver.PageSource.Contains("Unchecked"))
 					.Session.End();
 
 			action

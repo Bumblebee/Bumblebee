@@ -61,7 +61,6 @@
     <Compile Include="Implementation\Table.cs" />
     <Compile Include="Implementation\TableRow.cs" />
     <Compile Include="Implementation\WebBlock.cs" />
-    <Compile Include="Implementation\WebElementEnumerable.cs" />
     <Compile Include="Interfaces\IBlock.cs" />
     <Compile Include="Implementation\AlertDialog.cs" />
     <Compile Include="Implementation\Block.cs" />
