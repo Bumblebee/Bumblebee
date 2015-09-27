@@ -107,20 +107,6 @@ namespace Bumblebee.Setup
 			return this;
 		}
 
-		public virtual object ExecuteScript(string script, params object[] args)
-		{
-			var executor = Driver as IJavaScriptExecutor;
-
-			object result = null;
-
-			if (executor != null)
-			{
-				result = executor.ExecuteScript(script, args);
-			}
-
-			return result;
-		}
-
 		public virtual T ExecuteJavaScript<T>(string script, params object[] args)
 		{
 			return Driver.ExecuteJavaScript<T>(script, args);
