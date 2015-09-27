@@ -40,6 +40,7 @@
     <Compile Include="Extensions\Debugging.cs" />
     <Compile Include="Extensions\DragAction.cs" />
     <Compile Include="Extensions\Filtering.cs" />
+    <Compile Include="Extensions\JQueryExtensions.cs" />
     <Compile Include="Extensions\MethodBaseExtensions.cs" />
     <Compile Include="Extensions\Miscellaneous.cs" />
     <Compile Include="Extensions\Randomization.cs" />
