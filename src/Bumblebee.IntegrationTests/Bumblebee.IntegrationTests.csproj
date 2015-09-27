@@ -97,6 +97,8 @@
     <Compile Include="Setup\SessionTests\Given_environment_and_default_settings_When_capturing_from_generic_method.cs" />
     <Compile Include="Setup\SessionTests\Given_generic_environment_and_custom_settings_When_capturing.cs" />
     <Compile Include="Setup\SessionTests\Given_generic_environment_and_default_settings_When_capturing.cs" />
+    <Compile Include="Setup\SessionTests\Given_page_without_jQuery.cs" />
+    <Compile Include="Setup\SessionTests\Given_page_with_jQuery.cs" />
     <Compile Include="Setup\SessionTests\Given_session_with_default_settings.cs" />
     <Compile Include="Setup\SessionTests\SessionTests.cs" />
     <Compile Include="Shared\Pages\Implementation\CheckboxPage.cs" />
@@ -112,6 +114,7 @@
     <Compile Include="Shared\Pages\Implementation\MultiSelectPage.cs" />
     <Compile Include="Shared\Pages\Implementation\NestedInlineFramesPage.cs" />
     <Compile Include="Shared\Pages\Implementation\NumericFieldPage.cs" />
+    <Compile Include="Shared\Pages\Implementation\PageWithJQuery.cs" />
     <Compile Include="Shared\Pages\Implementation\RadioButtonsPage.cs" />
     <Compile Include="Shared\Hosting\Host.cs" />
     <Compile Include="Shared\Hosting\HostTestFixture.cs" />
@@ -185,6 +188,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\NumericField.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\PageWithJQuery.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\RadioButtons.html">

@@ -88,6 +88,11 @@ namespace Bumblebee.Setup
 
 			return this;
 		}
+
+		public virtual T ExecuteJavaScript<T>(string script, params object[] args)
+		{
+			return Driver.ExecuteJavaScript<T>(script, args);
+		}
 	}
 
 	public class Session<TDriverEnvironment> : Session
