@@ -53,6 +53,7 @@
     <Compile Include="Implementation\InlineFrame.cs" />
     <Compile Include="Implementation\Monkey.cs" />
     <Compile Include="Implementation\DateField.cs" />
+    <Compile Include="Implementation\Page.cs" />
     <Compile Include="Implementation\RadioButton.cs" />
     <Compile Include="Implementation\RadioButtons.cs" />
     <Compile Include="Implementation\WebDragAndDropPerformer.cs" />
@@ -60,6 +61,7 @@
     <Compile Include="Implementation\Table.cs" />
     <Compile Include="Implementation\TableRow.cs" />
     <Compile Include="Implementation\WebBlock.cs" />
+    <Compile Include="Implementation\WebPage.cs" />
     <Compile Include="Interfaces\IBlock.cs" />
     <Compile Include="Implementation\AlertDialog.cs" />
     <Compile Include="Implementation\Block.cs" />
@@ -75,6 +77,7 @@
     <Compile Include="Interfaces\IMonkey.cs" />
     <Compile Include="Interfaces\IMonkeyable.cs" />
     <Compile Include="Interfaces\INumericField.cs" />
+    <Compile Include="Interfaces\IPage.cs" />
     <Compile Include="Interfaces\IPerformsDragAndDrop.cs" />
     <Compile Include="BumblebeeAttribute.cs" />
     <Compile Include="JQuery\SessionExtensions.cs" />

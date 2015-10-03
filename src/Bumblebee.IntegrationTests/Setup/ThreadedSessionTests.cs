@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 using Bumblebee.Extensions;
 using Bumblebee.IntegrationTests.Shared.Hosting;
-using Bumblebee.IntegrationTests.Shared.Pages.Implementation;
+using Bumblebee.IntegrationTests.Shared.Pages;
 using Bumblebee.IntegrationTests.Shared.Sessions;
 using Bumblebee.Setup;
 using Bumblebee.Setup.DriverEnvironments;

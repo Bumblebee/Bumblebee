@@ -8,9 +8,9 @@ using Bumblebee.Setup;
 
 using OpenQA.Selenium;
 
-namespace Bumblebee.IntegrationTests.Shared.Pages.Implementation
+namespace Bumblebee.IntegrationTests.Shared.Pages
 {
-	public class PageWithJQuery : WebBlock
+	public class PageWithJQuery : WebPage
 	{
 		public PageWithJQuery(Session session) : base(session, TimeSpan.FromSeconds(5))
 		{

@@ -1,6 +1,6 @@
 ﻿using Bumblebee.Extensions;
 using Bumblebee.IntegrationTests.Shared.Hosting;
-using Bumblebee.IntegrationTests.Shared.Pages.Implementation;
+using Bumblebee.IntegrationTests.Shared.Pages;
 using Bumblebee.Setup;
 using Bumblebee.Setup.DriverEnvironments;
 
@@ -124,7 +124,7 @@ namespace Bumblebee.IntegrationTests
 		{
 			Threaded<Session>
 				.With<T>()
-				.NavigateTo<CheckboxPage>(GetUrl("Keys.html"));
+				.NavigateTo<KeysPage>(GetUrl("Keys.html"));
 		}
 
 		[TestFixtureTearDown]

@@ -81,6 +81,12 @@
     <Compile Include="Implementation\InlineFrameTests\Given_inline_frame.cs" />
     <Compile Include="Implementation\IEnumerableOfBlocksTests.cs" />
     <Compile Include="Implementation\InlineFrameTests\Given_nested_inline_frames.cs" />
+    <Compile Include="Implementation\PageTests.cs" />
+    <Compile Include="Implementation\WebPageTests\given_web_page_with_explicit_wait.cs" />
+    <Compile Include="Implementation\WebPageTests\given_web_page_with_no_wait.cs" />
+    <Compile Include="Shared\Pages\DefaultPage.cs" />
+    <Compile Include="Shared\Pages\SlowWebPageWithNoWait.cs" />
+    <Compile Include="Shared\Pages\SlowWebPageWithExplicitWait.cs" />
     <Compile Include="KeyTests.cs" />
     <Compile Include="Implementation\RadioButtonTests.cs" />
     <Compile Include="Implementation\SelectBoxTests.cs" />
@@ -101,27 +107,26 @@
     <Compile Include="Setup\SessionTests\Given_page_with_jQuery.cs" />
     <Compile Include="Setup\SessionTests\Given_session_with_default_settings.cs" />
     <Compile Include="Setup\SessionTests\SessionTests.cs" />
-    <Compile Include="Shared\Pages\Implementation\ByOrdinalPage.cs" />
-    <Compile Include="Shared\Pages\Implementation\CheckboxPage.cs" />
-    <Compile Include="Shared\Pages\Implementation\ComplexTableRow.cs" />
-    <Compile Include="Shared\Pages\Implementation\DateFieldPage.cs" />
-    <Compile Include="Shared\Pages\Implementation\DialogPage.cs" />
-    <Compile Include="Shared\Pages\Implementation\GenericTablePage.cs" />
-    <Compile Include="Shared\Pages\Implementation\GenericTableRow.cs" />
-    <Compile Include="Shared\Pages\Implementation\DoubleClickablePage.cs" />
-    <Compile Include="Shared\Pages\Implementation\InlineFramesPage.cs" />
-    <Compile Include="Shared\Pages\Implementation\KeysPage.cs" />
-    <Compile Include="Shared\Pages\Implementation\ListOfComplexBlocksPage.cs" />
-    <Compile Include="Shared\Pages\Implementation\MultiSelectPage.cs" />
-    <Compile Include="Shared\Pages\Implementation\NestedInlineFramesPage.cs" />
-    <Compile Include="Shared\Pages\Implementation\NumericFieldPage.cs" />
-    <Compile Include="Shared\Pages\Implementation\PageWithJQuery.cs" />
-    <Compile Include="Shared\Pages\Implementation\RadioButtonsPage.cs" />
-    <Compile Include="Shared\Hosting\Host.cs" />
+    <Compile Include="Shared\Pages\ByOrdinalPage.cs" />
+    <Compile Include="Shared\Pages\CheckboxPage.cs" />
+    <Compile Include="Shared\Pages\ComplexTableRow.cs" />
+    <Compile Include="Shared\Pages\DateFieldPage.cs" />
+    <Compile Include="Shared\Pages\DialogPage.cs" />
+    <Compile Include="Shared\Pages\GenericTablePage.cs" />
+    <Compile Include="Shared\Pages\GenericTableRow.cs" />
+    <Compile Include="Shared\Pages\DoubleClickablePage.cs" />
+    <Compile Include="Shared\Pages\InlineFramesPage.cs" />
+    <Compile Include="Shared\Pages\KeysPage.cs" />
+    <Compile Include="Shared\Pages\ListOfComplexBlocksPage.cs" />
+    <Compile Include="Shared\Pages\MultiSelectPage.cs" />
+    <Compile Include="Shared\Pages\NestedInlineFramesPage.cs" />
+    <Compile Include="Shared\Pages\NumericFieldPage.cs" />
+    <Compile Include="Shared\Pages\PageWithJQuery.cs" />
+    <Compile Include="Shared\Pages\RadioButtonsPage.cs" />    <Compile Include="Shared\Hosting\Host.cs" />
     <Compile Include="Shared\Hosting\HostTestFixture.cs" />
     <Compile Include="Shared\Hosting\IHost.cs" />
-    <Compile Include="Shared\Pages\Implementation\ComplexTablePage.cs" />
-    <Compile Include="Shared\Pages\Implementation\TextFieldPage.cs" />
+    <Compile Include="Shared\Pages\ComplexTablePage.cs" />
+    <Compile Include="Shared\Pages\TextFieldPage.cs" />
     <Compile Include="Extensions\VerificationTests.cs" />
     <Compile Include="Shared\Sessions\DerivedSessionWithWrongArgs.cs" />
     <Compile Include="Shared\Sessions\DerivedSession.cs" />
@@ -207,13 +212,19 @@
     <Content Include="Content\ComplexTable.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Default.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\SlowWebPage.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Table.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\TextField.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Compile Include="Shared\Pages\Implementation\TablePage.cs" />
+    <Compile Include="Shared\Pages\TablePage.cs" />
     <Content Include="phantomjs-license.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

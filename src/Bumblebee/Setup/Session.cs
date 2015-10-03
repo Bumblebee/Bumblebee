@@ -28,10 +28,15 @@ namespace Bumblebee.Setup
 			Driver = environment.CreateWebDriver();
 		}
 
-		public virtual TBlock NavigateTo<TBlock>(string url) where TBlock : IBlock
+		public virtual TPage NavigateTo<TPage>(string url) where TPage : IPage
 		{
 			Driver.Navigate().GoToUrl(url);
-			return CurrentBlock<TBlock>();
+			return CurrentBlock<TPage>();
+		}
+
+		public virtual TPage NavigateTo<TPage>(string uriFormat, params object[] args) where TPage : IPage
+		{
+			return NavigateTo<TPage>(string.Format(uriFormat, args));
 		}
 
 		public virtual TBlock CurrentBlock<TBlock>(IWebElement tag = null) where TBlock : IBlock

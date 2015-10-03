@@ -6,9 +6,9 @@ using Bumblebee.Setup;
 
 using OpenQA.Selenium;
 
-namespace Bumblebee.IntegrationTests.Shared.Pages.Implementation
+namespace Bumblebee.IntegrationTests.Shared.Pages
 {
-	public class GenericTablePage : WebBlock
+	public class GenericTablePage : WebPage
 	{
 		public GenericTablePage(Session session) : base(session)
 		{

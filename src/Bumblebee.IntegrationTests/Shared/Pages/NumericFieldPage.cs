@@ -4,9 +4,9 @@ using Bumblebee.Setup;
 
 using OpenQA.Selenium;
 
-namespace Bumblebee.IntegrationTests.Shared.Pages.Implementation
+namespace Bumblebee.IntegrationTests.Shared.Pages
 {
-	public class NumericFieldPage : WebBlock
+	public class NumericFieldPage : WebPage
 	{
 		public NumericFieldPage(Session session) : base(session)
 		{

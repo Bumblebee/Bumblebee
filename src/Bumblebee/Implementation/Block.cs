@@ -13,34 +13,7 @@ namespace Bumblebee.Implementation
 	{
 		protected static readonly ISpecification By = null;
 
-		public IBlock Parent { get; private set; }
-		public Session Session { get; private set; }
-		public By Specification { get; private set; }
-
-		public virtual IWebElement Tag
-		{
-			get
-			{
-				IWebElement result;
-
-				if (Parent == null)
-				{
-					result = Session.Driver
-						.SwitchTo()
-						.DefaultContent()
-						.FindElement(Specification);
-				}
-				else
-				{
-					result = Parent
-						.FindElement(Specification);
-				}
-
-				return result;
-			}
-		}
-
-		protected Block(Session session, By @by)
+		internal Block(Session session, By @by)
 		{
 			if (session == null)
 			{
@@ -80,6 +53,20 @@ namespace Bumblebee.Implementation
 			if (Session.Monkey != null)
 			{
 				Session.Monkey.Invoke(this);
+			}
+		}
+
+		public IBlock Parent { get; private set; }
+
+		public Session Session { get; private set; }
+
+		public By Specification { get; private set; }
+
+		public virtual IWebElement Tag
+		{
+			get
+			{
+				return Parent.FindElement(Specification);
 			}
 		}
 
