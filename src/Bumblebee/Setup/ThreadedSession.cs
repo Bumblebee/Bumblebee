@@ -92,10 +92,29 @@ namespace Bumblebee.Setup
 		{
 			if (Current == null)
 			{
-				throw new NullReferenceException("You cannot access the CurrentBlock without first initializing the Session by calling With<TDriverEnvironment>().");
+				throw new NullReferenceException("You cannot access the current block without first initializing the Session by calling With<TDriverEnvironment>().");
 			}
 
 			return Current.CurrentBlock<TBlock>();
+		}
+
+		/// <summary>
+		/// Returns the a page reprentation with the current <c ref="Session">Session</c>
+		/// </summary>
+		/// <remarks>
+		/// There is nothing that currently enforces that the right type is being cast for the page, so if you select a different page
+		/// than what was last navigated to, you might encounter errors when using the associated elements since they will likely not exist.
+		/// </remarks>
+		/// <typeparam name="TPage"></typeparam>
+		/// <returns></returns>
+		public static TPage CurrentPage<TPage>() where TPage : IPage
+		{
+			if (Current == null)
+			{
+				throw new NullReferenceException("You cannot access the current page without first initializing the Session by calling With<TDriverEnvironment>().");
+			}
+
+			return Current.CurrentPage<TPage>();
 		}
 
 		public static void End()

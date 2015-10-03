@@ -1,4 +1,6 @@
-﻿using Bumblebee.Extensions;
+﻿using System;
+
+using Bumblebee.Extensions;
 using Bumblebee.IntegrationTests.Shared.Hosting;
 using Bumblebee.IntegrationTests.Shared.Pages;
 using Bumblebee.Setup;
