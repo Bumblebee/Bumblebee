@@ -4,9 +4,9 @@ using Bumblebee.Setup;
 
 using OpenQA.Selenium;
 
-namespace Bumblebee.IntegrationTests.Shared.Pages.Implementation
+namespace Bumblebee.IntegrationTests.Shared.Pages
 {
-	public class CheckboxPage : WebBlock
+	public class CheckboxPage : WebPage
 	{
 		public CheckboxPage(Session session) : base(session)
 		{

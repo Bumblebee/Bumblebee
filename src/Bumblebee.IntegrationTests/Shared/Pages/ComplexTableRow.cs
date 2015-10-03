@@ -3,7 +3,7 @@ using Bumblebee.Interfaces;
 
 using OpenQA.Selenium;
 
-namespace Bumblebee.IntegrationTests.Shared.Pages.Implementation
+namespace Bumblebee.IntegrationTests.Shared.Pages
 {
 	public class ComplexTableRow : Block
 	{

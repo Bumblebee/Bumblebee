@@ -6,9 +6,9 @@ using Bumblebee.Setup;
 
 using OpenQA.Selenium;
 
-namespace Bumblebee.IntegrationTests.Shared.Pages.Implementation
+namespace Bumblebee.IntegrationTests.Shared.Pages
 {
-	public class NestedInlineFramesPage : WebBlock
+	public class NestedInlineFramesPage : WebPage
 	{
 		public NestedInlineFramesPage(Session session) : base(session, TimeSpan.FromSeconds(5))
 		{

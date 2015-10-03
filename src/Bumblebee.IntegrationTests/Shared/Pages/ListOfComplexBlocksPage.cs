@@ -6,7 +6,7 @@ using Bumblebee.Setup;
 
 using OpenQA.Selenium;
 
-namespace Bumblebee.IntegrationTests.Shared.Pages.Implementation
+namespace Bumblebee.IntegrationTests.Shared.Pages
 {
 	public class ComplexBlock : Block
 	{
@@ -42,7 +42,7 @@ namespace Bumblebee.IntegrationTests.Shared.Pages.Implementation
 		}
 	}
 
-	public class ListOfComplexBlocksPage : WebBlock
+	public class ListOfComplexBlocksPage : WebPage
 	{
 		public ListOfComplexBlocksPage(Session session) : base(session)
 		{
