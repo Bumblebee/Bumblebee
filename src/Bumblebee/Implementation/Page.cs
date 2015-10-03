@@ -2,6 +2,7 @@ using System;
 
 using Bumblebee.Interfaces;
 using Bumblebee.Setup;
+using Bumblebee.Specifications;
 
 using OpenQA.Selenium;
 
@@ -15,6 +16,8 @@ namespace Bumblebee.Implementation
 	/// </remarks>
 	public abstract class Page : Block, IPage
 	{
+		protected static readonly ISpecification By = null;
+
 		/// <summary>
 		/// Constructor takes the Session for assembly other composite elements and assumes that &lt;body&gt; tag is the scope for the page.
 		/// </summary>

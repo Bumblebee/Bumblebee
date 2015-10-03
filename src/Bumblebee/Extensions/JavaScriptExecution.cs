@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 
-using Bumblebee.Interfaces;
-
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.Extensions;
 
@@ -16,6 +14,7 @@ namespace Bumblebee.Extensions
 			return driver.ExecuteJavaScript<T>(script, args);
 		}
 
+		[Obsolete("Please use the new By.JQuery functionality provided.")]
 		public static IEnumerable<IWebElement> GetElementsByJQuery(this IWebDriver driver, string query)
 		{
 			return driver.ExecuteJavaScript<IEnumerable<IWebElement>>(String.Format("return $('{0}').get();", query));

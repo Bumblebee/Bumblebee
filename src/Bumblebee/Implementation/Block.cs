@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Drawing;
 
 using Bumblebee.Interfaces;
 using Bumblebee.Setup;
+using Bumblebee.Specifications;
 
 using OpenQA.Selenium;
 
@@ -12,6 +11,8 @@ namespace Bumblebee.Implementation
 {
 	public abstract class Block : IBlock
 	{
+		protected static readonly ISpecification By = null;
+
 		internal Block(Session session, By @by)
 		{
 			if (session == null)

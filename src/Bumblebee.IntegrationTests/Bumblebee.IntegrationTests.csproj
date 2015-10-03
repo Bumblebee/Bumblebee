@@ -107,6 +107,7 @@
     <Compile Include="Setup\SessionTests\Given_page_with_jQuery.cs" />
     <Compile Include="Setup\SessionTests\Given_session_with_default_settings.cs" />
     <Compile Include="Setup\SessionTests\SessionTests.cs" />
+    <Compile Include="Shared\Pages\ByOrdinalPage.cs" />
     <Compile Include="Shared\Pages\CheckboxPage.cs" />
     <Compile Include="Shared\Pages\ComplexTableRow.cs" />
     <Compile Include="Shared\Pages\DateFieldPage.cs" />
@@ -121,8 +122,7 @@
     <Compile Include="Shared\Pages\NestedInlineFramesPage.cs" />
     <Compile Include="Shared\Pages\NumericFieldPage.cs" />
     <Compile Include="Shared\Pages\PageWithJQuery.cs" />
-    <Compile Include="Shared\Pages\RadioButtonsPage.cs" />
-    <Compile Include="Shared\Hosting\Host.cs" />
+    <Compile Include="Shared\Pages\RadioButtonsPage.cs" />    <Compile Include="Shared\Hosting\Host.cs" />
     <Compile Include="Shared\Hosting\HostTestFixture.cs" />
     <Compile Include="Shared\Hosting\IHost.cs" />
     <Compile Include="Shared\Pages\ComplexTablePage.cs" />
@@ -132,6 +132,10 @@
     <Compile Include="Shared\Sessions\DerivedSession.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Setup\ThreadedSessionTests.cs" />
+    <Compile Include="Specifications\ByJQueryTests\Given_an_invalid_selector.cs" />
+    <Compile Include="Specifications\ByJQueryTests\Given_I_am_searching_for_a_collection.cs" />
+    <Compile Include="Specifications\ByJQueryTests\Given_I_am_searching_for_a_single_element.cs" />
+    <Compile Include="Specifications\ByOrdinalTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Bumblebee\Bumblebee.csproj">
@@ -155,6 +159,9 @@
     </Content>
     <Content Include="..\packages\WebDriver.ChromeDriver.win32.2.19.0.0\content\chromedriver.exe">
       <Link>chromedriver.exe</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\ByOrdinal.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\NestedInlineFramesGrandchild.html">

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 using Bumblebee.Interfaces;
 using Bumblebee.Setup;
+using Bumblebee.Specifications;
 
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
@@ -11,6 +12,8 @@ namespace Bumblebee.Implementation
 {
 	public class AlertDialog : IAlertDialog
 	{
+		protected static readonly ISpecification By = null;
+
 		public IWebElement Tag { get; private set; }
 		public IBlock Parent { get; private set; }
 		public Session Session { get; private set; }

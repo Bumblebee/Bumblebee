@@ -2,29 +2,32 @@
 using System.Linq;
 
 using Bumblebee.Interfaces;
+using Bumblebee.Specifications;
 
 using OpenQA.Selenium;
 
 namespace Bumblebee.Implementation
 {
-	public class RadioButtons<TResult> : IRadioButtons<TResult> where TResult : IBlock
+	public class RadioButtons<TResult> : IRadioButtons<TResult>
+		where TResult : IBlock
 	{
-		private IBlock ParentBlock { get; set; }
-		private By By { get; set; }
+		protected static readonly ISpecification By = null;
+
+		private readonly IBlock _parent;
+		private readonly By _by;
 
 		public RadioButtons(IBlock parent, By @by)
 		{
-			ParentBlock = parent;
-			By = @by;
+			_parent = parent;
+			_by = @by;
 		}
 
 		public virtual IEnumerable<IOption<TResult>> Options
 		{
 			get
 			{
-				return ParentBlock.Tag.FindElements(By)
-					.Where(opt => opt.Displayed)
-					.Select(opt => new RadioButton<TResult>(ParentBlock, opt));
+				return new ElementEnumerable<RadioButton<TResult>>(_parent, _by)
+					.Where(option => option.Tag.Displayed);
 			}
 		}
 	}

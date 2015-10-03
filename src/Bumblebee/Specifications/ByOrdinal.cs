@@ -4,7 +4,7 @@ using System.Linq;
 
 using OpenQA.Selenium;
 
-namespace Bumblebee.Implementation
+namespace Bumblebee.Specifications
 {
 	internal class ByOrdinal : By
 	{
@@ -13,13 +13,30 @@ namespace Bumblebee.Implementation
 
 		public ByOrdinal(By @by, int ordinal)
 		{
+			if (@by == null)
+			{
+				throw new ArgumentNullException("by");
+			}
+
+			if (ordinal < 0)
+			{
+				throw new ArgumentOutOfRangeException("ordinal");
+			}
+
 			_by = @by;
 			_ordinal = ordinal;
 		}
 
 		public override IWebElement FindElement(ISearchContext context)
 		{
-			return context.FindElements(_by)
+			var elements = context.FindElements(_by);
+
+			if (_ordinal >= elements.Count)
+			{
+				throw new NotFoundException();
+			}
+
+			return elements
 				.ElementAt(_ordinal);
 		}
 
