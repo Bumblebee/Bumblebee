@@ -4,9 +4,9 @@ using Bumblebee.Setup;
 
 using OpenQA.Selenium;
 
-namespace Bumblebee.IntegrationTests.Shared.Pages.Implementation
+namespace Bumblebee.IntegrationTests.Shared.Pages
 {
-	public class DialogPage : WebBlock
+	public class DialogPage : WebPage
 	{
 		public DialogPage(Session session) : base(session)
 		{

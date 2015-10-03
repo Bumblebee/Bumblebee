@@ -6,9 +6,9 @@ using Bumblebee.Setup;
 
 using OpenQA.Selenium;
 
-namespace Bumblebee.IntegrationTests.Shared.Pages.Implementation
+namespace Bumblebee.IntegrationTests.Shared.Pages
 {
-	public class DoubleClickablePage : WebBlock
+	public class DoubleClickablePage : WebPage
 	{
 		public DoubleClickablePage(Session session, TimeSpan timeout) : base(session, timeout)
 		{

@@ -4,9 +4,9 @@ using Bumblebee.Setup;
 
 using OpenQA.Selenium;
 
-namespace Bumblebee.IntegrationTests.Shared.Pages.Implementation
+namespace Bumblebee.IntegrationTests.Shared.Pages
 {
-	public class KeysPage : WebBlock
+	public class KeysPage : WebPage
 	{
 		public KeysPage(Session session) : base(session)
 		{
