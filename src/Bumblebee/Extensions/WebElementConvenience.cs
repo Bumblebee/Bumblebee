@@ -3,6 +3,7 @@ using System.Linq;
 
 using OpenQA.Selenium;
 using OpenQA.Selenium.Internal;
+using OpenQA.Selenium.Support.Extensions;
 
 namespace Bumblebee.Extensions
 {
@@ -30,7 +31,7 @@ namespace Bumblebee.Extensions
 
 		public static void SetAttribute(this IWebElement element, string attribute, string value)
 		{
-			element.GetDriver().ExecuteScript<object>("arguments[0].setAttribute(arguments[1], arguments[2])", element, attribute, value);
+			element.GetDriver().ExecuteJavaScript<object>("arguments[0].setAttribute(arguments[1], arguments[2])", element, attribute, value);
 		}
 	}
 }

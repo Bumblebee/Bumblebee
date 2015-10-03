@@ -32,7 +32,7 @@ namespace Bumblebee.Implementation
 		/// <remarks>
 		/// The default timeout for waiting for elements is 3000 ticks (3-100 nano seconds).  If you need to override this value, call the other constructor.
 		/// </remarks>
-		/// <param name="session">The sessionto be used for finding elements in the derived page.</param>
+		/// <param name="session">The session to be used for finding elements in the derived page.</param>
 		protected WebBlock(Session session) : this(session, TimeSpan.FromTicks(3000))
 		{
 		}

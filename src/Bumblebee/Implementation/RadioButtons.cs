@@ -2,6 +2,7 @@
 using System.Linq;
 
 using Bumblebee.Interfaces;
+using Bumblebee.Specifications;
 
 using OpenQA.Selenium;
 
@@ -10,6 +11,8 @@ namespace Bumblebee.Implementation
 	public class RadioButtons<TResult> : IRadioButtons<TResult>
 		where TResult : IBlock
 	{
+		protected static readonly ISpecification By = null;
+
 		private readonly IBlock _parent;
 		private readonly By _by;
 

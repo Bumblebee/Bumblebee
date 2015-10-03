@@ -2,6 +2,7 @@
 
 using Bumblebee.Interfaces;
 using Bumblebee.Setup;
+using Bumblebee.Specifications;
 
 using OpenQA.Selenium;
 
@@ -9,6 +10,8 @@ namespace Bumblebee.Implementation
 {
 	public abstract class Element : IElement
 	{
+		protected static readonly ISpecification By = null;
+
 		public IBlock Parent { get; private set; }
 		public Session Session { get; private set; }
 

@@ -42,7 +42,6 @@
     <Compile Include="Extensions\DragAction.cs" />
     <Compile Include="Extensions\Filtering.cs" />
     <Compile Include="Extensions\HasParentExtensions.cs" />
-    <Compile Include="Extensions\JQueryExtensions.cs" />
     <Compile Include="Extensions\MethodBaseExtensions.cs" />
     <Compile Include="Extensions\Miscellaneous.cs" />
     <Compile Include="Extensions\Randomization.cs" />
@@ -54,7 +53,6 @@
     <Compile Include="Implementation\InlineFrame.cs" />
     <Compile Include="Implementation\Monkey.cs" />
     <Compile Include="Implementation\DateField.cs" />
-    <Compile Include="Implementation\ByOrdinal.cs" />
     <Compile Include="Implementation\RadioButton.cs" />
     <Compile Include="Implementation\RadioButtons.cs" />
     <Compile Include="Implementation\WebDragAndDropPerformer.cs" />
@@ -79,6 +77,8 @@
     <Compile Include="Interfaces\INumericField.cs" />
     <Compile Include="Interfaces\IPerformsDragAndDrop.cs" />
     <Compile Include="BumblebeeAttribute.cs" />
+    <Compile Include="JQuery\SessionExtensions.cs" />
+    <Compile Include="JQuery\SpecifcationExtensions.cs" />
     <Compile Include="Key.cs" />
     <Compile Include="Setup\DriverEnvironments\Chrome.cs" />
     <Compile Include="Setup\DriverEnvironments\Firefox.cs" />
@@ -108,6 +108,10 @@
     <Compile Include="Exceptions\VerificationException.cs" />
     <Compile Include="Setup\Settings.cs" />
     <Compile Include="Setup\ThreadedSession.cs" />
+    <Compile Include="Specifications\ByJQuery.cs" />
+    <Compile Include="Specifications\ByOrdinal.cs" />
+    <Compile Include="Specifications\ISpecification.cs" />
+    <Compile Include="Specifications\SpecificationExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

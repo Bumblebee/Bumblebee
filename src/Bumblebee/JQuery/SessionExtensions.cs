@@ -1,8 +1,8 @@
 using Bumblebee.Setup;
 
-namespace Bumblebee.Extensions
+namespace Bumblebee.JQuery
 {
-	public static class JQueryExtensions
+	public static class SessionExtensions
 	{
 		/// <summary>
 		/// This method is for determining if a Session has access to jQuery.
