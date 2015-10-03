@@ -19,7 +19,7 @@ using OpenQA.Selenium.PhantomJS;
 
 // ReSharper disable InconsistentNaming
 
-namespace Bumblebee.IntegrationTests.Setup
+namespace Bumblebee.IntegrationTests.Setup.ThreadedSessionTests
 {
 	[TestFixture]
 	public class ThreadedSessionTests : HostTestFixture
@@ -123,7 +123,18 @@ namespace Bumblebee.IntegrationTests.Setup
 
 			action
 				.ShouldThrow<NullReferenceException>()
-				.WithMessage("You cannot access the CurrentBlock without first initializing the Session by calling With<TDriverEnvironment>().");
+				.WithMessage("You cannot access the current block without first initializing the Session by calling With<TDriverEnvironment>().");
+		}
+
+		[Test]
+		public void Given_session_not_loaded_with_navigation_When_getting_current_page_Then_should_throw()
+		{
+			Action action = () =>
+				Threaded<Session>
+					.CurrentPage<DefaultPage>();
+
+			action.ShouldThrow<NullReferenceException>()
+				.WithMessage("You cannot access the current page without first initializing the Session by calling With<TDriverEnvironment>().");
 		}
 
 		[Test]
