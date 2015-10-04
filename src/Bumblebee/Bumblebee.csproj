@@ -56,6 +56,7 @@
     <Compile Include="Implementation\Page.cs" />
     <Compile Include="Implementation\RadioButton.cs" />
     <Compile Include="Implementation\RadioButtons.cs" />
+    <Compile Include="Implementation\SpecificBlock.cs" />
     <Compile Include="Implementation\WebDragAndDropPerformer.cs" />
     <Compile Include="Implementation\NumericField.cs" />
     <Compile Include="Implementation\Table.cs" />
