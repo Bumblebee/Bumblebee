@@ -39,7 +39,13 @@ namespace Bumblebee.Setup
 			return NavigateTo<TPage>(string.Format(uriFormat, args));
 		}
 
-		public virtual TBlock CurrentBlock<TBlock>(IWebElement tag = null) where TBlock : IBlock
+		public virtual TBlock CurrentBlock<TBlock>() where TBlock : IBlock
+		{
+			return Factory.CreateBlockFromSession<TBlock>(this);
+		}
+
+		//[Obsolete("This method is obsolete.  Due to the nature of lazy loading elements, this is no longer relevant.  For the same reason, we have removed the SpecificBlock type.  Please use the CurrentBlock<TBlock>() method to get your block reference.", error: true)]
+		public virtual TBlock CurrentBlock<TBlock>(IWebElement tag) where TBlock : IBlock
 		{
 			return Factory.CreateBlockFromSession<TBlock>(this);
 		}

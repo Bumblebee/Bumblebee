@@ -70,14 +70,26 @@ namespace Bumblebee.Implementation
 			}
 		}
 
+		public virtual IWebElement FindElement(By @by)
+		{
+			return Tag.FindElement(@by);
+		}
+
 		public virtual IEnumerable<IWebElement> FindElements(By @by)
 		{
 			return Tag.FindElements(@by);
 		}
 
-		public virtual IWebElement FindElement(By @by)
+		[Obsolete("This method is obsolete. Please use FindElement(By @by) instead.", error: true)]
+		public virtual IWebElement GetElement(By @by)
 		{
-			return Tag.FindElement(@by);
+			return null;
+		}
+
+		[Obsolete("This method is obsolete. Please use FindElements(By @by) instead.", error: true)]
+		public virtual IEnumerable<IWebElement> GetElements(By @by)
+		{
+			return null;
 		}
 
 		public virtual IPerformsDragAndDrop GetDragAndDropPerformer()

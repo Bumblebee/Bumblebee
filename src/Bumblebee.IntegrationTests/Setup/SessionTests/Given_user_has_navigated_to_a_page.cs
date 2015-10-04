@@ -30,7 +30,7 @@ namespace Bumblebee.IntegrationTests.Setup.SessionTests
 		}
 
 		[Test]
-		public void When_getting_current_page_as_correct_type_THen_should_return_page()
+		public void When_getting_current_page_as_correct_type_Then_should_return_page()
 		{
 			_session
 				.CurrentPage<DefaultPage>()
