@@ -8,13 +8,13 @@ using OpenQA.Selenium;
 
 namespace Bumblebee.Implementation
 {
-	public class ElementEnumerable<T> : IEnumerable<T>
+	public class Elements<T> : IEnumerable<T>
 		where T : IElement
 	{
 		private readonly IBlock _parent;
 		private readonly By _by;
 
-		public ElementEnumerable(IBlock parent, By @by)
+		public Elements(IBlock parent, By @by)
 		{
 			_parent = parent;
 			_by = @by;

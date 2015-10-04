@@ -9,10 +9,12 @@ using FluentAssertions;
 
 using NUnit.Framework;
 
-namespace Bumblebee.IntegrationTests.Implementation
+// ReSharper disable InconsistentNaming
+
+namespace Bumblebee.IntegrationTests.Implementation.WebPageTests
 {
 	[TestFixture]
-	public class given_web_page_with_explicit_wait : HostTestFixture
+	public class Given_web_page_with_explicit_wait : HostTestFixture
 	{
 		[SetUp]
 		public void TestSetUp()
@@ -31,7 +33,7 @@ namespace Bumblebee.IntegrationTests.Implementation
 		}
 
 		[Test]
-		public void given_slow_load_when_getting_an_element_using_wait_should_wait()
+		public void Given_slow_load_when_getting_an_element_using_wait_Should_wait()
 		{
 			Threaded<Session>
 				.CurrentBlock<SlowWebPageWithExplicitWait>()

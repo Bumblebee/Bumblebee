@@ -10,7 +10,7 @@ namespace Bumblebee
 	internal static class Factory
 	{
 		// TODO:  Need to modify this and its uses to only work for pages.
-		public static T CreateBlockFromSession<T>(Session session) where T : IBlock // TODO: should probably create a page abstraction and use it here...
+		public static T CreateBlockFromSession<T>(Session session) where T : IBlock
 		{
 			if (session == null)
 			{

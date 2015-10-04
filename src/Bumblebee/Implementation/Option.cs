@@ -25,7 +25,8 @@ namespace Bumblebee.Implementation
 		}
 	}
 
-	public class Option<TResult> : Option, IOption<TResult> where TResult : IBlock
+	public class Option<TResult> : Option, IOption<TResult>
+		where TResult : IBlock
 	{
 		public Option(IBlock parent, By by) : base(parent, @by)
 		{

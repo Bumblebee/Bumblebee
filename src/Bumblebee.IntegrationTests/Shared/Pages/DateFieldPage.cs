@@ -2,8 +2,6 @@
 using Bumblebee.Interfaces;
 using Bumblebee.Setup;
 
-using OpenQA.Selenium;
-
 namespace Bumblebee.IntegrationTests.Shared.Pages
 {
 	public class DateFieldPage : WebPage

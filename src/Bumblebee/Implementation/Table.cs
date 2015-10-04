@@ -28,7 +28,7 @@ namespace Bumblebee.Implementation
 		{
 			get
 			{
-				return new BlockEnumerable<TableRow>(this, By.CssSelector("tbody > tr"));
+				return FindBlocks<TableRow>(By.CssSelector("tbody > tr"));
 			}
 		}
 
@@ -52,7 +52,7 @@ namespace Bumblebee.Implementation
 		public IEnumerable<T> RowsAs<T>()
 			where T : IBlock
 		{
-			return new BlockEnumerable<T>(this, By.CssSelector("tbody > tr"));
+			return FindBlocks<T>(By.CssSelector("tbody > tr"));
 		}
 
 		public T FooterAs<T>()

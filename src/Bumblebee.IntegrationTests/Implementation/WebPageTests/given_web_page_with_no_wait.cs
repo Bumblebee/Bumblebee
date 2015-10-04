@@ -11,10 +11,12 @@ using NUnit.Framework;
 
 using OpenQA.Selenium;
 
-namespace Bumblebee.IntegrationTests.Implementation
+// ReSharper disable InconsistentNaming
+
+namespace Bumblebee.IntegrationTests.Implementation.WebPageTests
 {
 	[TestFixture]
-	public class given_web_page_with_no_wait : HostTestFixture
+	public class Given_web_page_with_no_wait : HostTestFixture
 	{
 		[SetUp]
 		public void TestSetUp()
@@ -33,7 +35,7 @@ namespace Bumblebee.IntegrationTests.Implementation
 		}
 
 		[Test]
-		public void given_slow_load_when_getting_an_element_using_wait_should_throw()
+		public void Given_slow_load_when_getting_an_element_using_wait_Should_throw()
 		{
 			Action action = () =>
 				Threaded<Session>

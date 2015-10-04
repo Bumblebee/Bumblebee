@@ -9,13 +9,13 @@ using OpenQA.Selenium;
 
 namespace Bumblebee.Implementation
 {
-	public class BlockEnumerable<T> : IEnumerable<T>
+	public class Blocks<T> : IEnumerable<T>
 		where T : IBlock
 	{
 		private readonly IBlock _parent;
 		private readonly By _by;
 
-		public BlockEnumerable(IBlock parent, By @by)
+		public Blocks(IBlock parent, By @by)
 		{
 			_parent = parent;
 			_by = @by;

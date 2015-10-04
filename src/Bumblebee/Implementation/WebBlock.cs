@@ -24,29 +24,26 @@ namespace Bumblebee.Implementation
 		{
 		}
 
-        /// <summary>
-        /// Constructor that allows for overriding the default timeout for waits.
-        /// </summary>
-        /// <param name="session">The session to be used for finding elements in the derived page.</param>
-        /// <param name="timeout">The timeout period for waits represented as a TimeSpan</param>
-        protected WebBlock(Session session, TimeSpan timeout)
-            : base(session, By.TagName("body"))
-        {
-            this.Pause(200);
-            Wait = new WebDriverWait(Session.Driver, timeout);
-        }
+		/// <summary>
+		/// Constructor that allows for overriding the default timeout for waits.
+		/// </summary>
+		/// <param name="session">The session to be used for finding elements in the derived page.</param>
+		/// <param name="timeout">The timeout period for waits represented as a TimeSpan</param>
+		protected WebBlock(Session session, TimeSpan timeout)
+			: base(session, By.TagName("body"))
+		{
+			this.Pause(200);
+			Wait = new WebDriverWait(Session.Driver, timeout);
+		}
 
-        /// <summary>
-        /// A common wait timeout that can be used when trying to find elements within derived pages or blocks.
-        /// </summary>
-        protected WebDriverWait Wait { get; private set; }
+		/// <summary>
+		/// A common wait timeout that can be used when trying to find elements within derived pages or blocks.
+		/// </summary>
+		protected WebDriverWait Wait { get; private set; }
 
-        public override IWebElement Tag
-        {
-            get
-            {
-                return Wait.Until(driver => base.Tag); // TODO: this feels....wonky
-            }
-        }
+		public override IWebElement Tag
+		{
+			get { return Wait.Until(driver => base.Tag); } // TODO: this feels....wonky
+		}
 	}
 }

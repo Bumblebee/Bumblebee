@@ -82,8 +82,8 @@
     <Compile Include="Implementation\IEnumerableOfBlocksTests.cs" />
     <Compile Include="Implementation\InlineFrameTests\Given_nested_inline_frames.cs" />
     <Compile Include="Implementation\PageTests.cs" />
-    <Compile Include="Implementation\WebPageTests\given_web_page_with_explicit_wait.cs" />
-    <Compile Include="Implementation\WebPageTests\given_web_page_with_no_wait.cs" />
+    <Compile Include="Implementation\WebPageTests\Given_web_page_with_explicit_wait.cs" />
+    <Compile Include="Implementation\WebPageTests\Given_web_page_with_no_wait.cs" />
     <Compile Include="Setup\SessionTests\Given_user_has_navigated_to_a_page.cs" />
     <Compile Include="Setup\ThreadedSessionTests\Given_user_has_navigated_to_a_page.cs" />
     <Compile Include="Shared\Pages\DefaultPage.cs" />
