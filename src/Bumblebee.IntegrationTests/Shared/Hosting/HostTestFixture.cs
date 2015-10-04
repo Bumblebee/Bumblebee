@@ -9,7 +9,7 @@ namespace Bumblebee.IntegrationTests.Shared.Hosting
 	{
 		private IHost _host;
 
-		protected HostTestFixture() : this("http://localhost:1234")
+		protected HostTestFixture() : this("http://localhost:50001")
 		{
 		}
 
