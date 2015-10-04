@@ -14,7 +14,7 @@ namespace Bumblebee.Implementation
 
 		public virtual IEnumerable<IOption> Options
 		{
-			get { return new ElementEnumerable<Option>(this, By.TagName("option")); }
+			get { return FindElements<Option>(By.TagName("option")); }
 		}
 	}
 
@@ -27,7 +27,7 @@ namespace Bumblebee.Implementation
 
 		public virtual IEnumerable<IOption<TResult>> Options
 		{
-			get { return new ElementEnumerable<Option<TResult>>(this, By.TagName("option")); }
+			get { return FindElements<Option<TResult>>(By.TagName("option")); }
 		}
 	}
 }

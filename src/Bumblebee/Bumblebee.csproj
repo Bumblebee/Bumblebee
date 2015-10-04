@@ -49,7 +49,7 @@
     <Compile Include="Extensions\WebElementConvenience.cs" />
     <Compile Include="Factory.cs" />
     <Compile Include="Implementation\Blocks.cs" />
-    <Compile Include="Implementation\ElementEnumerable.cs" />
+    <Compile Include="Implementation\Elements.cs" />
     <Compile Include="Implementation\InlineFrame.cs" />
     <Compile Include="Implementation\Monkey.cs" />
     <Compile Include="Implementation\DateField.cs" />
