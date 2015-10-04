@@ -11,38 +11,40 @@ using FluentAssertions;
 
 using NUnit.Framework;
 
+// ReSharper disable InconsistentNaming
+
 namespace Bumblebee.IntegrationTests.Setup.SessionTests
 {
-    [TestFixture]
+	[TestFixture]
 
-    public class Given_environment_and_default_settings_When_capturing_from_generic_method : HostTestFixture
-    {
-        [Test]
-        public void should_save_in_executing_directory()
-        {
-            var environment = new InternetExplorer();
-            var session = new Session(environment);
-            session.NavigateTo<CheckboxPage>(GetUrl("Checkbox.html"));
+	public class Given_environment_and_default_settings_When_capturing_from_generic_method : HostTestFixture
+	{
+		[Test]
+		public void Should_save_in_executing_directory()
+		{
+			var environment = new InternetExplorer();
+			var session = new Session(environment);
+			session.NavigateTo<CheckboxPage>(GetUrl("Checkbox.html"));
 
-            var path = GenericMethod(session);
+			var path = GenericMethod(session);
 
-            File.Exists(path).Should().BeTrue();
+			File.Exists(path).Should().BeTrue();
 
-            session.End();
-            File.Delete(path);
-        }
+			session.End();
+			File.Delete(path);
+		}
 
-        private string GenericMethod<T>(T session) where T:Session
-        {
-            var currentMethod = String.Format("{0}.png", CallStack.GetCurrentMethod().GetFullName());
-            var defaultSettings = new Settings();
+		private string GenericMethod<T>(T session) where T : Session
+		{
+			var currentMethod = String.Format("{0}.png", CallStack.GetCurrentMethod().GetFullName());
+			var defaultSettings = new Settings();
 
-            var path = Path.Combine(defaultSettings.ScreenCapturePath, currentMethod);
-            File.Delete(path);
+			var path = Path.Combine(defaultSettings.ScreenCapturePath, currentMethod);
+			File.Delete(path);
 
-            session.CaptureScreen();
+			session.CaptureScreen();
 
-            return path;
-        }
-    }
+			return path;
+		}
+	}
 }

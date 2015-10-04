@@ -48,7 +48,7 @@
     <Compile Include="Extensions\Verification.cs" />
     <Compile Include="Extensions\WebElementConvenience.cs" />
     <Compile Include="Factory.cs" />
-    <Compile Include="Implementation\BlockEnumerable.cs" />
+    <Compile Include="Implementation\Blocks.cs" />
     <Compile Include="Implementation\ElementEnumerable.cs" />
     <Compile Include="Implementation\InlineFrame.cs" />
     <Compile Include="Implementation\Monkey.cs" />
