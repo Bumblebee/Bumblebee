@@ -2,8 +2,6 @@
 
 using Bumblebee.Interfaces;
 
-using OpenQA.Selenium.Safari.Internal;
-
 namespace Bumblebee.Extensions
 {
 	public static class BlockConvenience
