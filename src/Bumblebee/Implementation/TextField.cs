@@ -42,7 +42,8 @@ namespace Bumblebee.Implementation
 		}
 	}
 
-	public class TextField<TResult> : TextField, ITextField<TResult> where TResult : IBlock
+	public class TextField<TResult> : TextField, ITextField<TResult>
+		where TResult : IBlock
 	{
 		public TextField(IBlock parent, By @by) : base(parent, @by)
 		{

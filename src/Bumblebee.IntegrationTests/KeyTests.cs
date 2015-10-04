@@ -13,7 +13,8 @@ namespace Bumblebee.IntegrationTests
 	// ReSharper disable InconsistentNaming
 
 	[TestFixture(typeof (Chrome))]
-	public class Given_keys<T> : HostTestFixture where T : IDriverEnvironment, new()
+	public class Given_keys<T> : HostTestFixture
+		where T : IDriverEnvironment, new()
 	{
 		private static readonly Key[] Data =
 		{

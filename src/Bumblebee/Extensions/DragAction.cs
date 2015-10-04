@@ -8,7 +8,8 @@ namespace Bumblebee.Extensions
 	/// Represents the drag action.
 	/// </summary>
 	/// <typeparam name="TParent">The type of the parent block.</typeparam>
-	public class DragAction<TParent> where TParent : IBlock
+	public class DragAction<TParent>
+		where TParent : IBlock
 	{
 		private TParent Parent { get; set; }
 		private IDraggable Draggable { get; set; }

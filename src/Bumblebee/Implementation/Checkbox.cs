@@ -43,7 +43,8 @@ namespace Bumblebee.Implementation
 		}
 	}
 
-	public class Checkbox<TResult> : Checkbox, ICheckbox<TResult> where TResult : IBlock
+	public class Checkbox<TResult> : Checkbox, ICheckbox<TResult>
+		where TResult : IBlock
 	{
 		public Checkbox(IBlock parent, By @by) : base(parent, @by)
 		{
