@@ -58,7 +58,10 @@ namespace Bumblebee.Implementation
 
 		private Block(Session session)
 		{
-			session.SetCurrentBlock(this);
+			if (session != null)
+			{
+				session.SetCurrentBlock(this);
+			}
 		}
 
 		public IBlock Parent { get; private set; }

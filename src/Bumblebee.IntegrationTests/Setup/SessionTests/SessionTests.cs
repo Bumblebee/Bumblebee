@@ -1,6 +1,4 @@
-﻿using System;
-
-using Bumblebee.Extensions;
+﻿using Bumblebee.Extensions;
 using Bumblebee.Implementation;
 using Bumblebee.IntegrationTests.Shared.Hosting;
 using Bumblebee.IntegrationTests.Shared.Pages;
@@ -10,11 +8,8 @@ using Bumblebee.Setup.DriverEnvironments;
 
 using FluentAssertions;
 
-using NSubstitute.Routing.Handlers;
-
 using NUnit.Framework;
 
-using OpenQA.Selenium;
 using OpenQA.Selenium.IE;
 
 // ReSharper disable InconsistentNaming
@@ -70,6 +65,7 @@ namespace Bumblebee.IntegrationTests.Setup.SessionTests
 				.Session.End();
 		}
 
+		[Test]
 		public void Given_clicked_to_new_page_When_getting_current_block_Then_should_return_new_page()
 		{
 			var url = GetUrl("CurrentBlock-Default.html");
@@ -85,12 +81,32 @@ namespace Bumblebee.IntegrationTests.Setup.SessionTests
 			session.End();
 		}
 
-		public void Given_scoped_block_When_getting_current_block_Then_should_return_scoped_block()
+		[Test]
+		public void Given_scoped_block_When_getting_current_block_for_scoped_block_Then_should_return_scoped_block()
 		{
 			var session = new Session(new PhantomJS());
-			var section = session
+			session
 				.NavigateTo<CurrentBlockDefaultPage>(GetUrl("CurrentBlock-Default.html"))
-				.InnerSection;
+				.InnerSection
+				.VerifyThat(b => b.SpanText.Should().Be("Span 2"));
+
+			session
+				.CurrentBlock<InnerSection>()
+				.VerifyThat(b => b.SpanText.Should().Be("Span 2"));
+
+			session.End();
+		}
+
+		[Test]
+		public void Given_scoped_block_When_getting_current_block_for_parent_of_scoped_block_Then_should_return_scoped_block()
+		{
+			var session = new Session(new PhantomJS());
+			session
+				.NavigateTo<CurrentBlockDefaultPage>(GetUrl("CurrentBlock-Default.html"))
+				.InnerSection
+				.InnerInnerSection
+				.TextBox
+				.VerifyThat(e => e.Text.Should().Be("Todd"));
 
 			session
 				.CurrentBlock<InnerSection>()
@@ -128,10 +144,28 @@ namespace Bumblebee.IntegrationTests.Setup.SessionTests
 		{
 			get
 			{
-				var tag = Tag;
-				var element = tag.FindElement(By.Name("span"));
-				return element.Text ;
+				return Tag
+					.FindElement(By.Name("span"))
+					.Text ;
 			}
+		}
+
+		public InnerInnerSection InnerInnerSection
+		{
+			get {  return new InnerInnerSection(this); }
+		}
+	}
+
+	public class InnerInnerSection : Block
+	{
+		public InnerInnerSection(IBlock parent)
+			: base(parent, By.Id("innerInnerSection"))
+		{
+		}
+
+		public ITextField TextBox
+		{
+			get { return new TextField(this, By.Id("textbox")); }
 		}
 	}
 

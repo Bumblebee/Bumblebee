@@ -48,9 +48,23 @@ namespace Bumblebee.Setup
 
 		public virtual TBlock CurrentBlock<TBlock>() where TBlock : IBlock
 		{
-			return _currentBlock is TBlock ?
-				(TBlock) _currentBlock
-				: Factory.CreateBlockFromSession<TBlock>(this);
+			IBlock block = null;
+
+			if (_currentBlock is TBlock)
+			{
+				block = (TBlock) _currentBlock;
+			}
+			else if (_currentBlock != null)
+			{
+				block = _currentBlock.FindRelated<TBlock>();
+			}
+
+			if (block == null)
+			{
+				block = Factory.CreateBlockFromSession<TBlock>(this);
+			}
+			
+			return (TBlock) block;
 		}
 
 		//[Obsolete("This method is obsolete.  Due to the nature of lazy loading elements, this is no longer relevant.  For the same reason, we have removed the SpecificBlock type.  Please use the CurrentBlock<TBlock>() method to get your block reference.", error: true)]
