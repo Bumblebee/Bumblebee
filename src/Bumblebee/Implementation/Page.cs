@@ -31,6 +31,11 @@ namespace Bumblebee.Implementation
 			}
 		}
 
+		public static TPage Create<TPage>(Session session) where TPage : IPage
+		{
+			return Block.Create<TPage>(session);
+		}
+
 		/// <summary>
 		/// The tag that the page is scoped to.
 		/// </summary>

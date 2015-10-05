@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
+using Bumblebee.Implementation;
 using Bumblebee.Interfaces;
 
 namespace Bumblebee.Extensions
@@ -21,7 +22,7 @@ namespace Bumblebee.Extensions
 			return FindRelated<T>(element.Parent);
 		}
 
-		public static T FindRelated<T>(this IBlock block) where T : IBlock
+		public static TBlock FindRelated<TBlock>(this IBlock block) where TBlock : IBlock
 		{
 			if (block == null)
 			{
@@ -29,13 +30,13 @@ namespace Bumblebee.Extensions
 			}
 
 			var ancestor = block;
-			var type = typeof (T);
+			var type = typeof (TBlock);
 
 			IDictionary<Type, bool> typesAlreadySearched = new Dictionary<Type, bool>();
 
 			while ((ancestor != null) && (type.IsInstanceOfType(ancestor) == false))
 			{
-				T result;
+				TBlock result;
 				if (SearchDescendantsFor(ref typesAlreadySearched, ancestor, out result))
 				{
 					ancestor = result;
@@ -48,10 +49,10 @@ namespace Bumblebee.Extensions
 
 			if (ancestor == null)
 			{
-				ancestor = Factory.CreateBlockFromSession<T>(block.Session);
+				ancestor = Block.Create<TBlock>(block.Session);
 			}
 
-			return (T) ancestor;
+			return (TBlock) ancestor;
 		}
 
 		private static bool SearchDescendantsFor<T>(ref IDictionary<Type, bool> typesAlreadySearched, object current, out T result)
