@@ -44,7 +44,8 @@ namespace Bumblebee.Implementation
 		}
 	}
 
-	public class NumericField<TResult> : NumericField, INumericField<TResult> where TResult : IBlock
+	public class NumericField<TResult> : NumericField, INumericField<TResult>
+		where TResult : IBlock
 	{
 		public NumericField(IBlock parent, By @by) : base(parent, @by)
 		{

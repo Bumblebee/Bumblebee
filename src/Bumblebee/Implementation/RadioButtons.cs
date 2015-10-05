@@ -26,7 +26,7 @@ namespace Bumblebee.Implementation
 		{
 			get
 			{
-				return new ElementEnumerable<RadioButton<TResult>>(_parent, _by)
+				return new Elements<RadioButton<TResult>>(_parent, _by)
 					.Where(option => option.Tag.Displayed);
 			}
 		}

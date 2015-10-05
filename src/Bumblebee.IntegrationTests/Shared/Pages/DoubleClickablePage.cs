@@ -4,8 +4,6 @@ using Bumblebee.Implementation;
 using Bumblebee.Interfaces;
 using Bumblebee.Setup;
 
-using OpenQA.Selenium;
-
 namespace Bumblebee.IntegrationTests.Shared.Pages
 {
 	public class DoubleClickablePage : WebPage

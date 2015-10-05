@@ -7,7 +7,8 @@ using OpenQA.Selenium;
 
 namespace Bumblebee.Implementation
 {
-	public class RadioButton<TResult> : Option<TResult> where TResult : IBlock
+	public class RadioButton<TResult> : Option<TResult>
+		where TResult : IBlock
 	{
 		public RadioButton(IBlock parent, By @by) : base(parent, @by)
 		{

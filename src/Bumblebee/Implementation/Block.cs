@@ -100,6 +100,16 @@ namespace Bumblebee.Implementation
 			return null;
 		}
 
+		protected virtual IEnumerable<T> FindBlocks<T>(By @by) where T : IBlock
+		{
+			return new Blocks<T>(this, @by);
+		}
+
+		protected virtual IEnumerable<T> FindElements<T>(By @by) where T : IElement
+		{
+			return new Elements<T>(this, @by);
+		}
+
 		public virtual IPerformsDragAndDrop GetDragAndDropPerformer()
 		{
 			return new WebDragAndDropPerformer(Session.Driver);

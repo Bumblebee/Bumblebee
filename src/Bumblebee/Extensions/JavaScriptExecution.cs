@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 
 using OpenQA.Selenium;
-using OpenQA.Selenium.Safari.Internal;
 using OpenQA.Selenium.Support.Extensions;
 
 namespace Bumblebee.Extensions

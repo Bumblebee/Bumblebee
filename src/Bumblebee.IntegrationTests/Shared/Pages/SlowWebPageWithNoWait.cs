@@ -4,8 +4,6 @@ using Bumblebee.Implementation;
 using Bumblebee.Interfaces;
 using Bumblebee.Setup;
 
-using OpenQA.Selenium;
-
 namespace Bumblebee.IntegrationTests.Shared.Pages
 {
 	public class SlowWebPageWithNoWait : WebPage
@@ -17,8 +15,7 @@ namespace Bumblebee.IntegrationTests.Shared.Pages
 
 		public ITextField FirstName
 		{
-			get {  return Wait.Until(x => new TextField(this, By.Id("firstName")));}
+			get { return Wait.Until(x => new TextField(this, By.Id("firstName")));}
 		}
-		
 	}
 }

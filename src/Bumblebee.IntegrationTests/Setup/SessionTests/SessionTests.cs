@@ -1,8 +1,6 @@
 ﻿using Bumblebee.Extensions;
-using Bumblebee.Implementation;
 using Bumblebee.IntegrationTests.Shared.Hosting;
 using Bumblebee.IntegrationTests.Shared.Pages;
-using Bumblebee.Interfaces;
 using Bumblebee.Setup;
 using Bumblebee.Setup.DriverEnvironments;
 
@@ -113,66 +111,6 @@ namespace Bumblebee.IntegrationTests.Setup.SessionTests
 				.VerifyThat(b => b.SpanText.Should().Be("Span 2"));
 
 			session.End();
-		}
-	}
-
-	public class CurrentBlockDefaultPage : WebPage
-	{
-		public CurrentBlockDefaultPage(Session session) : base(session)
-		{
-		}
-
-		public IClickable<CurrentBlockNavigateToPage> LinkToNavigateToPage
-		{
-			get { return new Clickable<CurrentBlockNavigateToPage>(this, By.Id("linkToNavigateToPage")); }
-		}
-
-		public InnerSection InnerSection
-		{
-			get {  return new InnerSection(this); }
-		}
-	}
-
-	public class InnerSection : Block
-	{
-		public InnerSection(IBlock parent)
-			: base(parent, By.Id("innerSection"))
-		{
-		}
-
-		public string SpanText
-		{
-			get
-			{
-				return Tag
-					.FindElement(By.Name("span"))
-					.Text ;
-			}
-		}
-
-		public InnerInnerSection InnerInnerSection
-		{
-			get {  return new InnerInnerSection(this); }
-		}
-	}
-
-	public class InnerInnerSection : Block
-	{
-		public InnerInnerSection(IBlock parent)
-			: base(parent, By.Id("innerInnerSection"))
-		{
-		}
-
-		public ITextField TextBox
-		{
-			get { return new TextField(this, By.Id("textbox")); }
-		}
-	}
-
-	public class CurrentBlockNavigateToPage : WebPage
-	{
-		public CurrentBlockNavigateToPage(Session session) : base(session)
-		{
 		}
 	}
 }

@@ -38,7 +38,7 @@ namespace Bumblebee.IntegrationTests.Shared.Pages
 
 		public IEnumerable<ComplexBlock> Items
 		{
-			get { return new BlockEnumerable<ComplexBlock>(this, By.CssSelector("li")); }
+			get { return new Blocks<ComplexBlock>(this, By.CssSelector("li")); }
 		}
 	}
 
