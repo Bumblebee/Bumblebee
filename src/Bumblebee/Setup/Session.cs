@@ -3,6 +3,7 @@ using System.Drawing.Imaging;
 using System.IO;
 
 using Bumblebee.Extensions;
+using Bumblebee.Implementation;
 using Bumblebee.Interfaces;
 
 using OpenQA.Selenium;
@@ -31,7 +32,7 @@ namespace Bumblebee.Setup
 		public virtual TPage NavigateTo<TPage>(string url) where TPage : IPage
 		{
 			Driver.Navigate().GoToUrl(url);
-			return CurrentBlock<TPage>();
+			return Page.Create<TPage>(this);
 		}
 
 		public virtual TPage NavigateTo<TPage>(string uriFormat, params object[] args) where TPage : IPage
@@ -61,16 +62,16 @@ namespace Bumblebee.Setup
 
 			if (block == null)
 			{
-				block = Factory.CreateBlockFromSession<TBlock>(this);
+				block = Block.Create<TBlock>(this);
 			}
 			
 			return (TBlock) block;
 		}
 
-		//[Obsolete("This method is obsolete.  Due to the nature of lazy loading elements, this is no longer relevant.  For the same reason, we have removed the SpecificBlock type.  Please use the CurrentBlock<TBlock>() method to get your block reference.", error: true)]
+		[Obsolete("This method is obsolete.  Due to the nature of lazy loading elements, this is no longer relevant.  For the same reason, we have removed the SpecificBlock type.  Please use the CurrentBlock<TBlock>() method to get your block reference.", error: true)]
 		public virtual TBlock CurrentBlock<TBlock>(IWebElement tag) where TBlock : IBlock
 		{
-			return Factory.CreateBlockFromSession<TBlock>(this);
+			return Block.Create<TBlock>(this);
 		}
 
 		/// <summary>
@@ -84,7 +85,7 @@ namespace Bumblebee.Setup
 		/// <returns></returns>
 		public virtual TPage CurrentPage<TPage>() where TPage : IPage
 		{
-			return Factory.CreateBlockFromSession<TPage>(this);
+			return Page.Create<TPage>(this);
 		}
 
 		public virtual void End()

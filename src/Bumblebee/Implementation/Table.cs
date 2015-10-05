@@ -43,10 +43,10 @@ namespace Bumblebee.Implementation
 			}
 		}
 
-		public T HeaderAs<T>()
-			where T : IBlock
+		public TBlock HeaderAs<TBlock>()
+			where TBlock : IBlock
 		{
-			return Factory.CreateBlockFromParentAndSpecification<T>(this, By.TagName("thead"));
+			return Block.Create<TBlock>(this, By.TagName("thead"));
 		}
 
 		public IEnumerable<T> RowsAs<T>()
@@ -55,10 +55,10 @@ namespace Bumblebee.Implementation
 			return FindBlocks<T>(By.CssSelector("tbody > tr"));
 		}
 
-		public T FooterAs<T>()
-			where T : IBlock
+		public TBlock FooterAs<TBlock>()
+			where TBlock : IBlock
 		{
-			return Factory.CreateBlockFromParentAndSpecification<T>(this, By.TagName("tfoot"));
+			return Block.Create<TBlock>(this, By.TagName("tfoot"));
 		}
 	}
 }

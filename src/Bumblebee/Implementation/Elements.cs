@@ -8,8 +8,8 @@ using OpenQA.Selenium;
 
 namespace Bumblebee.Implementation
 {
-	public class Elements<T> : IEnumerable<T>
-		where T : IElement
+	public class Elements<TElement> : IEnumerable<TElement>
+		where TElement : IElement
 	{
 		private readonly IBlock _parent;
 		private readonly By _by;
@@ -20,11 +20,11 @@ namespace Bumblebee.Implementation
 			_by = @by;
 		}
 
-		public IEnumerator<T> GetEnumerator()
+		public IEnumerator<TElement> GetEnumerator()
 		{
 			return _parent
 				.FindElements(_by)
-				.Select(x => Factory.CreateElementFromParentAndElement<T>(_parent, x))
+				.Select(x => Element.Create<TElement>(_parent, x))
 				.GetEnumerator();
 		}
 

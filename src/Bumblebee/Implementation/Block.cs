@@ -56,6 +56,71 @@ namespace Bumblebee.Implementation
 			}
 		}
 
+		/// <summary>
+		/// Allows for the creation of a derived Block based on a Session using reflection.
+		/// </summary>
+		/// <remarks>
+		/// This method is used by the Session.CurrentBlock() method.
+		/// </remarks>
+		/// <param name="session"></param>
+		/// <typeparam name="TBlock"></typeparam>
+		/// <returns></returns>
+		/// <exception cref="ArgumentNullException"></exception>
+		/// <exception cref="ArgumentException"></exception>
+		internal static TBlock Create<TBlock>(Session session) where TBlock : IBlock
+		{
+			if (session == null)
+			{
+				throw new ArgumentNullException("session");
+			}
+
+			var type = typeof(TBlock);
+			var ctor = type.GetConstructor(new[] { typeof(Session) });
+
+			if (ctor == null)
+			{
+				throw new ArgumentException(String.Format("The specified type ({0}) is not a valid block or page. It must have a constructor that takes only a session.", type));
+			}
+
+			var result = (TBlock)ctor.Invoke(new object[] { session });
+
+			return result;
+		}
+
+		/// <summary>
+		/// Allows for the creation of a derived Block based on a parent Block and By specification using reflection.
+		/// </summary>
+		/// <param name="parent"></param>
+		/// <param name="by"></param>
+		/// <typeparam name="TBlock"></typeparam>
+		/// <returns></returns>
+		/// <exception cref="ArgumentNullException"></exception>
+		/// <exception cref="ArgumentException"></exception>
+		public static TBlock Create<TBlock>(IBlock parent, By @by) where TBlock : IBlock
+		{
+			if (parent == null)
+			{
+				throw new ArgumentNullException("parent");
+			}
+
+			if (@by == null)
+			{
+				throw new ArgumentNullException("by");
+			}
+
+			var type = typeof(TBlock);
+			var ctor = type.GetConstructor(new[] { typeof(IBlock), typeof(By) });
+
+			if (ctor == null)
+			{
+				throw new ArgumentException(String.Format("The specified type ({0}) is not a valid block. It must have a constructor that takes an IBlock parent and a By specification.", type));
+			}
+
+			var result = (TBlock)ctor.Invoke(new object[] { parent, @by });
+
+			return result;
+		}
+
 		private Block(Session session)
 		{
 			if (session != null)
