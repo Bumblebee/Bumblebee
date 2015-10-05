@@ -84,7 +84,11 @@
     <Compile Include="Implementation\PageTests.cs" />
     <Compile Include="Implementation\WebPageTests\Given_web_page_with_explicit_wait.cs" />
     <Compile Include="Implementation\WebPageTests\Given_web_page_with_no_wait.cs" />
+    <Compile Include="Shared\Pages\CurrentBlockDefaultPage.cs" />
+    <Compile Include="Shared\Pages\CurrentBlockNavigateToPage.cs" />
     <Compile Include="Setup\SessionTests\Given_user_has_navigated_to_a_page.cs" />
+    <Compile Include="Shared\Pages\InnerInnerSection.cs" />
+    <Compile Include="Shared\Pages\InnerSection.cs" />
     <Compile Include="Setup\ThreadedSessionTests\Given_user_has_navigated_to_a_page.cs" />
     <Compile Include="Shared\Pages\DefaultPage.cs" />
     <Compile Include="Shared\Pages\SlowWebPageWithNoWait.cs" />
@@ -165,6 +169,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\ByOrdinal.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\CurrentBlock-NavigateTo.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\CurrentBlock-Default.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\NestedInlineFramesGrandchild.html">

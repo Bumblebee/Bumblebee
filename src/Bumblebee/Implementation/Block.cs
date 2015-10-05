@@ -13,7 +13,7 @@ namespace Bumblebee.Implementation
 	{
 		protected static readonly ISpecification By = null;
 
-		internal Block(Session session, By @by)
+		internal Block(Session session, By @by) : this(session)
 		{
 			if (session == null)
 			{
@@ -34,7 +34,7 @@ namespace Bumblebee.Implementation
 			}
 		}
 
-		protected Block(IBlock parent, By @by)
+		protected Block(IBlock parent, By @by) : this(parent.Session)
 		{
 			if (parent == null)
 			{
@@ -53,6 +53,14 @@ namespace Bumblebee.Implementation
 			if (Session.Monkey != null)
 			{
 				Session.Monkey.Invoke(this);
+			}
+		}
+
+		private Block(Session session)
+		{
+			if (session != null)
+			{
+				session.SetCurrentBlock(this);
 			}
 		}
 

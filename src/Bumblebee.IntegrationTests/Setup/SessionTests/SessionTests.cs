@@ -62,5 +62,55 @@ namespace Bumblebee.IntegrationTests.Setup.SessionTests
 					.Should().Be(GetUrl("Default.html?id=1&firstName=Todd&lastName=Meinershagen")))
 				.Session.End();
 		}
+
+		[Test]
+		public void Given_clicked_to_new_page_When_getting_current_block_Then_should_return_new_page()
+		{
+			var url = GetUrl("CurrentBlock-Default.html");
+			var session = new Session(new PhantomJS());
+			session
+				.NavigateTo<CurrentBlockDefaultPage>(url)
+				.LinkToNavigateToPage.Click();
+
+			session
+				.CurrentBlock<CurrentBlockNavigateToPage>()
+				.VerifyThat(p => p.Session.Driver.Title.Should().Be("CurrentBlock - NavigateTo"));
+
+			session.End();
+		}
+
+		[Test]
+		public void Given_scoped_block_When_getting_current_block_for_scoped_block_Then_should_return_scoped_block()
+		{
+			var session = new Session(new PhantomJS());
+			session
+				.NavigateTo<CurrentBlockDefaultPage>(GetUrl("CurrentBlock-Default.html"))
+				.InnerSection
+				.VerifyThat(b => b.SpanText.Should().Be("Span 2"));
+
+			session
+				.CurrentBlock<InnerSection>()
+				.VerifyThat(b => b.SpanText.Should().Be("Span 2"));
+
+			session.End();
+		}
+
+		[Test]
+		public void Given_scoped_block_When_getting_current_block_for_parent_of_scoped_block_Then_should_return_scoped_block()
+		{
+			var session = new Session(new PhantomJS());
+			session
+				.NavigateTo<CurrentBlockDefaultPage>(GetUrl("CurrentBlock-Default.html"))
+				.InnerSection
+				.InnerInnerSection
+				.TextBox
+				.VerifyThat(e => e.Text.Should().Be("Todd"));
+
+			session
+				.CurrentBlock<InnerSection>()
+				.VerifyThat(b => b.SpanText.Should().Be("Span 2"));
+
+			session.End();
+		}
 	}
 }
