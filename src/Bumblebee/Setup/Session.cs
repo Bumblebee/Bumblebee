@@ -13,6 +13,8 @@ namespace Bumblebee.Setup
 {
 	public class Session
 	{
+		private IBlock _currentBlock;
+
 		public virtual ISettings Settings { get; private set; }
 
 		public virtual IWebDriver Driver { get; private set; }
@@ -32,40 +34,41 @@ namespace Bumblebee.Setup
 		public virtual TPage NavigateTo<TPage>(string url) where TPage : IPage
 		{
 			Driver.Navigate().GoToUrl(url);
+
 			return Page.Create<TPage>(this);
 		}
 
 		public virtual TPage NavigateTo<TPage>(string uriFormat, params object[] args) where TPage : IPage
 		{
-			return NavigateTo<TPage>(string.Format(uriFormat, args));
+			return NavigateTo<TPage>(String.Format(uriFormat, args));
 		}
 
-		private IBlock _currentBlock;
-
-		public void SetCurrentBlock(IBlock block)
+		internal void SetCurrentBlock(IBlock block)
 		{
 			_currentBlock = block;
 		}
 
 		public virtual TBlock CurrentBlock<TBlock>() where TBlock : IBlock
 		{
-			IBlock block = null;
+			var type = typeof (TBlock);
 
-			if (_currentBlock is TBlock)
+			IBlock result = default (TBlock);
+
+			if (type.IsInstanceOfType(_currentBlock))
 			{
-				block = (TBlock) _currentBlock;
+				result = (TBlock) _currentBlock;
 			}
 			else if (_currentBlock != null)
 			{
-				block = _currentBlock.FindRelated<TBlock>();
+				result = _currentBlock.FindRelated<TBlock>();
 			}
 
-			if (block == null)
+			if (result == null)
 			{
-				block = Block.Create<TBlock>(this);
+				result = Block.Create<TBlock>(this);
 			}
 			
-			return (TBlock) block;
+			return (TBlock) result;
 		}
 
 		[Obsolete("This method is obsolete.  Due to the nature of lazy loading elements, this is no longer relevant.  For the same reason, we have removed the SpecificBlock type.  Please use the CurrentBlock<TBlock>() method to get your block reference.", error: true)]
@@ -75,14 +78,14 @@ namespace Bumblebee.Setup
 		}
 
 		/// <summary>
-		/// Returns the a page reprentation with the current <c ref="Session">Session</c>
+		/// Returns the page representation with the current <c ref="Session">Session</c>
 		/// </summary>
 		/// <remarks>
 		/// There is nothing that currently enforces that the right type is being cast for the page, so if you select a different page
 		/// than what was last navigated to, you might encounter errors when using the associated elements since they will likely not exist.
 		/// </remarks>
-		/// <typeparam name="TPage"></typeparam>
-		/// <returns></returns>
+		/// <typeparam name="TPage">The requested page type.</typeparam>
+		/// <returns>A newly constructed page object of type <c ref="TPage">TPage</c>.</returns>
 		public virtual TPage CurrentPage<TPage>() where TPage : IPage
 		{
 			return Page.Create<TPage>(this);

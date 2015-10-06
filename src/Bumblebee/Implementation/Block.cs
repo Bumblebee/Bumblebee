@@ -13,7 +13,7 @@ namespace Bumblebee.Implementation
 	{
 		protected static readonly ISpecification By = null;
 
-		internal Block(Session session, By @by) : this(session)
+		internal Block(Session session, By @by)
 		{
 			if (session == null)
 			{
@@ -28,13 +28,15 @@ namespace Bumblebee.Implementation
 			Session = session;
 			Specification = @by;
 
+			InitializeCurrentBlock();
+
 			if (Session.Monkey != null)
 			{
 				Session.Monkey.Invoke(this);
 			}
 		}
 
-		protected Block(IBlock parent, By @by) : this(parent.Session)
+		protected Block(IBlock parent, By @by)
 		{
 			if (parent == null)
 			{
@@ -50,6 +52,8 @@ namespace Bumblebee.Implementation
 			Session = parent.Session;
 			Specification = @by;
 
+			InitializeCurrentBlock();
+
 			if (Session.Monkey != null)
 			{
 				Session.Monkey.Invoke(this);
@@ -60,13 +64,13 @@ namespace Bumblebee.Implementation
 		/// Allows for the creation of a derived Block based on a Session using reflection.
 		/// </summary>
 		/// <remarks>
-		/// This method is used by the Session.CurrentBlock() method.
+		/// This method is used by the Session.CurrentBlock() method, the FindRelated&lt;T&gt;() method and the Page.Create&lt;T&gt;(Session) method.
 		/// </remarks>
 		/// <param name="session"></param>
-		/// <typeparam name="TBlock"></typeparam>
-		/// <returns></returns>
-		/// <exception cref="ArgumentNullException"></exception>
-		/// <exception cref="ArgumentException"></exception>
+		/// <typeparam name="TBlock">The type of block to create.</typeparam>
+		/// <returns>The newly constructed Block.</returns>
+		/// <exception cref="ArgumentNullException">Will be thrown if session is null.</exception>
+		/// <exception cref="ArgumentException">Will be thrown if type TBlock has no constructor accepting only a Session.</exception>
 		internal static TBlock Create<TBlock>(Session session) where TBlock : IBlock
 		{
 			if (session == null)
@@ -74,15 +78,15 @@ namespace Bumblebee.Implementation
 				throw new ArgumentNullException("session");
 			}
 
-			var type = typeof(TBlock);
-			var ctor = type.GetConstructor(new[] { typeof(Session) });
+			var type = typeof (TBlock);
+			var ctor = type.GetConstructor(new[] { typeof (Session) });
 
 			if (ctor == null)
 			{
 				throw new ArgumentException(String.Format("The specified type ({0}) is not a valid block or page. It must have a constructor that takes only a session.", type));
 			}
 
-			var result = (TBlock)ctor.Invoke(new object[] { session });
+			var result = (TBlock) ctor.Invoke(new object[] { session });
 
 			return result;
 		}
@@ -90,12 +94,12 @@ namespace Bumblebee.Implementation
 		/// <summary>
 		/// Allows for the creation of a derived Block based on a parent Block and By specification using reflection.
 		/// </summary>
-		/// <param name="parent"></param>
-		/// <param name="by"></param>
-		/// <typeparam name="TBlock"></typeparam>
-		/// <returns></returns>
-		/// <exception cref="ArgumentNullException"></exception>
-		/// <exception cref="ArgumentException"></exception>
+		/// <param name="parent">The parent Block of the type to create.</param>
+		/// <param name="by">The specification used to find the backing element of the block.</param>
+		/// <typeparam name="TBlock">The type of Block to be constructed.</typeparam>
+		/// <returns>The newly constructed Block.</returns>
+		/// <exception cref="ArgumentNullException">Will be thrown if either parent or by is null.</exception>
+		/// <exception cref="ArgumentException">Will be thrown if type TBlock has no constructor accepting an IBlock parent and a By specification.</exception>
 		public static TBlock Create<TBlock>(IBlock parent, By @by) where TBlock : IBlock
 		{
 			if (parent == null)
@@ -108,25 +112,17 @@ namespace Bumblebee.Implementation
 				throw new ArgumentNullException("by");
 			}
 
-			var type = typeof(TBlock);
-			var ctor = type.GetConstructor(new[] { typeof(IBlock), typeof(By) });
+			var type = typeof (TBlock);
+			var ctor = type.GetConstructor(new[] { typeof (IBlock), typeof (By) });
 
 			if (ctor == null)
 			{
 				throw new ArgumentException(String.Format("The specified type ({0}) is not a valid block. It must have a constructor that takes an IBlock parent and a By specification.", type));
 			}
 
-			var result = (TBlock)ctor.Invoke(new object[] { parent, @by });
+			var result = (TBlock) ctor.Invoke(new object[] { parent, @by });
 
 			return result;
-		}
-
-		private Block(Session session)
-		{
-			if (session != null)
-			{
-				session.SetCurrentBlock(this);
-			}
 		}
 
 		public IBlock Parent { get; private set; }
@@ -135,12 +131,14 @@ namespace Bumblebee.Implementation
 
 		public By Specification { get; private set; }
 
+		private void InitializeCurrentBlock()
+		{
+			Session.SetCurrentBlock(this);
+		}
+
 		public virtual IWebElement Tag
 		{
-			get
-			{
-				return Parent.FindElement(Specification);
-			}
+			get { return Parent.FindElement(Specification); }
 		}
 
 		public virtual IWebElement FindElement(By @by)

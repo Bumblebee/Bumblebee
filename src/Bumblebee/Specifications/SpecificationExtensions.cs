@@ -40,7 +40,7 @@ namespace Bumblebee
 			return By.Name(nameToFind);
 		}
 
-		public static By Oridinal(this ISpecification specification, By @by, int ordinal)
+		public static By Ordinal(this ISpecification specification, By @by, int ordinal)
 		{
 			return new ByOrdinal(@by, ordinal);
 		}
