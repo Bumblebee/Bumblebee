@@ -11,6 +11,7 @@ namespace Bumblebee.Extensions
 	public static class BlockSearchingExtensions
 	{
 		private static readonly Type BlockType = typeof (IBlock);
+		private static readonly Type PageType = typeof (IPage);
 
 		public static T FindRelated<T>(this IElement element) where T : IBlock
 		{
@@ -34,22 +35,32 @@ namespace Bumblebee.Extensions
 
 			IDictionary<Type, bool> typesAlreadySearched = new Dictionary<Type, bool>();
 
-			while ((ancestor != null) && (type.IsInstanceOfType(ancestor) == false))
+			if (type.IsInstanceOfType(ancestor) == false)
 			{
-				TBlock result;
-				if (SearchDescendantsFor(ref typesAlreadySearched, ancestor, out result))
+				if (PageType.IsAssignableFrom(type))
 				{
-					ancestor = result;
+					ancestor = Block.Create<TBlock>(block.Session);
 				}
 				else
 				{
-					ancestor = ancestor.Parent;
-				}
-			}
+					while ((ancestor != null) && (type.IsInstanceOfType(ancestor) == false))
+					{
+						TBlock result;
+						if (SearchDescendantsFor(ref typesAlreadySearched, ancestor, out result))
+						{
+							ancestor = result;
+						}
+						else
+						{
+							ancestor = ancestor.Parent;
+						}
+					}
 
-			if (ancestor == null)
-			{
-				ancestor = Block.Create<TBlock>(block.Session);
+					if (ancestor == null)
+					{
+						ancestor = Block.Create<TBlock>(block.Session);
+					}
+				}
 			}
 
 			return (TBlock) ancestor;
