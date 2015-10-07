@@ -10,7 +10,7 @@ namespace Bumblebee.Implementation
 {
 	public abstract class Element : IElement
 	{
-		protected static readonly ISpecification By = null;
+		protected static readonly ISpecification By = new Specification();
 
 		public IBlock Parent { get; private set; }
 		public Session Session { get; private set; }

@@ -9,86 +9,86 @@ using NUnit.Framework;
 namespace Bumblebee.IntegrationTests.Specifications
 {
 	[TestFixture]
-	public class SpecificationExtensionsTests
+	public class SpecificationTests
 	{
-		private static readonly ISpecification Specification = null;
+		private static readonly ISpecification By = new Specification();
 
 		[Test]
-		public void Attribute_IsExtensionMethod()
+		public void Attribute_Returns_not_null()
 		{
-			Specification
+			By
 				.Attribute("first", "second")
 				.Should().NotBeNull();
 		}
 
 		[Test]
-		public void ClassName_IsExtensionMethod()
+		public void ClassName_Returns_not_null()
 		{
-			Specification
+			By
 				.ClassName("class")
 				.Should().NotBeNull();
 		}
 
 		[Test]
-		public void CssSelector_IsExtensionMethod()
+		public void CssSelector_Returns_not_null()
 		{
-			Specification
+			By
 				.CssSelector("#css > .selector")
 				.Should().NotBeNull();
 		}
 
 		[Test]
-		public void Id_IsExtensionMethod()
+		public void Id_Returns_not_null()
 		{
-			Specification
+			By
 				.Id("id")
 				.Should().NotBeNull();
 		}
 
 		[Test]
-		public void LinkText_IsExtensionMethod()
+		public void LinkText_Returns_not_null()
 		{
-			Specification
+			By
 				.LinkText("Link Text")
 				.Should().NotBeNull();
 		}
 
 		[Test]
-		public void Name_IsExtensionMethod()
+		public void Name_Returns_not_null()
 		{
-			Specification
+			By
 				.Name("name")
 				.Should().NotBeNull();
 		}
 
 		[Test]
-		public void Ordinal_IsExtensionMethod()
+		public void Ordinal_Returns_not_null()
 		{
-			Specification
-				.Ordinal(Specification.ClassName("class"), 3)
+			By
+				.Ordinal(By.ClassName("class"), 3)
 				.Should().NotBeNull();
 		}
 
 		[Test]
-		public void PartialLinkText_IsExtensionMethod()
+		public void PartialLinkText_Returns_not_null()
 		{
-			Specification
+			By
 				.PartialLinkText("Partial Link Text")
 				.Should().NotBeNull();
 		}
 
 		[Test]
-		public void TagName_IsExtensionMethod()
+		public void TagName_Returns_not_null()
 		{
-			Specification
+			By
 				.TagName("tag")
 				.Should().NotBeNull();
 		}
 
 		[Test]
-		public void XPath_IsExtensionMethod()
+		public void XPath_Returns_not_null()
 		{
-			Specification
+			By
 				.XPath(@"\x\path")
 				.Should().NotBeNull();
 		}
