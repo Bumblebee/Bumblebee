@@ -67,7 +67,9 @@ namespace Bumblebee.IntegrationTests.Extensions
 
 			var @by = Substitute.For<By>();
 
-			var block = new GrandparentBlock(session, @by);
+			var page = new AncestryPage(session, @by);
+
+			var block = page.Grandparent;
 
 			var result = block.FindRelated<GrandparentBlock>();
 
@@ -83,9 +85,9 @@ namespace Bumblebee.IntegrationTests.Extensions
 
 			var @by = Substitute.For<By>();
 
-			var parent = new GrandparentBlock(session, @by);
+			var page = new AncestryPage(session, @by);
 
-			var block = new GrandparentBlock(parent, @by);
+			var block = page.Grandparent;
 
 			var result = block.FindRelated<GrandparentBlock>();
 
@@ -101,9 +103,9 @@ namespace Bumblebee.IntegrationTests.Extensions
 
 			var @by = Substitute.For<By>();
 
-			var parent = new GrandparentBlock(session, @by);
+			var page = new AncestryPage(session, @by);
 
-			var block = new GrandparentBlock(parent, @by);
+			var block = page.Grandparent;
 
 			var result = block.FindRelated<GrandparentBlock>();
 
@@ -119,7 +121,9 @@ namespace Bumblebee.IntegrationTests.Extensions
 
 			var @by = Substitute.For<By>();
 
-			var block = new GrandparentBlock(session, @by);
+			var page = new AncestryPage(session, @by);
+
+			var block = page.Grandparent;
 
 			var result = block.ParentBlockA.ChildBlock1.FindRelated<ParentBlockA>();
 
@@ -134,7 +138,9 @@ namespace Bumblebee.IntegrationTests.Extensions
 
 			var @by = Substitute.For<By>();
 
-			var block = new GrandparentBlock(session, @by);
+			var page = new AncestryPage(session, @by);
+
+			var block = page.Grandparent;
 
 			var result = block.ParentBlockA.ChildBlock1.FindRelated<GrandparentBlock>();
 
@@ -149,7 +155,9 @@ namespace Bumblebee.IntegrationTests.Extensions
 
 			var @by = Substitute.For<By>();
 
-			var block = new GrandparentBlock(session, @by);
+			var page = new AncestryPage(session, @by);
+
+			var block = page.Grandparent;
 
 			var result = block.ParentBlockA.ChildBlock1.FindRelated<ChildBlock3>();
 
@@ -164,7 +172,9 @@ namespace Bumblebee.IntegrationTests.Extensions
 
 			var @by = Substitute.For<By>();
 
-			var block = new GrandparentBlock(session, @by);
+			var page = new AncestryPage(session, @by);
+
+			var block = page.Grandparent;
 
 			var result = block.ParentBlockA.ChildBlock1.FindRelated<ParentBlockB>();
 
@@ -179,7 +189,9 @@ namespace Bumblebee.IntegrationTests.Extensions
 
 			var @by = Substitute.For<By>();
 
-			var block = new GrandparentBlock(session, @by);
+			var page = new AncestryPage(session, @by);
+
+			var block = page.Grandparent;
 
 			var result = block.ParentBlockA.ChildBlock1.FindRelated<ChildBlock2>();
 
@@ -202,12 +214,24 @@ namespace Bumblebee.IntegrationTests.Extensions
 		}
 	}
 
-	public class GrandparentBlock : InstanceGuidBlock
+	public class AncestryPage : Page
 	{
-		public GrandparentBlock(Session session, By @by) : base(session, @by)
+		public AncestryPage(Session session) : base(session)
 		{
 		}
 
+		public AncestryPage(Session session, By @by) : base(session, @by)
+		{
+		}
+
+		public GrandparentBlock Grandparent
+		{
+			get { return new GrandparentBlock(this, Substitute.For<By>()); }
+		}
+	}
+
+	public class GrandparentBlock : InstanceGuidBlock
+	{
 		public GrandparentBlock(IBlock parent, By @by) : base(parent, @by)
 		{
 		}
@@ -231,10 +255,6 @@ namespace Bumblebee.IntegrationTests.Extensions
 
 	public class ParentBlockA : InstanceGuidBlock
 	{
-		public ParentBlockA(Session session, By @by) : base(session, @by)
-		{
-		}
-
 		public ParentBlockA(IBlock parent, By @by) : base(parent, @by)
 		{
 		}
@@ -258,10 +278,6 @@ namespace Bumblebee.IntegrationTests.Extensions
 
 	public class ParentBlockB : InstanceGuidBlock
 	{
-		public ParentBlockB(Session session, By @by) : base(session, @by)
-		{
-		}
-
 		public ParentBlockB(IBlock parent, By @by) : base(parent, @by)
 		{
 		}
@@ -285,10 +301,6 @@ namespace Bumblebee.IntegrationTests.Extensions
 
 	public class ChildBlock1 : InstanceGuidBlock
 	{
-		public ChildBlock1(Session session, By @by) : base(session, @by)
-		{
-		}
-
 		public ChildBlock1(IBlock parent, By @by) : base(parent, @by)
 		{
 		}
@@ -296,10 +308,6 @@ namespace Bumblebee.IntegrationTests.Extensions
 
 	public class ChildBlock2 : InstanceGuidBlock
 	{
-		public ChildBlock2(Session session, By @by) : base(session, @by)
-		{
-		}
-
 		public ChildBlock2(IBlock parent, By @by) : base(parent, @by)
 		{
 		}
@@ -307,10 +315,6 @@ namespace Bumblebee.IntegrationTests.Extensions
 
 	public class ChildBlock3 : InstanceGuidBlock
 	{
-		public ChildBlock3(Session session, By @by) : base(session, @by)
-		{
-		}
-
 		public ChildBlock3(IBlock parent, By @by) : base(parent, @by)
 		{
 		}
@@ -318,10 +322,6 @@ namespace Bumblebee.IntegrationTests.Extensions
 
 	public class ChildBlock4 : InstanceGuidBlock
 	{
-		public ChildBlock4(Session session, By @by) : base(session, @by)
-		{
-		}
-
 		public ChildBlock4(IBlock parent, By @by) : base(parent, @by)
 		{
 		}
