@@ -1,5 +1,4 @@
 ﻿using Bumblebee.Interfaces;
-using Bumblebee.Setup;
 
 using OpenQA.Selenium;
 
@@ -21,10 +20,6 @@ namespace Bumblebee.Implementation
 					.SwitchTo().Frame(base.Tag)
 					.FindElement(By.TagName("body"));
 			}
-		}
-
-		protected InlineFrame(Session session, By @by) : base(session, @by)
-		{
 		}
 
 		protected InlineFrame(IBlock parent, By @by) : base(parent, @by)
