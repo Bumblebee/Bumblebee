@@ -10,7 +10,7 @@ namespace Bumblebee
 {
 	public static class SpecificationExtensions
 	{
-		public static By Attribute(ISpecification specification, string attributeToFind, string attributeValueToFind)
+		public static By Attribute(this ISpecification specification, string attributeToFind, string attributeValueToFind)
 		{
 			return By.CssSelector(String.Format(@"[{0}='{1}']", attributeToFind, attributeValueToFind));
 		}
