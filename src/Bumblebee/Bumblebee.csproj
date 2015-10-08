@@ -114,7 +114,7 @@
     <Compile Include="Specifications\ByJQuery.cs" />
     <Compile Include="Specifications\ByOrdinal.cs" />
     <Compile Include="Specifications\ISpecification.cs" />
-    <Compile Include="Specifications\SpecificationExtensions.cs" />
+    <Compile Include="Specifications\Specification.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

@@ -11,7 +11,7 @@ namespace Bumblebee.Implementation
 	public class RadioButtons<TResult> : IRadioButtons<TResult>
 		where TResult : IBlock
 	{
-		protected static readonly ISpecification By = null;
+		protected static readonly ISpecification By = new Specification();
 
 		private readonly IBlock _parent;
 		private readonly By _by;

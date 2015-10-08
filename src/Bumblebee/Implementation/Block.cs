@@ -11,7 +11,7 @@ namespace Bumblebee.Implementation
 {
 	public abstract class Block : IBlock
 	{
-		protected static readonly ISpecification By = null;
+		protected static readonly ISpecification By = new Specification();
 
 		internal Block(Session session, By @by)
 		{

@@ -16,7 +16,7 @@ namespace Bumblebee.Implementation
 	/// </remarks>
 	public abstract class Page : Block, IPage
 	{
-		protected static readonly ISpecification By = null;
+		protected static readonly ISpecification By = new Specification();
 
 		/// <summary>
 		/// Constructor that takes the Session for assembly of other composite elements and assumes that &lt;body&gt; tag is the scope for the page.

@@ -12,7 +12,7 @@ namespace Bumblebee.Implementation
 {
 	public class AlertDialog : IAlertDialog
 	{
-		protected static readonly ISpecification By = null;
+		protected static readonly ISpecification By = new Specification();
 
 		public IWebElement Tag { get; private set; }
 		public IBlock Parent { get; private set; }
