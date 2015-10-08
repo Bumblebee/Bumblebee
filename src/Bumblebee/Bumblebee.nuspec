@@ -12,7 +12,7 @@
 		<description>$description$</description>
 		<releaseNotes>
 			This is a pre-release version of Bumblebee 2.0 that handles stale elements better by maintaining element specification logic.  Note, there are some breaking changes.
-			You can find info about this release here:  https://github.com/Bumblebee/Bumblebee/releases/tag/v2.0.4-alpha.
+			You can find info about this release here:  https://github.com/Bumblebee/Bumblebee/releases/tag/v2.0.5-alpha.
 		</releaseNotes>
 		<copyright>Copyright 2012</copyright>
 		<tags>acceptance ui automation system test testing</tags>
