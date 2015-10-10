@@ -10,11 +10,13 @@ namespace Bumblebee.Implementation
 {
 	public class NumericField : TextField, INumericField
 	{
-		public NumericField(IBlock parent, By @by) : base(parent, @by)
+		public NumericField(IBlock parent, By @by) 
+			: base(parent, @by)
 		{
 		}
 
-		public NumericField(IBlock parent, IWebElement tag) : base(parent, tag)
+		public NumericField(IBlock parent, By @by, TimeSpan timeout)
+			: base(parent, @by, timeout)
 		{
 		}
 
@@ -47,11 +49,13 @@ namespace Bumblebee.Implementation
 	public class NumericField<TResult> : NumericField, INumericField<TResult>
 		where TResult : IBlock
 	{
-		public NumericField(IBlock parent, By @by) : base(parent, @by)
+		public NumericField(IBlock parent, By @by) 
+			: base(parent, @by)
 		{
 		}
 
-		public NumericField(IBlock parent, IWebElement element) : base(parent, element)
+		public NumericField(IBlock parent, By @by, TimeSpan timeout)
+			: base(parent, @by, timeout)
 		{
 		}
 
