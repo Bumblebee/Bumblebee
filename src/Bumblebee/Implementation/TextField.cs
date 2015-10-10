@@ -1,4 +1,6 @@
-﻿using Bumblebee.Extensions;
+﻿using System;
+
+using Bumblebee.Extensions;
 using Bumblebee.Interfaces;
 
 using OpenQA.Selenium;
@@ -7,11 +9,13 @@ namespace Bumblebee.Implementation
 {
 	public class TextField : Element, ITextField
 	{
-		public TextField(IBlock parent, By @by) : base(parent, @by)
+		public TextField(IBlock parent, By @by) 
+			: base(parent, @by)
 		{
 		}
 
-		public TextField(IBlock parent, IWebElement tag) : base(parent, tag)
+		public TextField(IBlock parent, By @by, TimeSpan timeout)
+			: base(parent, @by, timeout)
 		{
 		}
 
@@ -45,11 +49,13 @@ namespace Bumblebee.Implementation
 	public class TextField<TResult> : TextField, ITextField<TResult>
 		where TResult : IBlock
 	{
-		public TextField(IBlock parent, By @by) : base(parent, @by)
+		public TextField(IBlock parent, By @by) 
+			: base(parent, @by)
 		{
 		}
 
-		public TextField(IBlock parent, IWebElement element) : base(parent, element)
+		public TextField(IBlock parent, By @by, TimeSpan timeout)
+			: base(parent, @by, timeout)
 		{
 		}
 

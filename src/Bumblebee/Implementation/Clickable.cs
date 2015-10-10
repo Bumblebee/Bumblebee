@@ -1,4 +1,6 @@
-﻿using Bumblebee.Extensions;
+﻿using System;
+
+using Bumblebee.Extensions;
 using Bumblebee.Interfaces;
 
 using OpenQA.Selenium;
@@ -8,11 +10,13 @@ namespace Bumblebee.Implementation
 {
 	public class Clickable : Element, IClickable, IDoubleClickable
 	{
-		public Clickable(IBlock parent, By @by) : base(parent, @by)
+		public Clickable(IBlock parent, By @by) 
+			: base(parent, @by)
 		{
 		}
 
-		public Clickable(IBlock parent, IWebElement element) : base(parent, element)
+		public Clickable(IBlock parent, By @by, TimeSpan timeout) 
+			: base(parent, @by, timeout)
 		{
 		}
 
@@ -40,10 +44,6 @@ namespace Bumblebee.Implementation
 		where TResult : IBlock
 	{
 		public Clickable(IBlock parent, By @by) : base(parent, @by)
-		{
-		}
-
-		public Clickable(IBlock parent, IWebElement element) : base(parent, element)
 		{
 		}
 

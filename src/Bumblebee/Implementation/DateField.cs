@@ -9,11 +9,13 @@ namespace Bumblebee.Implementation
 {
 	public class DateField : TextField, IDateField
 	{
-		public DateField(IBlock parent, By @by) : base(parent, @by)
+		public DateField(IBlock parent, By @by) 
+			: base(parent, @by)
 		{
 		}
 
-		public DateField(IBlock parent, IWebElement tag) : base(parent, tag)
+		public DateField(IBlock parent, By @by, TimeSpan timeout)
+			: base(parent, @by, timeout)
 		{
 		}
 
@@ -48,10 +50,6 @@ namespace Bumblebee.Implementation
 		where TResult : IBlock
 	{
 		public DateField(IBlock parent, By @by) : base(parent, @by)
-		{
-		}
-
-		public DateField(IBlock parent, IWebElement element) : base(parent, element)
 		{
 		}
 

@@ -10,11 +10,13 @@ namespace Bumblebee.Implementation
 	public class RadioButton<TResult> : Option<TResult>
 		where TResult : IBlock
 	{
-		public RadioButton(IBlock parent, By @by) : base(parent, @by)
+		public RadioButton(IBlock parent, By @by) 
+			: base(parent, @by)
 		{
 		}
 
-		public RadioButton(IBlock parent, IWebElement element) : base(parent, element)
+		public RadioButton(IBlock parent, By @by, TimeSpan timeout)
+			: base(parent, @by, timeout)
 		{
 		}
 

@@ -15,7 +15,7 @@ namespace Bumblebee.IntegrationTests.Shared.Pages
 
 		public ITextField FirstName
 		{
-			get {  return Wait.Until(x => new TextField(this, By.Id("firstName")));}
+			get {  return new TextField(this, By.Id("firstName"), Wait.Timeout); }
 		}
 	}
 }

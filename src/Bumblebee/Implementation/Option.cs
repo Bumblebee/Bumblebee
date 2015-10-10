@@ -1,3 +1,5 @@
+using System;
+
 using Bumblebee.Extensions;
 using Bumblebee.Interfaces;
 
@@ -7,11 +9,13 @@ namespace Bumblebee.Implementation
 {
 	public class Option : Element, IOption
 	{
-		public Option(IBlock parent, By by) : base(parent, @by)
+		public Option(IBlock parent, By by) 
+			: base(parent, @by)
 		{
 		}
 
-		public Option(IBlock parent, IWebElement element) : base(parent, element)
+		public Option(IBlock parent, By by, TimeSpan timeout)
+			: base(parent, @by, timeout)
 		{
 		}
 
@@ -28,11 +32,13 @@ namespace Bumblebee.Implementation
 	public class Option<TResult> : Option, IOption<TResult>
 		where TResult : IBlock
 	{
-		public Option(IBlock parent, By by) : base(parent, @by)
+		public Option(IBlock parent, By by) 
+			: base(parent, @by)
 		{
 		}
 
-		public Option(IBlock parent, IWebElement element) : base(parent, element)
+		public Option(IBlock parent, By by, TimeSpan timeout)
+			: base(parent, @by, timeout)
 		{
 		}
 
