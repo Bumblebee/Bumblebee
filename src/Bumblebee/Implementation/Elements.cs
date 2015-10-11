@@ -44,7 +44,7 @@ namespace Bumblebee.Implementation
 		{
 			return _parent
 				.FindElements(_by)
-				.Select((element, index) => Element.Create<TElement>(_parent, new ByOrdinal(_by, index)))
+				.Select((element, index) => Element.Create<TElement>(_parent, new ByOrdinal(_by, index), _timeout))
 				.GetEnumerator();
 		}
 

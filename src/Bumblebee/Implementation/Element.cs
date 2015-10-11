@@ -61,40 +61,6 @@ namespace Bumblebee.Implementation
 		/// <typeparam name="TElement">The type of the element.</typeparam>
 		/// <param name="parent">The parent.</param>
 		/// <param name="by">The specification for finding the element.</param>
-		/// <returns></returns>
-		/// <exception cref="ArgumentNullException"></exception>
-		/// <exception cref="ArgumentException"></exception>
-		public static TElement Create<TElement>(IBlock parent, By @by) where TElement : IElement
-		{
-			if (parent == null)
-			{
-				throw new ArgumentNullException("parent");
-			}
-
-			if (@by == null)
-			{
-				throw new ArgumentNullException("by");
-			}
-
-			var type = typeof(TElement);
-			var ctor = type.GetConstructor(new[] { typeof(IBlock), typeof(By) });
-
-			if (ctor == null)
-			{
-				throw new ArgumentException(String.Format("The specified type ({0}) is not a valid element. It must have a constructor that takes an IBlock parent and a By specification.", type));
-			}
-
-			var result = (TElement)ctor.Invoke(new object[] { parent, @by });
-
-			return result;
-		}
-
-		/// <summary>
-		/// Allows for the creation of a derived Element based on a parent Block and By specification using reflection.
-		/// </summary>
-		/// <typeparam name="TElement">The type of the element.</typeparam>
-		/// <param name="parent">The parent.</param>
-		/// <param name="by">The specification for finding the element.</param>
 		/// <param name="timeout">The timeout period when trying to find an element.</param>
 		/// <returns></returns>
 		/// <exception cref="System.ArgumentNullException">
@@ -105,7 +71,7 @@ namespace Bumblebee.Implementation
 		/// <exception cref="System.ArgumentException"></exception>
 		/// <exception cref="ArgumentNullException"></exception>
 		/// <exception cref="ArgumentException"></exception>
-		public static TElement Create<TElement>(IBlock parent, By @by, TimeSpan timeout) where TElement : IElement
+		public static TElement Create<TElement>(IBlock parent, By @by, TimeSpan? timeout = null) where TElement : IElement
 		{
 			if (parent == null)
 			{
