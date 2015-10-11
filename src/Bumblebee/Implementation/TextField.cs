@@ -9,12 +9,7 @@ namespace Bumblebee.Implementation
 {
 	public class TextField : Element, ITextField
 	{
-		public TextField(IBlock parent, By @by) 
-			: base(parent, @by)
-		{
-		}
-
-		public TextField(IBlock parent, By @by, TimeSpan timeout)
+		public TextField(IBlock parent, By @by, TimeSpan? timeout = null)
 			: base(parent, @by, timeout)
 		{
 		}
@@ -49,12 +44,7 @@ namespace Bumblebee.Implementation
 	public class TextField<TResult> : TextField, ITextField<TResult>
 		where TResult : IBlock
 	{
-		public TextField(IBlock parent, By @by) 
-			: base(parent, @by)
-		{
-		}
-
-		public TextField(IBlock parent, By @by, TimeSpan timeout)
+		public TextField(IBlock parent, By @by, TimeSpan? timeout = null)
 			: base(parent, @by, timeout)
 		{
 		}

@@ -16,7 +16,7 @@ using OpenQA.Selenium;
 namespace Bumblebee.IntegrationTests.Implementation.WebPageTests
 {
 	[TestFixture]
-	public class Given_web_page_with_no_wait : HostTestFixture
+	public class Given_slow_web_page_with_no_wait : HostTestFixture
 	{
 		[SetUp]
 		public void TestSetUp()
@@ -35,7 +35,7 @@ namespace Bumblebee.IntegrationTests.Implementation.WebPageTests
 		}
 
 		[Test]
-		public void Given_slow_load_when_getting_an_element_using_wait_Should_throw()
+		public void When_getting_text_of_textfield_Should_throw()
 		{
 			Action action = () =>
 				Threaded<Session>
@@ -43,6 +43,21 @@ namespace Bumblebee.IntegrationTests.Implementation.WebPageTests
 					.FirstName
 					.Text
 					.Should().Be("Todd");
+
+			action
+				.ShouldThrow<WebDriverTimeoutException>()
+				.WithMessage("Timed out after 0 seconds");
+		}
+
+		[Test]
+		public void When_getting_checked_indicator_for_checkbox_should_throw()
+		{
+			Action action = () =>
+				Threaded<Session>
+					.CurrentBlock<SlowWebPageWithNoWait>()
+					.Checkbox
+					.Selected
+					.Should().BeTrue();
 
 			action
 				.ShouldThrow<WebDriverTimeoutException>()
