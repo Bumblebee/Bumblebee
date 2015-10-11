@@ -43,6 +43,9 @@ namespace Bumblebee.Implementation
 		/// </summary>
 		protected WebDriverWait Wait { get; private set; }
 
+		/// <summary>
+		/// The actual web element that the Block is abstracting.
+		/// </summary>
 		public override IWebElement Tag
 		{
 			get { return Wait.Until(driver => base.Tag); }

@@ -82,8 +82,8 @@
     <Compile Include="Implementation\IEnumerableOfBlocksTests.cs" />
     <Compile Include="Implementation\InlineFrameTests\Given_nested_inline_frames.cs" />
     <Compile Include="Implementation\PageTests.cs" />
-    <Compile Include="Implementation\WebPageTests\Given_web_page_with_explicit_wait.cs" />
-    <Compile Include="Implementation\WebPageTests\Given_web_page_with_no_wait.cs" />
+    <Compile Include="Implementation\WebPageTests\Given_slow_web_page_with_explicit_wait.cs" />
+    <Compile Include="Implementation\WebPageTests\Given_slow_web_page_with_no_wait.cs" />
     <Compile Include="Shared\Pages\CurrentBlockDefaultPage.cs" />
     <Compile Include="Shared\Pages\CurrentBlockNavigateToPage.cs" />
     <Compile Include="Setup\SessionTests\Given_user_has_navigated_to_a_page.cs" />
@@ -91,8 +91,7 @@
     <Compile Include="Shared\Pages\InnerSection.cs" />
     <Compile Include="Setup\ThreadedSessionTests\Given_user_has_navigated_to_a_page.cs" />
     <Compile Include="Shared\Pages\DefaultPage.cs" />
-    <Compile Include="Shared\Pages\SlowWebPageWithNoWait.cs" />
-    <Compile Include="Shared\Pages\SlowWebPageWithExplicitWait.cs" />
+    <Compile Include="Shared\Pages\SlowWebPage.cs" />
     <Compile Include="KeyTests.cs" />
     <Compile Include="Implementation\RadioButtonTests.cs" />
     <Compile Include="Implementation\SelectBoxTests.cs" />
@@ -101,7 +100,7 @@
     <Compile Include="Implementation\TableTests\Given_generic_table.cs" />
     <Compile Include="Implementation\TableTests\Given_complex_table.cs" />
     <Compile Include="Implementation\TableTests\Given_table.cs" />
-    <Compile Include="Implementation\TestFieldTests.cs" />
+    <Compile Include="Implementation\TextFieldTests.cs" />
     <Compile Include="Setup\DriverEnvironmentTests.cs" />
     <Compile Include="Setup\SessionTests\Given_default_implementation_of_ISettings.cs" />
     <Compile Include="Setup\SessionTests\Given_environment_and_custom_settings_When_capturing.cs" />

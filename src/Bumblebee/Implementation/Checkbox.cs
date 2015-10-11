@@ -9,12 +9,7 @@ namespace Bumblebee.Implementation
 {
 	public class Checkbox : Element, ICheckbox
 	{
-		public Checkbox(IBlock parent, By @by) 
-			: base(parent, @by)
-		{
-		}
-
-		public Checkbox(IBlock parent, By @by, TimeSpan timeout)
+		public Checkbox(IBlock parent, By @by, TimeSpan? timeout = null)
 			: base(parent, @by, timeout)
 		{
 		}
@@ -50,7 +45,8 @@ namespace Bumblebee.Implementation
 	public class Checkbox<TResult> : Checkbox, ICheckbox<TResult>
 		where TResult : IBlock
 	{
-		public Checkbox(IBlock parent, By @by) : base(parent, @by)
+		public Checkbox(IBlock parent, By @by, TimeSpan? timeout = null) 
+			: base(parent, @by, timeout)
 		{
 		}
 

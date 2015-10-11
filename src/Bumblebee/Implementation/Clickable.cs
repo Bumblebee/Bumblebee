@@ -10,12 +10,7 @@ namespace Bumblebee.Implementation
 {
 	public class Clickable : Element, IClickable, IDoubleClickable
 	{
-		public Clickable(IBlock parent, By @by) 
-			: base(parent, @by)
-		{
-		}
-
-		public Clickable(IBlock parent, By @by, TimeSpan timeout) 
+		public Clickable(IBlock parent, By @by, TimeSpan? timeout = null) 
 			: base(parent, @by, timeout)
 		{
 		}
@@ -43,7 +38,8 @@ namespace Bumblebee.Implementation
 	public class Clickable<TResult> : Clickable, IClickable<TResult>, IDoubleClickable<TResult>
 		where TResult : IBlock
 	{
-		public Clickable(IBlock parent, By @by) : base(parent, @by)
+		public Clickable(IBlock parent, By @by, TimeSpan? timeout = null) 
+			: base(parent, @by, timeout)
 		{
 		}
 

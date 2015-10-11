@@ -14,7 +14,7 @@ using NUnit.Framework;
 namespace Bumblebee.IntegrationTests.Implementation.WebPageTests
 {
 	[TestFixture]
-	public class Given_web_page_with_explicit_wait : HostTestFixture
+	public class Given_slow_web_page_with_explicit_wait : HostTestFixture
 	{
 		[SetUp]
 		public void TestSetUp()
@@ -33,13 +33,23 @@ namespace Bumblebee.IntegrationTests.Implementation.WebPageTests
 		}
 
 		[Test]
-		public void Given_slow_load_when_getting_an_element_using_wait_Should_wait()
+		public void When_getting_text_of_textfield_using_wait_Should_wait()
 		{
 			Threaded<Session>
 				.CurrentBlock<SlowWebPageWithExplicitWait>()
 				.FirstName
 				.Text
 				.Should().Be("Todd");
+		}
+
+		[Test]
+		public void When_getting_checked_indicator_of_checkbox_using_wait_Should_wait()
+		{
+			Threaded<Session>
+				.CurrentBlock<SlowWebPageWithExplicitWait>()
+				.Checkbox
+				.Selected
+				.Should().BeTrue();
 		}
 	}
 }
