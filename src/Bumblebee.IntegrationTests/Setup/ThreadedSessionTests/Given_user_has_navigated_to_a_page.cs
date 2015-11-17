@@ -8,13 +8,15 @@ using FluentAssertions;
 
 using NUnit.Framework;
 
+// ReSharper disable InconsistentNaming
+
 namespace Bumblebee.IntegrationTests.Setup.ThreadedSessionTests
 {
 	[TestFixture]
 	public class Given_user_has_navigated_to_a_page : HostTestFixture
 	{
 		[SetUp]
-		public void SetUp()
+		public void TestSetUp()
 		{
 			Threaded<Session>
 				.With<PhantomJS>()
@@ -22,7 +24,7 @@ namespace Bumblebee.IntegrationTests.Setup.ThreadedSessionTests
 		}
 
 		[TearDown]
-		public void Dispose()
+		public void TestTearDown()
 		{
 			Threaded<Session>
 				.End();

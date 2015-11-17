@@ -5,8 +5,7 @@ namespace Bumblebee.Exceptions
 	/// <summary>
 	/// The exception that is thrown when a verification fails.
 	/// </summary>
-	public class VerificationException
-		: Exception
+	public class VerificationException : Exception
 	{
 		/// <summary>
 		/// Initializes a new instance of the <see cref="VerificationException"/> class.

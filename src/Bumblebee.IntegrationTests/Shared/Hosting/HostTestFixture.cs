@@ -33,7 +33,7 @@ namespace Bumblebee.IntegrationTests.Shared.Hosting
 
 		protected virtual string GetUrl(string page)
 		{
-			return String.Format("{0}{1}{2}", BaseUrl, "/Content/", page);
+			return String.Format("{0}/Content/{1}", BaseUrl, page);
 		}
 
 		protected string BaseUrl { get; private set; }
