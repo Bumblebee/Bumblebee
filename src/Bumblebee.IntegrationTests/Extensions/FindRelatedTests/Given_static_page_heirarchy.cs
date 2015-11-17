@@ -15,10 +15,10 @@ using OpenQA.Selenium;
 
 // ReSharper disable InconsistentNaming
 
-namespace Bumblebee.IntegrationTests.Extensions
+namespace Bumblebee.IntegrationTests.Extensions.FindRelatedTests
 {
 	[TestFixture]
-	public class FindRelatedTests
+	public class Given_static_page_heirarchy
 	{
 		[Test]
 		public void When_null_IElement_Then_throws_ArgumentNullException()

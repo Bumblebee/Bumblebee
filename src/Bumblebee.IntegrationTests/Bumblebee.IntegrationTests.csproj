@@ -74,7 +74,8 @@
   <ItemGroup>
     <Compile Include="Extensions\FilteringTests.cs" />
     <Compile Include="CallStackTests.cs" />
-    <Compile Include="Extensions\FindRelatedTests.cs" />
+    <Compile Include="Extensions\FindRelatedTests\Given_parent_element_that_gets_removed.cs" />
+    <Compile Include="Extensions\FindRelatedTests\Given_static_page_heirarchy.cs" />
     <Compile Include="Implementation\CheckboxTests.cs" />
     <Compile Include="Implementation\AlertDialogTests.cs" />
     <Compile Include="Implementation\ClickableTests\Given_double_clickable.cs" />
@@ -92,6 +93,7 @@
     <Compile Include="Setup\ThreadedSessionTests\Given_user_has_navigated_to_a_page.cs" />
     <Compile Include="Shared\Pages\DefaultPage.cs" />
     <Compile Include="Shared\Pages\SlowWebPage.cs" />
+    <Compile Include="Shared\Pages\JavaScriptPopUpPage.cs" />
     <Compile Include="KeyTests.cs" />
     <Compile Include="Implementation\RadioButtonTests.cs" />
     <Compile Include="Implementation\SelectBoxTests.cs" />
@@ -175,6 +177,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\CurrentBlock-Default.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\JavaScriptPopUp.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\NestedInlineFramesGrandchild.html">
