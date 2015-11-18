@@ -10,8 +10,7 @@ namespace Bumblebee.Implementation
 {
 	public class NumericField : TextField, INumericField
 	{
-		public NumericField(IBlock parent, By @by, TimeSpan? timeout = null)
-			: base(parent, @by, timeout)
+		public NumericField(IBlock parent, By @by) : base(parent, @by)
 		{
 		}
 
@@ -44,8 +43,7 @@ namespace Bumblebee.Implementation
 	public class NumericField<TResult> : NumericField, INumericField<TResult>
 		where TResult : IBlock
 	{
-		public NumericField(IBlock parent, By @by, TimeSpan? timeout = null)
-			: base(parent, @by, timeout)
+		public NumericField(IBlock parent, By @by) : base(parent, @by)
 		{
 		}
 
