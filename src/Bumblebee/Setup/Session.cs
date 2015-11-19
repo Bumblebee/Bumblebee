@@ -120,8 +120,8 @@ namespace Bumblebee.Setup
 			{
 				screenshot.SaveAsFile(path, ImageFormat.Png);
 			}
-			else if ((String.Equals(extension, ".jpg", StringComparison.OrdinalIgnoreCase))
-					|| (String.Equals(extension, ".jpeg", StringComparison.OrdinalIgnoreCase)))
+			else if (String.Equals(extension, ".jpg", StringComparison.OrdinalIgnoreCase)
+					|| String.Equals(extension, ".jpeg", StringComparison.OrdinalIgnoreCase))
 			{
 				screenshot.SaveAsFile(path, ImageFormat.Jpeg);
 			}

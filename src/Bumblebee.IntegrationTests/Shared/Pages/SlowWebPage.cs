@@ -8,16 +8,14 @@ namespace Bumblebee.IntegrationTests.Shared.Pages
 {
 	public class SlowWebPageWithExplicitWait : SlowWebPage
 	{
-		public SlowWebPageWithExplicitWait(Session session)
-			: base(session, TimeSpan.FromSeconds(10))
+		public SlowWebPageWithExplicitWait(Session session) : base(session, TimeSpan.FromSeconds(10))
 		{
 		}
 	}
 
 	public class SlowWebPageWithNoWait : SlowWebPage
 	{
-		public SlowWebPageWithNoWait(Session session)
-			: base(session)
+		public SlowWebPageWithNoWait(Session session) : base(session)
 		{
 		}
 	}
@@ -31,12 +29,12 @@ namespace Bumblebee.IntegrationTests.Shared.Pages
 
 		public ITextField FirstName
 		{
-			get { return new TextField(this, By.Id("firstName"), Wait.Timeout); }
+			get { return new TextField(this, By.Id("firstName")); }
 		}
 
 		public ICheckbox Checkbox
 		{
-			get { return new Checkbox(this, By.Id("checkedCheckbox"), Wait.Timeout);}
+			get { return new Checkbox(this, By.Id("checkedCheckbox"));}
 		}
 	}
 }

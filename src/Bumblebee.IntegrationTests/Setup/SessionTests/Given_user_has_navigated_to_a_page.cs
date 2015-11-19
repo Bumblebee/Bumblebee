@@ -8,6 +8,8 @@ using FluentAssertions;
 
 using NUnit.Framework;
 
+// ReSharper disable InconsistentNaming
+
 namespace Bumblebee.IntegrationTests.Setup.SessionTests
 {
 	[TestFixture]
@@ -34,7 +36,7 @@ namespace Bumblebee.IntegrationTests.Setup.SessionTests
 		{
 			_session
 				.CurrentPage<DefaultPage>()
-				.VerifyThat(p => AssertionExtensions.Should((object) p).NotBeNull())
+				.VerifyThat(p => p.Should().NotBeNull())
 				.VerifyThat(p => p.Should().BeOfType<DefaultPage>());
 		}
 
