@@ -1,4 +1,6 @@
-﻿using OpenQA.Selenium;
+﻿using System;
+
+using OpenQA.Selenium;
 
 namespace Bumblebee.Specifications
 {
@@ -6,6 +8,7 @@ namespace Bumblebee.Specifications
 	{
 		By Attribute(string attributeToFind, string attributeValueToFind);
 		By Id(string idToFind);
+	    By Id(string idToFind, TimeSpan timeout);
 		By ClassName(string classNameToFind);
 		By CssSelector(string cssSelectorToFind);
 		By LinkText(string linkTextToFind);

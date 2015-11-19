@@ -16,7 +16,12 @@ namespace Bumblebee.Specifications
 			return By.Id(idToFind);
 		}
 
-		public By ClassName(string classNameToFind)
+	    public By Id(string idToFind, TimeSpan timeout)
+	    {
+	        return By.Id(idToFind).WithWaitUntil(timeout);
+	    }
+
+	    public By ClassName(string classNameToFind)
 		{
 			return By.ClassName(classNameToFind);
 		}

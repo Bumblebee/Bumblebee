@@ -3,6 +3,7 @@ using System;
 using Bumblebee.Implementation;
 using Bumblebee.Interfaces;
 using Bumblebee.Setup;
+using Bumblebee.Specifications;
 
 namespace Bumblebee.IntegrationTests.Shared.Pages
 {
@@ -24,19 +25,19 @@ namespace Bumblebee.IntegrationTests.Shared.Pages
 
 	public abstract class SlowWebPage : WebPage
 	{
-		public SlowWebPage(Session session, TimeSpan? timeout = null)
+	    protected SlowWebPage(Session session, TimeSpan? timeout = null)
 			: base(session, timeout ?? TimeSpan.FromSeconds(0))
 		{
 		}
 
 		public ITextField FirstName
 		{
-			get { return new TextField(this, By.Id("firstName"), Wait.Timeout); }
+		    get { return new TextField(this, By.Id("firstName", Wait.Timeout)); }
 		}
 
 		public ICheckbox Checkbox
 		{
-			get { return new Checkbox(this, By.Id("checkedCheckbox"), Wait.Timeout);}
+			get { return new Checkbox(this, By.Id("checkedCheckbox").WithWaitUntil(Wait.Timeout)); }
 		}
 	}
 }

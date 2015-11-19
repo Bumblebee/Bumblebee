@@ -144,7 +144,7 @@
     <Compile Include="Specifications\ByJQueryTests\Given_I_am_searching_for_a_collection.cs" />
     <Compile Include="Specifications\ByJQueryTests\Given_I_am_searching_for_a_single_element.cs" />
     <Compile Include="Specifications\ByOrdinalTests.cs" />
-    <Compile Include="Specifications\SpecificationExtensionsTests.cs" />
+    <Compile Include="Specifications\SpecificationTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Bumblebee\Bumblebee.csproj">
