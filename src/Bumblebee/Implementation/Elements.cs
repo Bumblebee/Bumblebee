@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,19 +18,16 @@ namespace Bumblebee.Implementation
 	{
 		private readonly IBlock _parent;
 		private readonly By _by;
-		private readonly TimeSpan _timeout;
 
 		/// <summary>
 		/// To construct a set of Elements, you must have both a parent block and a specification for finding the elements.
 		/// </summary>
 		/// <param name="parent">The parent block.</param>
 		/// <param name="by">The specification for finding the elements.</param>
-		/// <param name="timeout">The time period that the driver should wait when finding the elements; this is optional.</param>
-		public Elements(IBlock parent, By @by, TimeSpan? timeout = null)
+		public Elements(IBlock parent, By @by)
 		{
 			_parent = parent;
 			_by = @by;
-			_timeout = timeout ?? TimeSpan.FromSeconds(0);
 		}
 
 		/// <summary>
@@ -44,7 +40,7 @@ namespace Bumblebee.Implementation
 		{
 			return _parent
 				.FindElements(_by)
-				.Select((element, index) => Element.Create<TElement>(_parent, new ByOrdinal(_by, index), _timeout))
+				.Select((element, index) => Element.Create<TElement>(_parent, new ByOrdinal(_by, index)))
 				.GetEnumerator();
 		}
 

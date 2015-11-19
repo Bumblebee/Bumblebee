@@ -163,9 +163,19 @@ namespace Bumblebee.Implementation
 			return null;
 		}
 
+		protected virtual T FindBlock<T>(By @by) where T : IBlock
+		{
+			return Create<T>(this, @by);
+		}
+
 		protected virtual IEnumerable<T> FindBlocks<T>(By @by) where T : IBlock
 		{
 			return new Blocks<T>(this, @by);
+		}
+
+		protected virtual T FindElement<T>(By @by) where T : IElement
+		{
+			return Element.Create<T>(this, @by);
 		}
 
 		protected virtual IEnumerable<T> FindElements<T>(By @by) where T : IElement

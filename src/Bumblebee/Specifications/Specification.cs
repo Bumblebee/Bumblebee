@@ -11,6 +11,11 @@ namespace Bumblebee.Specifications
 			return By.CssSelector(String.Format(@"[{0}='{1}']", attributeToFind, attributeValueToFind));
 		}
 
+		public By Attribute(string attributeToFind, string attributeValueToFind, TimeSpan timeout)
+		{
+			return Attribute(attributeToFind, attributeValueToFind).WaitingUntil(timeout);
+		}
+
 		public By Id(string idToFind)
 		{
 			return By.Id(idToFind);
@@ -18,7 +23,7 @@ namespace Bumblebee.Specifications
 
 	    public By Id(string idToFind, TimeSpan timeout)
 	    {
-	        return By.Id(idToFind).WithWaitUntil(timeout);
+	        return Id(idToFind).WaitingUntil(timeout);
 	    }
 
 	    public By ClassName(string classNameToFind)
@@ -26,9 +31,19 @@ namespace Bumblebee.Specifications
 			return By.ClassName(classNameToFind);
 		}
 
+		public By ClassName(string classNameToFind, TimeSpan timeout)
+		{
+			return By.ClassName(classNameToFind).WaitingUntil(timeout);
+		}
+
 		public By CssSelector(string cssSelectorToFind)
 		{
 			return By.CssSelector(cssSelectorToFind);
+		}
+
+		public By CssSelector(string cssSelectorToFind, TimeSpan timeout)
+		{
+			return By.CssSelector(cssSelectorToFind).WaitingUntil(timeout);
 		}
 
 		public By LinkText(string linkTextToFind)
@@ -36,9 +51,19 @@ namespace Bumblebee.Specifications
 			return By.LinkText(linkTextToFind);
 		}
 
+		public By LinkText(string linkTextToFind, TimeSpan timeout)
+		{
+			return By.LinkText(linkTextToFind).WaitingUntil(timeout);
+		}
+
 		public By Name(string nameToFind)
 		{
 			return By.Name(nameToFind);
+		}
+
+		public By Name(string nameToFind, TimeSpan timeout)
+		{
+			return By.Name(nameToFind).WaitingUntil(timeout);
 		}
 
 		public By Ordinal(By @by, int ordinal)
@@ -51,14 +76,29 @@ namespace Bumblebee.Specifications
 			return By.PartialLinkText(partialLinkTextToFind);
 		}
 
+		public By PartialLinkText(string partialLinkTextToFind, TimeSpan timeout)
+		{
+			return By.PartialLinkText(partialLinkTextToFind).WaitingUntil(timeout);
+		}
+
 		public By TagName(string tagNameToFind)
 		{
 			return By.TagName(tagNameToFind);
 		}
 
+		public By TagName(string tagNameToFind, TimeSpan timeout)
+		{
+			return By.TagName(tagNameToFind).WaitingUntil(timeout);
+		}
+
 		public By XPath(string xPathToFind)
 		{
 			return By.XPath(xPathToFind);
+		}
+
+		public By XPath(string xPathToFind, TimeSpan timeout)
+		{
+			return By.XPath(xPathToFind).WaitingUntil(timeout);
 		}
 	}
 }

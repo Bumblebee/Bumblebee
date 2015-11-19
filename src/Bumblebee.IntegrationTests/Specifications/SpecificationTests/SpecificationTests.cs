@@ -6,7 +6,7 @@ using NUnit.Framework;
 
 // ReSharper disable InconsistentNaming
 
-namespace Bumblebee.IntegrationTests.Specifications
+namespace Bumblebee.IntegrationTests.Specifications.SpecificationTests
 {
 	[TestFixture]
 	public class SpecificationTests

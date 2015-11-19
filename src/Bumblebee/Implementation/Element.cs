@@ -5,7 +5,6 @@ using Bumblebee.Setup;
 using Bumblebee.Specifications;
 
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
 
 namespace Bumblebee.Implementation
 {
@@ -31,13 +30,12 @@ namespace Bumblebee.Implementation
 		/// </summary>
 		/// <param name="parent">The parent block.</param>
 		/// <param name="by">The specification for finding the element.</param>
-		/// <param name="timeout">The amount of time the driver should wait to find an element; it is optional.</param>
 		/// <exception cref="ArgumentNullException">
 		/// parent
 		/// or
 		/// by
 		/// </exception>
-		protected Element(IBlock parent, By @by, TimeSpan? timeout = null)
+		protected Element(IBlock parent, By @by)
 		{
 			if (parent == null)
 			{
@@ -52,7 +50,6 @@ namespace Bumblebee.Implementation
 			Parent = parent;
 			Session = parent.Session;
 			Specification = @by;
-			Wait = timeout.HasValue ? new WebDriverWait(Session.Driver, timeout.Value) : new WebDriverWait(Session.Driver, TimeSpan.FromSeconds(0));
 		}
 
 		/// <summary>
@@ -61,7 +58,6 @@ namespace Bumblebee.Implementation
 		/// <typeparam name="TElement">The type of the element.</typeparam>
 		/// <param name="parent">The parent.</param>
 		/// <param name="by">The specification for finding the element.</param>
-		/// <param name="timeout">The timeout period when trying to find an element.</param>
 		/// <returns></returns>
 		/// <exception cref="System.ArgumentNullException">
 		/// parent
@@ -71,7 +67,7 @@ namespace Bumblebee.Implementation
 		/// <exception cref="System.ArgumentException"></exception>
 		/// <exception cref="ArgumentNullException"></exception>
 		/// <exception cref="ArgumentException"></exception>
-		public static TElement Create<TElement>(IBlock parent, By @by, TimeSpan? timeout = null) where TElement : IElement
+		public static TElement Create<TElement>(IBlock parent, By @by) where TElement : IElement
 		{
 			if (parent == null)
 			{
@@ -83,15 +79,19 @@ namespace Bumblebee.Implementation
 				throw new ArgumentNullException("by");
 			}
 
-			var type = typeof(TElement);
-			var ctor = type.GetConstructor(new[] { typeof(IBlock), typeof(By), typeof(TimeSpan) });
+			var type = typeof (TElement);
+			var ctor = type.GetConstructor(new[] { typeof (IBlock), typeof (By) });
 
-			if (ctor == null)
+			TElement result;
+
+			if (ctor != null)
 			{
-				throw new ArgumentException(String.Format("The specified type ({0}) is not a valid element. It must have a constructor that takes an IBlock parent, By specification, and TimeSpan timeout.", type));
+				result = (TElement) ctor.Invoke(new object[] { parent, @by });
 			}
-
-			var result = (TElement)ctor.Invoke(new object[] { parent, @by, timeout });
+			else
+			{
+				throw new ArgumentException(String.Format("The specified type ({0}) is not a valid element. It must have a constructor that takes an IBlock parent and a By specification.", type));
+			}
 
 			return result;
 		}
@@ -109,18 +109,13 @@ namespace Bumblebee.Implementation
 		private By Specification { get; set; }
 
 		/// <summary>
-		/// A common wait timeout that can be used when trying to find the Tag element.
-		/// </summary>
-		protected WebDriverWait Wait { get; set; }
-
-		/// <summary>
 		/// The actual web element that the Element is abstracting.
 		/// </summary>
 		public IWebElement Tag
 		{
 			get
 			{
-				return Wait.Until(driver => Parent.FindElement(Specification));
+				return Parent.FindElement(Specification);
 			}
 		}
 
