@@ -71,6 +71,11 @@ namespace Bumblebee.Specifications
 			return new ByOrdinal(@by, ordinal);
 		}
 
+		public By Ordinal(By @by, int ordinal, TimeSpan timeout)
+		{
+			return new ByOrdinal(@by, ordinal).WaitingUntil(timeout);
+		}
+
 		public By PartialLinkText(string partialLinkTextToFind)
 		{
 			return By.PartialLinkText(partialLinkTextToFind);

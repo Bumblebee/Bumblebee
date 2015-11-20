@@ -24,6 +24,7 @@ namespace Bumblebee.IntegrationTests.Specifications.SpecificationTests
 			p => p.ByClassNameWithWait,
 			p => p.ByCssSelectorWithWait,
 			p => p.ByNameWithWait,
+			p => p.ByOrdinalWithWait,
 			p => p.ByXPathWithWait,
 		};
 
@@ -33,6 +34,7 @@ namespace Bumblebee.IntegrationTests.Specifications.SpecificationTests
 			p => p.ByClassNameWithNoWait,
 			p => p.ByCssSelectorWithNoWait,
 			p => p.ByNameWithNoWait,
+			p => p.ByOrdinalWithNoWait,
 			p => p.ByXPathWithNoWait,
 		};
 
@@ -86,7 +88,7 @@ namespace Bumblebee.IntegrationTests.Specifications.SpecificationTests
 				.VerifyThat(t => t.Should().Be("Todd")
 			);
 
-			action.ShouldThrow<NoSuchElementException>();
+			action.ShouldThrow<NotFoundException>();
 		}
 
 		[TestCaseSource("WaitCasesForClickable")]

@@ -9,7 +9,7 @@ namespace Bumblebee.Specifications
 		By Attribute(string attributeToFind, string attributeValueToFind);
 		By Attribute(string attributeToFind, string attributeValueToFind, TimeSpan timeout);
 		By Id(string idToFind);
-	    By Id(string idToFind, TimeSpan timeout);
+		By Id(string idToFind, TimeSpan timeout);
 		By ClassName(string classNameToFind);
 		By ClassName(string classNameToFind, TimeSpan timeout);
 		By CssSelector(string cssSelectorToFind);
@@ -19,6 +19,7 @@ namespace Bumblebee.Specifications
 		By Name(string nameToFind);
 		By Name(string nameToFind, TimeSpan timeout);
 		By Ordinal(By @by, int ordinal);
+		By Ordinal(By @by, int ordinal, TimeSpan timeout);
 		By PartialLinkText(string partialLinkTextToFind);
 		By PartialLinkText(string partialLinkTextToFind, TimeSpan timeout);
 		By TagName(string tagNameToFind);

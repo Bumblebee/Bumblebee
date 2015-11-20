@@ -126,5 +126,15 @@ namespace Bumblebee.IntegrationTests.Shared.Pages
 		{
 			get { return new TextField(this, By.XPath("//*[@id='firstName']")); }
 		}
+
+		public ITextField ByOrdinalWithWait
+		{
+			get { return new TextField(this, By.Ordinal(By.Id("firstName"), 0, Wait.Timeout)); }
+		}
+
+		public ITextField ByOrdinalWithNoWait
+		{
+			get { return new TextField(this, By.Ordinal(By.Id("firstName"), 0)); }
+		}
 	}
 }
