@@ -41,7 +41,7 @@ namespace Bumblebee.Specifications
 
 		public override ReadOnlyCollection<IWebElement> FindElements(ISearchContext context)
 		{
-			IEnumerable<IWebElement> result = Enumerable.Empty<IWebElement>();
+			var result = Enumerable.Empty<IWebElement>();
 
 			if (WebDriverType.IsInstanceOfType(context))
 			{
