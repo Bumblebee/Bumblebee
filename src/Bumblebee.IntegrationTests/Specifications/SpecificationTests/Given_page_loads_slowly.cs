@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq.Expressions;
 
 using Bumblebee.Extensions;
 using Bumblebee.IntegrationTests.Shared.Hosting;
@@ -18,33 +19,37 @@ namespace Bumblebee.IntegrationTests.Specifications.SpecificationTests
 	[TestFixture]
 	public class Given_page_loads_slowly : HostTestFixture
 	{
-		private static readonly Func<SlowWebPageWithExplicitWait, ITextField>[] WaitCasesForTextField = {
+		private static readonly Expression<Func<SlowWebPageWithExplicitWait, ITextField>>[] WaitCasesForTextField = {
 			p => p.ByAttributeWithWait,
 			p => p.ByIdWithWait,
 			p => p.ByClassNameWithWait,
 			p => p.ByCssSelectorWithWait,
+			p => p.ByFunctionWithSingleOutputSelectorWithWait,
+			p => p.ByFunctionWithListOutputSelectorWithWait,
 			p => p.ByNameWithWait,
 			p => p.ByOrdinalWithWait,
 			p => p.ByXPathWithWait,
 		};
 
-		private static readonly Func<SlowWebPageWithExplicitWait, ITextField>[] NoWaitCasesForTextField = {
+		private static readonly Expression<Func<SlowWebPageWithExplicitWait, ITextField>>[] NoWaitCasesForTextField = {
 			p => p.ByAttributeWithNoWait,
 			p => p.ByIdWithNoWait,
 			p => p.ByClassNameWithNoWait,
 			p => p.ByCssSelectorWithNoWait,
+			p => p.ByFunctionWithSingleOutputSelectorWithNoWait,
+			p => p.ByFunctionWithListOutputSelectorWithNoWait,
 			p => p.ByNameWithNoWait,
 			p => p.ByOrdinalWithNoWait,
 			p => p.ByXPathWithNoWait,
 		};
 
-		private static readonly Func<SlowWebPageWithExplicitWait, IClickable<SlowWebPageWithExplicitWait>>[] WaitCasesForClickable = {
+		private static readonly Expression<Func<SlowWebPageWithExplicitWait, IClickable<SlowWebPageWithExplicitWait>>>[] WaitCasesForClickable = {
 			p => p.ByLinkTextWithWait,
 			p => p.ByPartialLinkTextWithWait,
 			p => p.ByTagNameWithWait,
 		};
 
-		private static readonly Func<SlowWebPageWithExplicitWait, IClickable<SlowWebPageWithExplicitWait>>[] NoWaitCasesForClickable = {
+		private static readonly Expression<Func<SlowWebPageWithExplicitWait, IClickable<SlowWebPageWithExplicitWait>>>[] NoWaitCasesForClickable = {
 			p => p.ByLinkTextWithNoWait,
 			p => p.ByPartialLinkTextWithNoWait,
 			p => p.ByTagNameWithNoWait,
@@ -67,20 +72,23 @@ namespace Bumblebee.IntegrationTests.Specifications.SpecificationTests
 		}
 
 		[TestCaseSource("WaitCasesForTextField")]
-		public void When_finding_textfield_by_selector_with_wait_Then_should_return_value(Func<SlowWebPageWithExplicitWait, ITextField> selectorWithWait)
+		public void When_finding_textfield_by_selector_with_wait_Then_should_return_value(Expression<Func<SlowWebPageWithExplicitWait, ITextField>> selectorWithWait)
 		{
-			selectorWithWait(
+			var selectorWithWaitFunction = selectorWithWait.Compile();
+			selectorWithWaitFunction(
 				Threaded<Session>
 				.CurrentBlock<SlowWebPageWithExplicitWait>()
 			)
-			.VerifyThat(t => t.Text.Should().Be("Todd"));
+			.Text
+			.VerifyThat(t => t.Should().Be("Todd"));
 		}
 
 		[TestCaseSource("NoWaitCasesForTextField")]
-		public void When_finding_textfield_by_selector_with_no_wait_Then_should_throw(Func<SlowWebPageWithExplicitWait, ITextField> selectorWithNoWait)
+		public void When_finding_textfield_by_selector_with_no_wait_Then_should_throw(Expression<Func<SlowWebPageWithExplicitWait, ITextField>> selectorWithNoWait)
 		{
+			var selectorWithNoWaitFunction = selectorWithNoWait.Compile();
 			Action action = () => 
-				selectorWithNoWait(
+				selectorWithNoWaitFunction(
 					Threaded<Session>
 					.CurrentBlock<SlowWebPageWithExplicitWait>()
 				)
@@ -92,20 +100,23 @@ namespace Bumblebee.IntegrationTests.Specifications.SpecificationTests
 		}
 
 		[TestCaseSource("WaitCasesForClickable")]
-		public void When_finding_clicable_by_selector_with_wait_Then_should_return_value(Func<SlowWebPageWithExplicitWait, IClickable<SlowWebPageWithExplicitWait>> selectorWithWait)
+		public void When_finding_clicable_by_selector_with_wait_Then_should_return_value(Expression<Func<SlowWebPageWithExplicitWait, IClickable<SlowWebPageWithExplicitWait>>> selectorWithWait)
 		{
-			selectorWithWait(
+			var selectorWithWaitFunction = selectorWithWait.Compile();
+			selectorWithWaitFunction(
 				Threaded<Session>
 				.CurrentBlock<SlowWebPageWithExplicitWait>()
 			)
-			.VerifyThat(t => t.Text.Should().Be("Todd"));
+			.Text
+			.VerifyThat(t => t.Should().Be("Todd"));
 		}
 
 		[TestCaseSource("NoWaitCasesForClickable")]
-		public void When_finding_clickable_by_selector_with_no_wait_Then_should_throw(Func<SlowWebPageWithExplicitWait, IClickable<SlowWebPageWithExplicitWait>> selectorWithNoWait)
+		public void When_finding_clickable_by_selector_with_no_wait_Then_should_throw(Expression<Func<SlowWebPageWithExplicitWait, IClickable<SlowWebPageWithExplicitWait>>> selectorWithNoWait)
 		{
+			var selectorWithNoWaitFunction = selectorWithNoWait.Compile();
 			Action action = () =>
-				selectorWithNoWait(
+				selectorWithNoWaitFunction(
 					Threaded<Session>
 					.CurrentBlock<SlowWebPageWithExplicitWait>()
 				)
