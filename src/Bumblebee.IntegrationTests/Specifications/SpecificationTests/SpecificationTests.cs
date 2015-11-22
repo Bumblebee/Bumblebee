@@ -1,4 +1,6 @@
-﻿using Bumblebee.Specifications;
+﻿using System;
+
+using Bumblebee.Specifications;
 
 using FluentAssertions;
 
@@ -91,6 +93,29 @@ namespace Bumblebee.IntegrationTests.Specifications.SpecificationTests
 			By
 				.XPath(@"\x\path")
 				.Should().NotBeNull();
+		}
+
+		[Test]
+		public void Given_bywithwait_when_calling_tostring_should_return_by_specification_string_and_timeout()
+		{
+			var byId = By.Id("firstName");
+			var byWithWait = new ByWithWait(byId, TimeSpan.FromSeconds(3));
+
+			byWithWait.ToString().Should().Be("By.Id: firstName that waits until 00:00:03 before timing out.");
+		}
+
+		[Test]
+		public void Given_byfunctionwithsingleoutput_when_calling_tostring_should_return_by_specification_string()
+		{
+			var byFunction = By.Function(ctx => ctx.FindElement(By.Id("firstName")));
+			byFunction.ToString().Should().Be("By.Function: ctx.FindElement(SpecificationTests.By.Id(\"firstName\"))");
+		}
+
+		[Test]
+		public void Given_byfunctionwithlistoutput_when_calling_tostring_should_return_by_specification_string()
+		{
+			var byFunction = By.Function(ctx => ctx.FindElements(By.TagName("a")));
+			byFunction.ToString().Should().Be("By.Function: ctx.FindElements(SpecificationTests.By.TagName(\"a\"))");
 		}
 	}
 }

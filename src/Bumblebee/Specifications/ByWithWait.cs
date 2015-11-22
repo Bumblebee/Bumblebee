@@ -79,7 +79,7 @@ namespace Bumblebee.Specifications
 
 		public override string ToString()
 		{
-			return base.ToString();
+			return String.Format("{0} that waits until {1} before timing out.", _by, _timeout);
 		}
 	}
 }

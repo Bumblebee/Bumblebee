@@ -77,6 +77,26 @@ namespace Bumblebee.IntegrationTests.Shared.Pages
 			get { return new TextField(this, By.CssSelector(".test")); }
 		}
 
+		public ITextField ByFunctionWithSingleOutputSelectorWithWait
+		{
+			get { return new TextField(this, By.Function(ctx => ctx.FindElement(By.Id("firstName")), Wait.Timeout)); }
+		}
+
+		public ITextField ByFunctionWithSingleOutputSelectorWithNoWait
+		{
+			get { return new TextField(this, By.Function(ctx => ctx.FindElement(By.Id("firstName")))); }
+		}
+
+		public ITextField ByFunctionWithListOutputSelectorWithWait
+		{
+			get { return new TextField(this, By.Function(ctx => ctx.FindElements(By.TagName("input")), Wait.Timeout)); }
+		}
+
+		public ITextField ByFunctionWithListOutputSelectorWithNoWait
+		{
+			get { return new TextField(this, By.Function(ctx => ctx.FindElements(By.TagName("input")))); }
+		}
+
 		public IClickable<SlowWebPageWithExplicitWait> ByLinkTextWithWait
 		{
 			get { return new Clickable<SlowWebPageWithExplicitWait>(this, By.LinkText("Todd", Wait.Timeout)); }

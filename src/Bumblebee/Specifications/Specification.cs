@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.ObjectModel;
+using System.Linq.Expressions;
 
 using OpenQA.Selenium;
 
@@ -44,6 +46,26 @@ namespace Bumblebee.Specifications
 		public By CssSelector(string cssSelectorToFind, TimeSpan timeout)
 		{
 			return By.CssSelector(cssSelectorToFind).WaitingUntil(timeout);
+		}
+
+		public By Function(Expression<Func<ISearchContext, IWebElement>> findElementMethod)
+		{
+			return new ByFunctionWithSingleOutput(findElementMethod);
+		}
+
+		public By Function(Expression<Func<ISearchContext, IWebElement>> findElementMethod, TimeSpan timeout)
+		{
+			return Function(findElementMethod).WaitingUntil(timeout);
+		}
+
+		public By Function(Expression<Func<ISearchContext, ReadOnlyCollection<IWebElement>>> findElementsMethod)
+		{
+			return new ByFunctionWithListOutput(findElementsMethod);
+		}
+
+		public By Function(Expression<Func<ISearchContext, ReadOnlyCollection<IWebElement>>> findElementsMethod, TimeSpan timeout)
+		{
+			return Function(findElementsMethod).WaitingUntil(timeout);
 		}
 
 		public By LinkText(string linkTextToFind)
