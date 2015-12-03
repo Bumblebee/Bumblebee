@@ -33,7 +33,7 @@ namespace Bumblebee.Specifications
 
 			if (elements.Any() == false)
 			{
-				throw new NotFoundException(String.Format("Unable to find element matching selector: '{0}'", _selector));
+				throw new NoSuchElementException(String.Format("Unable to find element matching selector: '{0}'", _selector));
 			}
 
 			return elements.First();

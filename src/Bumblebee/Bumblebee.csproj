@@ -111,6 +111,7 @@
     <Compile Include="Exceptions\VerificationException.cs" />
     <Compile Include="Setup\Settings.cs" />
     <Compile Include="Setup\ThreadedSession.cs" />
+    <Compile Include="Specifications\ByExtensions.cs" />
     <Compile Include="Specifications\ByFunctionWithListOutput.cs" />
     <Compile Include="Specifications\ByFunctionWithSingleOutput.cs" />
     <Compile Include="Specifications\ByJQuery.cs" />

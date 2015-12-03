@@ -92,6 +92,7 @@
     <Compile Include="Shared\Pages\InnerSection.cs" />
     <Compile Include="Setup\ThreadedSessionTests\Given_user_has_navigated_to_a_page.cs" />
     <Compile Include="Shared\Pages\DefaultPage.cs" />
+    <Compile Include="Shared\Pages\SlowPageWithJQuery.cs" />
     <Compile Include="Shared\Pages\SlowWebPage.cs" />
     <Compile Include="Shared\Pages\JavaScriptPopUpPage.cs" />
     <Compile Include="KeyTests.cs" />
@@ -143,6 +144,7 @@
     <Compile Include="Specifications\ByJQueryTests\Given_an_invalid_selector.cs" />
     <Compile Include="Specifications\ByJQueryTests\Given_I_am_searching_for_a_collection.cs" />
     <Compile Include="Specifications\ByJQueryTests\Given_I_am_searching_for_a_single_element.cs" />
+    <Compile Include="Specifications\ByJQueryTests\Given_page_loads_slowly.cs" />
     <Compile Include="Specifications\ByOrdinalTests.cs" />
     <Compile Include="Specifications\SpecificationTests\Given_page_loads_slowly.cs" />
     <Compile Include="Specifications\SpecificationTests\SpecificationTests.cs" />
@@ -220,6 +222,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\NumericField.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\SlowPageWithJQuery.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\PageWithJQuery.html">

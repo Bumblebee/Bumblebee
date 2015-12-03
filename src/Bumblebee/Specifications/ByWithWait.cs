@@ -7,14 +7,6 @@ using OpenQA.Selenium.Support.UI;
 
 namespace Bumblebee.Specifications
 {
-	public static class ByExtensions
-	{
-		public static By WaitingUntil(this By @by, TimeSpan timeout)
-		{
-			return new ByWithWait(@by, timeout);
-		}
-	}
-
 	/// <summary>
 	/// Wrapper class that accepts a By selector and a timeout period expressed in a TimeSpan.  WHen FindElement or FindElements are called, it uses the WebDriverWait functionality to select.
 	/// </summary>
@@ -47,7 +39,7 @@ namespace Bumblebee.Specifications
 
 			if (elements.Any() == false)
 			{
-				throw new NotFoundException(String.Format("Unable to find element {0}", _by));
+				throw new NoSuchElementException(String.Format("Unable to find element {0}", _by));
 			}
 
 			return elements.First();
@@ -68,13 +60,23 @@ namespace Bumblebee.Specifications
 				Timeout = _timeout
 			};
 
-			var result = wait.Until(x =>
-			{
-				var results = x.FindElements(_by);
-				return results.Count > 0 ? results : null;
-			});
+			wait.IgnoreExceptionTypes(typeof (NotFoundException));
 
-			return new ReadOnlyCollection<IWebElement>(result.ToList());
+			var result = wait.Until(ElementIsFound);
+
+			return result;
+		}
+
+		private ReadOnlyCollection<IWebElement> ElementIsFound(ISearchContext x)
+		{
+			var result = x.FindElements(_by);
+
+			if (result.Count == 0)
+			{
+				result = null;
+			}
+
+			return result;
 		}
 
 		public override string ToString()

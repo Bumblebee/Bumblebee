@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Linq.Expressions;
 
 using OpenQA.Selenium;
@@ -23,12 +23,12 @@ namespace Bumblebee.Specifications
 			return By.Id(idToFind);
 		}
 
-	    public By Id(string idToFind, TimeSpan timeout)
-	    {
-	        return Id(idToFind).WaitingUntil(timeout);
-	    }
+		public By Id(string idToFind, TimeSpan timeout)
+		{
+			return Id(idToFind).WaitingUntil(timeout);
+		}
 
-	    public By ClassName(string classNameToFind)
+		public By ClassName(string classNameToFind)
 		{
 			return By.ClassName(classNameToFind);
 		}
@@ -58,12 +58,12 @@ namespace Bumblebee.Specifications
 			return Function(findElementMethod).WaitingUntil(timeout);
 		}
 
-		public By Function(Expression<Func<ISearchContext, ReadOnlyCollection<IWebElement>>> findElementsMethod)
+		public By Function(Expression<Func<ISearchContext, IEnumerable<IWebElement>>> findElementsMethod)
 		{
 			return new ByFunctionWithListOutput(findElementsMethod);
 		}
 
-		public By Function(Expression<Func<ISearchContext, ReadOnlyCollection<IWebElement>>> findElementsMethod, TimeSpan timeout)
+		public By Function(Expression<Func<ISearchContext, IEnumerable<IWebElement>>> findElementsMethod, TimeSpan timeout)
 		{
 			return Function(findElementsMethod).WaitingUntil(timeout);
 		}

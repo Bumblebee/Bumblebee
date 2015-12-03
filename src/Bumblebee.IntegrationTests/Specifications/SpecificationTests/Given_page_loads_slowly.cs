@@ -14,6 +14,8 @@ using NUnit.Framework;
 
 using OpenQA.Selenium;
 
+// ReSharper disable InconsistentNaming
+
 namespace Bumblebee.IntegrationTests.Specifications.SpecificationTests
 {
 	[TestFixture]
@@ -74,57 +76,56 @@ namespace Bumblebee.IntegrationTests.Specifications.SpecificationTests
 		[TestCaseSource("WaitCasesForTextField")]
 		public void When_finding_textfield_by_selector_with_wait_Then_should_return_value(Expression<Func<SlowWebPageWithExplicitWait, ITextField>> selectorWithWait)
 		{
-			var selectorWithWaitFunction = selectorWithWait.Compile();
-			selectorWithWaitFunction(
-				Threaded<Session>
+			Threaded<Session>
 				.CurrentBlock<SlowWebPageWithExplicitWait>()
-			)
-			.Text
-			.VerifyThat(t => t.Should().Be("Todd"));
+				.Apply(selectorWithWait)
+				.Text
+				.VerifyThat(t => t.Should().Be("Todd"));
 		}
 
 		[TestCaseSource("NoWaitCasesForTextField")]
 		public void When_finding_textfield_by_selector_with_no_wait_Then_should_throw(Expression<Func<SlowWebPageWithExplicitWait, ITextField>> selectorWithNoWait)
 		{
-			var selectorWithNoWaitFunction = selectorWithNoWait.Compile();
-			Action action = () => 
-				selectorWithNoWaitFunction(
-					Threaded<Session>
-					.CurrentBlock<SlowWebPageWithExplicitWait>()
-				)
+			Action action = () => Threaded<Session>
+				.CurrentBlock<SlowWebPageWithExplicitWait>()
+				.Apply(selectorWithNoWait)
 				.Text
-				.VerifyThat(t => t.Should().Be("Todd")
-			);
+				.VerifyThat(t => t.Should().Be("Todd"));
 
 			action.ShouldThrow<NotFoundException>();
 		}
 
 		[TestCaseSource("WaitCasesForClickable")]
-		public void When_finding_clicable_by_selector_with_wait_Then_should_return_value(Expression<Func<SlowWebPageWithExplicitWait, IClickable<SlowWebPageWithExplicitWait>>> selectorWithWait)
+		public void When_finding_clickable_by_selector_with_wait_Then_should_return_value(Expression<Func<SlowWebPageWithExplicitWait, IClickable<SlowWebPageWithExplicitWait>>> selectorWithWait)
 		{
-			var selectorWithWaitFunction = selectorWithWait.Compile();
-			selectorWithWaitFunction(
-				Threaded<Session>
+			Threaded<Session>
 				.CurrentBlock<SlowWebPageWithExplicitWait>()
-			)
-			.Text
-			.VerifyThat(t => t.Should().Be("Todd"));
+				.Apply(selectorWithWait)
+				.Text
+				.VerifyThat(t => t.Should().Be("Todd"));
 		}
 
 		[TestCaseSource("NoWaitCasesForClickable")]
 		public void When_finding_clickable_by_selector_with_no_wait_Then_should_throw(Expression<Func<SlowWebPageWithExplicitWait, IClickable<SlowWebPageWithExplicitWait>>> selectorWithNoWait)
 		{
-			var selectorWithNoWaitFunction = selectorWithNoWait.Compile();
-			Action action = () =>
-				selectorWithNoWaitFunction(
-					Threaded<Session>
-					.CurrentBlock<SlowWebPageWithExplicitWait>()
-				)
+			Action action = () => Threaded<Session>
+				.CurrentBlock<SlowWebPageWithExplicitWait>()
+				.Apply(selectorWithNoWait)
 				.Text
-				.VerifyThat(t => t.Should().Be("Todd")
-			);
+				.VerifyThat(t => t.Should().Be("Todd"));
 
 			action.ShouldThrow<NoSuchElementException>();
+		}
+	}
+
+	public static class BlockExtensions
+	{
+		public static TElement Apply<TBlock, TElement>(this TBlock page, Expression<Func<TBlock, TElement>> accessor)
+			where TBlock : IBlock
+		{
+			var fn = accessor.Compile();
+
+			return fn(page);
 		}
 	}
 }

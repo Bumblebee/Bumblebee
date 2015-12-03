@@ -1,0 +1,19 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta charset="utf-8" />
+		<title>jQuery</title>
+	</head>
+	<body>
+		<div id="ElementContainer"></div>
+		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.js"></script>
+		<script>
+			$(document).ready(function () {
+				setTimeout(function () {
+					$('#ElementContainer').html('<a class="the-link" href="#">The Link</a>');
+				}, 5000);
+			});
+		</script>
+	</body>
+</html>

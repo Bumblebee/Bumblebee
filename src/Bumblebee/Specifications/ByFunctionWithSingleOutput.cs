@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Linq.Expressions;
 
 using OpenQA.Selenium;
@@ -16,7 +15,6 @@ namespace Bumblebee.Specifications
 		{
 			_function = expression.Compile();
 			Description = String.Format("By.Function: {0}", expression.Body);
-
 		}
 
 		public override IWebElement FindElement(ISearchContext context)
@@ -33,14 +31,16 @@ namespace Bumblebee.Specifications
 
 		public override ReadOnlyCollection<IWebElement> FindElements(ISearchContext context)
 		{
+			var result = new List<IWebElement>(1);
+
 			var element = _function(context);
 
-			if (element == null)
+			if (element != null)
 			{
-				return new ReadOnlyCollection<IWebElement>(Enumerable.Empty<IWebElement>().ToList());
+				result.Add(element);
 			}
 
-			return new ReadOnlyCollection<IWebElement>(new List<IWebElement> { element });
+			return new ReadOnlyCollection<IWebElement>(result);
 		}
 	}
 }
