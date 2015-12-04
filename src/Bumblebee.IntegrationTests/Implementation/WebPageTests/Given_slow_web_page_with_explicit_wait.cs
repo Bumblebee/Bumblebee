@@ -32,9 +32,6 @@ namespace Bumblebee.IntegrationTests.Implementation.WebPageTests
 				.Session.End();
 		}
 
-        /// <summary>
-        /// When_getting_text_of_textfield_using_wait_s the should_wait.
-        /// </summary>
 		[Test]
 		public void When_getting_text_of_textfield_using_wait_Should_wait()
 		{

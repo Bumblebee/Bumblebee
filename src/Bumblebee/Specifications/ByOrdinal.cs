@@ -33,7 +33,7 @@ namespace Bumblebee.Specifications
 
 			if (_ordinal >= elements.Count)
 			{
-				throw new NotFoundException();
+				throw new NoSuchElementException();
 			}
 
 			return elements

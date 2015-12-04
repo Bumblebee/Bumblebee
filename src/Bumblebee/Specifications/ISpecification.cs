@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Linq.Expressions;
 
 using OpenQA.Selenium;
@@ -18,8 +18,8 @@ namespace Bumblebee.Specifications
 		By CssSelector(string cssSelectorToFind, TimeSpan timeout);
 		By Function(Expression<Func<ISearchContext, IWebElement>> findElementMethod);
 		By Function(Expression<Func<ISearchContext, IWebElement>> findElementMethod, TimeSpan timeout);
-		By Function(Expression<Func<ISearchContext, ReadOnlyCollection<IWebElement>>> findElementsMethod);
-		By Function(Expression<Func<ISearchContext, ReadOnlyCollection<IWebElement>>> findElementsMethod, TimeSpan timeout);
+		By Function(Expression<Func<ISearchContext, IEnumerable<IWebElement>>> findElementsMethod);
+		By Function(Expression<Func<ISearchContext, IEnumerable<IWebElement>>> findElementsMethod, TimeSpan timeout);
 		By LinkText(string linkTextToFind);
 		By LinkText(string linkTextToFind, TimeSpan timeout);
 		By Name(string nameToFind);

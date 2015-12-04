@@ -22,14 +22,13 @@ namespace Bumblebee.IntegrationTests.Shared.Pages
 
 	public abstract class SlowWebPage : WebPage
 	{
-	    protected SlowWebPage(Session session, TimeSpan? timeout = null)
-			: base(session, timeout ?? TimeSpan.FromSeconds(0))
+		protected SlowWebPage(Session session, TimeSpan? timeout = null) : base(session, timeout ?? TimeSpan.FromSeconds(0))
 		{
 		}
 
 		public ITextField FirstName
 		{
-		    get { return new TextField(this, By.Id("firstName", Wait.Timeout)); }
+			get { return new TextField(this, By.Id("firstName", Wait.Timeout)); }
 		}
 
 		public ICheckbox Checkbox

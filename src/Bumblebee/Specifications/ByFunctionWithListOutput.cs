@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Linq.Expressions;
@@ -9,9 +10,9 @@ namespace Bumblebee.Specifications
 {
 	public class ByFunctionWithListOutput : By
 	{
-		private readonly Func<ISearchContext, ReadOnlyCollection<IWebElement>> _function;
+		private readonly Func<ISearchContext, IEnumerable<IWebElement>> _function;
 
-		public ByFunctionWithListOutput(Expression<Func<ISearchContext, ReadOnlyCollection<IWebElement>>> expression)
+		public ByFunctionWithListOutput(Expression<Func<ISearchContext, IEnumerable<IWebElement>>> expression)
 		{
 			_function = expression.Compile();
 			Description = String.Format("By.Function: {0}", expression.Body);
@@ -31,7 +32,7 @@ namespace Bumblebee.Specifications
 
 		public override ReadOnlyCollection<IWebElement> FindElements(ISearchContext context)
 		{
-			return _function(context);
+			return new ReadOnlyCollection<IWebElement>(_function(context).ToList());
 		}
 	}
 }
