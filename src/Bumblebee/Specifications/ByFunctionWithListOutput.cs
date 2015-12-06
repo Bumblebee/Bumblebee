@@ -12,7 +12,7 @@ namespace Bumblebee.Specifications
 	{
 		private readonly Func<ISearchContext, IEnumerable<IWebElement>> _function;
 
-		public ByFunctionWithListOutput(Expression<Func<ISearchContext, IEnumerable<IWebElement>>> expression)
+		internal ByFunctionWithListOutput(Expression<Func<ISearchContext, IEnumerable<IWebElement>>> expression)
 		{
 			_function = expression.Compile();
 			Description = String.Format("By.Function: {0}", expression.Body);

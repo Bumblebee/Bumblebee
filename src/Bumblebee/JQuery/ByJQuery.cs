@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -8,7 +8,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Internal;
 using OpenQA.Selenium.Support.Extensions;
 
-namespace Bumblebee.Specifications
+namespace Bumblebee.JQuery
 {
 	internal class ByJQuery : By
 	{

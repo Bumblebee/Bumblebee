@@ -10,7 +10,7 @@ namespace Bumblebee.Specifications
 	/// <summary>
 	/// Wrapper class that accepts a By selector and a timeout period expressed in a TimeSpan.  WHen FindElement or FindElements are called, it uses the WebDriverWait functionality to select.
 	/// </summary>
-	public class ByWithWait : By
+	internal class ByWithWait : By
 	{
 		private readonly By _by;
 		private readonly TimeSpan _timeout;

@@ -2,9 +2,9 @@ using System.Linq;
 
 using Bumblebee.IntegrationTests.Shared.Hosting;
 using Bumblebee.IntegrationTests.Shared.Pages;
+using Bumblebee.JQuery;
 using Bumblebee.Setup;
 using Bumblebee.Setup.DriverEnvironments;
-using Bumblebee.Specifications;
 
 using FluentAssertions;
 
