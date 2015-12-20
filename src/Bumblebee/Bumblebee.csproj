@@ -80,6 +80,7 @@
     <Compile Include="Interfaces\IPage.cs" />
     <Compile Include="Interfaces\IPerformsDragAndDrop.cs" />
     <Compile Include="BumblebeeAttribute.cs" />
+    <Compile Include="JQuery\ByJQuery.cs" />
     <Compile Include="JQuery\SessionExtensions.cs" />
     <Compile Include="JQuery\SpecificationExtensions.cs" />
     <Compile Include="Key.cs" />
@@ -114,7 +115,6 @@
     <Compile Include="Specifications\ByExtensions.cs" />
     <Compile Include="Specifications\ByFunctionWithListOutput.cs" />
     <Compile Include="Specifications\ByFunctionWithSingleOutput.cs" />
-    <Compile Include="Specifications\ByJQuery.cs" />
     <Compile Include="Specifications\ByOrdinal.cs" />
     <Compile Include="Specifications\ByWithWait.cs" />
     <Compile Include="Specifications\ISpecification.cs" />

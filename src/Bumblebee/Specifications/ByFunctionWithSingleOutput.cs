@@ -7,7 +7,7 @@ using OpenQA.Selenium;
 
 namespace Bumblebee.Specifications
 {
-	public class ByFunctionWithSingleOutput : By
+	internal class ByFunctionWithSingleOutput : By
 	{
 		private readonly Func<ISearchContext, IWebElement> _function;
 
