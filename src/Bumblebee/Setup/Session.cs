@@ -11,7 +11,7 @@ using OpenQA.Selenium.Support.Extensions;
 
 namespace Bumblebee.Setup
 {
-	public class Session
+	public class Session : IDisposable
 	{
 		private IBlock _currentBlock;
 
@@ -141,9 +141,38 @@ namespace Bumblebee.Setup
 			return this;
 		}
 
+		public virtual void ExecuteJavaScript(string script, params object[] args)
+		{
+			Driver.ExecuteJavaScript<object>(script, args);
+		}
+
 		public virtual T ExecuteJavaScript<T>(string script, params object[] args)
 		{
 			return Driver.ExecuteJavaScript<T>(script, args);
+		}
+
+		~Session()
+		{
+			Dispose(false);
+		}
+
+		public void Dispose()
+		{
+			Dispose(true);
+
+			GC.SuppressFinalize(this);
+		}
+
+		private void Dispose(bool disposing)
+		{
+			if (disposing)
+			{
+				// dispose managed resources
+
+				End();
+			}
+
+			// dispose native resources
 		}
 	}
 
