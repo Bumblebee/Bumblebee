@@ -13,7 +13,7 @@ namespace Bumblebee.Setup
 	public static class Threaded<TSession>
 		where TSession : Session
 	{
-		public const string InvalidSessionTypeFormat = "The instance type specified ({0}) is not a valid session.  It must have a constructor that takes an IDriverEnvironment and/or ISettings.";
+		internal const string InvalidSessionTypeFormat = "The instance type specified ({0}) is not a valid session.  It must have a constructor that takes an IDriverEnvironment and/or ISettings.";
 
 		private static readonly ThreadLocal<TSession> ThreadLocalSession = new ThreadLocal<TSession>();
 
@@ -24,7 +24,7 @@ namespace Bumblebee.Setup
 		}
 
 		/// <summary>
-		/// Allows the creation of a Session-based type using a type derived from IDriverEnvironment that the system can initialize with a parameterless constructor.
+		/// Allows the creation of a Session-based type using a type derived from IDriverEnvironment that the system can initialize with a default constructor.
 		/// </summary>
 		/// <typeparam name="TDriverEnvironment"></typeparam>
 		/// <returns></returns>
@@ -88,6 +88,15 @@ namespace Bumblebee.Setup
 			return constructor.Invoke(constructorArgs.ToArray()) as T;
 		}
 
+		/// <summary>
+		/// Returns a block of type <typeparamref name="TBlock" /> with the current <typeparamref name="TSession"/>.
+		/// </summary>
+		/// <remarks>
+		/// There is nothing that currently enforces that the right type is being cast for the page, so if you select a different page
+		/// than what was last navigated to, you might encounter errors when using the associated elements since they will likely not exist.
+		/// </remarks>
+		/// <typeparam name="TBlock">The requested block type.</typeparam>
+		/// <returns>A newly constructed page object of type <c ref="TPage">TPage</c>.</returns>
 		public static TBlock CurrentBlock<TBlock>() where TBlock : IBlock
 		{
 			if (Current == null)
@@ -99,14 +108,14 @@ namespace Bumblebee.Setup
 		}
 
 		/// <summary>
-		/// Returns the a page reprentation with the current <c ref="Session">Session</c>
+		/// Returns a page of type <typeparamref name="TPage" /> with the current <typeparamref name="TSession"/>.
 		/// </summary>
 		/// <remarks>
 		/// There is nothing that currently enforces that the right type is being cast for the page, so if you select a different page
 		/// than what was last navigated to, you might encounter errors when using the associated elements since they will likely not exist.
 		/// </remarks>
-		/// <typeparam name="TPage"></typeparam>
-		/// <returns></returns>
+		/// <typeparam name="TPage">The requested page type.</typeparam>
+		/// <returns>A newly constructed page object of type <typeparamref name="TPage"/>.</returns>
 		public static TPage CurrentPage<TPage>() where TPage : IPage
 		{
 			if (Current == null)

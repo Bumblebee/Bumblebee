@@ -16,12 +16,12 @@ namespace Bumblebee.Implementation
 		protected static readonly ISpecification By = new Specification();
 
 		/// <summary>
-		/// The text for the given element.
+		/// Gets the text for the given element.
 		/// </summary>
 		public virtual string Text { get { return Tag.Text; } }
 
 		/// <summary>
-		/// Determines if the element is select or not.
+		/// Gets whether the element is selected or not.
 		/// </summary>
 		public virtual bool Selected { get { return Tag.Selected; } }
 
@@ -97,19 +97,19 @@ namespace Bumblebee.Implementation
 		}
 
 		/// <summary>
-		/// The parent block.
+		/// Gets the parent block.
 		/// </summary>
 		public IBlock Parent { get; private set; }
 
 		/// <summary>
-		/// The current session.
+		/// Gets the current session.
 		/// </summary>
 		public Session Session { get; private set; }
 
 		private By Specification { get; set; }
 
 		/// <summary>
-		/// The actual web element that the Element is abstracting.
+		/// Gets the actual web element that the Element is abstracting.
 		/// </summary>
 		public IWebElement Tag
 		{

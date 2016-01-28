@@ -22,6 +22,11 @@ namespace Bumblebee.Implementation
 			}
 		}
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="InlineFrame" /> class.
+		/// </summary>
+		/// <param name="parent">The parent block.</param>
+		/// <param name="by">The specification to use when finding the &lt;iframe&gt; element.</param>
 		protected InlineFrame(IBlock parent, By @by) : base(parent, @by)
 		{
 		}
