@@ -68,6 +68,21 @@ namespace Bumblebee.Setup
 			return Current;
 		}
 
+		public static TPage NavigateTo<TPage>(string url) where TPage : IPage
+		{
+			return Current.NavigateTo<TPage>(url);
+		}
+
+		public static TPage NavigateTo<TPage>(string format, params object[] args) where TPage : IPage
+		{
+			return Current.NavigateTo<TPage>(format, args);
+		}
+
+		public static void Refresh()
+		{
+			Current.Refresh();
+		}
+
 		private static T GetInstanceOf<T>(params object[] constructorArgs) where T : Session
 		{
 			var type = typeof (T);

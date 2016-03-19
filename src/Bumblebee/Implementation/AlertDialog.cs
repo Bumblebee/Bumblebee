@@ -15,6 +15,7 @@ namespace Bumblebee.Implementation
 		protected static readonly ISpecification By = new Specification();
 
 		public IWebElement Tag { get; private set; }
+
 		public IBlock Parent { get; private set; }
 		public Session Session { get; private set; }
 
@@ -30,6 +31,10 @@ namespace Bumblebee.Implementation
 		public AlertDialog(IBlock parent) : this(parent.Session)
 		{
 			Parent = parent;
+		}
+		public string GetAttribute(string name)
+		{
+			throw new NotImplementedException();
 		}
 
 		public TParent ParentAs<TParent>() where TParent : IBlock

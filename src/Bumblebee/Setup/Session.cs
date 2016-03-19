@@ -13,6 +13,8 @@ namespace Bumblebee.Setup
 {
 	public class Session : IDisposable
 	{
+		private static readonly Type PageInterfaceType = typeof (IPage);
+
 		private IBlock _currentBlock;
 
 		public virtual ISettings Settings { get; private set; }
@@ -43,11 +45,24 @@ namespace Bumblebee.Setup
 			return NavigateTo<TPage>(String.Format(uriFormat, args));
 		}
 
+		public virtual void Refresh()
+		{
+			Driver.Navigate().Refresh();
+		}
+
 		internal void SetCurrentBlock(IBlock block)
 		{
 			_currentBlock = block;
 		}
 
+		/// <summary>
+		/// Retrieves the currently stored current block, if it is of type <typeparamref name="TBlock" />.
+		/// Otherwise, if there is a current block, then the closest related element of type <typeparamref name="TBlock" /> is found.
+		/// If type <typeparamref name="TBlock" /> is a <see cref="Bumblebee.Interfaces.IPage" /> then it is created and returned.
+		/// Otherwise, null is returned.
+		/// </summary>
+		/// <typeparam name="TBlock"></typeparam>
+		/// <returns></returns>
 		public virtual TBlock CurrentBlock<TBlock>() where TBlock : IBlock
 		{
 			var type = typeof (TBlock);
@@ -62,8 +77,7 @@ namespace Bumblebee.Setup
 			{
 				result = _currentBlock.FindRelated<TBlock>();
 			}
-
-			if (result == null)
+			else if (PageInterfaceType.IsAssignableFrom(type))
 			{
 				result = Block.Create<TBlock>(this);
 			}
@@ -85,7 +99,7 @@ namespace Bumblebee.Setup
 		/// than what was last navigated to, you might encounter errors when using the associated elements since they will likely not exist.
 		/// </remarks>
 		/// <typeparam name="TPage">The requested page type.</typeparam>
-		/// <returns>A newly constructed page object of type <c ref="TPage">TPage</c>.</returns>
+		/// <returns>A newly constructed page object of type <typeparamref name="TPage" />.</returns>
 		public virtual TPage CurrentPage<TPage>() where TPage : IPage
 		{
 			return Page.Create<TPage>(this);

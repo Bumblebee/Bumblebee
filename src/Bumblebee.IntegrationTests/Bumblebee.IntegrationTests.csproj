@@ -83,6 +83,8 @@
     <Compile Include="Implementation\IEnumerableOfBlocksTests.cs" />
     <Compile Include="Implementation\InlineFrameTests\Given_nested_inline_frames.cs" />
     <Compile Include="Implementation\PageTests.cs" />
+    <Compile Include="Implementation\SelectBoxTests\Given_select_box_that_supports_multiple_selections.cs" />
+    <Compile Include="Implementation\SelectBoxTests\Given_select_box_with_one_hundred_thousand_items.cs" />
     <Compile Include="Implementation\WebPageTests\Given_slow_web_page_with_explicit_wait.cs" />
     <Compile Include="Implementation\WebPageTests\Given_slow_web_page_with_no_wait.cs" />
     <Compile Include="Shared\Pages\CurrentBlockDefaultPage.cs" />
@@ -92,12 +94,12 @@
     <Compile Include="Shared\Pages\InnerSection.cs" />
     <Compile Include="Setup\ThreadedSessionTests\Given_user_has_navigated_to_a_page.cs" />
     <Compile Include="Shared\Pages\DefaultPage.cs" />
+    <Compile Include="Shared\Pages\HundredThousandItemSelectPage.cs" />
     <Compile Include="Shared\Pages\SlowPageWithJQuery.cs" />
     <Compile Include="Shared\Pages\SlowWebPage.cs" />
     <Compile Include="Shared\Pages\JavaScriptPopUpPage.cs" />
     <Compile Include="KeyTests.cs" />
     <Compile Include="Implementation\RadioButtonTests.cs" />
-    <Compile Include="Implementation\SelectBoxTests.cs" />
     <Compile Include="Implementation\DateFieldTests.cs" />
     <Compile Include="Implementation\NumericFieldTests.cs" />
     <Compile Include="Implementation\TableTests\Given_generic_table.cs" />
@@ -126,7 +128,7 @@
     <Compile Include="Shared\Pages\InlineFramesPage.cs" />
     <Compile Include="Shared\Pages\KeysPage.cs" />
     <Compile Include="Shared\Pages\ListOfComplexBlocksPage.cs" />
-    <Compile Include="Shared\Pages\MultiSelectPage.cs" />
+    <Compile Include="Shared\Pages\SelectPage.cs" />
     <Compile Include="Shared\Pages\NestedInlineFramesPage.cs" />
     <Compile Include="Shared\Pages\NumericFieldPage.cs" />
     <Compile Include="Shared\Pages\PageWithJQuery.cs" />
@@ -183,6 +185,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\JavaScriptPopUp.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\HundredThousandItemSelect.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\SingleSelect.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\NestedInlineFramesGrandchild.html">

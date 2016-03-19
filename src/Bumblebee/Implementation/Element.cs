@@ -109,7 +109,7 @@ namespace Bumblebee.Implementation
 		private By Specification { get; set; }
 
 		/// <summary>
-		/// Gets the actual web element that the Element is abstracting.
+		/// Gets the Selenium IWebElement that underpins this component.
 		/// </summary>
 		public IWebElement Tag
 		{
@@ -117,6 +117,16 @@ namespace Bumblebee.Implementation
 			{
 				return Parent.FindElement(Specification);
 			}
+		}
+
+		/// <summary>
+		/// Gets the value of the specified attribute for this component.
+		/// </summary>
+		/// <param name="name">The name of the attribute.</param>
+		/// <returns>The value of the attribute.</returns>
+		public virtual string GetAttribute(string name)
+		{
+			return Tag.GetAttribute(name);
 		}
 
 		/// <summary>
