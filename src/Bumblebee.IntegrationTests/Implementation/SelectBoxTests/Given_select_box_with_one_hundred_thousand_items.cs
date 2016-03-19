@@ -80,7 +80,7 @@ namespace Bumblebee.IntegrationTests.Implementation.SelectBoxTests
 			Threaded<Session>
 				.CurrentPage<HundredThousandItemSelectPage>()
 				.SelectBox.SelectByValue(value)
-				.Session.ExecuteJavaScript<string>("return element = document.getElementById('HundredThousandItemSelect'), index = element.selectedIndex; return (index === -1) ? null : element.options[index].value;")
+				.Session.ExecuteJavaScript<string>("var element = document.getElementById('HundredThousandItemSelect'), index = element.selectedIndex; return (index === -1) ? null : element.options[index].value;")
 				.Should().Be(value);
 		}
 	}
