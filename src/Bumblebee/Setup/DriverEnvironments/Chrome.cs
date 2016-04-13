@@ -11,9 +11,6 @@ namespace Bumblebee.Setup.DriverEnvironments
 
 		public Chrome(TimeSpan timeToWait) : base(timeToWait)
 		{
-			var driver = new ChromeDriver(ChromeDriverService.CreateDefaultService(), new ChromeOptions(), TimeSpan.FromMinutes(1));
-
-
 		}
 	}
 }
