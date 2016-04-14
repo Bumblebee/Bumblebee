@@ -27,8 +27,7 @@ For help using Bumblebee, check out [the wiki page](https://github.com/patrickhe
 
 **Bumblebee** - A fluent-style, .NET layer on top of Selenium for implementing the [page pattern](https://code.google.com/p/selenium/wiki/PageObjects).<br>
 [![NuGet version (Bumblebee.Automation)](https://img.shields.io/nuget/v/Bumblebee.Automation.svg?style=flat)](https://www.nuget.org/packages/Bumblebee.Automation/)
-[![NuGet version (Bumblebee.Automation)](https://img.shields.io/nuget/vpre/Bumblebee.Automation.svg?style=flat)](https://www.nuget.org/packages/Bumblebee.Automation/)
+[![NuGet version (Bumblebee.Automation)](https://img.shields.io/nuget/vpre/Bumblebee.Automation.svg?style=flat)](https://www.nuget.org/packages/Bumblebee.Automation/2.0.6-alpha)
 
 **Bumblebee for Kendo UI** - A separate library for adding Kendo element support for Bumblebee.<br>
 [![NuGet version (Bumblebee.Automation.KendoUI)](https://img.shields.io/nuget/v/Bumblebee.Automation.KendoUI.svg?style=flat)](https://www.nuget.org/packages/Bumblebee.Automation.KendoUI/)
-[![NuGet version (Bumblebee.Automation.KendoUI)](https://img.shields.io/nuget/dt/Bumblebee.Automation.KendoUI.svg?style=flat)](https://www.nuget.org/packages/Bumblebee.Automation.KendoUI/)
