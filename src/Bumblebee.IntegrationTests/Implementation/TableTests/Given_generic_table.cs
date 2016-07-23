@@ -1,9 +1,8 @@
-using System;
 using System.Linq;
 
 using Bumblebee.Extensions;
 using Bumblebee.IntegrationTests.Shared.Hosting;
-using Bumblebee.IntegrationTests.Shared.Pages.Implementation;
+using Bumblebee.IntegrationTests.Shared.Pages;
 using Bumblebee.Setup;
 using Bumblebee.Setup.DriverEnvironments;
 
@@ -23,7 +22,7 @@ namespace Bumblebee.IntegrationTests.Implementation.TableTests
 		{
 			Threaded<Session>
 				.With<PhantomJS>()
-				.NavigateTo<GenericTablePage>(String.Format("{0}{1}", BaseUrl, "/Content/Table.html"));
+				.NavigateTo<GenericTablePage>(GetUrl("Table.html"));
 		}
 
 		[TestFixtureTearDown]

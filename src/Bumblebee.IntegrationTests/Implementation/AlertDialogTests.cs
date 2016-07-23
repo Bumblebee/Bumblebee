@@ -1,10 +1,11 @@
-﻿using System;
-using Bumblebee.Extensions;
+﻿using Bumblebee.Extensions;
 using Bumblebee.IntegrationTests.Shared.Hosting;
-using Bumblebee.IntegrationTests.Shared.Pages.Implementation;
+using Bumblebee.IntegrationTests.Shared.Pages;
 using Bumblebee.Setup;
 using Bumblebee.Setup.DriverEnvironments;
+
 using FluentAssertions;
+
 using NUnit.Framework;
 
 namespace Bumblebee.IntegrationTests.Implementation
@@ -19,7 +20,7 @@ namespace Bumblebee.IntegrationTests.Implementation
 		{
 			Threaded<Session>
 				.With<Chrome>()
-				.NavigateTo<DialogPage>(String.Format("{0}{1}", BaseUrl, "/Content/Dialogs.html"));
+				.NavigateTo<DialogPage>(GetUrl("Dialogs.html"));
 		}
 
 		[TearDown]

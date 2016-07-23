@@ -32,22 +32,25 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FluentAssertions, Version=3.2.2.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\FluentAssertions.3.2.2\lib\net45\FluentAssertions.dll</HintPath>
+    <Reference Include="FluentAssertions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentAssertions.4.0.0\lib\net45\FluentAssertions.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="FluentAssertions.Core, Version=3.2.2.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\FluentAssertions.3.2.2\lib\net45\FluentAssertions.Core.dll</HintPath>
+    <Reference Include="FluentAssertions.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentAssertions.4.0.0\lib\net45\FluentAssertions.Core.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Nancy">
-      <HintPath>..\packages\Nancy.0.23.2\lib\net40\Nancy.dll</HintPath>
+    <Reference Include="Nancy, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Nancy.1.2.0\lib\net40\Nancy.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Nancy.Hosting.Self">
-      <HintPath>..\packages\Nancy.Hosting.Self.0.23.2\lib\net40\Nancy.Hosting.Self.dll</HintPath>
+    <Reference Include="Nancy.Hosting.Self, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Nancy.Hosting.Self.1.2.0\lib\net40\Nancy.Hosting.Self.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="NSubstitute">
-      <HintPath>..\packages\NSubstitute.1.8.1.0\lib\net45\NSubstitute.dll</HintPath>
+    <Reference Include="NSubstitute, Version=1.8.2.0, Culture=neutral, PublicKeyToken=92dd2e9066daa5ca, processorArchitecture=MSIL">
+      <HintPath>..\packages\NSubstitute.1.8.2.0\lib\net45\NSubstitute.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -59,21 +62,39 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.XML" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="WebDriver, Version=2.45.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Selenium.WebDriver.2.45.0\lib\net40\WebDriver.dll</HintPath>
+    <Reference Include="WebDriver, Version=2.47.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Selenium.WebDriver.2.47.0\lib\net40\WebDriver.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="WebDriver.Support, Version=2.45.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Selenium.Support.2.45.0\lib\net40\WebDriver.Support.dll</HintPath>
+    <Reference Include="WebDriver.Support, Version=2.47.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Selenium.Support.2.47.0\lib\net40\WebDriver.Support.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extensions\FilteringTests.cs" />
     <Compile Include="CallStackTests.cs" />
+    <Compile Include="Extensions\FindRelatedTests\Given_parent_element_that_gets_removed.cs" />
+    <Compile Include="Extensions\FindRelatedTests\Given_static_page_heirarchy.cs" />
     <Compile Include="Implementation\CheckboxTests.cs" />
     <Compile Include="Implementation\AlertDialogTests.cs" />
     <Compile Include="Implementation\ClickableTests\Given_double_clickable.cs" />
+    <Compile Include="Implementation\InlineFrameTests\Given_inline_frame.cs" />
+    <Compile Include="Implementation\IEnumerableOfBlocksTests.cs" />
+    <Compile Include="Implementation\InlineFrameTests\Given_nested_inline_frames.cs" />
+    <Compile Include="Implementation\PageTests.cs" />
+    <Compile Include="Implementation\WebPageTests\Given_slow_web_page_with_explicit_wait.cs" />
+    <Compile Include="Implementation\WebPageTests\Given_slow_web_page_with_no_wait.cs" />
+    <Compile Include="Shared\Pages\CurrentBlockDefaultPage.cs" />
+    <Compile Include="Shared\Pages\CurrentBlockNavigateToPage.cs" />
+    <Compile Include="Setup\SessionTests\Given_user_has_navigated_to_a_page.cs" />
+    <Compile Include="Shared\Pages\InnerInnerSection.cs" />
+    <Compile Include="Shared\Pages\InnerSection.cs" />
+    <Compile Include="Setup\ThreadedSessionTests\Given_user_has_navigated_to_a_page.cs" />
+    <Compile Include="Shared\Pages\DefaultPage.cs" />
+    <Compile Include="Shared\Pages\SlowPageWithJQuery.cs" />
+    <Compile Include="Shared\Pages\SlowWebPage.cs" />
+    <Compile Include="Shared\Pages\JavaScriptPopUpPage.cs" />
     <Compile Include="KeyTests.cs" />
     <Compile Include="Implementation\RadioButtonTests.cs" />
     <Compile Include="Implementation\SelectBoxTests.cs" />
@@ -82,7 +103,7 @@
     <Compile Include="Implementation\TableTests\Given_generic_table.cs" />
     <Compile Include="Implementation\TableTests\Given_complex_table.cs" />
     <Compile Include="Implementation\TableTests\Given_table.cs" />
-    <Compile Include="Implementation\TestFieldTests.cs" />
+    <Compile Include="Implementation\TextFieldTests.cs" />
     <Compile Include="Setup\DriverEnvironmentTests.cs" />
     <Compile Include="Setup\SessionTests\Given_default_implementation_of_ISettings.cs" />
     <Compile Include="Setup\SessionTests\Given_environment_and_custom_settings_When_capturing.cs" />
@@ -94,29 +115,39 @@
     <Compile Include="Setup\SessionTests\Given_page_with_jQuery.cs" />
     <Compile Include="Setup\SessionTests\Given_session_with_default_settings.cs" />
     <Compile Include="Setup\SessionTests\SessionTests.cs" />
-    <Compile Include="Shared\Pages\Implementation\CheckboxPage.cs" />
-    <Compile Include="Shared\Pages\Implementation\ComplexTableRow.cs" />
-    <Compile Include="Shared\Pages\Implementation\DateFieldPage.cs" />
-    <Compile Include="Shared\Pages\Implementation\DialogPage.cs" />
-    <Compile Include="Shared\Pages\Implementation\GenericTablePage.cs" />
-    <Compile Include="Shared\Pages\Implementation\GenericTableRow.cs" />
-    <Compile Include="Shared\Pages\Implementation\DoubleClickablePage.cs" />
-    <Compile Include="Shared\Pages\Implementation\KeysPage.cs" />
-    <Compile Include="Shared\Pages\Implementation\MultiSelectPage.cs" />
-    <Compile Include="Shared\Pages\Implementation\NumericFieldPage.cs" />
-    <Compile Include="Shared\Pages\Implementation\PageWithJQuery.cs" />
-    <Compile Include="Shared\Pages\Implementation\RadioButtonsPage.cs" />
+    <Compile Include="Shared\Pages\ByOrdinalPage.cs" />
+    <Compile Include="Shared\Pages\CheckboxPage.cs" />
+    <Compile Include="Shared\Pages\ComplexTableRow.cs" />
+    <Compile Include="Shared\Pages\DateFieldPage.cs" />
+    <Compile Include="Shared\Pages\DialogPage.cs" />
+    <Compile Include="Shared\Pages\GenericTablePage.cs" />
+    <Compile Include="Shared\Pages\GenericTableRow.cs" />
+    <Compile Include="Shared\Pages\DoubleClickablePage.cs" />
+    <Compile Include="Shared\Pages\InlineFramesPage.cs" />
+    <Compile Include="Shared\Pages\KeysPage.cs" />
+    <Compile Include="Shared\Pages\ListOfComplexBlocksPage.cs" />
+    <Compile Include="Shared\Pages\MultiSelectPage.cs" />
+    <Compile Include="Shared\Pages\NestedInlineFramesPage.cs" />
+    <Compile Include="Shared\Pages\NumericFieldPage.cs" />
+    <Compile Include="Shared\Pages\PageWithJQuery.cs" />
+    <Compile Include="Shared\Pages\RadioButtonsPage.cs" />
     <Compile Include="Shared\Hosting\Host.cs" />
     <Compile Include="Shared\Hosting\HostTestFixture.cs" />
     <Compile Include="Shared\Hosting\IHost.cs" />
-    <Compile Include="Shared\Pages\Implementation\ComplexTablePage.cs" />
-    <Compile Include="Shared\Pages\Implementation\TextFieldPage.cs" />
+    <Compile Include="Shared\Pages\ComplexTablePage.cs" />
+    <Compile Include="Shared\Pages\TextFieldPage.cs" />
     <Compile Include="Extensions\VerificationTests.cs" />
     <Compile Include="Shared\Sessions\DerivedSessionWithWrongArgs.cs" />
     <Compile Include="Shared\Sessions\DerivedSession.cs" />
-    <Compile Include="Shared\Pages\LoggedOutPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Setup\ThreadedSessionTests.cs" />
+    <Compile Include="Setup\ThreadedSessionTests\ThreadedSessionTests.cs" />
+    <Compile Include="Specifications\ByJQueryTests\Given_an_invalid_selector.cs" />
+    <Compile Include="Specifications\ByJQueryTests\Given_I_am_searching_for_a_collection.cs" />
+    <Compile Include="Specifications\ByJQueryTests\Given_I_am_searching_for_a_single_element.cs" />
+    <Compile Include="Specifications\ByJQueryTests\Given_page_loads_slowly.cs" />
+    <Compile Include="Specifications\ByOrdinalTests.cs" />
+    <Compile Include="Specifications\SpecificationTests\Given_page_loads_slowly.cs" />
+    <Compile Include="Specifications\SpecificationTests\SpecificationTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Bumblebee\Bumblebee.csproj">
@@ -130,16 +161,40 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\packages\PhantomJS.1.9.8\tools\phantomjs\phantomjs.exe">
+    <Content Include="..\packages\PhantomJS.2.0.0\tools\phantomjs\phantomjs.exe">
       <Link>phantomjs.exe</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\packages\Selenium.WebDriver.IEDriver.2.45.0.1\content\IEDriverServer.exe">
+    <Content Include="..\packages\Selenium.WebDriver.IEDriver.2.47.0.0\driver\IEDriverServer.exe">
       <Link>IEDriverServer.exe</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\packages\WebDriver.ChromeDriver.win32.2.13.0.0\content\chromedriver.exe">
+    <Content Include="..\packages\WebDriver.ChromeDriver.win32.2.19.0.0\content\chromedriver.exe">
       <Link>chromedriver.exe</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\ByOrdinal.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\CurrentBlock-NavigateTo.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\CurrentBlock-Default.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\JavaScriptPopUp.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\NestedInlineFramesGrandchild.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\NestedInlineFramesChild.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\InlineFrames.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\InlineFramesChild.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Keys.html">
@@ -157,10 +212,19 @@
     <Content Include="Content\DoubleClick.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\ListOfComplexBlocks.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\MultiSelect.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\NestedInlineFrames.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\NumericField.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\SlowPageWithJQuery.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\PageWithJQuery.html">
@@ -172,33 +236,28 @@
     <Content Include="Content\ComplexTable.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Default.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\SlowWebPage.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Table.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\TextField.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Compile Include="Shared\Pages\TablePage.cs" />
     <Content Include="phantomjs-license.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Compile Include="Shared\Pages\Implementation\TablePage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
-  <PropertyGroup Label="DownloadIEDriverBuildTask">
-    <CoreBuildDependsOn>DownloadIEDriver;$(CoreBuildDependsOn)</CoreBuildDependsOn>
-    <IEDriverInstallPath>$(SolutionDir)packages\Selenium.WebDriver.IEDriver.2.45.0.1\</IEDriverInstallPath>
-    <IEDriverToolsPath>$(IEDriverInstallPath)tools\</IEDriverToolsPath>
-    <IEDriverInitScriptPath>$(IEDriverToolsPath)Init.ps1</IEDriverInitScriptPath>
-    <IEDriverPath>$(IEDriverInstallPath)content\IEDriverServer.exe</IEDriverPath>
-    <PowerShellExe Condition="'$(PowerShellExe)'==''">%WINDIR%\System32\WindowsPowerShell\v1.0\powershell.exe</PowerShellExe>
-  </PropertyGroup>
-  <Target Name="DownloadIEDriver" Label="DownloadIEDriverBuildTask">
-    <Exec Condition="!Exists('$(IEDriverPath)')" Command="$(PowerShellExe) -NonInteractive -executionpolicy Unrestricted -command &quot;&amp; { &amp;'$(IEDriverInitScriptPath)' '$(IEDriverInstallPath)' '$(IEDriverToolsPath)'} &quot;" />
-  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

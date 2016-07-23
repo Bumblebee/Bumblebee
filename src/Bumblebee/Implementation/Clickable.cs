@@ -1,4 +1,5 @@
-﻿using Bumblebee.Interfaces;
+﻿using Bumblebee.Extensions;
+using Bumblebee.Interfaces;
 
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
@@ -7,20 +8,15 @@ namespace Bumblebee.Implementation
 {
 	public class Clickable : Element, IClickable, IDoubleClickable
 	{
-		public Clickable(IBlock parent, By by) : base(parent, by)
+		public Clickable(IBlock parent, By @by) : base(parent, @by)
 		{
 		}
 
-		public Clickable(IBlock parent, IWebElement element) : base(parent, element)
-		{
-		}
-
-		public virtual TResult Click<TResult>()
-			where TResult : IBlock
+		public virtual TResult Click<TResult>() where TResult : IBlock
 		{
 			Tag.Click();
 
-			return Session.CurrentBlock<TResult>(ParentBlock.Tag);
+			return this.FindRelated<TResult>();
 		}
 
 		public virtual TResult DoubleClick<TResult>()
@@ -32,18 +28,14 @@ namespace Bumblebee.Implementation
 				.Build()
 				.Perform();
 
-			return Session.CurrentBlock<TResult>(ParentBlock.Tag);
+			return this.FindRelated<TResult>();
 		}
 	}
 
 	public class Clickable<TResult> : Clickable, IClickable<TResult>, IDoubleClickable<TResult>
 		where TResult : IBlock
 	{
-		public Clickable(IBlock parent, By by) : base(parent, by)
-		{
-		}
-
-		public Clickable(IBlock parent, IWebElement element) : base(parent, element)
+		public Clickable(IBlock parent, By @by) : base(parent, @by)
 		{
 		}
 

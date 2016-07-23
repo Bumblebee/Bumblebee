@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 using Bumblebee.Interfaces;
 using Bumblebee.Setup;
+using Bumblebee.Specifications;
 
 using OpenQA.Selenium;
 
@@ -10,13 +11,24 @@ namespace Bumblebee.Implementation
 {
 	public abstract class Block : IBlock
 	{
-		public Session Session { get; private set; }
+		protected static readonly ISpecification By = new Specification();
 
-		public IWebElement Tag { get; protected set; }
-
-		protected Block(Session session)
+		internal Block(Session session, By @by)
 		{
+			if (session == null)
+			{
+				throw new ArgumentNullException("session");
+			}
+
+			if (@by == null)
+			{
+				throw new ArgumentNullException("by");
+			}
+
 			Session = session;
+			Specification = @by;
+
+			InitializeCurrentBlock();
 
 			if (Session.Monkey != null)
 			{
@@ -24,46 +36,151 @@ namespace Bumblebee.Implementation
 			}
 		}
 
-		public IList<IWebElement> FindElements(By by)
+		protected Block(IBlock parent, By @by)
 		{
-			if (Tag == null)
+			if (parent == null)
 			{
-				throw new NullReferenceException("You can't call GetElements on a block without first initializing Tag.");
+				throw new ArgumentNullException("parent");
 			}
 
-			return Tag.FindElements(by);
+			if (@by == null)
+			{
+				throw new ArgumentNullException("by");
+			}
+
+			Parent = parent;
+			Session = parent.Session;
+			Specification = @by;
+
+			InitializeCurrentBlock();
+
+			if (Session.Monkey != null)
+			{
+				Session.Monkey.Invoke(this);
+			}
 		}
 
-		[Obsolete("This method is obsolete. It will be removed in a future version. Please use FindElements() instead.")]
-		public IList<IWebElement> GetElements(By by)
+		/// <summary>
+		/// Allows for the creation of a derived Block based on a Session using reflection.
+		/// </summary>
+		/// <remarks>
+		/// This method is used by the Session.CurrentBlock() method, the FindRelated&lt;T&gt;() method and the Page.Create&lt;T&gt;(Session) method.
+		/// </remarks>
+		/// <param name="session"></param>
+		/// <typeparam name="TBlock">The type of block to create.</typeparam>
+		/// <returns>The newly constructed Block.</returns>
+		/// <exception cref="ArgumentNullException">Will be thrown if session is null.</exception>
+		/// <exception cref="ArgumentException">Will be thrown if type TBlock has no constructor accepting only a Session.</exception>
+		internal static TBlock Create<TBlock>(Session session) where TBlock : IBlock
 		{
-			if (Tag == null)
+			if (session == null)
 			{
-				throw new NullReferenceException("You can't call GetElements on a block without first initializing Tag.");
+				throw new ArgumentNullException("session");
 			}
 
-			return Tag.FindElements(by);
+			var type = typeof (TBlock);
+			var ctor = type.GetConstructor(new[] { typeof (Session) });
+
+			if (ctor == null)
+			{
+				throw new ArgumentException(String.Format("The specified type ({0}) is not a valid block or page. It must have a constructor that takes only a session.", type));
+			}
+
+			var result = (TBlock) ctor.Invoke(new object[] { session });
+
+			return result;
 		}
 
-		public IWebElement FindElement(By by)
+		/// <summary>
+		/// Allows for the creation of a derived Block based on a parent Block and By specification using reflection.
+		/// </summary>
+		/// <param name="parent">The parent Block of the type to create.</param>
+		/// <param name="by">The specification used to find the backing element of the block.</param>
+		/// <typeparam name="TBlock">The type of Block to be constructed.</typeparam>
+		/// <returns>The newly constructed Block.</returns>
+		/// <exception cref="ArgumentNullException">Will be thrown if either parent or by is null.</exception>
+		/// <exception cref="ArgumentException">Will be thrown if type TBlock has no constructor accepting an IBlock parent and a By specification.</exception>
+		public static TBlock Create<TBlock>(IBlock parent, By @by) where TBlock : IBlock
 		{
-			if (Tag == null)
+			if (parent == null)
 			{
-				throw new NullReferenceException("You can't call GetElement on a block without first initializing Tag.");
+				throw new ArgumentNullException("parent");
 			}
 
-			return Tag.FindElement(by);
+			if (@by == null)
+			{
+				throw new ArgumentNullException("by");
+			}
+
+			var type = typeof (TBlock);
+			var ctor = type.GetConstructor(new[] { typeof (IBlock), typeof (By) });
+
+			if (ctor == null)
+			{
+				throw new ArgumentException(String.Format("The specified type ({0}) is not a valid block. It must have a constructor that takes an IBlock parent and a By specification.", type));
+			}
+
+			var result = (TBlock) ctor.Invoke(new object[] { parent, @by });
+
+			return result;
 		}
 
-		[Obsolete("This method is obsolete. It will be removed in a future version. Please use FindElement() instead.")]
-		public IWebElement GetElement(By by)
-		{
-			if (Tag == null)
-			{
-				throw new NullReferenceException("You can't call GetElement on a block without first initializing Tag.");
-			}
+		public IBlock Parent { get; private set; }
 
-			return Tag.FindElement(by);
+		public Session Session { get; private set; }
+
+		public By Specification { get; private set; }
+
+		private void InitializeCurrentBlock()
+		{
+			Session.SetCurrentBlock(this);
+		}
+
+		public virtual IWebElement Tag
+		{
+			get { return Parent.FindElement(Specification); }
+		}
+
+		public virtual IWebElement FindElement(By @by)
+		{
+			return Tag.FindElement(@by);
+		}
+
+		public virtual IEnumerable<IWebElement> FindElements(By @by)
+		{
+			return Tag.FindElements(@by);
+		}
+
+		[Obsolete("This method is obsolete. Please use FindElement(By @by) instead.", error: true)]
+		public virtual IWebElement GetElement(By @by)
+		{
+			return null;
+		}
+
+		[Obsolete("This method is obsolete. Please use FindElements(By @by) instead.", error: true)]
+		public virtual IEnumerable<IWebElement> GetElements(By @by)
+		{
+			return null;
+		}
+
+		protected virtual T FindBlock<T>(By @by) where T : IBlock
+		{
+			return Create<T>(this, @by);
+		}
+
+		protected virtual IEnumerable<T> FindBlocks<T>(By @by) where T : IBlock
+		{
+			return new Blocks<T>(this, @by);
+		}
+
+		protected virtual T FindElement<T>(By @by) where T : IElement
+		{
+			return Element.Create<T>(this, @by);
+		}
+
+		protected virtual IEnumerable<T> FindElements<T>(By @by) where T : IElement
+		{
+			return new Elements<T>(this, @by);
 		}
 
 		public virtual IPerformsDragAndDrop GetDragAndDropPerformer()

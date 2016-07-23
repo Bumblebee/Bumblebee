@@ -1,4 +1,5 @@
-﻿using Bumblebee.Interfaces;
+﻿using Bumblebee.Extensions;
+using Bumblebee.Interfaces;
 
 using OpenQA.Selenium;
 
@@ -6,59 +7,58 @@ namespace Bumblebee.Implementation
 {
 	public class Checkbox : Element, ICheckbox
 	{
-		public Checkbox(IBlock parent, By by) : base(parent, by)
+		public Checkbox(IBlock parent, By @by) : base(parent, @by)
 		{
 		}
 
-		public Checkbox(IBlock parent, IWebElement tag) : base(parent, tag)
+		public TResult Check<TResult>() where TResult : IBlock
 		{
+			if (Selected == false)
+			{
+				Tag.Click();
+			}
+
+			return this.FindRelated<TResult>();
 		}
 
-		public TCustomResult Check<TCustomResult>() where TCustomResult : IBlock
+		public TResult Uncheck<TResult>() where TResult : IBlock
 		{
-			if (!Selected) Tag.Click();
-			return Session.CurrentBlock<TCustomResult>(ParentBlock.Tag);
+			if (Selected)
+			{
+				Tag.Click();
+			}
+
+			return this.FindRelated<TResult>();
 		}
 
-		public TCustomResult Uncheck<TCustomResult>() where TCustomResult : IBlock
-		{
-			if (Selected) Tag.Click();
-			return Session.CurrentBlock<TCustomResult>(ParentBlock.Tag);
-		}
-
-		public TCustomResult Toggle<TCustomResult>() where TCustomResult : IBlock
+		public TResult Toggle<TResult>() where TResult : IBlock
 		{
 			Tag.Click();
-			return Session.CurrentBlock<TCustomResult>(ParentBlock.Tag);
+
+			return this.FindRelated<TResult>();
 		}
 	}
 
-	public class Checkbox<TResult> : Checkbox, ICheckbox<TResult> where TResult : IBlock
+	public class Checkbox<TResult> : Checkbox, ICheckbox<TResult>
+		where TResult : IBlock
 	{
-		public Checkbox(IBlock parent, By by) : base(parent, by)
-		{
-		}
-
-		public Checkbox(IBlock parent, IWebElement element) : base(parent, element)
+		public Checkbox(IBlock parent, By @by) : base(parent, @by)
 		{
 		}
 
 		public virtual TResult Check()
 		{
-			if (!Selected) Tag.Click();
-			return Session.CurrentBlock<TResult>(ParentBlock.Tag);
+			return Check<TResult>();
 		}
 
 		public virtual TResult Uncheck()
 		{
-			if (Selected) Tag.Click();
-			return Session.CurrentBlock<TResult>(ParentBlock.Tag);
+			return Uncheck<TResult>();
 		}
 
 		public virtual TResult Toggle()
 		{
-			Tag.Click();
-			return Session.CurrentBlock<TResult>(ParentBlock.Tag);
+			return Toggle<TResult>();
 		}
 	}
 }

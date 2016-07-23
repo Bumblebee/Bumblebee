@@ -1,6 +1,6 @@
 using Bumblebee.Extensions;
 using Bumblebee.IntegrationTests.Shared.Hosting;
-using Bumblebee.IntegrationTests.Shared.Pages.Implementation;
+using Bumblebee.IntegrationTests.Shared.Pages;
 using Bumblebee.Setup;
 using Bumblebee.Setup.DriverEnvironments;
 
@@ -16,15 +16,15 @@ namespace Bumblebee.IntegrationTests.Implementation.ClickableTests
 	public class Given_double_clickable : HostTestFixture
 	{
 		[TestFixtureSetUp]
-		public void Init()
+		public void SetUpFixture()
 		{
 			Threaded<Session>
 				.With<PhantomJS>()
-				.NavigateTo<DoubleClickablePage>(BaseUrl + "/Content/DoubleClick.html");
+				.NavigateTo<DoubleClickablePage>(GetUrl("DoubleClick.html"));
 		}
 
 		[TestFixtureTearDown]
-		public void Dispose()
+		public void DisposeFixture()
 		{
 			Threaded<Session>
 				.End();

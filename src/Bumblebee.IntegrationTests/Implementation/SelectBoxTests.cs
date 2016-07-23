@@ -1,11 +1,13 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
+
 using Bumblebee.Extensions;
 using Bumblebee.IntegrationTests.Shared.Hosting;
-using Bumblebee.IntegrationTests.Shared.Pages.Implementation;
+using Bumblebee.IntegrationTests.Shared.Pages;
 using Bumblebee.Setup;
 using Bumblebee.Setup.DriverEnvironments;
+
 using FluentAssertions;
+
 using NUnit.Framework;
 
 namespace Bumblebee.IntegrationTests.Implementation
@@ -16,15 +18,15 @@ namespace Bumblebee.IntegrationTests.Implementation
 	public class Given_select_box_with_ability_to_select_multiple_values : HostTestFixture
 	{
 		[TestFixtureSetUp]
-		public void Init()
+		public void SetUpFixture()
 		{
 			Threaded<Session>
 				.With<PhantomJS>()
-				.NavigateTo<MultiSelectPage>(String.Format("{0}/Content/MultiSelect.html", BaseUrl));
+				.NavigateTo<MultiSelectPage>(GetUrl("MultiSelect.html"));
 		}
 
 		[TestFixtureTearDown]
-		public void Dispose()
+		public void DisposeFixture()
 		{
 			Threaded<Session>
 				.End();

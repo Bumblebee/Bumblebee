@@ -37,44 +37,52 @@
     <Compile Include="CallStack.cs" />
     <Compile Include="Extensions\AdvancedSeleniumActions.cs" />
     <Compile Include="Extensions\BlockConvenience.cs" />
+    <Compile Include="Extensions\BlockSearchingExtensions.cs" />
     <Compile Include="Extensions\Debugging.cs" />
     <Compile Include="Extensions\DragAction.cs" />
     <Compile Include="Extensions\Filtering.cs" />
-    <Compile Include="Extensions\JQueryExtensions.cs" />
+    <Compile Include="Extensions\HasParentExtensions.cs" />
     <Compile Include="Extensions\MethodBaseExtensions.cs" />
     <Compile Include="Extensions\Miscellaneous.cs" />
     <Compile Include="Extensions\Randomization.cs" />
     <Compile Include="Extensions\Verification.cs" />
     <Compile Include="Extensions\WebElementConvenience.cs" />
+    <Compile Include="Implementation\Blocks.cs" />
+    <Compile Include="Implementation\Elements.cs" />
+    <Compile Include="Implementation\InlineFrame.cs" />
     <Compile Include="Implementation\Monkey.cs" />
     <Compile Include="Implementation\DateField.cs" />
+    <Compile Include="Implementation\Page.cs" />
     <Compile Include="Implementation\RadioButton.cs" />
     <Compile Include="Implementation\RadioButtons.cs" />
+    <Compile Include="Implementation\SpecificBlock.cs" />
     <Compile Include="Implementation\WebDragAndDropPerformer.cs" />
     <Compile Include="Implementation\NumericField.cs" />
     <Compile Include="Implementation\Table.cs" />
     <Compile Include="Implementation\TableRow.cs" />
     <Compile Include="Implementation\WebBlock.cs" />
-    <Compile Include="Interfaces\IAllowsNoOp.cs" />
+    <Compile Include="Implementation\WebPage.cs" />
     <Compile Include="Interfaces\IBlock.cs" />
     <Compile Include="Implementation\AlertDialog.cs" />
     <Compile Include="Implementation\Block.cs" />
     <Compile Include="Implementation\Element.cs" />
     <Compile Include="Extensions\JavaScriptExecution.cs" />
     <Compile Include="Interfaces\IAlertDialog.cs" />
-    <Compile Include="Implementation\Copy.cs" />
-    <Compile Include="Interfaces\ICopy.cs" />
     <Compile Include="Interfaces\IDateField.cs" />
     <Compile Include="Interfaces\IDoubleClickable.cs" />
     <Compile Include="Interfaces\IDraggable.cs" />
-    <Compile Include="Interfaces\IGenericElement.cs" />
     <Compile Include="Interfaces\IHasBackingElement.cs" />
     <Compile Include="Interfaces\IHasSession.cs" />
+    <Compile Include="Interfaces\IHasParent.cs" />
     <Compile Include="Interfaces\IMonkey.cs" />
     <Compile Include="Interfaces\IMonkeyable.cs" />
     <Compile Include="Interfaces\INumericField.cs" />
+    <Compile Include="Interfaces\IPage.cs" />
     <Compile Include="Interfaces\IPerformsDragAndDrop.cs" />
     <Compile Include="BumblebeeAttribute.cs" />
+    <Compile Include="JQuery\ByJQuery.cs" />
+    <Compile Include="JQuery\SessionExtensions.cs" />
+    <Compile Include="JQuery\SpecificationExtensions.cs" />
     <Compile Include="Key.cs" />
     <Compile Include="Setup\DriverEnvironments\Chrome.cs" />
     <Compile Include="Setup\DriverEnvironments\Firefox.cs" />
@@ -85,7 +93,6 @@
     <Compile Include="Setup\IDriverEnvironment.cs" />
     <Compile Include="Interfaces\IElement.cs" />
     <Compile Include="Interfaces\IRadioButtons.cs" />
-    <Compile Include="Interfaces\ISpecificBlock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Setup\DriverEnvironments\InternetExplorer.cs" />
     <Compile Include="Setup\ISettings.cs" />
@@ -102,20 +109,26 @@
     <Compile Include="Interfaces\ITextField.cs" />
     <Compile Include="Interfaces\IHasText.cs" />
     <Compile Include="Interfaces\ISelectable.cs" />
-    <Compile Include="Implementation\SpecificBlock.cs" />
     <Compile Include="Exceptions\VerificationException.cs" />
     <Compile Include="Setup\Settings.cs" />
     <Compile Include="Setup\ThreadedSession.cs" />
+    <Compile Include="Specifications\ByExtensions.cs" />
+    <Compile Include="Specifications\ByFunctionWithListOutput.cs" />
+    <Compile Include="Specifications\ByFunctionWithSingleOutput.cs" />
+    <Compile Include="Specifications\ByOrdinal.cs" />
+    <Compile Include="Specifications\ByWithWait.cs" />
+    <Compile Include="Specifications\ISpecification.cs" />
+    <Compile Include="Specifications\Specification.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
-    <Reference Include="WebDriver, Version=2.45.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Selenium.WebDriver.2.45.0\lib\net40\WebDriver.dll</HintPath>
+    <Reference Include="WebDriver, Version=2.47.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Selenium.WebDriver.2.47.0\lib\net40\WebDriver.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="WebDriver.Support, Version=2.45.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Selenium.Support.2.45.0\lib\net40\WebDriver.Support.dll</HintPath>
+    <Reference Include="WebDriver.Support, Version=2.47.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Selenium.Support.2.47.0\lib\net40\WebDriver.Support.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>

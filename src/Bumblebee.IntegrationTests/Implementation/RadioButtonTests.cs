@@ -1,10 +1,13 @@
 ﻿using System.Linq;
+
 using Bumblebee.Extensions;
 using Bumblebee.IntegrationTests.Shared.Hosting;
-using Bumblebee.IntegrationTests.Shared.Pages.Implementation;
+using Bumblebee.IntegrationTests.Shared.Pages;
 using Bumblebee.Setup;
 using Bumblebee.Setup.DriverEnvironments;
+
 using FluentAssertions;
+
 using NUnit.Framework;
 
 namespace Bumblebee.IntegrationTests.Implementation
@@ -15,15 +18,15 @@ namespace Bumblebee.IntegrationTests.Implementation
 	public class RadioButtonTests : HostTestFixture
 	{
 		[TestFixtureSetUp]
-		public void Init()
+		public void TestFixtureSetUp()
 		{
 			Threaded<Session>
 				.With<PhantomJS>()
-				.NavigateTo<RadioButtonsPage>(BaseUrl + "/Content/RadioButtons.html");
+				.NavigateTo<RadioButtonsPage>(GetUrl("RadioButtons.html"));
 		}
 
 		[TestFixtureTearDown]
-		public void Dispose()
+		public void TestFixtureTearDown()
 		{
 			Threaded<Session>
 				.End();

@@ -80,7 +80,7 @@ namespace Bumblebee.IntegrationTests.Extensions
 
 			action
 				.ShouldThrow<VerificationException>()
-				.WithMessage(string.Format("Unable to verify.  {0}", expectedMessage))
+				.WithMessage(String.Format("Unable to verify.  {0}", expectedMessage))
 				.WithInnerException<AssertionException>()
 				.WithInnerMessage(expectedMessage);
 		}
@@ -244,9 +244,24 @@ namespace Bumblebee.IntegrationTests.Extensions
 
 	public class TestClickable : IClickable
 	{
+		public IBlock Parent { get; set; }
 		public IWebElement Tag { get; set; }
 		public Session Session { get; set; }
 		public string Text { get; set; }
+
+		public TParent ParentAs<TParent>() where TParent : IBlock
+		{
+			var type = typeof (TParent);
+
+			var result = default (TParent);
+
+			if (type.IsInstanceOfType(Parent))
+			{
+				result = (TParent)Parent;
+			}
+
+			return result;
+		}
 
 		public TResult Click<TResult>() where TResult : IBlock
 		{

@@ -4,7 +4,7 @@ using System.Reflection;
 
 using Bumblebee.Extensions;
 using Bumblebee.IntegrationTests.Shared.Hosting;
-using Bumblebee.IntegrationTests.Shared.Pages.Implementation;
+using Bumblebee.IntegrationTests.Shared.Pages;
 using Bumblebee.Setup;
 using Bumblebee.Setup.DriverEnvironments;
 
@@ -16,7 +16,7 @@ using NUnit.Framework;
 
 namespace Bumblebee.IntegrationTests.Setup.SessionTests
 {
-    [TestFixture]
+	[TestFixture]
 	public class Given_environment_and_default_settings_When_capturing : HostTestFixture
 	{
 		private string path;

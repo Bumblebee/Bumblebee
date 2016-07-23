@@ -7,15 +7,18 @@ namespace Bumblebee.Implementation
 {
 	public abstract class Monkey : IMonkey
 	{
-		private double _probability { get; set; }
+		private double _probability;
 
 		protected double Probability
 		{
 			get { return _probability; }
 			set
 			{
-				if (value > 1 || value < 0)
+				if ((value > 1) || (value < 0))
+				{
 					throw new FormatException("Probability must be between 0 and 1");
+				}
+
 				_probability = value;
 			}
 		}

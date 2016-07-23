@@ -5,7 +5,7 @@
 		TResult Click<TResult>() where TResult : IBlock;
 	}
 
-	public interface IClickable<out TResult> : IClickable, IGenericElement<TResult>
+	public interface IClickable<out TResult> : IClickable
 		where TResult : IBlock
 	{
 		TResult Click();

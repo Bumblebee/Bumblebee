@@ -9,7 +9,7 @@ namespace Bumblebee.IntegrationTests.Shared.Hosting
 	{
 		private IHost _host;
 
-		protected HostTestFixture() : this("http://localhost:1234")
+		protected HostTestFixture() : this("http://localhost:5000")
 		{
 		}
 
@@ -31,9 +31,9 @@ namespace Bumblebee.IntegrationTests.Shared.Hosting
 			_host.Stop();
 		}
 
-		protected string GetUrl(string page)
+		protected virtual string GetUrl(string page)
 		{
-			return String.Format("{0}{1}{2}", BaseUrl, "/Content/", page);
+			return String.Format("{0}/Content/{1}", BaseUrl, page);
 		}
 
 		protected string BaseUrl { get; private set; }
