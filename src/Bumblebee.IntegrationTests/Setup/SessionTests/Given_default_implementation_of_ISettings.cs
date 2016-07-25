@@ -61,9 +61,7 @@ namespace Bumblebee.IntegrationTests.Setup.SessionTests
 		[Test]
 		public void When_path_points_to_a_file_Then_an_exception_is_thrown()
 		{
-			var drive = Path.GetPathRoot(Environment.CurrentDirectory);
-
-			var filename = Path.Combine(drive, String.Format("{0}.txt", Guid.NewGuid()));
+			var filename = Path.Combine(Environment.CurrentDirectory, String.Format("{0}.txt", Guid.NewGuid()));
 
 			File.Delete(filename);
 
