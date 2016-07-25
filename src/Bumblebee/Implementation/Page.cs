@@ -34,12 +34,12 @@ namespace Bumblebee.Implementation
 		}
 
 		/// <summary>
-		/// Allows for the creation of a derived Page based on a Session using reflection.
+		/// Allows for the creation of a derived <c ref="IPage">IPage</c> based on <paramref name="session" /> using reflection.
 		/// </summary>
 		/// <typeparam name="TPage"></typeparam>
 		/// <param name="session"></param>
 		/// <returns>The newly constructed Page object.</returns>
-		public static TPage Create<TPage>(Session session) where TPage : IPage
+		public new static TPage Create<TPage>(Session session) where TPage : IPage
 		{
 			return Block.Create<TPage>(session);
 		}

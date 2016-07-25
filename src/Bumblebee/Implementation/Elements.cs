@@ -20,7 +20,7 @@ namespace Bumblebee.Implementation
 		private readonly By _by;
 
 		/// <summary>
-		/// To construct a set of Elements, you must have both a parent block and a specification for finding the elements.
+		/// Initializes a new instance of the Elements class. To construct a set of Elements, you must have both a parent block and a specification for finding the elements.
 		/// </summary>
 		/// <param name="parent">The parent block.</param>
 		/// <param name="by">The specification for finding the elements.</param>

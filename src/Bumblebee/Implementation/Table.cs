@@ -9,10 +9,18 @@ namespace Bumblebee.Implementation
 {
 	public class Table : Block, ITable
 	{
+		/// <summary>
+		/// Initializes an instance of the <see cref="Table" /> class.
+		/// </summary>
+		/// <param name="parent"></param>
+		/// <param name="by"></param>
 		public Table(IBlock parent, By @by) : base(parent, @by)
 		{
 		}
 
+		/// <summary>
+		/// Gets the header cells of this table.
+		/// </summary>
 		public IEnumerable<string> Headers
 		{
 			get
@@ -24,6 +32,9 @@ namespace Bumblebee.Implementation
 			}
 		}
 
+		/// <summary>
+		/// Gets the rows of this table.
+		/// </summary>
 		public IEnumerable<ITableRow> Rows
 		{
 			get
@@ -32,6 +43,9 @@ namespace Bumblebee.Implementation
 			}
 		}
 
+		/// <summary>
+		/// Gets the footer cells of this table.
+		/// </summary>
 		public IEnumerable<string> Footers
 		{
 			get

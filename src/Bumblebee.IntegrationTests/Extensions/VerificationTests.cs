@@ -249,18 +249,9 @@ namespace Bumblebee.IntegrationTests.Extensions
 		public Session Session { get; set; }
 		public string Text { get; set; }
 
-		public TParent ParentAs<TParent>() where TParent : IBlock
+		public string GetAttribute(string name)
 		{
-			var type = typeof (TParent);
-
-			var result = default (TParent);
-
-			if (type.IsInstanceOfType(Parent))
-			{
-				result = (TParent)Parent;
-			}
-
-			return result;
+			return Tag.GetAttribute(name);
 		}
 
 		public TResult Click<TResult>() where TResult : IBlock

@@ -136,9 +136,22 @@ namespace Bumblebee.Implementation
 			Session.SetCurrentBlock(this);
 		}
 
+		/// <summary>
+		/// Gets the Selenium IWebElement that underpins this component.
+		/// </summary>
 		public virtual IWebElement Tag
 		{
 			get { return Parent.FindElement(Specification); }
+		}
+
+		/// <summary>
+		/// Gets the value of the specified attribute for this component.
+		/// </summary>
+		/// <param name="name">The name of the attribute.</param>
+		/// <returns>The value of the attribute.</returns>
+		public virtual string GetAttribute(string name)
+		{
+			return Tag.GetAttribute(name);
 		}
 
 		public virtual IWebElement FindElement(By @by)
@@ -178,6 +191,12 @@ namespace Bumblebee.Implementation
 			return Element.Create<T>(this, @by);
 		}
 
+		/// <summary>
+		/// Gets an <see cref="Implementation.Elements" /> collection of element type <typeparamref name="T" />.
+		/// </summary>
+		/// <typeparam name="T">The type of element object to create. Must extend <see cref="IElement" />.</typeparam>
+		/// <param name="by">The specification for finding the set of elements.</param>
+		/// <returns></returns>
 		protected virtual IEnumerable<T> FindElements<T>(By @by) where T : IElement
 		{
 			return new Elements<T>(this, @by);

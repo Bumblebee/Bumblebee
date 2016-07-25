@@ -16,12 +16,12 @@ namespace Bumblebee.Implementation
 		protected static readonly ISpecification By = new Specification();
 
 		/// <summary>
-		/// The text for the given element.
+		/// Gets the text for the given element.
 		/// </summary>
 		public virtual string Text { get { return Tag.Text; } }
 
 		/// <summary>
-		/// Determines if the element is select or not.
+		/// Gets whether the element is selected or not.
 		/// </summary>
 		public virtual bool Selected { get { return Tag.Selected; } }
 
@@ -97,19 +97,19 @@ namespace Bumblebee.Implementation
 		}
 
 		/// <summary>
-		/// The parent block.
+		/// Gets the parent block.
 		/// </summary>
 		public IBlock Parent { get; private set; }
 
 		/// <summary>
-		/// The current session.
+		/// Gets the current session.
 		/// </summary>
 		public Session Session { get; private set; }
 
 		private By Specification { get; set; }
 
 		/// <summary>
-		/// The actual web element that the Element is abstracting.
+		/// Gets the Selenium IWebElement that underpins this component.
 		/// </summary>
 		public IWebElement Tag
 		{
@@ -117,6 +117,16 @@ namespace Bumblebee.Implementation
 			{
 				return Parent.FindElement(Specification);
 			}
+		}
+
+		/// <summary>
+		/// Gets the value of the specified attribute for this component.
+		/// </summary>
+		/// <param name="name">The name of the attribute.</param>
+		/// <returns>The value of the attribute.</returns>
+		public virtual string GetAttribute(string name)
+		{
+			return Tag.GetAttribute(name);
 		}
 
 		/// <summary>
