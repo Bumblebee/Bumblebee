@@ -10,7 +10,8 @@ namespace Bumblebee.IntegrationTests.Shared.Hosting
 
 		public Host(Uri baseUri)
 		{
-			_host = new NancyHost(baseUri);
+			var config = new HostConfiguration {UrlReservations = {CreateAutomatically = true}};
+		    	_host = new NancyHost(config, baseUri);
 		}
 
 		public void Start()
