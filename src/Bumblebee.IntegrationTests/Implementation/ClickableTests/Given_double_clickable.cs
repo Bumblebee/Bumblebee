@@ -15,7 +15,7 @@ namespace Bumblebee.IntegrationTests.Implementation.ClickableTests
 	[TestFixture]
 	public class Given_double_clickable : HostTestFixture
 	{
-		[TestFixtureSetUp]
+		[OneTimeSetUp]
 		public void SetUpFixture()
 		{
 			Threaded<Session>
@@ -23,7 +23,7 @@ namespace Bumblebee.IntegrationTests.Implementation.ClickableTests
 				.NavigateTo<DoubleClickablePage>(GetUrl("DoubleClick.html"));
 		}
 
-		[TestFixtureTearDown]
+		[OneTimeTearDown]
 		public void DisposeFixture()
 		{
 			Threaded<Session>

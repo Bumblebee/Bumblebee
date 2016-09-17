@@ -17,7 +17,7 @@ namespace Bumblebee.IntegrationTests.Implementation
 	[TestFixture]
 	public class RadioButtonTests : HostTestFixture
 	{
-		[TestFixtureSetUp]
+		[OneTimeSetUp]
 		public void TestFixtureSetUp()
 		{
 			Threaded<Session>
@@ -25,7 +25,7 @@ namespace Bumblebee.IntegrationTests.Implementation
 				.NavigateTo<RadioButtonsPage>(GetUrl("RadioButtons.html"));
 		}
 
-		[TestFixtureTearDown]
+		[OneTimeTearDown]
 		public void TestFixtureTearDown()
 		{
 			Threaded<Session>

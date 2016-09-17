@@ -20,14 +20,14 @@ namespace Bumblebee.IntegrationTests.Implementation
 	{
 		private readonly ThreadLocal<Session> _session = new ThreadLocal<Session>(() => new Session(new PhantomJS()));
 
-		[TestFixtureSetUp]
+		[OneTimeSetUp]
 		public void TestFixtureSetUp()
 		{
 			Session
 				.NavigateTo<TestablePage>(GetUrl("Dialogs.html"));
 		}
 
-		[TestFixtureTearDown]
+		[OneTimeTearDown]
 		public void TestFixtureTearDown()
 		{
 			Session

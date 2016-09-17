@@ -65,7 +65,7 @@ namespace Bumblebee.IntegrationTests.Setup.SessionTests
 			return result;
 		}
 
-		private readonly TestCaseData[] TestCases =
+		private static readonly TestCaseData[] TestCases =
 		{
 			new TestCaseData("screenshot.png", ImageFormat.Png, "image/x-png"),
 			new TestCaseData("screenshot.jpg", ImageFormat.Jpeg, "image/pjpeg"),
@@ -76,13 +76,13 @@ namespace Bumblebee.IntegrationTests.Setup.SessionTests
 
 		private Session _session;
 
-		[TestFixtureSetUp]
+		[OneTimeSetUp]
 		public void TestFixtureSetUp()
 		{
 			_session = new Session(new Chrome());
 		}
 
-		[TestFixtureTearDown]
+		[OneTimeTearDown]
 		public void TestFixtureTearDown()
 		{
 			_session.End();

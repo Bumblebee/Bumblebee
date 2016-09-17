@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 
 using Bumblebee.Extensions;
@@ -21,12 +22,12 @@ namespace Bumblebee.IntegrationTests.Setup.SessionTests
 		private Session _session;
 		private Session _returnSession;
 
-		[TestFixtureSetUp]
+		[OneTimeSetUp]
 		public void Before()
 		{
 			var currentMethod = CallStack.GetCurrentMethod().GetFullName();
 
-			const string path = @"C:\Temp";
+			var path = Path.GetTempPath();
 			_filePath = Path.ChangeExtension(Path.Combine(path, currentMethod), "png");
 			File.Delete(_filePath);
 
@@ -40,7 +41,7 @@ namespace Bumblebee.IntegrationTests.Setup.SessionTests
 			_returnSession = _session.CaptureScreen(_filePath);
 		}
 
-		[TestFixtureTearDown]
+		[OneTimeTearDown]
 		public void After()
 		{
 			_session.End();
@@ -48,13 +49,13 @@ namespace Bumblebee.IntegrationTests.Setup.SessionTests
 		}
 
 		[Test]
-		public void should_save_in_path()
+		public void Should_save_in_path()
 		{
 			File.Exists(_filePath).Should().BeTrue();
 		}
 
 		[Test]
-		public void should_return_session()
+		public void Should_return_session()
 		{
 			_returnSession.Should().Be(_session);
 		}

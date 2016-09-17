@@ -17,7 +17,7 @@ namespace Bumblebee.IntegrationTests.Implementation.TableTests
 	[TestFixture]
 	public class Given_table : HostTestFixture
 	{
-		[TestFixtureSetUp]
+		[OneTimeSetUp]
 		public void TestFixtureSetUp()
 		{
 			Threaded<Session>
@@ -25,7 +25,7 @@ namespace Bumblebee.IntegrationTests.Implementation.TableTests
 				.NavigateTo<TablePage>(GetUrl("Table.html"));
 		}
 
-		[TestFixtureTearDown]
+		[OneTimeTearDown]
 		public void TestFixtureTearDown()
 		{
 			Threaded<Session>

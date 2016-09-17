@@ -17,7 +17,7 @@ namespace Bumblebee.IntegrationTests.Implementation
 	[TestFixture]
 	public class Given_date_field : HostTestFixture
 	{
-		[TestFixtureSetUp]
+		[OneTimeSetUp]
 		public void TestFixtureSetUp()
 		{
 			Threaded<Session>
@@ -25,7 +25,7 @@ namespace Bumblebee.IntegrationTests.Implementation
 				.NavigateTo<DateFieldPage>(GetUrl("DateField.html"));
 		}
 
-		[TestFixtureTearDown]
+		[OneTimeTearDown]
 		public void TestFixtureTearDown()
 		{
 			Threaded<Session>

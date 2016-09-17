@@ -18,7 +18,7 @@ namespace Bumblebee.IntegrationTests.Implementation.SelectBoxTests
 	[TestFixture]
 	public class Given_select_box_with_one_hundred_thousand_items : HostTestFixture
 	{
-		[TestFixtureSetUp]
+		[OneTimeSetUp]
 		public void TestFixtureSetUp()
 		{
 			Threaded<Session>
@@ -26,7 +26,7 @@ namespace Bumblebee.IntegrationTests.Implementation.SelectBoxTests
 				.NavigateTo<HundredThousandItemSelectPage>(GetUrl("HundredThousandItemSelect.html"));
 		}
 
-		[TestFixtureTearDown]
+		[OneTimeTearDown]
 		public void TestFixtureTearDown()
 		{
 			Threaded<Session>
