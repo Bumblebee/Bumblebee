@@ -20,7 +20,7 @@ namespace Bumblebee.IntegrationTests.Specifications
 	[TestFixture]
 	public class ByOrdinalTests : HostTestFixture
 	{
-		[TestFixtureSetUp]
+		[OneTimeSetUp]
 		public void TestFixtureSetUp()
 		{
 			Threaded<Session>
@@ -28,7 +28,7 @@ namespace Bumblebee.IntegrationTests.Specifications
 				.NavigateTo<ByOrdinalPage>(GetUrl("ByOrdinal.html"));
 		}
 
-		[TestFixtureTearDown]
+		[OneTimeTearDown]
 		public void TestFixtureTearDown()
 		{
 			Threaded<Session>

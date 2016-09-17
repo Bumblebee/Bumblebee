@@ -17,7 +17,7 @@ namespace Bumblebee.IntegrationTests.Specifications.ByJQueryTests
 	[TestFixture]
 	public class Given_an_invalid_selector : HostTestFixture
 	{
-		[TestFixtureSetUp]
+		[OneTimeSetUp]
 		public void TestFixtureSetUp()
 		{
 			Threaded<Session>
@@ -25,7 +25,7 @@ namespace Bumblebee.IntegrationTests.Specifications.ByJQueryTests
 				.NavigateTo<PageWithJQuery>(GetUrl("PageWithJQuery.html"));
 		}
 
-		[TestFixtureTearDown]
+		[OneTimeTearDown]
 		public void TestFixtureTearDown()
 		{
 			Threaded<Session>

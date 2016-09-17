@@ -19,7 +19,7 @@ namespace Bumblebee.IntegrationTests.Specifications.ByJQueryTests
 	[TestFixture]
 	public class Given_page_loads_slowly : HostTestFixture
 	{
-		[TestFixtureSetUp]
+		[OneTimeSetUp]
 		public void TestFixtureSetUp()
 		{
 			Threaded<Session>
@@ -27,7 +27,7 @@ namespace Bumblebee.IntegrationTests.Specifications.ByJQueryTests
 				.NavigateTo<SlowPageWithJQuery>(GetUrl("SlowPageWithJQuery.html"));
 		}
 
-		[TestFixtureTearDown]
+		[OneTimeTearDown]
 		public void TestFixtureTearDown()
 		{
 			Threaded<Session>

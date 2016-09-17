@@ -13,7 +13,7 @@ namespace Bumblebee.IntegrationTests.Extensions.FindRelatedTests
 	[TestFixture]
 	public class Given_parent_element_that_gets_removed : HostTestFixture
 	{
-		[TestFixtureSetUp]
+		[OneTimeSetUp]
 		public void TestFixtureSetUp()
 		{
 			Threaded<Session>
@@ -21,7 +21,7 @@ namespace Bumblebee.IntegrationTests.Extensions.FindRelatedTests
 				.NavigateTo<JavaScriptPopUpPage>(GetUrl("JavaScriptPopUp.html"));
 		}
 
-		[TestFixtureTearDown]
+		[OneTimeTearDown]
 		public void TestFixtureTearDown()
 		{
 			Threaded<Session>

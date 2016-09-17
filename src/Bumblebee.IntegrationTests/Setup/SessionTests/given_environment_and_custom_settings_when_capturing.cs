@@ -21,7 +21,7 @@ namespace Bumblebee.IntegrationTests.Setup.SessionTests
 		private Session _session;
 		private Session _returnSession;
 
-		[TestFixtureSetUp]
+		[OneTimeSetUp]
 		public void Before()
 		{
 			var currentMethod = CallStack.GetCurrentMethod().GetFullName();
@@ -41,7 +41,7 @@ namespace Bumblebee.IntegrationTests.Setup.SessionTests
 			_returnSession = _session.CaptureScreen(_filePath);
 		}
 
-		[TestFixtureTearDown]
+		[OneTimeTearDown]
 		public void After()
 		{
 			_session.End();

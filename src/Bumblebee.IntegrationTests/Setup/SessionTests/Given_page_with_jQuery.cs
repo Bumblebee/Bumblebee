@@ -15,7 +15,7 @@ namespace Bumblebee.IntegrationTests.Setup.SessionTests
 	[TestFixture]
 	public class Given_page_with_jQuery : HostTestFixture
 	{
-		[TestFixtureSetUp]
+		[OneTimeSetUp]
 		public void TestFixtureSetUp()
 		{
 			Threaded<Session>
@@ -23,7 +23,7 @@ namespace Bumblebee.IntegrationTests.Setup.SessionTests
 				.NavigateTo<PageWithJQuery>(GetUrl("PageWithJQuery.html"));
 		}
 
-		[TestFixtureTearDown]
+		[OneTimeTearDown]
 		public void TestFixtureTearDown()
 		{
 			Threaded<Session>

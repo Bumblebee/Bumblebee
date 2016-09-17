@@ -18,14 +18,14 @@ namespace Bumblebee.IntegrationTests.Shared.Hosting
 			BaseUrl = baseUrl;
 		}
 
-		[TestFixtureSetUp]
+		[OneTimeSetUp]
 		public void Init()
 		{
 			_host = new Host(new Uri(BaseUrl));
 			_host.Start();
 		}
 
-		[TestFixtureTearDown]
+		[OneTimeTearDown]
 		public void Dispose()
 		{
 			_host.Stop();

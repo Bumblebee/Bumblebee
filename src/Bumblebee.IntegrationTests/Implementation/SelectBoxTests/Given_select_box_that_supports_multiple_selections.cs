@@ -20,7 +20,7 @@ namespace Bumblebee.IntegrationTests.Implementation.SelectBoxTests
 	[TestFixture]
 	public class Given_select_box_that_supports_multiple_selections : HostTestFixture
 	{
-		[TestFixtureSetUp]
+		[OneTimeSetUp]
 		public void SetUpFixture()
 		{
 			Threaded<Session>
@@ -28,7 +28,7 @@ namespace Bumblebee.IntegrationTests.Implementation.SelectBoxTests
 				.NavigateTo<SelectPage>(GetUrl("MultiSelect.html"));
 		}
 
-		[TestFixtureTearDown]
+		[OneTimeTearDown]
 		public void DisposeFixture()
 		{
 			Threaded<Session>

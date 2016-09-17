@@ -76,13 +76,13 @@ namespace Bumblebee.IntegrationTests.Setup.SessionTests
 
 		private Session _session;
 
-		[TestFixtureSetUp]
+		[OneTimeSetUp]
 		public void TestFixtureSetUp()
 		{
 			_session = new Session(new Chrome());
 		}
 
-		[TestFixtureTearDown]
+		[OneTimeTearDown]
 		public void TestFixtureTearDown()
 		{
 			_session.End();
