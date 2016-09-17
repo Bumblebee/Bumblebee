@@ -65,7 +65,7 @@ namespace Bumblebee.IntegrationTests.Setup.SessionTests
 			return result;
 		}
 
-		private readonly TestCaseData[] TestCases =
+		private static readonly TestCaseData[] TestCases =
 		{
 			new TestCaseData("screenshot.png", ImageFormat.Png, "image/x-png"),
 			new TestCaseData("screenshot.jpg", ImageFormat.Jpeg, "image/pjpeg"),
