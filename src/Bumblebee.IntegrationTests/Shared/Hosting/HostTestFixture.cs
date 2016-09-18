@@ -12,9 +12,6 @@ namespace Bumblebee.IntegrationTests.Shared.Hosting
             return String.Format("{0}/Content/{1}", BaseUrl, page);
         }
 
-        public static string BaseUrl
-        {
-            get { return "http://localhost:5000"; }
-        }
+        public static readonly string BaseUrl = "http://localhost:5000"; 
     }
 }
