@@ -89,6 +89,7 @@
     <Compile Include="Implementation\SelectBoxTests\Given_select_box_with_one_hundred_thousand_items.cs" />
     <Compile Include="Implementation\WebPageTests\Given_slow_web_page_with_explicit_wait.cs" />
     <Compile Include="Implementation\WebPageTests\Given_slow_web_page_with_no_wait.cs" />
+    <Compile Include="Shared\Hosting\AssemblyTestFixture.cs" />
     <Compile Include="Shared\Pages\CurrentBlockDefaultPage.cs" />
     <Compile Include="Shared\Pages\CurrentBlockNavigateToPage.cs" />
     <Compile Include="Setup\SessionTests\Given_user_has_navigated_to_a_page.cs" />
