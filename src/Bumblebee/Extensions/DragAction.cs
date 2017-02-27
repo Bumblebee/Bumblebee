@@ -29,7 +29,7 @@ namespace Bumblebee.Extensions
 		/// </summary>
 		/// <param name="getDropzone">The get dropzone.</param>
 		/// <returns></returns>
-		public TParent AndDrop(Func<TParent, IHasBackingElement> getDropzone)
+		public virtual TParent AndDrop(Func<TParent, IHasBackingElement> getDropzone)
 		{
 			PerformDragAndDrop(getDropzone);
 
@@ -42,7 +42,7 @@ namespace Bumblebee.Extensions
 		/// <typeparam name="TCustomResult">The type of the custom result.</typeparam>
 		/// <param name="getDropzone">The get dropzone.</param>
 		/// <returns></returns>
-		public TCustomResult AndDrop<TCustomResult>(Func<TParent, IHasBackingElement> getDropzone) where TCustomResult : IBlock
+		public virtual TCustomResult AndDrop<TCustomResult>(Func<TParent, IHasBackingElement> getDropzone) where TCustomResult : IBlock
 		{
 			PerformDragAndDrop(getDropzone);
 
@@ -55,7 +55,7 @@ namespace Bumblebee.Extensions
 		/// <param name="xOffset">The x offset.</param>
 		/// <param name="yOffset">The y offset.</param>
 		/// <returns></returns>
-		public TParent AndDrop(int xOffset, int yOffset)
+		public virtual TParent AndDrop(int xOffset, int yOffset)
 		{
 			PerformDragAndDrop(xOffset, yOffset);
 
@@ -69,7 +69,7 @@ namespace Bumblebee.Extensions
 		/// <param name="xOffset">The x offset.</param>
 		/// <param name="yOffset">The y offset.</param>
 		/// <returns></returns>
-		public TCustomResult AndDrop<TCustomResult>(int xOffset, int yOffset) where TCustomResult : IBlock
+		public virtual TCustomResult AndDrop<TCustomResult>(int xOffset, int yOffset) where TCustomResult : IBlock
 		{
 			PerformDragAndDrop(xOffset, yOffset);
 
