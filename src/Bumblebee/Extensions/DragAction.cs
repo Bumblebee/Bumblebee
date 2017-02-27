@@ -46,7 +46,7 @@ namespace Bumblebee.Extensions
 		{
 			PerformDragAndDrop(getDropzone);
 
-			return Parent.Session.CurrentBlock<TCustomResult>();
+			return WrapResult<TCustomResult>();
 		}
 
 		/// <summary>
@@ -59,7 +59,7 @@ namespace Bumblebee.Extensions
 		{
 			PerformDragAndDrop(xOffset, yOffset);
 
-			return Parent.Session.CurrentBlock<TParent>();
+			return WrapResult<TParent>();
 		}
 
 		/// <summary>
@@ -73,19 +73,38 @@ namespace Bumblebee.Extensions
 		{
 			PerformDragAndDrop(xOffset, yOffset);
 
-			return Parent.Session.CurrentBlock<TCustomResult>();
+			return WrapResult<TCustomResult>();
 		}
 
-		private void PerformDragAndDrop(Func<TParent, IHasBackingElement> getDropzone)
+		/// <summary>
+		/// Executes drag and drop.
+		/// </summary>
+		/// <param name="getDropzone">The get dropzone.</param>
+		protected void PerformDragAndDrop(Func<TParent, IHasBackingElement> getDropzone)
 		{
 			var dropzone = getDropzone(Parent);
 
 			Parent.GetDragAndDropPerformer().DragAndDrop(Draggable.Tag, dropzone.Tag);
 		}
 
-		private void PerformDragAndDrop(int xOffset, int yOffset)
+		/// <summary>
+		/// Executes drag and drop.
+		/// </summary>
+		/// <param name="xOffset">The x offset.</param>
+		/// <param name="yOffset">The y offset.</param>
+		protected void PerformDragAndDrop(int xOffset, int yOffset)
 		{
 			Parent.GetDragAndDropPerformer().DragAndDrop(Draggable.Tag, xOffset, yOffset);
+		}
+
+		/// <summary>
+		/// Wraps page after drag action.
+		/// </summary>
+		/// <typeparam name="TCustomResult">Page Object type.</typeparam>
+		/// <returns>Page Object describing current DOM.</returns>
+		protected TCustomResult WrapResult<TCustomResult>() where TCustomResult : IBlock
+		{
+			return Parent.Session.CurrentBlock<TCustomResult>();
 		}
 	}
 }
