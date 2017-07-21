@@ -15,7 +15,7 @@ namespace Bumblebee.IntegrationTests.Setup
 {
 	//ReSharper disable InconsistentNaming
 
-	[TestFixture(typeof (Firefox), typeof (FirefoxDriver))]
+	//[TestFixture(typeof (Firefox), typeof (FirefoxDriver))]
 	[TestFixture(typeof (InternetExplorer), typeof (InternetExplorerDriver))]
 	[TestFixture(typeof (Chrome), typeof (ChromeDriver))]
 	[TestFixture(typeof (PhantomJS), typeof (PhantomJSDriver))]
@@ -35,7 +35,7 @@ namespace Bumblebee.IntegrationTests.Setup
 		}
 	}
 
-	[TestFixture(typeof (Firefox))]
+	//[TestFixture(typeof (Firefox))]
 	[TestFixture(typeof (InternetExplorer))]
 	[TestFixture(typeof (Chrome))]
 	[TestFixture(typeof (PhantomJS))]

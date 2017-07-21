@@ -4,14 +4,14 @@ using Nancy.Hosting.Self;
 
 namespace Bumblebee.IntegrationTests.Shared.Hosting
 {
-	public class Host : IHost
+	public class NancyHost : IHost
 	{
-		private readonly NancyHost _host;
+		private readonly Nancy.Hosting.Self.NancyHost _host;
 
-		public Host(Uri baseUri)
+		public NancyHost(Uri baseUri)
 		{
 			var config = new HostConfiguration {UrlReservations = {CreateAutomatically = true}};
-		    	_host = new NancyHost(config, baseUri);
+            _host = new Nancy.Hosting.Self.NancyHost(config, baseUri);
 		}
 
 		public void Start()
@@ -24,7 +24,7 @@ namespace Bumblebee.IntegrationTests.Shared.Hosting
 			_host.Stop();
 		}
 
-		~Host()
+		~NancyHost()
 		{
 			Dispose(false);
 		}
