@@ -1,4 +1,5 @@
 ﻿using Bumblebee.Extensions;
+using Bumblebee.IntegrationTests.Shared;
 using Bumblebee.IntegrationTests.Shared.Hosting;
 using Bumblebee.IntegrationTests.Shared.Pages;
 using Bumblebee.Setup;
@@ -12,14 +13,15 @@ namespace Bumblebee.IntegrationTests.Implementation
 {
 	// ReSharper disable InconsistentNaming
 
-	[TestFixture]
-	public class Given_dialogs : HostTestFixture
-	{
+	[TestFixture(typeof(Chrome))]
+	public class Given_dialogs<T> : HostTestFixture
+	    where T : IDriverEnvironment, new()
+    {
 		[SetUp]
 		public void TestSetUp()
 		{
 			Threaded<Session>
-				.With<Chrome>()
+				.With<T>()
 				.NavigateTo<DialogPage>(GetUrl("Dialogs.html"));
 		}
 

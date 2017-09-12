@@ -1,4 +1,5 @@
 ﻿using Bumblebee.Extensions;
+using Bumblebee.IntegrationTests.Shared;
 using Bumblebee.IntegrationTests.Shared.Hosting;
 using Bumblebee.IntegrationTests.Shared.Pages;
 using Bumblebee.Setup;
@@ -12,7 +13,7 @@ namespace Bumblebee.IntegrationTests
 {
 	// ReSharper disable InconsistentNaming
 
-	[TestFixture(typeof (Chrome))]
+	[TestFixture(typeof (HeadlessChrome))]
 	public class Given_keys<T> : HostTestFixture
 		where T : IDriverEnvironment, new()
 	{

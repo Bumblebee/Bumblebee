@@ -1,8 +1,8 @@
 using Bumblebee.Extensions;
+using Bumblebee.IntegrationTests.Shared;
 using Bumblebee.IntegrationTests.Shared.Hosting;
 using Bumblebee.IntegrationTests.Shared.Pages;
 using Bumblebee.Setup;
-using Bumblebee.Setup.DriverEnvironments;
 
 using FluentAssertions;
 
@@ -12,14 +12,15 @@ using NUnit.Framework;
 
 namespace Bumblebee.IntegrationTests.Setup.ThreadedSessionTests
 {
-	[TestFixture]
-	public class Given_user_has_navigated_to_a_page : HostTestFixture
-	{
+	[TestFixture(typeof(HeadlessChrome))]
+	public class Given_user_has_navigated_to_a_page<T> : HostTestFixture
+	    where T : IDriverEnvironment, new()
+    {
 		[SetUp]
 		public void TestSetUp()
 		{
 			Threaded<Session>
-				.With<PhantomJS>()
+				.With<T>()
 				.NavigateTo<DefaultPage>(GetUrl("Default.html"));
 		}
 

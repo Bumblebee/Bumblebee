@@ -105,6 +105,8 @@
     <Compile Include="Implementation\WebPageTests\Given_slow_web_page_with_explicit_wait.cs" />
     <Compile Include="Implementation\WebPageTests\Given_slow_web_page_with_no_wait.cs" />
     <Compile Include="AssemblyTestFixture.cs" />
+    <Compile Include="Shared\HeadlessChrome.cs" />
+    <Compile Include="Shared\HeadlessChromeWithNoWaitTime.cs" />
     <Compile Include="Shared\Hosting\OwinStartUp.cs" />
     <Compile Include="Shared\Hosting\OwinHost.cs" />
     <Compile Include="Shared\Pages\CurrentBlockDefaultPage.cs" />

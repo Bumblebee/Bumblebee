@@ -3,10 +3,10 @@ using System.IO;
 using System.Reflection;
 
 using Bumblebee.Extensions;
+using Bumblebee.IntegrationTests.Shared;
 using Bumblebee.IntegrationTests.Shared.Hosting;
 using Bumblebee.IntegrationTests.Shared.Pages;
 using Bumblebee.Setup;
-using Bumblebee.Setup.DriverEnvironments;
 
 using FluentAssertions;
 
@@ -16,9 +16,10 @@ namespace Bumblebee.IntegrationTests.Setup.SessionTests
 {
 	// ReSharper disable InconsistentNaming
 
-	[TestFixture]
-	public class given_generic_environment_and_default_settings_when_capturing : HostTestFixture
-	{
+	[TestFixture(typeof(HeadlessChrome))]
+	public class given_generic_environment_and_default_settings_when_capturing<T> : HostTestFixture
+	    where T : IDriverEnvironment, new()
+    {
 		private string path;
 		private Session session;
 		private Session _returnSession;
@@ -31,7 +32,7 @@ namespace Bumblebee.IntegrationTests.Setup.SessionTests
 			path = Path.Combine(defaultSettings.ScreenCapturePath, currentMethod);
 			File.Delete(path);
 
-			session = new Session<InternetExplorer>();
+			session = new Session<T>();
 			session.NavigateTo<CheckboxPage>(GetUrl("Checkbox.html"));
 			_returnSession = session.CaptureScreen();
 		}

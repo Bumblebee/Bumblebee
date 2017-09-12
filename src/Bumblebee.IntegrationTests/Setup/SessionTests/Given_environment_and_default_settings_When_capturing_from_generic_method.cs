@@ -2,6 +2,7 @@ using System;
 using System.IO;
 
 using Bumblebee.Extensions;
+using Bumblebee.IntegrationTests.Shared;
 using Bumblebee.IntegrationTests.Shared.Hosting;
 using Bumblebee.IntegrationTests.Shared.Pages;
 using Bumblebee.Setup;
@@ -15,14 +16,15 @@ using NUnit.Framework;
 
 namespace Bumblebee.IntegrationTests.Setup.SessionTests
 {
-	[TestFixture]
+	[TestFixture(typeof(HeadlessChrome))]
 
-	public class Given_environment_and_default_settings_When_capturing_from_generic_method : HostTestFixture
-	{
+	public class Given_environment_and_default_settings_When_capturing_from_generic_method<T> : HostTestFixture
+	    where T : IDriverEnvironment, new()
+    {
 		[Test]
 		public void Should_save_in_executing_directory()
 		{
-			var environment = new InternetExplorer();
+			var environment = new T();
 			var session = new Session(environment);
 			session.NavigateTo<CheckboxPage>(GetUrl("Checkbox.html"));
 

@@ -3,9 +3,9 @@ using System.Threading;
 
 using Bumblebee.Extensions;
 using Bumblebee.Implementation;
+using Bumblebee.IntegrationTests.Shared;
 using Bumblebee.IntegrationTests.Shared.Hosting;
 using Bumblebee.Setup;
-using Bumblebee.Setup.DriverEnvironments;
 
 using FluentAssertions;
 
@@ -15,10 +15,11 @@ using NUnit.Framework;
 
 namespace Bumblebee.IntegrationTests.Implementation
 {
-	[TestFixture]
-	public class Given_session_when_constructing : HostTestFixture
-	{
-		private readonly ThreadLocal<Session> _session = new ThreadLocal<Session>(() => new Session(new PhantomJS()));
+	[TestFixture(typeof(HeadlessChrome))]
+	public class Given_session_when_constructing<T> : HostTestFixture
+	    where T : IDriverEnvironment, new()
+    {
+		private readonly ThreadLocal<Session> _session = new ThreadLocal<Session>(() => new Session(new T()));
 
 		[OneTimeSetUp]
 		public void TestFixtureSetUp()

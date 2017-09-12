@@ -1,8 +1,8 @@
 using Bumblebee.Extensions;
+using Bumblebee.IntegrationTests.Shared;
 using Bumblebee.IntegrationTests.Shared.Hosting;
 using Bumblebee.IntegrationTests.Shared.Pages;
 using Bumblebee.Setup;
-using Bumblebee.Setup.DriverEnvironments;
 
 using FluentAssertions;
 
@@ -11,14 +11,15 @@ using NUnit.Framework;
 namespace Bumblebee.IntegrationTests.Implementation
 {
 	// ReSharper disable InconsistentNaming
-	[TestFixture]
-	public class Given_numeric_field : HostTestFixture
-	{
+	[TestFixture(typeof(HeadlessChrome))]
+	public class Given_numeric_field<T> : HostTestFixture
+	    where T : IDriverEnvironment, new()
+    {
 		[OneTimeSetUp]
 		public void TestFixtureSetUp()
 		{
 			Threaded<Session>
-				.With<PhantomJS>()
+				.With<T>()
 				.NavigateTo<NumericFieldPage>(GetUrl("NumericField.html"));
 		}
 

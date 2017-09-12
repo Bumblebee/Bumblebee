@@ -1,9 +1,9 @@
 ﻿using System;
 
+using Bumblebee.IntegrationTests.Shared;
 using Bumblebee.IntegrationTests.Shared.Hosting;
 using Bumblebee.IntegrationTests.Shared.Pages;
 using Bumblebee.Setup;
-using Bumblebee.Setup.DriverEnvironments;
 
 using FluentAssertions;
 
@@ -15,14 +15,15 @@ using OpenQA.Selenium;
 
 namespace Bumblebee.IntegrationTests.Implementation.SelectBoxTests
 {
-	[TestFixture]
-	public class Given_select_box_with_one_hundred_thousand_items : HostTestFixture
-	{
+	[TestFixture(typeof(HeadlessChrome))]
+	public class Given_select_box_with_one_hundred_thousand_items<T> : HostTestFixture
+	    where T : IDriverEnvironment, new()
+    {
 		[OneTimeSetUp]
 		public void TestFixtureSetUp()
 		{
 			Threaded<Session>
-				.With<Chrome>()
+				.With<T>()
 				.NavigateTo<HundredThousandItemSelectPage>(GetUrl("HundredThousandItemSelect.html"));
 		}
 

@@ -1,8 +1,8 @@
 using Bumblebee.Extensions;
+using Bumblebee.IntegrationTests.Shared;
 using Bumblebee.IntegrationTests.Shared.Hosting;
 using Bumblebee.IntegrationTests.Shared.Pages;
 using Bumblebee.Setup;
-using Bumblebee.Setup.DriverEnvironments;
 
 using FluentAssertions;
 
@@ -12,14 +12,15 @@ namespace Bumblebee.IntegrationTests.Implementation
 {
 	// ReSharper disable InconsistentNaming
 
-	[TestFixture]
-	public class Given_nested_inline_frames : HostTestFixture
-	{
+	[TestFixture(typeof(HeadlessChrome))]
+	public class Given_nested_inline_frames<T> : HostTestFixture
+	    where T : IDriverEnvironment, new()
+    {
 		[SetUp]
 		public void TestSetUp()
 		{
 			Threaded<Session>
-				.With<Chrome>()
+				.With<T>()
 				.NavigateTo<NestedInlineFramesPage>(GetUrl("NestedInlineFrames.html"));
 		}
 

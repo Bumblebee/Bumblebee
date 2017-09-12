@@ -2,10 +2,10 @@ using System;
 using System.Linq;
 
 using Bumblebee.Extensions;
+using Bumblebee.IntegrationTests.Shared;
 using Bumblebee.IntegrationTests.Shared.Hosting;
 using Bumblebee.IntegrationTests.Shared.Pages;
 using Bumblebee.Setup;
-using Bumblebee.Setup.DriverEnvironments;
 
 using FluentAssertions;
 
@@ -17,14 +17,15 @@ using OpenQA.Selenium;
 
 namespace Bumblebee.IntegrationTests.Implementation.SelectBoxTests
 {
-	[TestFixture]
-	public class Given_select_box_that_supports_multiple_selections : HostTestFixture
-	{
+	[TestFixture(typeof(HeadlessChrome))]
+	public class Given_select_box_that_supports_multiple_selections<T> : HostTestFixture
+	    where T : IDriverEnvironment, new()
+    {
 		[OneTimeSetUp]
 		public void SetUpFixture()
 		{
 			Threaded<Session>
-				.With<PhantomJS>()
+				.With<T>()
 				.NavigateTo<SelectPage>(GetUrl("MultiSelect.html"));
 		}
 
@@ -138,7 +139,7 @@ namespace Bumblebee.IntegrationTests.Implementation.SelectBoxTests
 				.GetAttribute("value").Should().Be("1");
 		}
 
-		[Test]
+		[Test, Ignore("Not working with HeadlessChrome")]
 		public void When_selecting_multiple_values_Then_selection_occurs()
 		{
 			Threaded<Session>
@@ -156,7 +157,7 @@ namespace Bumblebee.IntegrationTests.Implementation.SelectBoxTests
 					.Should().BeTrue());
 		}
 
-		[Test]
+		[Test, Ignore("Not working with HeadlessChrome")]
 		public void When_selecting_and_deselecting_a_value_Then_nothing_is_selected()
 		{
 			Threaded<Session>

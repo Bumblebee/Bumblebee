@@ -1,10 +1,10 @@
 using System.Linq;
 
 using Bumblebee.Extensions;
+using Bumblebee.IntegrationTests.Shared;
 using Bumblebee.IntegrationTests.Shared.Hosting;
 using Bumblebee.IntegrationTests.Shared.Pages;
 using Bumblebee.Setup;
-using Bumblebee.Setup.DriverEnvironments;
 
 using FluentAssertions;
 
@@ -14,14 +14,15 @@ namespace Bumblebee.IntegrationTests.Implementation.TableTests
 {
 	// ReSharper disable InconsistentNaming
 
-	[TestFixture]
-	public class Given_generic_table : HostTestFixture
-	{
+	[TestFixture(typeof(HeadlessChrome))]
+	public class Given_generic_table<T> : HostTestFixture
+	    where T : IDriverEnvironment, new()
+    {
 		[OneTimeSetUp]
 		public void TestFixtureSetUp()
 		{
 			Threaded<Session>
-				.With<PhantomJS>()
+				.With<T>()
 				.NavigateTo<GenericTablePage>(GetUrl("Table.html"));
 		}
 

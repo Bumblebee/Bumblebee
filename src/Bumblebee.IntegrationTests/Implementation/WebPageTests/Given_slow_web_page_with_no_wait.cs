@@ -1,9 +1,9 @@
 using System;
 
+using Bumblebee.IntegrationTests.Shared;
 using Bumblebee.IntegrationTests.Shared.Hosting;
 using Bumblebee.IntegrationTests.Shared.Pages;
 using Bumblebee.Setup;
-using Bumblebee.Setup.DriverEnvironments;
 
 using FluentAssertions;
 
@@ -15,14 +15,15 @@ using OpenQA.Selenium;
 
 namespace Bumblebee.IntegrationTests.Implementation.WebPageTests
 {
-	[TestFixture]
-	public class Given_slow_web_page_with_no_wait : HostTestFixture
-	{
+	[TestFixture(typeof(HeadlessChromeWithNoWaitTime))]
+	public class Given_slow_web_page_with_no_wait<T> : HostTestFixture
+	    where T : IDriverEnvironment, new()
+    {
 		[SetUp]
 		public void TestSetUp()
 		{
 			Threaded<Session>
-				.With(new PhantomJS(TimeSpan.FromSeconds(0)))
+				.With<T>()
 				.NavigateTo<SlowWebPageWithNoWait>(GetUrl("SlowWebPage.html"));
 		}
 
