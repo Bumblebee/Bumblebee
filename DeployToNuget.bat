@@ -27,5 +27,5 @@ nuget.exe pack -Build -OutputDirectory build %package% -Prop Configuration=Relea
 REM Push to Nuget 
 REM =============
 cd build
-..\nuget.exe push *.nupkg
+..\nuget.exe push *.nupkg -source https://api.nuget.org/v3/index.json
 cd ..
