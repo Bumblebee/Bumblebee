@@ -132,20 +132,20 @@ namespace Bumblebee.Setup
 
 			if (String.Equals(extension, ".png", StringComparison.OrdinalIgnoreCase))
 			{
-				screenshot.SaveAsFile(path, ImageFormat.Png);
+				screenshot.SaveAsFile(path, ScreenshotImageFormat.Png);
 			}
 			else if (String.Equals(extension, ".jpg", StringComparison.OrdinalIgnoreCase)
 					|| String.Equals(extension, ".jpeg", StringComparison.OrdinalIgnoreCase))
 			{
-				screenshot.SaveAsFile(path, ImageFormat.Jpeg);
+				screenshot.SaveAsFile(path, ScreenshotImageFormat.Jpeg);
 			}
 			else if (String.Equals(extension, ".bmp", StringComparison.OrdinalIgnoreCase))
 			{
-				screenshot.SaveAsFile(path, ImageFormat.Bmp);
+				screenshot.SaveAsFile(path, ScreenshotImageFormat.Bmp);
 			}
 			else if (String.Equals(extension, ".gif", StringComparison.OrdinalIgnoreCase))
 			{
-				screenshot.SaveAsFile(path, ImageFormat.Gif);
+				screenshot.SaveAsFile(path, ScreenshotImageFormat.Gif);
 			}
 			else
 			{
