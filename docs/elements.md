@@ -4,8 +4,6 @@ An element is a user interface item. Examples include links, buttons, checkboxes
 
 Each element on a page gets represented by a property. The most important part of the property is the return type. The type returned should be the interface of the element, for example *ISelectBox*. This is how the user (the person writing the automation test case) can interact with the element.
 
-[Top](./elements)
-
 ## The Interface
 
 The generic type parameter of the return type is where the scope returns to after the element is interacted with. For elements that generally do not change the page, the generic type is typically the type of the parent block (the block of which the element is a property). Suppose there is a select box on our home page for the user to choose their favorite color. We define the property like this:
@@ -29,8 +27,6 @@ public IClickable LogInButton { ... }
 Notice there is no generic type parameter after *IClickable*; we don't know where it will go so we don't specify ahead of time.
 
 If there's a link on a page that leads to the same block 99% of the time, but leads somewhere else in rare cases (for example an error popup or a log in page for privileged links), you should still return an *Clickable* leading to the most common return case. In your test case you can still override the default return type by specifying a generic parameter. In other words, giving your interface a generic type sets a default and allows the automator to leave it off.
-
-[Top](./elements)
 
 ## The Implementation
 
@@ -93,8 +89,6 @@ public class HomePage : Page
 }
 ```
 
-[Top](./elements)
-
 ## Text Fields
 
 A TextField class is typically is used to represent an input element of text, date, or numeric type or a textarea element.
@@ -116,8 +110,6 @@ myPage.Press(Key.A);
 myPage.Press(Key.Control + Key.C);
 myPage.Press(Key.Control + Key.Alt + Key.Delete);
 ```
-
-[Top](./elements)
 
 ## Tables
 
@@ -164,5 +156,3 @@ NavigateTo<TablePage>("http://urltopage.com")
   .VerifyThat(t => t.Rows.First()["Last Name"].Should().Be("Meinershagen"))
   .VerifyThat(t => t.Footer[1].Should().Be("1");
 ```
-
-[Top](./elements)
