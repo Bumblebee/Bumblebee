@@ -29,7 +29,8 @@ The basic idea behind Bumblebee is to break each page down into Blocks_ and Elem
 .. _Blocks: ./blocks.html
 .. _Elements: ./elements.html
 
-## Releases
+Releases
+--------
 
 * **Bumblebee** - A fluent-style, .NET layer on top of Selenium for implementing the `page pattern`_.
 
@@ -49,7 +50,8 @@ The basic idea behind Bumblebee is to break each page down into Blocks_ and Elem
    :alt: NuGet version (Bumblebee.Automation.KendoUI)
    :target: https://www.nuget.org/packages/Bumblebee.Automation.KendoUI/
 
-## Contact Us
+Contact Us
+----------
 
 If you are having issues or would like to provide feedback, you can join the `gitter conversation`_ or go here_ to log issues. 
 
