@@ -3,43 +3,31 @@ Bumblebee
 
 Welcome to Bumblebee.
 
+New to Bumblebee? Check out the :doc:`getting-started` page first.
+
 .. _user-docs:
 
-
-
 .. toctree::
-   
-	:hidden:
-   
-	:maxdepth: 2
-   
-	:caption: User Documentation
+   :hidden:
+   :maxdepth: 2
+   :caption: User Documentation
 
-   
-
-	Benefits 
-	Getting Started
+   benefits
+   getting-started
 
 .. _feature-docs:
 
-
-
 .. toctree::
-   
-	:maxdepth: 2
-   
-	:caption: Feature Documentation
+   :maxdepth: 2
+   :caption: Feature Documentation
 
-   
-
-	Concepts
-   
-	Blocks
-	Elements
-	Sessions
-	Settings
-	Driver Environments
-	Verification
-	Using Linq
-	Conveniences
-	Dependencies
+   concepts
+   blocks
+   elements
+   sessions
+   settings
+   driver-environments
+   verification
+   using-linq
+   conveniences
+   dependencies
