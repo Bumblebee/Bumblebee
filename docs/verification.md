@@ -1,10 +1,3 @@
----
-layout: default
-title: Verification
----
-
-# Verification
-
 When writing automated test cases, you often want to verify that particular condition is true. When it isn't, you want a meaningful exception to be thrown, failing the test case. Using Bumblebee, these verifications are performed using extension methods.
 
 ## Verify
