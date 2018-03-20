@@ -1,10 +1,3 @@
----
-layout: default
-title: Sessions
----
-
-# Sessions
-
 ## Constructing Sessions
 
 Before we can use our page/block objects, we need to set up a browser [*Session*](../blob/master/Bumblebee/Setup/Session.cs). To construct one, you will need to provide a driver environment, which is any class that implements the [*IDriverEnvironment*](../blob/master/Bumblebee/Setup/IDriverEnvironment.cs) interface.  You can learn more about driver environments [here](./Driver-Environments).
