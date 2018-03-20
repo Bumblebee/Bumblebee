@@ -1,10 +1,3 @@
----
-layout: default
-title: Elements
----
-
-# Elements
-
 An element is a user interface item. Examples include links, buttons, checkboxes, select boxes, etc. Each type of element is represented by an interface. For example IClickable represents both buttons and links (with a single method, "Click").
 
 Each element on a page gets represented by a property. The most important part of the property is the return type. The type returned should be the interface of the element, for example *ISelectBox*. This is how the user (the person writing the automation test case) can interact with the element.
