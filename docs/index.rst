@@ -1,33 +1,22 @@
-Bumblebee
-=========
+.. Bumblebee documentation master file, created by
+   sphinx-quickstart on Mon Mar 19 22:00:21 2018.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
 
-Welcome to Bumblebee.
+Welcome to Bumblebee's documentation!
+=====================================
 
 New to Bumblebee? Check out the :ref:`getting-started` page first.
 
-.. _user-docs:
-
-.. toctree::
-   :hidden:
-   :maxdepth: 2
-   :caption: User Documentation
-
-   benefits
-   getting-started
-
-.. _feature-docs:
-
 .. toctree::
    :maxdepth: 2
-   :caption: Feature Documentation
+   :caption: Contents:
 
-   concepts
-   blocks
-   elements
-   sessions
-   settings
-   driver-environments
-   verification
-   using-linq
-   conveniences
-   dependencies
+
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
