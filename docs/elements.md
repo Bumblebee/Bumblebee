@@ -99,15 +99,15 @@ public class HomePage : Page
 
 A TextField class is typically is used to represent an input element of text, date, or numeric type or a textarea element.
 
-* ### AppendText(string text)
+### AppendText(string text)
 
 This method allows users to add text to the end of any existing text within a text field.
 
-* ### EnterText(string text)
+### EnterText(string text)
 
 This method clears any existing text for a text field and then adds the text to the field.
 
-* ### Press(Key key)
+### Press(Key key)
 
 This method allows users to press single keys in a text field including key combinations.  For example,
 
