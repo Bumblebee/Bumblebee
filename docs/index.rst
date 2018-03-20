@@ -29,13 +29,11 @@ The basic idea behind Bumblebee is to break each page down into Blocks_ and Elem
 .. _Blocks: ./blocks.html
 .. _Elements: ./elements.html
 
-[Top](/)
-
 ## Releases
 
 * **Bumblebee** - A fluent-style, .NET layer on top of Selenium for implementing the `page pattern`_.
 
-.. _page-pattern: https://code.google.com/p/selenium/wiki/PageObjects
+.. _page pattern: https://code.google.com/p/selenium/wiki/PageObjects
 
 .. image:: https://img.shields.io/nuget/v/Bumblebee.Automation.svg?style=flat
    :alt: NuGet version (Bumblebee.Automation)
@@ -51,15 +49,11 @@ The basic idea behind Bumblebee is to break each page down into Blocks_ and Elem
    :alt: NuGet version (Bumblebee.Automation.KendoUI)
    :target: https://www.nuget.org/packages/Bumblebee.Automation.KendoUI/
 
-[Top](/)
-
 ## Contact Us
 If you are having issues or would like to provide feedback, you can join the `gitter conversation`_ or go here_ to log issues. 
 
-.. _gitter-conversation: https://gitter.im/Bumblebee/Discuss
+.. _gitter conversation: https://gitter.im/Bumblebee/Discuss
 .. _here: https://github.com/bumblebee/bumblebee/issues
-
-[Top](./)
 
 
 .. toctree::
