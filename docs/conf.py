@@ -87,7 +87,7 @@ html_theme_options = {
     'display_version': False
 }
 
-html_logo = 'https://avatars3.githubusercontent.com/u/10162916?s=150&v=4'
+html_logo = 'images/bumblebee-logo-150px.png'
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
