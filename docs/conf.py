@@ -87,7 +87,7 @@ html_theme_options = {
     'display_version': False
 }
 
-html_logo = 'images/bumblebee-logo-150px.png'
+# html_logo = 'images/bumblebee-logo-150px.png'
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
