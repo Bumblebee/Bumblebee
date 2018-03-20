@@ -6,17 +6,27 @@
 Welcome to Bumblebee's documentation!
 =====================================
 
-New to Bumblebee? Check out the :ref:`getting-started` page first.
+New to Bumblebee? Check out the :docs:`getting-started` page first.
+
+.. toctree::
+   :hidden:
+   :maxdepth: 2
+   :caption: User Documentation
+
+   benefits
+   getting-started
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+   :caption: Feature Documentation
 
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+   concepts
+   blocks
+   elements
+   sessions
+   settings
+   driver-environments
+   verification
+   using-linq
+   conveniences
+   dependencies
