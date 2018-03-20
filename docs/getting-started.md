@@ -1,3 +1,5 @@
+# Getting Started
+
 To get started with Bumblebee, let's do a simple example of logging in to a website and verifying that we have successfully logged in.
 
 ## 1. Install Libraries
