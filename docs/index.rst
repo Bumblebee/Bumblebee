@@ -17,11 +17,11 @@ Bumblebee is a .NET layer on top of the Selenium browser automation framework th
 -   Parallelization mindfulness
 -   Flexibility
 
-Like other [page object models](https://github.com/SeleniumHQ/selenium/wiki/PageObjects), Bumblebee divides testing into two parts. The page objects model the subject of the testing, and the automation uses the page objects to tell the browser what to do.
+Like other <a href="https://github.com/SeleniumHQ/selenium/wiki/PageObjects">page object models</a>, Bumblebee divides testing into two parts. The page objects model the subject of the testing, and the automation uses the page objects to tell the browser what to do.
 
 Bumblebee standardizes the design of page objects and makes the automation scripting trivial. Develop page objects quickly by modeling which parts of the page can be interacted with. Then in the automation, use Intellisense to browse through the available options and build a script.
 
-The basic idea behind Bumblebee is to break each page down into [*Blocks*](./blocks) and [*Elements*](./elements). Use the classes provided by Bumblebee to model your site into page objects that you can consume in your automation code. If page objects are well designed, writing the automation code should take no effort at all.
+The basic idea behind Bumblebee is to break each page down into <a href="./blocks.html"><i>Blocks</i></a> and [*Elements*](./elements). Use the classes provided by Bumblebee to model your site into page objects that you can consume in your automation code. If page objects are well designed, writing the automation code should take no effort at all.
 
 [Top](./)
 
