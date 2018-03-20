@@ -41,7 +41,6 @@ If you are having issues or would like to provide feedback, you can join the [gi
 
 [Top](./)
 
-.. _user-docs:
 
 .. toctree::
    :hidden:
@@ -51,7 +50,6 @@ If you are having issues or would like to provide feedback, you can join the [gi
    benefits
    getting-started
 
-.. _feature-docs:
 
 .. toctree::
    :maxdepth: 2
