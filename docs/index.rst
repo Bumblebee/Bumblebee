@@ -6,7 +6,9 @@
 Welcome to Bumblebee's documentation!
 =====================================
 
-<a href="https://gitter.im/Bumblebee/Discuss?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=body_badge"><img src="https://badges.gitter.im/Join%20Chat.svg">Gitter</a>
+.. image:: https://badges.gitter.im/Join%20Chat.svg
+   :alt: Gitter
+   :target: https://gitter.im/Bumblebee/Discuss?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=body_badge
 
 Bumblebee is a .NET layer on top of the Selenium browser automation framework that allows for the standardized creation of page objects, even for dynamic web pages. There are a few features that define Bumblebee's usability.
 
