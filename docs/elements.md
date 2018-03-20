@@ -94,15 +94,19 @@ public class HomePage : Page
 [Top](./elements)
 
 ## Text Fields
+
 A TextField class is typically is used to represent an input element of text, date, or numeric type or a textarea element.
 
 * ### AppendText(string text)
+
 This method allows users to add text to the end of any existing text within a text field.
 
 * ### EnterText(string text)
+
 This method clears any existing text for a text field and then adds the text to the field.
 
 * ### Press(Key key)
+
 This method allows users to press single keys in a text field including key combinations.  For example,
 
 ```csharp
@@ -114,6 +118,7 @@ myPage.Press(Key.Control + Key.Alt + Key.Delete);
 [Top](./elements)
 
 ## Tables
+
 Tables are meant to be a simple set of abstractions for tables within your HTML.  If your application is using the basic HTML 4.0 tables as shown below:
 
 ```html
@@ -144,7 +149,7 @@ You can then represent as an ITable with the Table implementation like so:
 ```csharp
 public class TablePage : WebBlock
 {
-  public ITable MyTable 
+  public ITable MyTable
   {
     get { return new Table(this, By.Id("myTable"));
   }
