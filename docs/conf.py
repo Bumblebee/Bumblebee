@@ -19,14 +19,14 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'Bumblebee'
-copyright = '2018, Todd Meinershagen'
-author = 'Todd Meinershagen'
+project = u'Bumblebee'
+copyright = u'2018, Todd Meinershagen'
+author = u'Todd Meinershagen'
 
 # The short X.Y version
 version = ''
 # The full version, including alpha/beta/rc tags
-release = 'v1.2.0'
+release = ''
 
 
 # -- General configuration ---------------------------------------------------
@@ -38,8 +38,7 @@ release = 'v1.2.0'
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = [
-]
+extensions = []
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -69,7 +68,7 @@ language = None
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path .
-exclude_patterns = []
+exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = 'sphinx'
@@ -139,8 +138,8 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'Bumblebee.tex', 'Bumblebee Documentation',
-     'Todd Meinershagen', 'manual'),
+    (master_doc, 'Bumblebee.tex', u'Bumblebee Documentation',
+     u'Todd Meinershagen', 'manual'),
 ]
 
 
@@ -149,7 +148,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'bumblebee', 'Bumblebee Documentation',
+    (master_doc, 'bumblebee', u'Bumblebee Documentation',
      [author], 1)
 ]
 
@@ -160,7 +159,7 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'Bumblebee', 'Bumblebee Documentation',
+    (master_doc, 'Bumblebee', u'Bumblebee Documentation',
      author, 'Bumblebee', 'One line description of project.',
      'Miscellaneous'),
 ]
