@@ -23,24 +23,33 @@ Like other `page object models`_, Bumblebee divides testing into two parts. The 
 
 Bumblebee standardizes the design of page objects and makes the automation scripting trivial. Develop page objects quickly by modeling which parts of the page can be interacted with. Then in the automation, use Intellisense to browse through the available options and build a script.
 
-The basic idea behind Bumblebee is to break each page down into *Blocks_* and *Elements_*. Use the classes provided by Bumblebee to model your site into page objects that you can consume in your automation code. If page objects are well designed, writing the automation code should take no effort at all.
+The basic idea behind Bumblebee is to break each page down into Blocks_ and Elements_. Use the classes provided by Bumblebee to model your site into page objects that you can consume in your automation code. If page objects are well designed, writing the automation code should take no effort at all.
 
 .. _page object models: https://github.com/SeleniumHQ/selenium/wiki/PageObjects
 .. _Blocks: ./blocks.html
 .. _Elements: ./elements.html
 
-[Top](./)
+[Top](/)
 
 ## Releases
 
-* **Bumblebee** - A fluent-style, .NET layer on top of Selenium for implementing the [page pattern](https://code.google.com/p/selenium/wiki/PageObjects).<br>
-  * [![NuGet version (Bumblebee.Automation)](https://img.shields.io/nuget/v/Bumblebee.Automation.svg?style=flat)](https://www.nuget.org/packages/Bumblebee.Automation/)
-  * [![NuGet version (Bumblebee.Automation)](https://img.shields.io/nuget/vpre/Bumblebee.Automation.svg?style=flat)](https://www.nuget.org/packages/Bumblebee.Automation/2.0.6-alpha) 
+* **Bumblebee** - A fluent-style, .NET layer on top of Selenium for implementing the [page pattern](https://code.google.com/p/selenium/wiki/PageObjects).
+
+.. image:: https://img.shields.io/nuget/v/Bumblebee.Automation.svg?style=flat
+   :alt: NuGet version (Bumblebee.Automation)
+   :target: https://www.nuget.org/packages/Bumblebee.Automation/
+   
+ .. image:: https://img.shields.io/nuget/vpre/Bumblebee.Automation.svg?style=flat
+   :alt: NuGet version (Bumblebee.Automation)
+   :target: https://www.nuget.org/packages/Bumblebee.Automation/2.0.8-beta
 
 * **Bumblebee for Kendo UI** - A separate library for adding Kendo element support for Bumblebee.<br>
-  * [![NuGet version (Bumblebee.Automation.KendoUI)](https://img.shields.io/nuget/v/Bumblebee.Automation.KendoUI.svg?style=flat)](https://www.nuget.org/packages/Bumblebee.Automation.KendoUI/)
 
-[Top](./)
+.. image:: https://img.shields.io/nuget/v/Bumblebee.Automation.KendoUI.svg?style=flat
+   :alt: NuGet version (Bumblebee.Automation.KendoUI)
+   :target: https://www.nuget.org/packages/Bumblebee.Automation.KendoUI/
+
+[Top](/)
 
 ## Contact Us
 If you are having issues or would like to provide feedback, you can join the [gitter conversation](https://gitter.im/Bumblebee/Discuss) or go [here](https://github.com/bumblebee/bumblebee/issues) to log issues. 
