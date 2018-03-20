@@ -1,10 +1,3 @@
----
-layout: default
-title: Conveniences
----
-
-# Conveniences
-
 ## Pause
 
 Call *Pause(int miliseconds)* at any point in your automation and execution will pause. Scope will be returned exactly where it was.
