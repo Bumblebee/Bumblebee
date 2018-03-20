@@ -68,5 +68,3 @@ ProfileLinks.First().Click();
 ```
 
 along with all the other selectors.
-
-[Top](./using-linq)
