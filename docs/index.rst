@@ -47,6 +47,7 @@ If you are having issues or would like to provide feedback, you can join the [gi
    :maxdepth: 2
    :caption: User Documentation
 
+   index
    benefits
    getting-started
 
