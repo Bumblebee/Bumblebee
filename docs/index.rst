@@ -3,8 +3,8 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Bumblebee's documentation!
-=====================================
+Welcome to Bumblebee!
+==============================================
 
 .. image:: https://badges.gitter.im/Join%20Chat.svg
    :alt: Gitter
