@@ -8,19 +8,19 @@ Each element on a page gets represented by a property. The most important part o
 
 The generic type parameter of the return type is where the scope returns to after the element is interacted with. For elements that generally do not change the page, the generic type is typically the type of the parent block (the block of which the element is a property). Suppose there is a select box on our home page for the user to choose their favorite color. We define the property like this:
 
-```c#
+```csharp
 public ISelectBox<HomePage> FavoriteColorSelectBox { ... }
 ```
 
 For elements that generally do change the state of the page, the type parameter is the type of the block that is led to. For example, say we have a link to an about page *AboutPage*.
 
-```c#
+```csharp
 public IClickable<AboutPage> AboutLink { ... }
 ```
 
 Sometimes, however, performing an action could lead to several different places on the site. For example, say we have a "Log In" button. Clicking this button could lead to the profile page *ProfilePage* or stay on the home page with an invalid login message. For elements like this there is no default block where we end up, so we'd like the user to specify where they think it should end up in the context of the automation. To do so, we just leave off the generic type parameter:
 
-```c#
+```csharp
 public IClickable LogInButton { ... }
 ```
 
@@ -38,7 +38,7 @@ Element implementations take two parameters. The first is the parent block of th
 
 Here are the properties above implemented fully:
 
-```c#
+```csharp
 public ISelectBox<HomePage> FavoriteColorSelectBox
 {
     get { return new SelectBox<HomePage>(this, By.Id("favoriteColor")); }
@@ -57,7 +57,7 @@ public IClickable LogInButton
 
 and in the context of our *HomePage* class with some login elements added:
 
-```c#
+```csharp
 public class HomePage : Page
 {
     public HomePage(Session session) : base(session)
