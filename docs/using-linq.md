@@ -1,3 +1,5 @@
+# Using Linq
+
 The *Options* property in the first example above returns an *IEnumerable* of options. This allows the automator to decide which option to act on however they like. Using linq we get many methods for free. Here are some examples of valid selections:
 
 ```c#
