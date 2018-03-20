@@ -50,6 +50,7 @@ The basic idea behind Bumblebee is to break each page down into Blocks_ and Elem
    :target: https://www.nuget.org/packages/Bumblebee.Automation.KendoUI/
 
 ## Contact Us
+
 If you are having issues or would like to provide feedback, you can join the `gitter conversation`_ or go here_ to log issues. 
 
 .. _gitter conversation: https://gitter.im/Bumblebee/Discuss
