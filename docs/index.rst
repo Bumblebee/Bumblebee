@@ -39,11 +39,11 @@ The basic idea behind Bumblebee is to break each page down into Blocks_ and Elem
    :alt: NuGet version (Bumblebee.Automation)
    :target: https://www.nuget.org/packages/Bumblebee.Automation/
    
- .. image:: https://img.shields.io/nuget/vpre/Bumblebee.Automation.svg?style=flat
+.. image:: https://img.shields.io/nuget/vpre/Bumblebee.Automation.svg?style=flat
    :alt: NuGet version (Bumblebee.Automation)
    :target: https://www.nuget.org/packages/Bumblebee.Automation/2.0.8-beta
 
-* **Bumblebee for Kendo UI** - A separate library for adding Kendo element support for Bumblebee.<br>
+* **Bumblebee for Kendo UI** - A separate library for adding Kendo element support for Bumblebee.
 
 .. image:: https://img.shields.io/nuget/v/Bumblebee.Automation.KendoUI.svg?style=flat
    :alt: NuGet version (Bumblebee.Automation.KendoUI)
