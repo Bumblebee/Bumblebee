@@ -19,8 +19,6 @@ public class LocalEnvironment : IDriverEnvironment
 var session = new Session<LocalEnvironment>();
 ```
 
-[Top](./driver-environments)
-
 ## Built-In Environments
 The framework includes a set of built-in driver environments that you can leverage immediately within your test fixtures.
 
@@ -29,9 +27,5 @@ The framework includes a set of built-in driver environments that you can levera
 * [InternetExplorer](../blob/master/Bumblebee/Setup/DriverEnvironments/InternetExplorer.cs)
 * [PhantomJS](../blob/master/Bumblebee/Setup/DriverEnvironments/PhantomJS.cs)
 
-[Top](./driver-environments)
-
 ## Custom Environments
 You can create your own environments by either implementing the [IDriverElement](../blob/master/Bumblebee/Setup/IDriverEnvironment.cs) interface or inheriting from the base [SimpleDriverEnvironment](../blob/master/Bumblebee/Setup/DriverEnvironments/SimpleDriverEnvironment.cs) class.  
-
-[Top](./driver-environments)
