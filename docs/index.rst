@@ -3,7 +3,7 @@ Bumblebee
 
 Welcome to Bumblebee.
 
-New to Bumblebee? Check out the :doc:`getting-started` page first.
+New to Bumblebee? Check out the :ref:`getting-started` page first.
 
 .. _user-docs:
 
