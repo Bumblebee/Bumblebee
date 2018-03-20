@@ -6,7 +6,7 @@
 Welcome to Bumblebee's documentation!
 =====================================
 
-New to Bumblebee? Check out the :docs:`getting-started` page first.
+New to Bumblebee? Check out the :ref:`getting-started` page first.
 
 .. toctree::
    :hidden:
