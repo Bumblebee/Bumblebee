@@ -1,3 +1,5 @@
+# Blocks
+
 ## Overview
 
 A block is an area on a web page. This could be an entire page, or a subset, like a tab menu, or a sidebar. Each block is represented by a class that extends *Block*. Blocks can contain child elements or child blocks. Each child is represented by a property in the parent block's class. Say we have some home page *HomePage*.
