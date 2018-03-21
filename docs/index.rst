@@ -37,13 +37,22 @@ Releases
 .. _page pattern: https://code.google.com/p/selenium/wiki/PageObjects
 
 .. image:: https://img.shields.io/nuget/v/Bumblebee.Automation.svg?style=flat
-   :alt: NuGet version (Bumblebee.Automation)
+   :alt: Bumblebee Current - NuGet
    :target: https://www.nuget.org/packages/Bumblebee.Automation/
    
+.. image:: https://ci.appveyor.com/api/projects/status/k24rhl5hvxs9j9ya?svg=true
+   :alt:  Bumblebee Current - Build Status
+   :target: https://ci.appveyor.com/project/toddmeinershagen/bumblebee
+
+
 .. image:: https://img.shields.io/nuget/vpre/Bumblebee.Automation.svg?style=flat
-   :alt: NuGet version (Bumblebee.Automation)
+   :alt: Bumblebee vNext - NuGet
    :target: https://www.nuget.org/packages/Bumblebee.Automation/2.0.8-beta
 
+.. image::  https://ci.appveyor.com/api/projects/status/5aser6k7s2x1t0fg?svg=true
+   :alt: Bumblebee vNext - Build Status
+   :target: https://ci.appveyor.com/project/toddmeinershagen/bumblebee-hqwf8
+   
 * **Bumblebee for Kendo UI** - A separate library for adding Kendo element support for Bumblebee.
 
 .. image:: https://img.shields.io/nuget/v/Bumblebee.Automation.KendoUI.svg?style=flat
