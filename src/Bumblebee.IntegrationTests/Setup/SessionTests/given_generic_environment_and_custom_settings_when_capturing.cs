@@ -14,7 +14,7 @@ using NUnit.Framework;
 
 namespace Bumblebee.IntegrationTests.Setup.SessionTests
 {
-    [TestFixture]
+    [TestFixture(typeof(InternetExplorer))]
     public class Given_environment_and_custom_settings_When_capturing<T> : HostTestFixture
         where T : IDriverEnvironment, new()
     {
