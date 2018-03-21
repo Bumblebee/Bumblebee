@@ -90,7 +90,7 @@ namespace Bumblebee.IntegrationTests.Setup.SessionTests
 			_session = null;
 		}
 
-		[TestCaseSource(nameof(TestCases))]
+		[TestCaseSource("TestCases")]
 		public void When_CaptureScreen_is_called_Then_takes_screenshot_of_correct_format(string path, ImageFormat format, string expected)
 		{
 			File.Delete(path);
