@@ -13,8 +13,6 @@ PM> Install-Package Bumblebee.Automation
 PM> Install-Package Selenium.WebDriver.IEDriver
 ```
 
-[Top](./getting-started)
-
 ## 2. Create Page/Blocks
 The next step is to create the page/blocks that you want to use to represent the pages that you will interact with during the test automation.  In this case, we would like to create a LoggedOutPage and LoggedInPage for the http://www.reddit.com site.
 
@@ -44,8 +42,6 @@ public class LoggedOutPage : WebBlock
 }
 ```
 
-[Top](./getting-started)
-
 #### LoggedInPage.cs
 ```csharp
 public class LoggedInPage : WebBlock
@@ -68,8 +64,6 @@ public class LoggedInPage : WebBlock
   }
 }
 ```
-
-[Top](./getting-started)
 
 ## 3. Scripting the Test
 After the page/blocks have been created, you can now reference them within a test.
@@ -105,5 +99,3 @@ Now that you have completed your first Bumblebee automation, it's time to explor
 Good luck!  
 
 And let us know if you have questions or concerns [here](../issues).
-
-[Top](./getting-started)

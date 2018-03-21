@@ -43,8 +43,6 @@ public bool EndsWithO(string x)
 
 Using this technique, you could make your code look more readable as well as avoid the use of lambda expressions.
 
-[Top](./verification)
-
 ## Adding Readability
 
 To make our test cases more readable, we can add a string argument describing what we are verifying, like so:
@@ -58,8 +56,6 @@ s
 
 Adding these strings makes it easy to read through the verifications, and adds a level of self-documentation. In addition, when a verification fails, the failure message will be representative of what happened. Instead of "Unable to verify custom verification", you will get a much more helpful error message, "Unable to verify that the length is 3".
 
-[Top](./verification)
-
 ## VerifyThat
 
 Another way to add readability to your verifications is to leverage your own preferred assertion library.  The `VerifyThat` method takes whatever object called it and passes it into your assertion action.  Below is an example using assertions from the [NUnit](http://nunit.org) and [FluentAssertions](https://github.com/dennisdoomen/fluentassertions/wiki) libraries.
@@ -70,8 +66,6 @@ s
 .VerifyThat(x => Assert.IsTrue(x.StartsWith("f")) //nunit
 .VerifyThat(x => x.Should().Contain("o"));        //fluent assertions
 ```
-
-[Top](./verification)
 
 ## Verifying Presence
 
@@ -96,8 +90,6 @@ Similarly we could make sure that there is no such error message:
 .VerifyAbsenceOf("an error message", By.Id("errorMessage"));
 ```
 
-[Top](./verification)
-
 ## Convenience Verifications
 
 Bumblebee comes with some convenience verification methods that only work on some types. For example, here are some verifications that can only be performed on things with text, that is, elements that implement the `IHasText` interface.
@@ -121,5 +113,3 @@ These are merely convenience methods. For example, the examples above could more
 ```
 
 When more specific verifications are required, you can also fall back to using lambda expressions. If you find yourself using very similar lambda expressions frequently, it would be a good idea to make your own verification method. Look at the Bumblebee source at [*Verifications*](../blob/master/Bumblebee/Extensions/Verification.cs) for examples.
-
-[Top](./verification)

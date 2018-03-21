@@ -17,8 +17,6 @@ public class HomePage : Block
 
 BaseBlock here is a base type that is not provided by Bumblebee, but extends Block. It is the base block for this project. See the section on [block scope](./#block-scope) for an explanation.
 
-[Top](./blocks)
-
 ## Block Scope
 
 Each block is associated with an HTML tag (an element in the DOM). All selectors within the block search within the block by searching only within its corresponding tag. By default, the scope of a block is that of its parent class. To narrow the scope of the block, set the *Tag* property in the constructor of the block. For example, say the user search mechanism is on several different pages, but is always wrapped in a *div* with class "userSearch". We should create a block to represent it.
@@ -106,7 +104,6 @@ Session.NavigateTo<HomePage>(url)
     .SearchButton.Click()
     .ProfileLinks.First().Click();
 ```
-[Top](./blocks)
 
 ## Specific Blocks
 
@@ -172,12 +169,8 @@ This gives the automation script the power to interact with anything on the page
 
 Because specific blocks require an element to clarify which block you're talking about, specific blocks cannot be the target of elements (you should never write `IClickable<UserTableRow>` because it wouldn't know which row to give you or how). The exception is from inside the specific block itself (inside *UserTableRow* we have `ISelectBox<UserTableRow>`), in which case Bumblebee understands that the only element you could logically be referring to is the parent one (itself).
 
-[Top](./blocks)
-
 ## Current Block
 
 To continue an automation without continuing one long expression, use *Session.CurrentBlock* and pass the type of the page you're on. This is especially useful when setting up test cases. A suite of tests might start out the same; they go to the site and log in. Then the individual test cases can pick up from there with `Session.CurrentBlock<LoggedInPage>...`.
 
 Similarly, if you want to switch focus to a different block you can do it inline with `ScopeTo<SomePage>`.
-
-[Top](./blocks)

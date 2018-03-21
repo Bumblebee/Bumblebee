@@ -17,8 +17,6 @@ You can also assemble [*Session*](../blob/master/Bumblebee/Setup/Session.cs) wit
 var session = new Session<InternetExplorer>();
 ```
 
-[Top](./sessions)
-
 ## Session Fixtures
 
 In order to make this reusable in your preferred test framework, you would want to create a base test fixture with this variable as protected.  Any derived classes could then reference this variable.  The example below is for NUnit.
@@ -54,8 +52,6 @@ public class LoginPageTests : SessionFixture
   }
 }
 ```
-
-[Top](./sessions)
 
 ## Thread-Safe Sessions
 An alternative to creating a common base test fixture is to use a built-in, thread-safe method for establishing a [*Session*](../blob/master/Bumblebee/Setup/Session.cs) that can be used across multiple methods within a test fixture or even across multiple fixtures on one thread without having to first construct it.  
@@ -99,9 +95,5 @@ public void given_invalid_login_when_logging_in_should_display_error()
 } 
 ```
 
-[Top](./sessions)
-
 ## Screen Capture
 TODO
-
-[Top](./sessions)
