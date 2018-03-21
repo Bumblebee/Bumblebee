@@ -26,7 +26,7 @@ namespace Bumblebee.IntegrationTests.Setup.SessionTests
 		{
 			var currentMethod = CallStack.GetCurrentMethod().GetFullName();
 
-			const string path = @"C:\Temp";
+			var path = Path.GetTempPath();
 			_filePath = Path.ChangeExtension(Path.Combine(path, currentMethod), "png");
 			File.Delete(_filePath);
 
