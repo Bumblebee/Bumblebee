@@ -58,7 +58,7 @@ namespace Bumblebee.IntegrationTests.Setup
 		{
 			var customSettings = new Settings
 			{
-				ScreenCapturePath = @"C:\Temp"
+				ScreenCapturePath = Environment.CurrentDirectory
 			};
 
 			Threaded<Session>
@@ -72,7 +72,7 @@ namespace Bumblebee.IntegrationTests.Setup
 		{
 			var customSettings = new Settings
 			{
-				ScreenCapturePath = @"C:\Temp"
+				ScreenCapturePath = Environment.CurrentDirectory
 			};
 
 			Threaded<Session>
