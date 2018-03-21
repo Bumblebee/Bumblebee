@@ -44,6 +44,7 @@ Releases
    :alt:  Bumblebee Current - Build Status
    :target: https://ci.appveyor.com/project/toddmeinershagen/bumblebee
 
+|
 
 .. image:: https://img.shields.io/nuget/vpre/Bumblebee.Automation.svg?style=flat
    :alt: Bumblebee vNext - NuGet
