@@ -65,7 +65,7 @@ namespace Bumblebee.IntegrationTests.Setup.SessionTests
 			return result;
 		}
 
-		private readonly TestCaseData[] TestCases =
+		private static readonly TestCaseData[] TestCases =
 		{
 			new TestCaseData("screenshot.png", ImageFormat.Png, "image/x-png"),
 			new TestCaseData("screenshot.jpg", ImageFormat.Jpeg, "image/pjpeg"),
@@ -76,21 +76,21 @@ namespace Bumblebee.IntegrationTests.Setup.SessionTests
 
 		private Session _session;
 
-		[TestFixtureSetUp]
-		public void TestFixtureSetUp()
+		[OneTimeSetUp]
+		public void OneTimeSetUp()
 		{
 			_session = new Session(new Chrome());
 		}
 
-		[TestFixtureTearDown]
-		public void TestFixtureTearDown()
+		[OneTimeTearDown]
+		public void OneTimeTearDown()
 		{
 			_session.End();
 
 			_session = null;
 		}
 
-		[TestCaseSource("TestCases")]
+		[TestCaseSource(nameof(TestCases))]
 		public void When_CaptureScreen_is_called_Then_takes_screenshot_of_correct_format(string path, ImageFormat format, string expected)
 		{
 			File.Delete(path);

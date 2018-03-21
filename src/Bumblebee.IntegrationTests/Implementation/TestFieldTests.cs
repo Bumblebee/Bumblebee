@@ -14,7 +14,7 @@ namespace Bumblebee.IntegrationTests.Implementation
 	[TestFixture]
 	public class Given_text_field : HostTestFixture
 	{
-		[TestFixtureSetUp]
+		[OneTimeSetUp]
 		public void Init()
 		{
 			Threaded<Session>
@@ -22,7 +22,7 @@ namespace Bumblebee.IntegrationTests.Implementation
 				.NavigateTo<DateFieldPage>(String.Format("{0}/Content/TextField.html", BaseUrl));
 		}
 
-		[TestFixtureTearDown]
+		[OneTimeTearDown]
 		public void Dispose()
 		{
 			Threaded<Session>

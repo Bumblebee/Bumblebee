@@ -23,7 +23,7 @@ namespace Bumblebee.IntegrationTests.Setup.SessionTests
 		private Session session;
 		private Session _returnSession;
 
-		[TestFixtureSetUp]
+		[OneTimeSetUp]
 		public void Before()
 		{
 			var currentMethod = String.Format("{0}.png", MethodBase.GetCurrentMethod().GetFullName());
@@ -39,7 +39,7 @@ namespace Bumblebee.IntegrationTests.Setup.SessionTests
 			_returnSession = session.CaptureScreen();
 		}
 
-		[TestFixtureTearDown]
+		[OneTimeTearDown]
 		public void After()
 		{
 			session.End();

@@ -13,7 +13,7 @@ namespace Bumblebee.IntegrationTests.Implementation
 	[TestFixture]
 	public class Given_numeric_field : HostTestFixture
 	{
-		[TestFixtureSetUp]
+		[OneTimeSetUp]
 		public void Init()
 		{
 			Threaded<Session>
@@ -21,7 +21,7 @@ namespace Bumblebee.IntegrationTests.Implementation
 				.NavigateTo<NumericFieldPage>(String.Format("{0}/Content/NumericField.html", BaseUrl));
 		}
 
-		[TestFixtureTearDown]
+		[OneTimeTearDown]
 		public void Dispose()
 		{
 			Threaded<Session>

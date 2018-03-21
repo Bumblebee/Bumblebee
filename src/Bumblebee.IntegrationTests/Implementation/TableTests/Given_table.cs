@@ -24,16 +24,16 @@ namespace Bumblebee.IntegrationTests.Implementation.TableTests
 	[TestFixture]
 	public class Given_table : HostTestFixture
 	{
-		[TestFixtureSetUp]
-		public void TestFixtureSetUp()
+		[OneTimeSetUp]
+		public void OneTimeSetUp()
 		{
 			Threaded<Session>
 				.With<PhantomJS>()
 				.NavigateTo<TablePage>(String.Format("{0}{1}", BaseUrl, "/Content/Table.html"));
 		}
 
-		[TestFixtureTearDown]
-		public void TestFixtureTearDown()
+		[OneTimeTearDown]
+		public void OneTimeTearDown()
 		{
 			Threaded<Session>
 				.End();

@@ -4,7 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 
 using Bumblebee.Extensions;
+using Bumblebee.IntegrationTests.Shared.Hosting;
 using Bumblebee.IntegrationTests.Shared.Pages;
+using Bumblebee.IntegrationTests.Shared.Pages.Implementation;
 using Bumblebee.IntegrationTests.Shared.Sessions;
 using Bumblebee.Setup;
 using Bumblebee.Setup.DriverEnvironments;
@@ -21,8 +23,8 @@ namespace Bumblebee.IntegrationTests.Setup
 	//ReSharper disable InconsistentNaming
 
 	[TestFixture]
-	public class ThreadedSessionTests
-	{
+	public class ThreadedSessionTests : HostTestFixture
+    {
 		[SetUp]
 		public void BeforeEach()
 		{
@@ -101,15 +103,15 @@ namespace Bumblebee.IntegrationTests.Setup
 		[Test]
 		public void Given_session_already_loaded_with_navigation_When_getting_matching_current_block_Then_should_return_block()
 		{
-			Threaded<Session>
-				.With<PhantomJS>()
-				.NavigateTo<LoggedOutPage>("https://www.nirvanahq.com/account/login");
+		    Threaded<Session>
+		        .With<PhantomJS>()
+		        .NavigateTo<CheckboxPage>(GetUrl("Checkbox.html"));
 
-			Threaded<Session>
-				.CurrentBlock<LoggedOutPage>()
-				.Verify(x => x.Session.Driver.PageSource.Contains("Username or Email Address"))
-				.Session.End();
-		}
+		    Threaded<Session>
+		        .CurrentBlock<CheckboxPage>()
+		        .Verify(x => x.Session.Driver.PageSource.Contains("Unchecked"))
+		        .Session.End();
+        }
 
 		[Test]
 		public void Given_session_not_loaded_with_navigation_When_getting_current_block_Then_should_throw()

@@ -15,7 +15,7 @@ namespace Bumblebee.IntegrationTests.Implementation
 	[TestFixture]
 	public class Given_select_box_with_ability_to_select_multiple_values : HostTestFixture
 	{
-		[TestFixtureSetUp]
+		[OneTimeSetUp]
 		public void Init()
 		{
 			Threaded<Session>
@@ -23,7 +23,7 @@ namespace Bumblebee.IntegrationTests.Implementation
 				.NavigateTo<MultiSelectPage>(String.Format("{0}/Content/MultiSelect.html", BaseUrl));
 		}
 
-		[TestFixtureTearDown]
+		[OneTimeTearDown]
 		public void Dispose()
 		{
 			Threaded<Session>

@@ -119,7 +119,7 @@ namespace Bumblebee.IntegrationTests
 			Key.Control + Key.Alt + Key.Shift + Key.J
 		};
 
-		[TestFixtureSetUp]
+		[OneTimeSetUp]
 		public void TestSetUp()
 		{
 			Threaded<Session>
@@ -127,7 +127,7 @@ namespace Bumblebee.IntegrationTests
 				.NavigateTo<CheckboxPage>(GetUrl("Keys.html"));
 		}
 
-		[TestFixtureTearDown]
+		[OneTimeTearDown]
 		public void TestTearDown()
 		{
 			Threaded<Session>

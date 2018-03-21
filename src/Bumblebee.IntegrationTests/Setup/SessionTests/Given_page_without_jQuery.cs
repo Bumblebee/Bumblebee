@@ -15,16 +15,16 @@ namespace Bumblebee.IntegrationTests.Setup.SessionTests
 	[TestFixture]
 	public class Given_page_without_jQuery : HostTestFixture
 	{
-		[TestFixtureSetUp]
-		public void TestFixtureSetUp()
+		[OneTimeSetUp]
+		public void OneTimeSetUp()
 		{
 			Threaded<Session>
 				.With<PhantomJS>()
 				.NavigateTo<PageWithJQuery>(GetUrl("Checkbox.html"));
 		}
 
-		[TestFixtureTearDown]
-		public void TestFixtureTearDown()
+		[OneTimeTearDown]
+		public void OneTimeTearDown()
 		{
 			Threaded<Session>
 				.End();
