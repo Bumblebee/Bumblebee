@@ -17,6 +17,7 @@
 # sys.path.insert(0, os.path.abspath('.'))
 import recommonmark
 from recommonmark.parser import CommonMarkParser
+from recommonmark.transform import AutoStructify
 
 # -- General configuration ---------------------------------------------------
 
@@ -51,6 +52,8 @@ master_doc = 'index'
 project = u'Bumblebee'
 copyright = u'2012, Patrick Herrmann, John Hammerlund, and Todd Meinershagen'
 author = u'Patrick Herrmann, John Hammerlund, and Todd Meinershagen'
+
+github_doc_root = 'https://github.com/bumblebee/bumblebee/tree/master/docs/'
 
 # The short X.Y version
 version = '1.2'
@@ -164,3 +167,11 @@ texinfo_documents = [
      author, 'Bumblebee', 'Bumblebee is a .NET layer on top of the Selenium browser automation framework that allows for the standardized creation of page objects, even for dynamic web pages.',
      'Miscellaneous'),
 ]
+
+# app setup hook
+def setup(app):
+    app.add_config_value('recommonmark_config', {
+        'url_resolver': lambda url: github_doc_root + url,
+        'enable_auto_doc_ref': True,
+    }, True)
+    app.add_transform(AutoStructify)
