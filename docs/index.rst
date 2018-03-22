@@ -7,12 +7,12 @@ Bumblebee
 
 Bumblebee is a .NET layer on top of the Selenium browser automation framework that allows for the standardized creation of page objects, even for dynamic web pages. There are a few features that define Bumblebee's usability.
 
--   Standardized UI interfaces
--   Modular page objects
--   IntelliSense-driven automations
--   Test Framework independence
--   Parallelization mindfulness
--   Flexibility
+* Standardized UI interfaces
+* Modular page objects
+* IntelliSense-driven automations
+* Test Framework independence
+* Parallelization mindfulness
+* Flexibility
 
 Like other `page object models`_, Bumblebee divides testing into two parts. The page objects model the subject of the testing, and the automation uses the page objects to tell the browser what to do.
 
@@ -28,7 +28,7 @@ If you are new to Bumblebee, check out the :doc:`getting-started` page first.
 
 .. toctree::
    :maxdepth: 2
-   :hidden
+   :hidden:
    :caption: User Documentation
 
    benefits
