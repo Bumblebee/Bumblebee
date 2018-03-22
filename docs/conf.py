@@ -15,8 +15,9 @@
 # import os
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
-
+import recommonmark
 from recommonmark.parser import CommonMarkParser
+from recommonmark.transform import AutoStructify
 
 # -- General configuration ---------------------------------------------------
 
@@ -27,7 +28,9 @@ from recommonmark.parser import CommonMarkParser
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = []
+extensions = [
+    'sphinx.ext.autodoc'
+]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -162,3 +165,12 @@ texinfo_documents = [
      author, 'Bumblebee', 'Bumblebee is a .NET layer on top of the Selenium browser automation framework that allows for the standardized creation of page objects, even for dynamic web pages.',
      'Miscellaneous'),
 ]
+
+# app setup hook
+def setup(app):
+    app.add_config_value('recommonmark_config', {
+        'url_resolver': lambda url: github_doc_root + url,
+        'enable_eval_rst': True,
+        'enable_auto_doc_ref': True,
+    }, True)
+app.add_transform(AutoStructify)
