@@ -14,4 +14,4 @@ The following are concepts that you should be familiar with in Bumblebee:
 * [Elements](elements.md)
 * [Sessions](sessions.md)
 * [Using Linq](using-linq.md)
-* [Conveniences](conveniences)
+* [Conveniences](conveniences.md)
