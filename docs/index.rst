@@ -14,11 +14,9 @@ Like other `page object models`_, Bumblebee divides testing into two parts. The 
 
 Bumblebee standardizes the design of page objects and makes the automation scripting trivial. Develop page objects quickly by modeling which parts of the page can be interacted with. Then in the automation, use Intellisense to browse through the available options and build a script.
 
-The basic idea behind Bumblebee is to break each page down into Blocks_ and Elements_. Use the classes provided by Bumblebee to model your site into page objects that you can consume in your automation code. If page objects are well designed, writing the automation code should take no effort at all.
+The basic idea behind Bumblebee is to break each page down into :doc:`blocks` and :doc:`elements`. Use the classes provided by Bumblebee to model your site into page objects that you can consume in your automation code. If page objects are well designed, writing the automation code should take no effort at all.
 
 .. _page object models: https://github.com/SeleniumHQ/selenium/wiki/PageObjects
-.. _Blocks: ./blocks.html
-.. _Elements: ./elements.html
 
 If you are new to Bumblebee, check out the :doc:`getting-started` page first.
 
