@@ -10,8 +10,8 @@ The basic idea behind Bumblebee is to break each page down into blocks and eleme
 
 The following are concepts that you should be familiar with in Bumblebee:
 
-* :doc:`blocks` 
-* :doc:`elements` 
-* :doc:`sessions` 
-* :doc:`using-linq` 
-* :doc:`conveniences` 
+* [Blocks](./blocks)
+* [Elements](./elements)
+* [Sessions](./sessions)
+* [Using Linq](./using-linq)
+* [Conveniences](./conveniences)
