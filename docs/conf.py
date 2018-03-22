@@ -288,3 +288,84 @@ def parse_reference(reference):
         docname = reference
         anchor = None
     return docname, anchor
+
+# -- JavaScript Extensions ------------------------------------------------
+
+js_extensions_dir = os.path.join(docs_dir, '_extensions')
+js_extensions = []
+js_interpreters = {
+    '.js': [node_bin],
+    '.coffee': [node_bin, os.path.join(node_modules_bin_dir, 'coffee')]
+}
+
+def init_js_extensions(app):
+    """
+    Looks up and registers the Node.js extensions
+    Loads Node.js scripts from the 'docs/_extensions' directory, assigns
+    interpreters to them (node vs. coffee) and registers the 'run_js_extensions'
+    function.
+    """
+    app.info(console.bold('initializing Node.js extensions... '), nonl=True)
+    for basename in sorted(os.listdir(js_extensions_dir)):
+        _, ext = os.path.splitext(basename)
+
+        if ext in js_interpreters.keys():
+            filename = os.path.join(js_extensions_dir, basename)
+            command = js_interpreters[ext] + [filename]
+            js_extensions.append((basename, command))
+
+    app.connect('source-read', run_js_extensions)
+    app.info('{} found'.format(len(js_extensions)))
+    app.verbose('JavaScript extensions: ' + ', '.join(dict(js_extensions).keys()))
+
+def run_js_extensions(app, docname, source_list):
+    """
+    Lets all registered Node.js extensions to process given document source
+    Executed for each document after the source gets read. Sequentially feeds
+    stdin of each registered Node.js with the source and continues with whatever
+    the extension sends to stdout. The extensions are provided with the document
+    name as the first CLI argument.
+    Hercule (https://www.npmjs.com/package/hercule) is built-in as if it was
+    the first Node.js extension in the pipeline.
+    """
+    source = source_list[0]
+
+    app.verbose(console.bold("runnning JavaScript extension 'hercule'... ") + console.blue(docname))
+    command = [node_bin, os.path.join(node_modules_bin_dir, 'hercule'), '--relative=' + docs_dir, '--stdin']
+    source = run_extension('hercule', command, source)
+
+    for basename, command in js_extensions:
+        app.verbose(console.bold("runnning JavaScript extension '{}'... ".format(basename)) + console.blue(docname))
+        source = run_extension(basename, command + [docname], source)
+
+    source_list[0] = source
+
+def run_extension(extension_name, command, source):
+    """
+    Runs given command as a subprocess and lets it to modify given source
+    """
+    proc = subprocess.Popen(command, stdout=subprocess.PIPE, stdin=subprocess.PIPE)
+    proc.stdin.write(source.encode('utf-8'))
+    proc.stdin.close()
+
+    source = proc.stdout.read().decode('utf-8')
+    exit_status = proc.wait()
+    if exit_status:
+        message = "JavaScript extension '{}' finished with non-zero exit status: {}"
+        raise SphinxError(message.format(extension_name, exit_status))
+    return source
+
+
+# -- Hacks ----------------------------------------------------------------
+
+import sphinx.application
+
+# Hacking around the pygments-markdown-lexer issue:
+# https://github.com/jhermann/pygments-markdown-lexer/issues/6
+_original_warn = sphinx.application.Sphinx.warn
+
+def _warn(self, message, *args, **kwargs):
+    if not message.startswith('extension \'pygments_markdown_lexer\' has no setup() function'):
+        _original_warn(self, message, *args, **kwargs)
+
+    sphinx.application.Sphinx.warn = _warn
