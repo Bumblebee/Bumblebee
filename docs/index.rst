@@ -43,9 +43,7 @@ Releases
 .. image:: https://ci.appveyor.com/api/projects/status/k24rhl5hvxs9j9ya?svg=true
    :alt:  Bumblebee Current - Build Status
    :target: https://ci.appveyor.com/project/toddmeinershagen/bumblebee
-
 |
-
 .. image:: https://img.shields.io/nuget/vpre/Bumblebee.Automation.svg?style=flat
    :alt: Bumblebee vNext - NuGet
    :target: https://www.nuget.org/packages/Bumblebee.Automation/2.0.8-beta
@@ -70,7 +68,6 @@ If you are having issues or would like to provide feedback, you can join the `gi
 
 
 .. toctree::
-   :hidden:
    :maxdepth: 2
    :caption: User Documentation
 
