@@ -17,7 +17,6 @@
 # sys.path.insert(0, os.path.abspath('.'))
 import recommonmark
 from recommonmark.parser import CommonMarkParser
-from recommonmark.transform import AutoStructify
 
 # -- General configuration ---------------------------------------------------
 
@@ -165,8 +164,3 @@ texinfo_documents = [
      author, 'Bumblebee', 'Bumblebee is a .NET layer on top of the Selenium browser automation framework that allows for the standardized creation of page objects, even for dynamic web pages.',
      'Miscellaneous'),
 ]
-
-# app setup hook
-def setup(app):
-    app.add_config_value('recommonmark_config', {}, True)
-    app.add_transform(AutoStructify)
