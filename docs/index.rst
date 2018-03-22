@@ -1,10 +1,5 @@
-.. Bumblebee documentation master file, created by
-   sphinx-quickstart on Mon Mar 19 22:00:21 2018.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
-
-Welcome to Bumblebee!
-==============================================
+Bumblebee
+=========
 
 .. image:: https://badges.gitter.im/Join%20Chat.svg
    :alt: Gitter
@@ -30,44 +25,6 @@ The basic idea behind Bumblebee is to break each page down into Blocks_ and Elem
 .. _Elements: ./elements.html
 
 If you are new to Bumblebee, check out the :doc:`getting-started` page first.
-
-Releases
---------
-
-* **Bumblebee** - A fluent-style, .NET layer on top of Selenium for implementing the `page pattern`_.
-
-.. _page pattern: https://code.google.com/p/selenium/wiki/PageObjects
-
-.. image:: https://img.shields.io/nuget/v/Bumblebee.Automation.svg?style=flat
-   :alt: Bumblebee Current - NuGet
-   :target: https://www.nuget.org/packages/Bumblebee.Automation/
-   
-.. image:: https://ci.appveyor.com/api/projects/status/k24rhl5hvxs9j9ya?svg=true
-   :alt:  Bumblebee Current - Build Status
-   :target: https://ci.appveyor.com/project/toddmeinershagen/bumblebee
-|
-.. image:: https://img.shields.io/nuget/vpre/Bumblebee.Automation.svg?style=flat
-   :alt: Bumblebee vNext - NuGet
-   :target: https://www.nuget.org/packages/Bumblebee.Automation/2.0.8-beta
-
-.. image::  https://ci.appveyor.com/api/projects/status/5aser6k7s2x1t0fg?svg=true
-   :alt: Bumblebee vNext - Build Status
-   :target: https://ci.appveyor.com/project/toddmeinershagen/bumblebee-hqwf8
-   
-* **Bumblebee for Kendo UI** - A separate library for adding Kendo element support for Bumblebee.
-
-.. image:: https://img.shields.io/nuget/v/Bumblebee.Automation.KendoUI.svg?style=flat
-   :alt: NuGet version (Bumblebee.Automation.KendoUI)
-   :target: https://www.nuget.org/packages/Bumblebee.Automation.KendoUI/
-
-Contact Us
-----------
-
-If you are having issues or would like to provide feedback, you can join the `gitter conversation`_ or go here_ to log issues. 
-
-.. _gitter conversation: https://gitter.im/Bumblebee/Discuss
-.. _here: https://github.com/bumblebee/bumblebee/issues
-
 
 .. toctree::
    :maxdepth: 2
