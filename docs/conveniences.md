@@ -21,7 +21,7 @@ The example below verifies that a select box has five options and then clicks th
 .Last().Click()
 ...
 ```
-[More information about verification](./verification.md)
+[More information about verification](verification.html)
 
 ## Drag and Drop
 
