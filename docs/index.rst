@@ -29,6 +29,8 @@ The basic idea behind Bumblebee is to break each page down into Blocks_ and Elem
 .. _Blocks: ./blocks.html
 .. _Elements: ./elements.html
 
+If you are new to Bumblebee, check out the :doc:`getting-started` page first.
+
 Releases
 --------
 
