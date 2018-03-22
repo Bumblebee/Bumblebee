@@ -20,7 +20,7 @@
 # -- Project information -----------------------------------------------------
 
 project = u'Bumblebee'
-copyright = u'2018, Todd Meinershagen'
+copyright = u'2012, Todd Meinershagen'
 author = u'Todd Meinershagen'
 
 # The short X.Y version
@@ -70,6 +70,8 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = 'sphinx'
 
+# If true, `todo` and `todoList` produce output, else they produce nothing.
+todo_include_todos = False
 
 # -- Options for HTML output -------------------------------------------------
 
@@ -84,7 +86,7 @@ html_theme = 'sphinx_rtd_theme'
 #
 html_theme_options = {
     'logo_only': False,
-    'display_version': False
+    'display_version': True
 }
 
 # html_logo = 'images/bumblebee-logo-150px.png'
@@ -102,7 +104,7 @@ html_static_path = ['_static']
 # default: ``['localtoc.html', 'relations.html', 'sourcelink.html',
 # 'searchbox.html']``.
 #
-# html_sidebars = {}
+html_sidebars = {}
 
 
 # -- Options for HTMLHelp output ---------------------------------------------
