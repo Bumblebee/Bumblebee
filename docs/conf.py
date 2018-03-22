@@ -173,4 +173,4 @@ def setup(app):
         'enable_eval_rst': True,
         'enable_auto_doc_ref': True,
     }, True)
-app.add_transform(AutoStructify)
+    app.add_transform(AutoStructify)
