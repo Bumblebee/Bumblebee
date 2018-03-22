@@ -28,6 +28,7 @@ If you are new to Bumblebee, check out the :doc:`getting-started` page first.
 
 .. toctree::
    :maxdepth: 2
+   :hidden
    :caption: User Documentation
 
    benefits
