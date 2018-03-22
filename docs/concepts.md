@@ -11,7 +11,7 @@ The basic idea behind Bumblebee is to break each page down into blocks and eleme
 The following are concepts that you should be familiar with in Bumblebee:
 
 * [Blocks](./blocks.md)
-* [Elements](./elements)
-* [Sessions](./sessions)
-* [Using Linq](./using-linq)
-* [Conveniences](./conveniences)
+* [Elements](./elements.md)
+* [Sessions](./sessions.md)
+* [Using Linq](./using-linq.md)
+* [Conveniences](./conveniences.md)
