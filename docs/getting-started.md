@@ -98,4 +98,4 @@ public class LoginTests
 Now that you have completed your first Bumblebee automation, it's time to explore the concepts in more detail.  
 Good luck!  
 
-And let us know if you have questions or concerns [here](../issues).
+And let us know if you have questions or concerns [here](../../../issues).
