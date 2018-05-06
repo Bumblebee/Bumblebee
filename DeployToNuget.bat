@@ -17,7 +17,7 @@ REM ====================
 SET /p NuGetApiKey= Please enter the project's NuGet API Key: 
 nuget.exe setApiKey %NuGetApiKey%
 
-SET package="src\Bumblebee\Bumblebee.csproj"
+SET package=".\src\Bumblebee\Bumblebee.csproj"
 
 REM Create the Package
 REM ==================
