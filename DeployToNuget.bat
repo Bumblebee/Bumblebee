@@ -31,5 +31,5 @@ dotnet pack %package% --no-build -o ..\..\build -c Release
 REM Push to Nuget 
 REM =============
 cd build
-..\nuget.exe push *.nupkg
+dotnet nuget push *.nupkg
 cd ..
