@@ -2,7 +2,7 @@
 using System.Reflection;
 
 using FluentAssertions;
-
+using NSubstitute.Core;
 using NUnit.Framework;
 
 namespace Bumblebee.IntegrationTests
