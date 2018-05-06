@@ -17,12 +17,15 @@ REM ====================
 SET /p NuGetApiKey= Please enter the project's NuGet API Key: 
 nuget.exe setApiKey %NuGetApiKey%
 
-SET package="src\Bumblebee\Bumblebee.csproj"
+SET package=".\src\Bumblebee\Bumblebee.csproj"
 
 REM Create the Package
 REM ==================
+ECHO "Restoring project found here:  %package%."
+nuget.exe restore %package%
+
 ECHO "Packing/Pushing project found here:  %package%."
-nuget.exe pack -Build -OutputDirectory build %package% -Prop Configuration=Release
+dotnet pack %package% -c Release -o ..\..\build
 
 REM Push to Nuget 
 REM =============
