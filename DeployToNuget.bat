@@ -17,7 +17,7 @@ REM ====================
 SET /p NuGetApiKey= Please enter the project's NuGet API Key: 
 nuget.exe setApiKey %NuGetApiKey%
 
-SET package=".\src\Bumblebee\Bumblebee.csproj"
+SET package="src\Bumblebee\Bumblebee.csproj"
 
 REM Create the Package
 REM ==================
@@ -30,6 +30,6 @@ dotnet pack %package% --no-build -o ..\..\build -c Release
 
 REM Push to Nuget 
 REM =============
-REM cd build
-REM ..\nuget.exe push *.nupkg
-REM cd ..
+cd build
+..\nuget.exe push *.nupkg
+cd ..
