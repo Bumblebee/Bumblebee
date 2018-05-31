@@ -23,7 +23,8 @@ namespace Bumblebee.Implementation
 
 		public virtual TCustomResult EnterText<TCustomResult>(string text) where TCustomResult : IBlock
 		{
-			Tag.Clear();
+			var executor = (IJavaScriptExecutor) Session.Driver;
+			executor.ExecuteScript($"arguments[0].value = '';");
 
 			return AppendText<TCustomResult>(text);
 		}
