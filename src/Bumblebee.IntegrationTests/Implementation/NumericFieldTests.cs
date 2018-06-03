@@ -13,8 +13,8 @@ namespace Bumblebee.IntegrationTests.Implementation
 	// ReSharper disable InconsistentNaming
 	[TestFixture(typeof(HeadlessChrome))]
 	public class Given_numeric_field<T> : HostTestFixture
-	    where T : IDriverEnvironment, new()
-    {
+		where T : IDriverEnvironment, new()
+	{
 		[OneTimeSetUp]
 		public void TestFixtureSetUp()
 		{

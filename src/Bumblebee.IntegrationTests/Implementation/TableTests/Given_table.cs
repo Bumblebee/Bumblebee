@@ -16,8 +16,8 @@ namespace Bumblebee.IntegrationTests.Implementation.TableTests
 
 	[TestFixture(typeof(HeadlessChrome))]
 	public class Given_table<T> : HostTestFixture
-	    where T : IDriverEnvironment, new()
-    {
+		where T : IDriverEnvironment, new()
+	{
 		[OneTimeSetUp]
 		public void TestFixtureSetUp()
 		{

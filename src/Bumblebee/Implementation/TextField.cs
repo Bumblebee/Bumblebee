@@ -20,7 +20,8 @@ namespace Bumblebee.Implementation
 
 		public virtual TResult EnterText<TResult>(string text) where TResult : IBlock
 		{
-			Tag.Clear();
+			var executor = (IJavaScriptExecutor) Session.Driver;
+			executor.ExecuteScript($"arguments[0].value = '';", Tag);
 
 			return AppendText<TResult>(text);
 		}

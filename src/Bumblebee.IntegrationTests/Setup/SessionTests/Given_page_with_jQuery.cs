@@ -14,8 +14,8 @@ namespace Bumblebee.IntegrationTests.Setup.SessionTests
 {
 	[TestFixture(typeof(HeadlessChrome))]
 	public class Given_page_with_jQuery<T> : HostTestFixture
-	    where T : IDriverEnvironment, new()
-    {
+		where T : IDriverEnvironment, new()
+	{
 		[OneTimeSetUp]
 		public void TestFixtureSetUp()
 		{

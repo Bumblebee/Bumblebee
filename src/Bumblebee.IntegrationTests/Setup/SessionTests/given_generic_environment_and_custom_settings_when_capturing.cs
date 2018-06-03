@@ -16,14 +16,14 @@ namespace Bumblebee.IntegrationTests.Setup.SessionTests
 {
 	[TestFixture(typeof(HeadlessChrome))]
 	public class Given_generic_environment_and_custom_settings_When_capturing<T> : HostTestFixture
-	    where T : IDriverEnvironment, new()
-    {
+		where T : IDriverEnvironment, new()
+	{
 		private string _filePath;
 		private Session _session;
 		private Session _returnSession;
 
 		[OneTimeSetUp]
-		public void Before()
+		public void TestFixtureSetUp()
 		{
 			var currentMethod = CallStack.GetCurrentMethod().GetFullName();
 
@@ -42,7 +42,7 @@ namespace Bumblebee.IntegrationTests.Setup.SessionTests
 		}
 
 		[OneTimeTearDown]
-		public void After()
+		public void TestFixtureTearDown()
 		{
 			_session.End();
 			File.Delete(_filePath);

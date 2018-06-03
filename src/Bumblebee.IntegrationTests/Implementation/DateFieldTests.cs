@@ -16,8 +16,8 @@ namespace Bumblebee.IntegrationTests.Implementation
 
 	[TestFixture(typeof(HeadlessChrome))]
 	public class Given_date_field<T> : HostTestFixture
-	    where T : IDriverEnvironment, new()
-    {
+		where T : IDriverEnvironment, new()
+	{
 		[OneTimeSetUp]
 		public void TestFixtureSetUp()
 		{

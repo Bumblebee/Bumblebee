@@ -14,10 +14,10 @@ namespace Bumblebee.IntegrationTests.Implementation.ClickableTests
 
 	[TestFixture(typeof(HeadlessChrome))]
 	public class Given_double_clickable<T> : HostTestFixture
-	    where T : IDriverEnvironment, new()
-    {
+		where T : IDriverEnvironment, new()
+	{
 		[OneTimeSetUp]
-		public void SetUpFixture()
+		public void TestFixtureSetUp()
 		{
 			Threaded<Session>
 				.With<T>()
@@ -25,7 +25,7 @@ namespace Bumblebee.IntegrationTests.Implementation.ClickableTests
 		}
 
 		[OneTimeTearDown]
-		public void DisposeFixture()
+		public void TestFixtureTearDown()
 		{
 			Threaded<Session>
 				.End();

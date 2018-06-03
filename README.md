@@ -19,8 +19,22 @@ Bumblebee is a .NET layer on top of the Selenium browser automation framework th
 For help using Bumblebee, check out [Bumblebee Read the Docs Site](http://bumblebee-automation.readthedocs.io/en/stalefix/) and feel free to contact me with any questions.
 
 **Bumblebee** - A fluent-style, .NET layer on top of Selenium for implementing the [page pattern](https://code.google.com/p/selenium/wiki/PageObjects).<br>
-* [![NuGet version (Bumblebee.Automation)](https://img.shields.io/nuget/v/Bumblebee.Automation.svg?style=flat)](https://www.nuget.org/packages/Bumblebee.Automation/) - Current
-* [![NuGet version (Bumblebee.Automation)](https://img.shields.io/nuget/vpre/Bumblebee.Automation.svg?style=flat)](https://www.nuget.org/packages/Bumblebee.Automation/2.0.6-alpha) - Pre-Release 
+
+  * Current
+
+    [![Bumblebee Current - NuGet](https://img.shields.io/nuget/v/Bumblebee.Automation.svg?style=flat)](https://www.nuget.org/packages/Bumblebee.Automation/)
+    [![Bumblebee Current - Build Status](https://ci.appveyor.com/api/projects/status/k24rhl5hvxs9j9ya?svg=true)](https://ci.appveyor.com/project/toddmeinershagen/bumblebee)
+
+  * vNext (Pre-release)
+
+    [![Bumblebee vNext - NuGet](https://img.shields.io/nuget/vpre/Bumblebee.Automation.svg?style=flat)](https://www.nuget.org/packages/Bumblebee.Automation/2.0.8-beta)
+    [![Bumblebee vNext - Build Status](https://ci.appveyor.com/api/projects/status/5aser6k7s2x1t0fg?svg=true)](https://ci.appveyor.com/project/toddmeinershagen/bumblebee-hqwf8)
 
 **Bumblebee for Kendo UI** - A separate library for adding Kendo element support for Bumblebee.<br>
-[![NuGet version (Bumblebee.Automation.KendoUI)](https://img.shields.io/nuget/v/Bumblebee.Automation.KendoUI.svg?style=flat)](https://www.nuget.org/packages/Bumblebee.Automation.KendoUI/)
+
+   [![NuGet version (Bumblebee.Automation.KendoUI)](https://img.shields.io/nuget/v/Bumblebee.Automation.KendoUI.svg?style=flat)](https://www.nuget.org/packages/Bumblebee.Automation.KendoUI/)
+
+Contact Us
+----------
+
+If you are having issues or would like to provide feedback, you can join the [gitter conversation](https://gitter.im/Bumblebee/Discuss) or go [here](https://github.com/bumblebee/bumblebee/issues) to log issues. 

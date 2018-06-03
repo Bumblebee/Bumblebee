@@ -6,7 +6,6 @@ using Bumblebee.IntegrationTests.Shared;
 using Bumblebee.IntegrationTests.Shared.Hosting;
 using Bumblebee.IntegrationTests.Shared.Pages;
 using Bumblebee.Setup;
-using Bumblebee.Setup.DriverEnvironments;
 
 using FluentAssertions;
 
@@ -19,8 +18,8 @@ namespace Bumblebee.IntegrationTests.Setup.SessionTests
 	[TestFixture(typeof(HeadlessChrome))]
 
 	public class Given_environment_and_default_settings_When_capturing_from_generic_method<T> : HostTestFixture
-	    where T : IDriverEnvironment, new()
-    {
+		where T : IDriverEnvironment, new()
+	{
 		[Test]
 		public void Should_save_in_executing_directory()
 		{
@@ -36,7 +35,7 @@ namespace Bumblebee.IntegrationTests.Setup.SessionTests
 			File.Delete(path);
 		}
 
-		private string GenericMethod<T>(T session) where T : Session
+		private string GenericMethod<TSession>(TSession session) where TSession : Session
 		{
 			var currentMethod = String.Format("{0}.png", CallStack.GetCurrentMethod().GetFullName());
 			var defaultSettings = new Settings();
