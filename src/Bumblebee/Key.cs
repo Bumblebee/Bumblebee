@@ -205,7 +205,14 @@ namespace Bumblebee
 
 		public override int GetHashCode()
 		{
-			return (_key != null ? _key.GetHashCode() : 0);
+			int result = 0;
+
+			if (_key != null)
+			{
+				result = _key.GetHashCode();
+			}
+
+			return result;
 		}
 
 		public override string ToString()

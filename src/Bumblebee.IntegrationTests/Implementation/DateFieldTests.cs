@@ -1,10 +1,10 @@
 ﻿using System;
 
 using Bumblebee.Extensions;
+using Bumblebee.IntegrationTests.Shared;
 using Bumblebee.IntegrationTests.Shared.Hosting;
-using Bumblebee.IntegrationTests.Shared.Pages.Implementation;
+using Bumblebee.IntegrationTests.Shared.Pages;
 using Bumblebee.Setup;
-using Bumblebee.Setup.DriverEnvironments;
 
 using FluentAssertions;
 
@@ -14,19 +14,20 @@ namespace Bumblebee.IntegrationTests.Implementation
 {
 	// ReSharper disable InconsistentNaming
 
-	[TestFixture]
-	public class Given_date_field : HostTestFixture
+	[TestFixture(typeof(HeadlessChrome))]
+	public class Given_date_field<T> : HostTestFixture
+		where T : IDriverEnvironment, new()
 	{
 		[OneTimeSetUp]
-		public void Init()
+		public void TestFixtureSetUp()
 		{
 			Threaded<Session>
-				.With<PhantomJS>()
-				.NavigateTo<DateFieldPage>(String.Format("{0}/Content/DateField.html", BaseUrl));
+				.With<T>()
+				.NavigateTo<DateFieldPage>(GetUrl("DateField.html"));
 		}
 
 		[OneTimeTearDown]
-		public void Dispose()
+		public void TestFixtureTearDown()
 		{
 			Threaded<Session>
 				.End();

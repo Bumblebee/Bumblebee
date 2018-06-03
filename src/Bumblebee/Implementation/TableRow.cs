@@ -8,7 +8,7 @@ using OpenQA.Selenium;
 
 namespace Bumblebee.Implementation
 {
-	public class TableRow : Element, ITableRow
+	public class TableRow : Block, ITableRow
 	{
 		private readonly IDictionary<string, string> _data;
 
@@ -24,7 +24,7 @@ namespace Bumblebee.Implementation
 
 		public TableRow(IBlock parent, By @by) : base(parent, @by)
 		{
-			_data = ParentBlock.Tag
+			_data = Parent
 				.FindElement(By.TagName("thead"))
 				.FindElement(By.TagName("tr"))
 				.FindElements(By.TagName("th"))
@@ -32,15 +32,6 @@ namespace Bumblebee.Implementation
 				.ToDictionary(x => x.Key, x => x.Value);
 		}
 
-		public TableRow(IBlock parent, IWebElement tag) : base(parent, tag)
-		{
-			_data = ParentBlock.Tag
-				.FindElement(By.TagName("thead"))
-				.FindElement(By.TagName("tr"))
-				.FindElements(By.TagName("th"))
-				.Zip(FindElements(By.TagName("td")), (header, cell) => new KeyValuePair<string, string>(header.Text, cell.Text))
-				.ToDictionary(x => x.Key, x => x.Value);
-		}
 
 		IEnumerator IEnumerable.GetEnumerator()
 		{

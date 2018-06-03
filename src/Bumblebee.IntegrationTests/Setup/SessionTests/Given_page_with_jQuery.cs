@@ -1,8 +1,8 @@
-﻿using Bumblebee.Extensions;
+﻿using Bumblebee.IntegrationTests.Shared;
 using Bumblebee.IntegrationTests.Shared.Hosting;
-using Bumblebee.IntegrationTests.Shared.Pages.Implementation;
+using Bumblebee.IntegrationTests.Shared.Pages;
+using Bumblebee.JQuery;
 using Bumblebee.Setup;
-using Bumblebee.Setup.DriverEnvironments;
 
 using FluentAssertions;
 
@@ -12,19 +12,20 @@ using NUnit.Framework;
 
 namespace Bumblebee.IntegrationTests.Setup.SessionTests
 {
-	[TestFixture]
-	public class Given_page_with_jQuery : HostTestFixture
+	[TestFixture(typeof(HeadlessChrome))]
+	public class Given_page_with_jQuery<T> : HostTestFixture
+		where T : IDriverEnvironment, new()
 	{
 		[OneTimeSetUp]
-		public void OneTimeSetUp()
+		public void TestFixtureSetUp()
 		{
 			Threaded<Session>
-				.With<PhantomJS>()
+				.With<T>()
 				.NavigateTo<PageWithJQuery>(GetUrl("PageWithJQuery.html"));
 		}
 
 		[OneTimeTearDown]
-		public void OneTimeTearDown()
+		public void TestFixtureTearDown()
 		{
 			Threaded<Session>
 				.End();

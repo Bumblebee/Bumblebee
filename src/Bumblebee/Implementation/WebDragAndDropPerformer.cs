@@ -19,9 +19,9 @@ namespace Bumblebee.Implementation
 			new Actions(Driver).DragAndDrop(drag, drop).Build().Perform();
 		}
 
-		public void DragAndDrop(IWebElement drag, int xDrop, int yDrop)
+		public void DragAndDrop(IWebElement drag, int offsetX, int offsetY)
 		{
-			new Actions(Driver).DragAndDropToOffset(drag, xDrop, yDrop).Build().Perform();
+			new Actions(Driver).DragAndDropToOffset(drag, offsetX, offsetY).Build().Perform();
 		}
 	}
 }

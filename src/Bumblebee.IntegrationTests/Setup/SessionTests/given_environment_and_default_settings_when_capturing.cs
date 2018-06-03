@@ -3,8 +3,9 @@ using System.IO;
 using System.Reflection;
 
 using Bumblebee.Extensions;
+using Bumblebee.IntegrationTests.Shared;
 using Bumblebee.IntegrationTests.Shared.Hosting;
-using Bumblebee.IntegrationTests.Shared.Pages.Implementation;
+using Bumblebee.IntegrationTests.Shared.Pages;
 using Bumblebee.Setup;
 using Bumblebee.Setup.DriverEnvironments;
 
@@ -16,9 +17,10 @@ using NUnit.Framework;
 
 namespace Bumblebee.IntegrationTests.Setup.SessionTests
 {
-    [TestFixture]
-	public class Given_environment_and_default_settings_When_capturing : HostTestFixture
-	{
+	[TestFixture(typeof(HeadlessChrome))]
+	public class Given_environment_and_default_settings_When_capturing<T> : HostTestFixture
+	    where T : IDriverEnvironment, new()
+    {
 		private string path;
 		private Session session;
 		private Session _returnSession;
@@ -32,7 +34,7 @@ namespace Bumblebee.IntegrationTests.Setup.SessionTests
 			path = Path.Combine(defaultSettings.ScreenCapturePath, currentMethod);
 			File.Delete(path);
 
-			var environment = new InternetExplorer();
+			var environment = new T();
 			session = new Session(environment);
 			session.NavigateTo<CheckboxPage>(GetUrl("Checkbox.html"));
 

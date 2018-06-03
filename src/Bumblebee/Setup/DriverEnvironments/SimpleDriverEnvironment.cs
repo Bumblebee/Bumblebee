@@ -24,8 +24,8 @@ namespace Bumblebee.Setup.DriverEnvironments
 
 			driver.Manage().Window.Maximize();
 
-			driver.Manage().Timeouts().ImplicitlyWait(TimeToWait);
-			
+			driver.Manage().Timeouts().ImplicitWait = TimeToWait;
+
 			return driver;
 		}
 	}

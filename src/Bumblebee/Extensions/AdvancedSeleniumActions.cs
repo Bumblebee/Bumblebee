@@ -10,17 +10,17 @@ namespace Bumblebee.Extensions
 	public static class AdvancedSeleniumActions
 	{
 		/// <summary>
-		/// Hovers the specified element.
+		/// Performs the hover action on the specified element.
 		/// </summary>
 		/// <typeparam name="TElement">The type of the element.</typeparam>
 		/// <param name="element">The element.</param>
-		/// <param name="miliseconds">The miliseconds.</param>
+		/// <param name="milliseconds">The time to wait, in milliseconds.</param>
 		/// <returns></returns>
-		public static TElement Hover<TElement>(this TElement element, int miliseconds = 0) where TElement : IElement
+		public static TElement Hover<TElement>(this TElement element, int milliseconds = 0) where TElement : IElement
 		{
 			new Actions(element.Session.Driver).MoveToElement(element.Tag).Perform();
 
-			return element.Pause(miliseconds);
+			return element.Pause(milliseconds);
 		}
 
 		/// <summary>
@@ -28,7 +28,7 @@ namespace Bumblebee.Extensions
 		/// </summary>
 		/// <typeparam name="TParent">The type of the parent block.</typeparam>
 		/// <param name="parent">The parent block.</param>
-		/// <param name="getDraggable">The get draggable.</param>
+		/// <param name="getDraggable">The lambda that gets the element to be dragged.</param>
 		/// <returns></returns>
 		public static DragAction<TParent> Drag<TParent>(this TParent parent, Func<TParent, IDraggable> getDraggable) where TParent : IBlock
 		{
@@ -36,17 +36,22 @@ namespace Bumblebee.Extensions
 		}
 
 		/// <summary>
-		/// Waits the until.
+		/// Waits until <paramref name="condition" /> true, or until the timeout has expired, whichever comes first.
 		/// </summary>
 		/// <typeparam name="TParent">The type of the parent block.</typeparam>
 		/// <param name="parent">The parent block.</param>
-		/// <param name="condition">The condition.</param>
-		/// <param name="miliseconds">The miliseconds.</param>
+		/// <param name="condition">The condition to wait for.</param>
+		/// <param name="milliseconds">The time to wait, in milliseconds.</param>
 		/// <returns></returns>
-		public static TParent WaitUntil<TParent>(this TParent parent, Predicate<TParent> condition, int miliseconds = 10000) where TParent : IBlock
+		public static TParent WaitUntil<TParent>(this TParent parent, Predicate<TParent> condition, int milliseconds = 10000) where TParent : IBlock
 		{
-			var wait = new DefaultWait<TParent>(parent) { Timeout = TimeSpan.FromMilliseconds(miliseconds) };
+			var wait = new DefaultWait<TParent>(parent)
+			{
+				Timeout = TimeSpan.FromMilliseconds(milliseconds)
+			};
+
 			wait.Until(condition.Invoke);
+
 			return parent;
 		}
 	}

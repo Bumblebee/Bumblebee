@@ -3,9 +3,9 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Runtime.InteropServices;
 
+using Bumblebee.IntegrationTests.Shared;
 using Bumblebee.IntegrationTests.Shared.Hosting;
 using Bumblebee.Setup;
-using Bumblebee.Setup.DriverEnvironments;
 
 using FluentAssertions;
 
@@ -15,56 +15,10 @@ using NUnit.Framework;
 
 namespace Bumblebee.IntegrationTests.Setup.SessionTests
 {
-	[TestFixture]
-	public class Given_session_with_default_settings : HostTestFixture
-	{
-		[DllImport("urlmon.dll", CharSet = CharSet.Unicode, ExactSpelling = true, SetLastError = false)]
-		private static extern int FindMimeFromData(IntPtr pBC,
-			[MarshalAs(UnmanagedType.LPWStr)] string pwzUrl,
-			[MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.I1, SizeParamIndex = 3)] byte[] pBuffer,
-			int cbSize,
-			[MarshalAs(UnmanagedType.LPWStr)] string pwzMimeProposed,
-			int dwMimeFlags,
-			out IntPtr ppwzMimeOut,
-			int dwReserved);
-
-		private static string GetMimeFromFile(string filename)
-		{
-			if (File.Exists(filename) == false)
-			{
-				throw new FileNotFoundException(String.Format("File '{0}' not found", filename));
-			}
-
-			int numberOfBytesRead;
-			byte[] buffer = new byte[256];
-
-			using (var fs = new FileStream(filename, FileMode.Open))
-			{
-				var length = (int) Math.Min(256, fs.Length);
-
-				numberOfBytesRead = fs.Read(buffer, 0, length);
-			}
-
-			string result;
-
-			try
-			{
-				IntPtr mimetype;
-
-				FindMimeFromData(IntPtr.Zero, null, buffer, numberOfBytesRead, null, 0, out mimetype, 0);
-
-				result = Marshal.PtrToStringUni(mimetype);
-
-				Marshal.FreeCoTaskMem(mimetype);
-			}
-			catch (Exception e)
-			{
-				throw new ApplicationException(String.Format("Unable to determine type of file '{0}'.", filename), e);
-			}
-
-			return result;
-		}
-
+	[TestFixture(typeof(HeadlessChrome))]
+	public class Given_session_with_default_settings<T> : HostTestFixture
+	    where T : IDriverEnvironment, new()
+    {
 		private static readonly TestCaseData[] TestCases =
 		{
 			new TestCaseData("screenshot.png", ImageFormat.Png, "image/x-png"),
@@ -77,13 +31,13 @@ namespace Bumblebee.IntegrationTests.Setup.SessionTests
 		private Session _session;
 
 		[OneTimeSetUp]
-		public void OneTimeSetUp()
+		public void TestFixtureSetUp()
 		{
-			_session = new Session(new Chrome());
+			_session = new Session(new T());
 		}
 
 		[OneTimeTearDown]
-		public void OneTimeTearDown()
+		public void TestFixtureTearDown()
 		{
 			_session.End();
 
@@ -97,7 +51,7 @@ namespace Bumblebee.IntegrationTests.Setup.SessionTests
 
 			_session.CaptureScreen(path);
 
-			var actual = GetMimeFromFile(path);
+			var actual = MimeProvider.GetMimeFromFile(path);
 
 			actual.Should().Be(expected);
 
@@ -112,4 +66,54 @@ namespace Bumblebee.IntegrationTests.Setup.SessionTests
 			fn.ShouldThrow<ArgumentException>();
 		}
 	}
+
+    public static class MimeProvider
+    {
+        [DllImport("urlmon.dll", CharSet = CharSet.Unicode, ExactSpelling = true, SetLastError = false)]
+        private static extern int FindMimeFromData(IntPtr pBC,
+            [MarshalAs(UnmanagedType.LPWStr)] string pwzUrl,
+            [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.I1, SizeParamIndex = 3)] byte[] pBuffer,
+            int cbSize,
+            [MarshalAs(UnmanagedType.LPWStr)] string pwzMimeProposed,
+            int dwMimeFlags,
+            out IntPtr ppwzMimeOut,
+            int dwReserved);
+
+        public static string GetMimeFromFile(string filename)
+        {
+            if (File.Exists(filename) == false)
+            {
+                throw new FileNotFoundException(String.Format("File '{0}' not found", filename));
+            }
+
+            int numberOfBytesRead;
+            byte[] buffer = new byte[256];
+
+            using (var fs = new FileStream(filename, FileMode.Open))
+            {
+                var length = (int)Math.Min(256, fs.Length);
+
+                numberOfBytesRead = fs.Read(buffer, 0, length);
+            }
+
+            string result;
+
+            try
+            {
+                IntPtr mimetype;
+
+                FindMimeFromData(IntPtr.Zero, null, buffer, numberOfBytesRead, null, 0, out mimetype, 0);
+
+                result = Marshal.PtrToStringUni(mimetype);
+
+                Marshal.FreeCoTaskMem(mimetype);
+            }
+            catch (Exception e)
+            {
+                throw new ApplicationException(String.Format("Unable to determine type of file '{0}'.", filename), e);
+            }
+
+            return result;
+        }
+    }
 }

@@ -1,29 +1,33 @@
 ﻿using System.Linq;
+
 using Bumblebee.Extensions;
+using Bumblebee.IntegrationTests.Shared;
 using Bumblebee.IntegrationTests.Shared.Hosting;
-using Bumblebee.IntegrationTests.Shared.Pages.Implementation;
+using Bumblebee.IntegrationTests.Shared.Pages;
 using Bumblebee.Setup;
-using Bumblebee.Setup.DriverEnvironments;
+
 using FluentAssertions;
+
 using NUnit.Framework;
 
 namespace Bumblebee.IntegrationTests.Implementation
 {
 	// ReSharper disable InconsistentNaming
 
-	[TestFixture]
-	public class RadioButtonTests : HostTestFixture
+	[TestFixture(typeof(HeadlessChrome))]
+	public class RadioButtonTests<T> : HostTestFixture
+		where T : IDriverEnvironment, new()
 	{
 		[OneTimeSetUp]
-		public void Init()
+		public void TestFixtureSetUp()
 		{
 			Threaded<Session>
-				.With<PhantomJS>()
-				.NavigateTo<RadioButtonsPage>(BaseUrl + "/Content/RadioButtons.html");
+				.With<T>()
+				.NavigateTo<RadioButtonsPage>(GetUrl("RadioButtons.html"));
 		}
 
 		[OneTimeTearDown]
-		public void Dispose()
+		public void TestFixtureTearDown()
 		{
 			Threaded<Session>
 				.End();

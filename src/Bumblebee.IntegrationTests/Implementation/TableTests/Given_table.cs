@@ -1,11 +1,10 @@
-using System;
 using System.Linq;
 
 using Bumblebee.Extensions;
+using Bumblebee.IntegrationTests.Shared;
 using Bumblebee.IntegrationTests.Shared.Hosting;
-using Bumblebee.IntegrationTests.Shared.Pages.Implementation;
+using Bumblebee.IntegrationTests.Shared.Pages;
 using Bumblebee.Setup;
-using Bumblebee.Setup.DriverEnvironments;
 
 using FluentAssertions;
 
@@ -13,27 +12,22 @@ using NUnit.Framework;
 
 namespace Bumblebee.IntegrationTests.Implementation.TableTests
 {
-	public class TableRow
-	{
-		public string Item { get; set; }
-		public int Quantity { get; set; }
-		public decimal Price { get; set; }
-	}
-
 	// ReSharper disable InconsistentNaming
-	[TestFixture]
-	public class Given_table : HostTestFixture
+
+	[TestFixture(typeof(HeadlessChrome))]
+	public class Given_table<T> : HostTestFixture
+		where T : IDriverEnvironment, new()
 	{
 		[OneTimeSetUp]
-		public void OneTimeSetUp()
+		public void TestFixtureSetUp()
 		{
 			Threaded<Session>
-				.With<PhantomJS>()
-				.NavigateTo<TablePage>(String.Format("{0}{1}", BaseUrl, "/Content/Table.html"));
+				.With<T>()
+				.NavigateTo<TablePage>(GetUrl("Table.html"));
 		}
 
 		[OneTimeTearDown]
-		public void OneTimeTearDown()
+		public void TestFixtureTearDown()
 		{
 			Threaded<Session>
 				.End();

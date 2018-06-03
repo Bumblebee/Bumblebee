@@ -10,10 +10,10 @@ namespace Bumblebee.Interfaces
 		/// <summary>
 		/// Enters a date into the date field
 		/// </summary>
-		/// <typeparam name="TCustomResult">The type of the block this element is on.</typeparam>
+		/// <typeparam name="TResult">The type of the block this element is on.</typeparam>
 		/// <param name="date">The date to enter</param>
 		/// <returns>The current block</returns>
-		TCustomResult EnterDate<TCustomResult>(DateTime date) where TCustomResult : IBlock;
+		TResult EnterDate<TResult>(DateTime date) where TResult : IBlock;
 
 		/// <summary>
 		/// Gets the value as a DateTime. Tries to parse according to CurrentUICulture.
