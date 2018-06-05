@@ -16,7 +16,7 @@ Bumblebee is a .NET layer on top of the Selenium browser automation framework th
 -   Parallelization mindfulness
 -   Flexibility
 
-For help using Bumblebee, check out [Bumblebee Read the Docs Site](http://bumblebee-automation.readthedocs.io/en/stalefix/) and feel free to contact me with any questions.
+For help using Bumblebee, check out [Bumblebee Read the Docs Site](http://bumblebee-automation.readthedocs.io/en/latest/) and feel free to contact me with any questions.
 
 **Bumblebee** - A fluent-style, .NET layer on top of Selenium for implementing the [page pattern](https://code.google.com/p/selenium/wiki/PageObjects).<br>
 
