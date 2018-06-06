@@ -186,7 +186,7 @@ namespace Bumblebee.Implementation
 		/// <summary>
 		/// Gets all &lt;option&gt; elements.
 		/// </summary>
-		public virtual IEnumerable<IOption<TResult>> Options
+		public new virtual IEnumerable<IOption<TResult>> Options
 		{
 			get { return FindElements<Option<TResult>>(By.TagName("option")); }
 		}
@@ -194,7 +194,7 @@ namespace Bumblebee.Implementation
 		/// <summary>
 		/// Gets the first selected &lt;option&gt; element.
 		/// </summary>
-		public IOption<TResult> SelectedOption
+		public new IOption<TResult> SelectedOption
 		{
 			get { return SelectedOptions.FirstOrDefault(); }
 		}
@@ -202,7 +202,7 @@ namespace Bumblebee.Implementation
 		/// <summary>
 		/// Gets all selected &lt;option&gt; elements.
 		/// </summary>
-		public IEnumerable<IOption<TResult>> SelectedOptions
+		public new IEnumerable<IOption<TResult>> SelectedOptions
 		{
 			get
 			{
