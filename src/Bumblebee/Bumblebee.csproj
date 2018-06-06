@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>1.3.1</Version>
+    <Version>2.1.0-beta</Version>
     <PackageId>Bumblebee.Automation</PackageId>
     <Company>Patrick Herrmann, John Hammerlund, Todd Meinershagen</Company>
     <Copyright>Copyright ©  2012</Copyright>
@@ -15,8 +15,9 @@
     <RepositoryType>GitHub</RepositoryType>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageTags>acceptance ui automation system test testing</PackageTags>
-    <PackageReleaseNotes>v1.3.1 Fixed TextField.EnterText to support change in IE driver.
-v1.3.0 Added support for .NET core projects by making project .NET Standard 2.0 compliant.</PackageReleaseNotes>
+    <PackageReleaseNotes>This is a pre-release version of Bumblebee 2.0 that handles stale elements better by maintaining element specification logic.  Note, there are some breaking changes -- especially for elements that were Obsolete with warning before in the pre-releases.
+
+You can find more info about this release [here](https://github.com/Bumblebee/Bumblebee/releases/tag/v2.1.0-beta).</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
