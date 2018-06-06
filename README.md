@@ -23,11 +23,11 @@ For help using Bumblebee, check out [Bumblebee Read the Docs Site](http://bumble
   * Current
 
     [![Bumblebee Current - NuGet](https://img.shields.io/nuget/v/Bumblebee.Automation.svg?style=flat)](https://www.nuget.org/packages/Bumblebee.Automation/)
-    [![Bumblebee Current - Build Status](https://ci.appveyor.com/api/projects/status/k24rhl5hvxs9j9ya/branch/releases/1.3.1?svg=true)](https://ci.appveyor.com/project/toddmeinershagen/bumblebee/branch/master)
+    [![Bumblebee Current - Build Status](https://ci.appveyor.com/api/projects/status/5aser6k7s2x1t0fg/branch/releases/1.3.1?svg=true)](https://ci.appveyor.com/project/toddmeinershagen/bumblebee-hqwf8/branch/releases/1.3.1)
 
   * vNext (Pre-release)
 
-    [![Bumblebee vNext - NuGet](https://img.shields.io/nuget/vpre/Bumblebee.Automation.svg?style=flat)](https://www.nuget.org/packages/Bumblebee.Automation/2.0.8-beta)
+    [![Bumblebee vNext - NuGet](https://img.shields.io/nuget/vpre/Bumblebee.Automation.svg)](https://www.nuget.org/packages/Bumblebee.Automation/2.1.0-beta)
     [![Bumblebee vNext - Build Status](https://ci.appveyor.com/api/projects/status/k24rhl5hvxs9j9ya/branch/master?svg=true)](https://ci.appveyor.com/project/toddmeinershagen/bumblebee/branch/master)
 
 **Bumblebee for Kendo UI** - A separate library for adding Kendo element support for Bumblebee.<br>
