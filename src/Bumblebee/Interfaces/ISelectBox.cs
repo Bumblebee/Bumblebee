@@ -92,17 +92,17 @@ namespace Bumblebee.Interfaces
 		/// <summary>
 		/// Gets all &lt;option&gt; elements.
 		/// </summary>
-		IEnumerable<IOption<TResult>> Options { get; }
+		new IEnumerable<IOption<TResult>> Options { get; }
 
 		/// <summary>
 		/// Gets the first selected &lt;option&gt; elements.
 		/// </summary>
-		IOption<TResult> SelectedOption { get; }
+		new IOption<TResult> SelectedOption { get; }
 
 		/// <summary>
 		/// Gets all selected &lt;option&gt; elements.
 		/// </summary>
-		IEnumerable<IOption<TResult>> SelectedOptions { get; }
+		new IEnumerable<IOption<TResult>> SelectedOptions { get; }
 
 		/// <summary>
 		/// Select the &lt;option&gt; element with the specified text.
