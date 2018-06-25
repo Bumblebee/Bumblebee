@@ -8,10 +8,11 @@ using FluentAssertions;
 
 using NUnit.Framework;
 
+// ReSharper disable InconsistentNaming
+
 namespace Bumblebee.IntegrationTests.Implementation
 {
-	// ReSharper disable InconsistentNaming
-	[TestFixture(typeof(HeadlessChrome))]
+	[TestFixture(typeof (HeadlessChrome))]
 	public class Given_numeric_field<T> : HostTestFixture
 		where T : IDriverEnvironment, new()
 	{

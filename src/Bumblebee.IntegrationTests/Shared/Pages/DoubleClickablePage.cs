@@ -16,19 +16,10 @@ namespace Bumblebee.IntegrationTests.Shared.Pages
 		{
 		}
 
-		public IDoubleClickable<DoubleClickablePage> ParagraphWithStaticPage
-		{
-			get { return new Clickable<DoubleClickablePage>(this, By.Id("doubleClickable")); }
-		}
+		public IDoubleClickable<DoubleClickablePage> ParagraphWithStaticPage => new Clickable<DoubleClickablePage>(this, By.Id("doubleClickable"));
 
-		public IDoubleClickable ParagraphWithDynamicPage
-		{
-			get { return new Clickable(this, By.Id("doubleClickable")); }
-		}
+		public IDoubleClickable ParagraphWithDynamicPage => new Clickable(this, By.Id("doubleClickable"));
 
-		public string Result
-		{
-			get { return FindElement(By.Id("result")).Text; }
-		}
+		public string Result => FindElement(By.Id("result")).Text;
 	}
 }

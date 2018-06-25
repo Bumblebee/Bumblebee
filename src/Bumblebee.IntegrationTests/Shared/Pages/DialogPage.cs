@@ -10,34 +10,16 @@ namespace Bumblebee.IntegrationTests.Shared.Pages
 		{
 		}
 
-		public IClickable<IAlertDialog> AlertButton
-		{
-			get { return new Clickable<AlertDialog>(this, By.Id("AlertButton")); }
-		}
+		public IClickable<IAlertDialog> AlertButton => new Clickable<AlertDialog>(this, By.Id("AlertButton"));
 
-		public string AlertResult
-		{
-			get { return FindElement(By.Id("AlertResult")).Text; }
-		}
+		public string AlertResult => FindElement(By.Id("AlertResult")).Text;
 
-		public IClickable<IAlertDialog> ConfirmButton
-		{
-			get { return new Clickable<AlertDialog>(this, By.Id("ConfirmButton")); }
-		}
+		public IClickable<IAlertDialog> ConfirmButton => new Clickable<AlertDialog>(this, By.Id("ConfirmButton"));
 
-		public string ConfirmResult
-		{
-			get { return FindElement(By.Id("ConfirmResult")).Text; }
-		}
+		public string ConfirmResult => FindElement(By.Id("ConfirmResult")).Text;
 
-		public IClickable<IAlertDialog> PromptButton
-		{
-			get { return new Clickable<AlertDialog>(this, By.Id("PromptButton")); }
-		}
+		public IClickable<IAlertDialog> PromptButton => new Clickable<AlertDialog>(this, By.Id("PromptButton"));
 
-		public string PromptResult
-		{
-			get { return FindElement(By.Id("PromptResult")).Text; }
-		}
+		public string PromptResult => FindElement(By.Id("PromptResult")).Text;
 	}
 }

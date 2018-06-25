@@ -7,7 +7,7 @@ namespace Bumblebee.Implementation
 {
 	internal class WebDragAndDropPerformer : IPerformsDragAndDrop
 	{
-		public IWebDriver Driver { get; private set; }
+		public IWebDriver Driver { get; }
 
 		public WebDragAndDropPerformer(IWebDriver driver)
 		{

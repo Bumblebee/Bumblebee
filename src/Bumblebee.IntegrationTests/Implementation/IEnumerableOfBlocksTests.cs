@@ -10,14 +10,14 @@ using FluentAssertions;
 
 using NUnit.Framework;
 
+// ReSharper disable InconsistentNaming
+
 namespace Bumblebee.IntegrationTests.Implementation
 {
-	// ReSharper disable InconsistentNaming
-
-	[TestFixture(typeof(HeadlessChrome))]
+	[TestFixture(typeof (HeadlessChrome))]
 	public class Given_list_of_complex_blocks<T> : HostTestFixture
-	    where T : IDriverEnvironment, new()
-    {
+		where T : IDriverEnvironment, new()
+	{
 		[SetUp]
 		public void TestSetUp()
 		{

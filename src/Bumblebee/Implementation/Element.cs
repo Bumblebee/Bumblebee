@@ -18,12 +18,12 @@ namespace Bumblebee.Implementation
 		/// <summary>
 		/// Gets the text for the given element.
 		/// </summary>
-		public virtual string Text { get { return Tag.Text; } }
+		public virtual string Text => Tag.Text;
 
 		/// <summary>
 		/// Gets whether the element is selected or not.
 		/// </summary>
-		public virtual bool Selected { get { return Tag.Selected; } }
+		public virtual bool Selected => Tag.Selected;
 
 		/// <summary>
 		/// The Element requires both a parent block and a specification for finding it.
@@ -71,12 +71,12 @@ namespace Bumblebee.Implementation
 		{
 			if (parent == null)
 			{
-				throw new ArgumentNullException("parent");
+				throw new ArgumentNullException(nameof (parent));
 			}
 
 			if (@by == null)
 			{
-				throw new ArgumentNullException("by");
+				throw new ArgumentNullException(nameof (@by));
 			}
 
 			var type = typeof (TElement);
@@ -90,7 +90,7 @@ namespace Bumblebee.Implementation
 			}
 			else
 			{
-				throw new ArgumentException(String.Format("The specified type ({0}) is not a valid element. It must have a constructor that takes an IBlock parent and a By specification.", type));
+				throw new ArgumentException($"The specified type ({type}) is not a valid element. It must have a constructor that takes an IBlock parent and a By specification.");
 			}
 
 			return result;
@@ -99,25 +99,19 @@ namespace Bumblebee.Implementation
 		/// <summary>
 		/// Gets the parent block.
 		/// </summary>
-		public IBlock Parent { get; private set; }
+		public IBlock Parent { get; }
 
 		/// <summary>
 		/// Gets the current session.
 		/// </summary>
-		public Session Session { get; private set; }
+		public Session Session { get; }
 
-		private By Specification { get; set; }
+		private By Specification { get; }
 
 		/// <summary>
 		/// Gets the Selenium IWebElement that underpins this component.
 		/// </summary>
-		public IWebElement Tag
-		{
-			get
-			{
-				return Parent.FindElement(Specification);
-			}
-		}
+		public IWebElement Tag => Parent.FindElement(Specification);
 
 		/// <summary>
 		/// Gets the value of the specified attribute for this component.

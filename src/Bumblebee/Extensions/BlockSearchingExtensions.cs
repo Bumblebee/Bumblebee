@@ -11,13 +11,14 @@ namespace Bumblebee.Extensions
 	public static class BlockSearchingExtensions
 	{
 		private static readonly Type BlockType = typeof (IBlock);
+		private static readonly Type OpenGenericDynamicType = typeof (Dynamic<>);
 		private static readonly Type PageType = typeof (IPage);
 
 		public static T FindRelated<T>(this IElement element) where T : IBlock
 		{
 			if (element == null)
 			{
-				throw new ArgumentNullException("element");
+				throw new ArgumentNullException(nameof (element));
 			}
 
 			return FindRelated<T>(element.Parent);
@@ -27,7 +28,7 @@ namespace Bumblebee.Extensions
 		{
 			if (block == null)
 			{
-				throw new ArgumentNullException("block");
+				throw new ArgumentNullException(nameof (block));
 			}
 
 			var ancestor = block;
@@ -66,15 +67,23 @@ namespace Bumblebee.Extensions
 			return (TBlock) ancestor;
 		}
 
-		private static bool SearchDescendantsFor<T>(ref IDictionary<Type, bool> typesAlreadySearched, object current, out T result)
+		private static bool SearchDescendantsFor<TBlock>(ref IDictionary<Type, bool> typesAlreadySearched, object current, out TBlock result) where TBlock : IBlock
 		{
 			var success = false;
 
-			result = default (T);
+			result = default (TBlock);
 
-			if (typeof (T).IsInstanceOfType(current))
+			if (typeof (TBlock).IsInstanceOfType(current))
 			{
-				result = (T) current;
+				result = (TBlock) current;
+
+				success = true;
+			}
+			else if (typeof (Dynamic<TBlock>).IsInstanceOfType(current))
+			{
+				var @dynamic = (Dynamic<TBlock>) current;
+
+				result = @dynamic.Create();
 
 				success = true;
 			}
@@ -84,7 +93,7 @@ namespace Bumblebee.Extensions
 
 				typesAlreadySearched[currentType] = true;
 
-				var properties = GetBlockProperties(currentType);
+				var properties = GetSearchableProperties(currentType);
 
 				foreach (var property in properties)
 				{
@@ -105,11 +114,12 @@ namespace Bumblebee.Extensions
 			return success;
 		}
 
-		private static IEnumerable<PropertyInfo> GetBlockProperties(Type current)
+		private static IEnumerable<PropertyInfo> GetSearchableProperties(Type current)
 		{
 			var unsearchedProperties = current
 				.GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly)
-				.Where(x => BlockType.IsAssignableFrom(x.PropertyType));
+				.Where(x => BlockType.IsAssignableFrom(x.PropertyType) ||
+						(x.PropertyType.IsGenericType && (x.PropertyType.GetGenericTypeDefinition() == OpenGenericDynamicType)));
 
 			return unsearchedProperties;
 		}
