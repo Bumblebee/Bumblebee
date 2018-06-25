@@ -17,8 +17,9 @@ Bumblebee is a .NET layer on top of the Selenium browser automation framework th
 -   Flexibility
 
 For help using Bumblebee, check out [Bumblebee Read the Docs Site](http://bumblebee-automation.readthedocs.io/en/latest/) and feel free to contact me with any questions.
+You can also check out the [Bumblebee.Examples](https://github.com/toddmeinershagen/Bumblebee.Examples) to see examples of models using pages, blocks, and properties.
 
-**Bumblebee** - A fluent-style, .NET layer on top of Selenium for implementing the [page pattern](https://code.google.com/p/selenium/wiki/PageObjects).<br>
+**Bumblebee** - A fluent-style, .NET layer on top of Selenium for implementing the [page pattern](https://github.com/SeleniumHQ/selenium/wiki/PageObjects).<br>
 
   * Current
 
@@ -30,7 +31,7 @@ For help using Bumblebee, check out [Bumblebee Read the Docs Site](http://bumble
     [![Bumblebee vNext - NuGet](https://img.shields.io/nuget/vpre/Bumblebee.Automation.svg)](https://www.nuget.org/packages/Bumblebee.Automation/2.1.0-beta)
     [![Bumblebee vNext - Build Status](https://ci.appveyor.com/api/projects/status/k24rhl5hvxs9j9ya/branch/master?svg=true)](https://ci.appveyor.com/project/toddmeinershagen/bumblebee/branch/master)
 
-**Bumblebee for Kendo UI** - A separate library for adding Kendo element support for Bumblebee.<br>
+**Bumblebee for Kendo UI** - A [separate library](https://github.com/Bumblebee/Bumblebee.KendoUI) for adding Kendo element support for Bumblebee.<br>
 
    [![NuGet version (Bumblebee.Automation.KendoUI)](https://img.shields.io/nuget/v/Bumblebee.Automation.KendoUI.svg?style=flat)](https://www.nuget.org/packages/Bumblebee.Automation.KendoUI/)
 
