@@ -1,8 +1,8 @@
 ﻿using Bumblebee.Extensions;
+using Bumblebee.IntegrationTests.Shared;
 using Bumblebee.IntegrationTests.Shared.Hosting;
 using Bumblebee.IntegrationTests.Shared.Pages;
 using Bumblebee.Setup;
-using Bumblebee.Setup.DriverEnvironments;
 
 using NUnit.Framework;
 
@@ -17,7 +17,7 @@ namespace Bumblebee.IntegrationTests.Extensions.FindRelatedTests
 		public void TestFixtureSetUp()
 		{
 			Threaded<Session>
-				.With<InternetExplorer>()
+				.With<HeadlessChrome>()
 				.NavigateTo<JavaScriptPopUpPage>(GetUrl("JavaScriptPopUp.html"));
 		}
 

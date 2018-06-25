@@ -16,9 +16,6 @@ namespace Bumblebee.IntegrationTests.Shared.Pages
 		{
 		}
 
-		public ITable Table
-		{
-			get { return new Table(this, By.Id("DataGrid")); }
-		}
+		public ITable Table => new Table(this, By.Id("DataGrid"));
 	}
 }

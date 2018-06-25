@@ -12,15 +12,9 @@ namespace Bumblebee.IntegrationTests.Shared.Pages
 		{
 		}
 
-		public JavaScriptPopUpRegion Region
-		{
-			get { return new JavaScriptPopUpRegion(this, By.Id("TheRegion")); }
-		}
+		public JavaScriptPopUpRegion Region => new JavaScriptPopUpRegion(this, By.Id("TheRegion"));
 
-		public JavaScriptPopUp PopUp
-		{
-			get { return new JavaScriptPopUp(this, By.Id("TheWindow")); }
-		}
+		public Dynamic<JavaScriptPopUp> PopUp => new Dynamic<JavaScriptPopUp>(this, By.Id("TheWindow"));
 	}
 
 	public class JavaScriptPopUpRegion : Block
@@ -29,10 +23,7 @@ namespace Bumblebee.IntegrationTests.Shared.Pages
 		{
 		}
 
-		public IClickable<JavaScriptPopUp> OpenPopUp
-		{
-			get { return new Clickable<JavaScriptPopUp>(this, By.Id("TheButton")); }
-		}
+		public IClickable<JavaScriptPopUp> OpenPopUp => new Clickable<JavaScriptPopUp>(this, By.Id("TheButton"));
 	}
 
 	public class JavaScriptPopUp : Block
@@ -41,15 +32,9 @@ namespace Bumblebee.IntegrationTests.Shared.Pages
 		{
 		}
 
-		public DataRegion Data
-		{
-			get { return new DataRegion(this, By.ClassName("data-region")); }
-		}
+		public DataRegion Data => new DataRegion(this, By.ClassName("data-region"));
 
-		public IClickable<JavaScriptPopUpRegion> Close
-		{
-			get { return new Clickable<JavaScriptPopUpRegion>(this, By.ClassName("close-button")); }
-		}
+		public IClickable<JavaScriptPopUpRegion> Close => new Clickable<JavaScriptPopUpRegion>(this, By.ClassName("close-button"));
 	}
 
 	public class DataRegion : Block
@@ -58,9 +43,6 @@ namespace Bumblebee.IntegrationTests.Shared.Pages
 		{
 		}
 
-		public string Text
-		{
-			get { return Tag.Text; }
-		}
+		public string Text => Tag.Text;
 	}
 }

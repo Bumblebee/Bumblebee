@@ -17,12 +17,12 @@ namespace Bumblebee.Implementation
 		{
 			if (session == null)
 			{
-				throw new ArgumentNullException("session");
+				throw new ArgumentNullException(nameof (session));
 			}
 
 			if (@by == null)
 			{
-				throw new ArgumentNullException("by");
+				throw new ArgumentNullException(nameof (@by));
 			}
 
 			Session = session;
@@ -30,22 +30,19 @@ namespace Bumblebee.Implementation
 
 			InitializeCurrentBlock();
 
-			if (Session.Monkey != null)
-			{
-				Session.Monkey.Invoke(this);
-			}
+			Session.Monkey?.Invoke(this);
 		}
 
 		protected Block(IBlock parent, By @by)
 		{
 			if (parent == null)
 			{
-				throw new ArgumentNullException("parent");
+				throw new ArgumentNullException(nameof (parent));
 			}
 
 			if (@by == null)
 			{
-				throw new ArgumentNullException("by");
+				throw new ArgumentNullException(nameof (@by));
 			}
 
 			Parent = parent;
@@ -54,10 +51,7 @@ namespace Bumblebee.Implementation
 
 			InitializeCurrentBlock();
 
-			if (Session.Monkey != null)
-			{
-				Session.Monkey.Invoke(this);
-			}
+			Session.Monkey?.Invoke(this);
 		}
 
 		/// <summary>
@@ -75,7 +69,7 @@ namespace Bumblebee.Implementation
 		{
 			if (session == null)
 			{
-				throw new ArgumentNullException("session");
+				throw new ArgumentNullException(nameof (session));
 			}
 
 			var type = typeof (TBlock);
@@ -83,7 +77,7 @@ namespace Bumblebee.Implementation
 
 			if (ctor == null)
 			{
-				throw new ArgumentException(String.Format("The specified type ({0}) is not a valid block or page. It must have a constructor that takes only a session.", type));
+				throw new ArgumentException($"The specified type ({type}) is not a valid block or page. It must have a constructor that takes only a session.");
 			}
 
 			var result = (TBlock) ctor.Invoke(new object[] { session });
@@ -104,12 +98,12 @@ namespace Bumblebee.Implementation
 		{
 			if (parent == null)
 			{
-				throw new ArgumentNullException("parent");
+				throw new ArgumentNullException(nameof (parent));
 			}
 
 			if (@by == null)
 			{
-				throw new ArgumentNullException("by");
+				throw new ArgumentNullException(nameof (@by));
 			}
 
 			var type = typeof (TBlock);
@@ -117,7 +111,7 @@ namespace Bumblebee.Implementation
 
 			if (ctor == null)
 			{
-				throw new ArgumentException(String.Format("The specified type ({0}) is not a valid block. It must have a constructor that takes an IBlock parent and a By specification.", type));
+				throw new ArgumentException($"The specified type ({type}) is not a valid block. It must have a constructor that takes an IBlock parent and a By specification.");
 			}
 
 			var result = (TBlock) ctor.Invoke(new object[] { parent, @by });
@@ -125,11 +119,11 @@ namespace Bumblebee.Implementation
 			return result;
 		}
 
-		public IBlock Parent { get; private set; }
+		public IBlock Parent { get; }
 
-		public Session Session { get; private set; }
+		public Session Session { get; }
 
-		public By Specification { get; private set; }
+		public By Specification { get; }
 
 		private void InitializeCurrentBlock()
 		{
@@ -139,10 +133,7 @@ namespace Bumblebee.Implementation
 		/// <summary>
 		/// Gets the Selenium IWebElement that underpins this component.
 		/// </summary>
-		public virtual IWebElement Tag
-		{
-			get { return Parent.FindElement(Specification); }
-		}
+		public virtual IWebElement Tag => Parent.FindElement(Specification);
 
 		/// <summary>
 		/// Gets the value of the specified attribute for this component.
