@@ -181,6 +181,7 @@
     <Compile Include="Specifications\SpecificationTests\SpecificationTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include=".editorconfig" />
     <None Include="packages.config" />
     <None Include="Readme.md" />
   </ItemGroup>
