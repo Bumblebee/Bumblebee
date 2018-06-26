@@ -4,7 +4,7 @@ using Bumblebee.Setup;
 
 namespace Bumblebee.IntegrationTests.Shared.Pages
 {
-	public class CheckboxPage : WebPage
+	public class CheckboxPage : Page
 	{
 		public CheckboxPage(Session session) : base(session)
 		{

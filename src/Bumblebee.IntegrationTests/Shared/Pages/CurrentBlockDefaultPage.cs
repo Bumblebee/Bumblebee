@@ -4,7 +4,7 @@ using Bumblebee.Setup;
 
 namespace Bumblebee.IntegrationTests.Shared.Pages
 {
-	public class CurrentBlockDefaultPage : WebPage
+	public class CurrentBlockDefaultPage : Page
 	{
 		public CurrentBlockDefaultPage(Session session) : base(session)
 		{

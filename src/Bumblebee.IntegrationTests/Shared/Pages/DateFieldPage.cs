@@ -4,7 +4,7 @@ using Bumblebee.Setup;
 
 namespace Bumblebee.IntegrationTests.Shared.Pages
 {
-	public class DateFieldPage : WebPage
+	public class DateFieldPage : Page
 	{
 		public DateFieldPage(Session session)
 			: base(session)

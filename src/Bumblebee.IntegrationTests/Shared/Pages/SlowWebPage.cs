@@ -20,7 +20,7 @@ namespace Bumblebee.IntegrationTests.Shared.Pages
 		}
 	}
 
-	public abstract class SlowWebPage : WebPage
+	public abstract class SlowWebPage : Page
 	{
 		protected SlowWebPage(Session session, TimeSpan? timeout = null) : base(session, timeout ?? TimeSpan.FromSeconds(0))
 		{

@@ -6,7 +6,7 @@ using Bumblebee.Setup;
 
 namespace Bumblebee.IntegrationTests.Shared.Pages
 {
-	public class ComplexTablePage : WebPage
+	public class ComplexTablePage : Page
 	{
 		public ComplexTablePage(Session session) : base(session)
 		{
