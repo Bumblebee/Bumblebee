@@ -13,14 +13,8 @@ namespace Bumblebee.IntegrationTests.Shared.Pages
 		{
 		}
 
-		public IClickable<SlowPageWithJQuery> TheLinkWithNoTimeout
-		{
-			get { return new Clickable<SlowPageWithJQuery>(this, By.JQuery("#ElementContainer .the-link")); }
-		}
+		public IClickable<SlowPageWithJQuery> TheLinkWithNoTimeout => new Clickable<SlowPageWithJQuery>(this, By.JQuery("#ElementContainer .the-link"));
 
-		public IClickable<SlowPageWithJQuery> TheLinkWithTimeout
-		{
-			get { return new Clickable<SlowPageWithJQuery>(this, By.JQuery("#ElementContainer .the-link", TimeSpan.FromSeconds(10))); }
-		}
+	    public IClickable<SlowPageWithJQuery> TheLinkWithTimeout => new Clickable<SlowPageWithJQuery>(this, By.JQuery("#ElementContainer .the-link", TimeSpan.FromSeconds(10)));
 	}
 }

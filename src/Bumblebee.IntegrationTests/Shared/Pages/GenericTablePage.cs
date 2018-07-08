@@ -6,7 +6,7 @@ using Bumblebee.Setup;
 
 namespace Bumblebee.IntegrationTests.Shared.Pages
 {
-	public class GenericTablePage : WebPage
+	public class GenericTablePage : Page
 	{
 		public GenericTablePage(Session session) : base(session)
 		{
