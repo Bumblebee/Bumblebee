@@ -80,7 +80,7 @@ namespace Bumblebee.IntegrationTests.Extensions
 
 			action
 				.ShouldThrow<VerificationException>()
-				.WithMessage(String.Format("Unable to verify.  {0}", expectedMessage))
+				.WithMessage($"Unable to verify.  {expectedMessage}")
 				.WithInnerException<AssertionException>()
 				.WithInnerMessage(expectedMessage);
 		}
@@ -116,7 +116,7 @@ namespace Bumblebee.IntegrationTests.Extensions
 
 			action
 				.ShouldThrow<VerificationException>()
-				.WithMessage(String.Format("Selection verification failed. Expected: {0}, Actual: {1}.", expected, element.Selected));
+				.WithMessage($"Selection verification failed. Expected: {expected}, Actual: {element.Selected}.");
 		}
 
 		[Test]
@@ -147,7 +147,7 @@ namespace Bumblebee.IntegrationTests.Extensions
 			{
 			}
 
-			session.Received().CaptureScreen(Path.Combine(Environment.CurrentDirectory, String.Format("{0}.png", MethodBase.GetCurrentMethod().GetFullName())));
+			session.Received().CaptureScreen(Path.Combine(Environment.CurrentDirectory, $"{MethodBase.GetCurrentMethod().GetFullName()}.png"));
 
 			session.End();
 		}
@@ -207,7 +207,7 @@ namespace Bumblebee.IntegrationTests.Extensions
 			{
 			}
 
-			session.DidNotReceive().CaptureScreen(Path.Combine(Environment.CurrentDirectory, String.Format("{0}.png", MethodBase.GetCurrentMethod().GetFullName())));
+			session.DidNotReceive().CaptureScreen(Path.Combine(Environment.CurrentDirectory, $"{MethodBase.GetCurrentMethod().GetFullName()}.png"));
 
 			session.DidNotReceiveWithAnyArgs().CaptureScreen();
 

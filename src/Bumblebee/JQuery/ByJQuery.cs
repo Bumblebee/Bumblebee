@@ -21,7 +21,7 @@ namespace Bumblebee.JQuery
 		{
 			if (String.IsNullOrWhiteSpace(selector))
 			{
-				throw new ArgumentNullException("selector");
+				throw new ArgumentNullException(nameof (selector));
 			}
 
 			_selector = selector;
@@ -33,7 +33,7 @@ namespace Bumblebee.JQuery
 
 			if (elements.Any() == false)
 			{
-				throw new NoSuchElementException(String.Format("Unable to find element matching selector: '{0}'", _selector));
+				throw new NoSuchElementException($"Unable to find element matching selector: '{_selector}'");
 			}
 
 			return elements.First();
@@ -80,7 +80,7 @@ namespace Bumblebee.JQuery
 
 		public override string ToString()
 		{
-			return String.Format("By.JQuery {0}", _selector);
+			return $"By.JQuery {_selector}";
 		}
 	}
 }

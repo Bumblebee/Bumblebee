@@ -12,15 +12,9 @@ namespace Bumblebee.Implementation
 	{
 		private readonly IDictionary<string, string> _data;
 
-		public string this[int index]
-		{
-			get { return _data.Values.ElementAt(index); }
-		}
+		public string this[int index] => _data.Values.ElementAt(index);
 
-		public string this[string column]
-		{
-			get { return _data[column]; }
-		}
+		public string this[string column] => _data[column];
 
 		public TableRow(IBlock parent, By @by) : base(parent, @by)
 		{

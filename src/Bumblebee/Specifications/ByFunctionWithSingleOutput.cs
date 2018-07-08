@@ -14,7 +14,7 @@ namespace Bumblebee.Specifications
 		public ByFunctionWithSingleOutput(Expression<Func<ISearchContext, IWebElement>> expression)
 		{
 			_function = expression.Compile();
-			Description = String.Format("By.Function: {0}", expression.Body);
+			Description = $"By.Function: {expression.Body}";
 		}
 
 		public override IWebElement FindElement(ISearchContext context)

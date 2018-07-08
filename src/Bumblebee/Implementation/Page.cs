@@ -1,5 +1,3 @@
-using System;
-
 using Bumblebee.Interfaces;
 using Bumblebee.Setup;
 
@@ -19,7 +17,7 @@ namespace Bumblebee.Implementation
 		/// Constructor that takes the Session for assembly of other composite elements and assumes that &lt;body&gt; tag is the scope for the page.
 		/// </summary>
 		/// <param name="session">The current session</param>
-		/// <exception cref="ArgumentNullException">The session cannot be null.</exception>
+		/// <exception cref="System.ArgumentNullException">The session cannot be null.</exception>
 		protected Page(Session session) : this(session, By.TagName("body"))
 		{
 		}

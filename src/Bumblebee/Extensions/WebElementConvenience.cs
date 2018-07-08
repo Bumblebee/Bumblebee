@@ -15,6 +15,12 @@ namespace Bumblebee.Extensions
 			return ((IWrapsDriver) element).WrappedDriver;
 		}
 
+		public static string GetId(this IWebElement element)
+		{
+			return element.GetAttribute("id");
+		}
+
+		[Obsolete("Use GetId() instead.")]
 		public static string GetID(this IWebElement element)
 		{
 			return element.GetAttribute("id");

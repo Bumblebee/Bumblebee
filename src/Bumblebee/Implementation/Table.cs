@@ -35,13 +35,7 @@ namespace Bumblebee.Implementation
 		/// <summary>
 		/// Gets the rows of this table.
 		/// </summary>
-		public IEnumerable<ITableRow> Rows
-		{
-			get
-			{
-				return FindBlocks<TableRow>(By.CssSelector("tbody > tr"));
-			}
-		}
+		public IEnumerable<ITableRow> Rows => FindBlocks<TableRow>(By.CssSelector("tbody > tr"));
 
 		/// <summary>
 		/// Gets the footer cells of this table.

@@ -1,6 +1,4 @@
-﻿using System;
-
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 namespace Bumblebee.IntegrationTests.Shared.Hosting
 {
@@ -9,7 +7,7 @@ namespace Bumblebee.IntegrationTests.Shared.Hosting
 	{
 		protected virtual string GetUrl(string page)
 		{
-			return String.Format("{0}/Content/{1}", BaseUrl, page);
+			return $"{BaseUrl}/Content/{page}";
 		}
 
 		public static readonly string BaseUrl = "http://localhost:5000"; 

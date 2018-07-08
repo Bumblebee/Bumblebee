@@ -10,7 +10,7 @@ namespace Bumblebee.Specifications
 	{
 		public By Attribute(string attributeToFind, string attributeValueToFind)
 		{
-			return By.CssSelector(String.Format(@"[{0}='{1}']", attributeToFind, attributeValueToFind));
+			return By.CssSelector($@"[{attributeToFind}='{attributeValueToFind}']");
 		}
 
 		public By Attribute(string attributeToFind, string attributeValueToFind, TimeSpan timeout)

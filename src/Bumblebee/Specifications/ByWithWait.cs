@@ -39,7 +39,7 @@ namespace Bumblebee.Specifications
 
 			if (elements.Any() == false)
 			{
-				throw new NoSuchElementException(String.Format("Unable to find element {0}", _by));
+				throw new NoSuchElementException($"Unable to find element {_by}");
 			}
 
 			return elements.First();
@@ -81,7 +81,7 @@ namespace Bumblebee.Specifications
 
 		public override string ToString()
 		{
-			return String.Format("{0} that waits until {1} before timing out.", _by, _timeout);
+			return $"{_by} that waits until {_timeout} before timing out.";
 		}
 	}
 }

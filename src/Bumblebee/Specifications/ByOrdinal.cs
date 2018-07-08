@@ -15,12 +15,12 @@ namespace Bumblebee.Specifications
 		{
 			if (@by == null)
 			{
-				throw new ArgumentNullException("by");
+				throw new ArgumentNullException(nameof (@by));
 			}
 
 			if (ordinal < 0)
 			{
-				throw new ArgumentOutOfRangeException("ordinal");
+				throw new ArgumentOutOfRangeException(nameof (ordinal));
 			}
 
 			_by = @by;
@@ -52,7 +52,7 @@ namespace Bumblebee.Specifications
 
 		public override string ToString()
 		{
-			return String.Format("By.Ordinal {0} #{1}", _by, _ordinal);
+			return $"By.Ordinal {_by} #{_ordinal}";
 		}
 	}
 }

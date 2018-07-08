@@ -9,7 +9,7 @@ namespace Bumblebee.Extensions
 		{
 			if (method == null)
 			{
-				throw new ArgumentNullException("method");
+				throw new ArgumentNullException(nameof (method));
 			}
 
 			if (method.DeclaringType == null)
@@ -18,7 +18,7 @@ namespace Bumblebee.Extensions
 				throw new ArgumentNullException("method.DeclaringType");
 			}
 
-			return String.Format("{0}.{1}", method.DeclaringType.FullName, method.Name);
+			return $"{method.DeclaringType.FullName}.{method.Name}";
 		}
 	}
 }

@@ -14,12 +14,12 @@ namespace Bumblebee.Implementation
 	{
 		protected static readonly ISpecification By = new Specification();
 
-		public IWebElement Tag { get; private set; }
+		public IWebElement Tag => throw new NotImplementedException();
 
-		public IBlock Parent { get; private set; }
-		public Session Session { get; private set; }
+		public IBlock Parent { get; }
+		public Session Session { get; }
 
-		private IAlert Alert { get; set; }
+		private IAlert Alert { get; }
 
 		public AlertDialog(Session session)
 		{

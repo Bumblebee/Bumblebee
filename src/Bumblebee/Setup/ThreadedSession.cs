@@ -19,8 +19,8 @@ namespace Bumblebee.Setup
 
 		private static TSession Current
 		{
-			get { return ThreadLocalSession.Value; }
-			set { ThreadLocalSession.Value = value; }
+			get => ThreadLocalSession.Value;
+			set => ThreadLocalSession.Value = value;
 		}
 
 		/// <summary>

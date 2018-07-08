@@ -118,7 +118,7 @@ namespace Bumblebee.Setup
 
 		public virtual Session CaptureScreen()
 		{
-			var filename = String.Format("{0}.png", CallStack.GetCallingMethod().GetFullName());
+			var filename = $"{CallStack.GetCallingMethod().GetFullName()}.png";
 			var path = Path.Combine(Settings.ScreenCapturePath, filename);
 			return CaptureScreen(path);
 		}

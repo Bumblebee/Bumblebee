@@ -58,7 +58,7 @@ namespace Bumblebee.IntegrationTests.Setup
 
 			if (constructor == null)
 			{
-				var message = String.Format("The result type specified ({0}) is not a valid SimpleDriverEnvironment<T>.  It must have a constructor overload that takes a TimeSpan.", typeof (TDriverEnvironment));
+				var message = $"The result type specified ({typeof (TDriverEnvironment)}) is not a valid SimpleDriverEnvironment<T>.  It must have a constructor overload that takes a TimeSpan.";
 				throw new ArgumentException(message);
 			}
 
