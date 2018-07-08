@@ -5,15 +5,18 @@ using Bumblebee.Extensions;
 using Bumblebee.Implementation;
 using Bumblebee.IntegrationTests.Shared;
 using Bumblebee.IntegrationTests.Shared.Hosting;
+using Bumblebee.Interfaces;
 using Bumblebee.Setup;
 
 using FluentAssertions;
+
+using NSubstitute;
 
 using NUnit.Framework;
 
 // ReSharper disable InconsistentNaming
 
-namespace Bumblebee.IntegrationTests.Implementation
+namespace Bumblebee.IntegrationTests.Implementation.PageTests
 {
 	[TestFixture(typeof(HeadlessChrome))]
 	public class Given_session_when_constructing<T> : HostTestFixture
@@ -60,11 +63,8 @@ namespace Bumblebee.IntegrationTests.Implementation
 				.VerifyThat(p => p.Session.Should().Be(Session));
 		}
 
-		public Session Session
-		{
-			get { return _session.Value; }
-		}
-	}
+		public Session Session => _session.Value;
+    }
 
 	[TestFixture]
 	public class PageTests

@@ -13,10 +13,10 @@ using OpenQA.Selenium;
 
 // ReSharper disable InconsistentNaming
 
-namespace Bumblebee.IntegrationTests.Implementation.WebPageTests
+namespace Bumblebee.IntegrationTests.Implementation.PageTests
 {
 	[TestFixture(typeof(HeadlessChromeWithNoWaitTime))]
-	public class Given_slow_web_page_with_no_wait<T> : HostTestFixture
+	public class Given_slow_page_with_no_wait<T> : HostTestFixture
 	    where T : IDriverEnvironment, new()
     {
 		[SetUp]
@@ -24,14 +24,14 @@ namespace Bumblebee.IntegrationTests.Implementation.WebPageTests
 		{
 			Threaded<Session>
 				.With<T>()
-				.NavigateTo<SlowWebPageWithNoWait>(GetUrl("SlowWebPage.html"));
+				.NavigateTo<SlowPageWithNoWait>(GetUrl("SlowPage.html"));
 		}
 
 		[TearDown]
 		public void TestDispose()
 		{
 			Threaded<Session>
-				.CurrentBlock<SlowWebPageWithNoWait>()
+				.CurrentBlock<SlowPageWithNoWait>()
 				.Session.End();
 		}
 
@@ -40,7 +40,7 @@ namespace Bumblebee.IntegrationTests.Implementation.WebPageTests
 		{
 			Action action = () =>
 				Threaded<Session>
-					.CurrentBlock<SlowWebPageWithNoWait>()
+					.CurrentBlock<SlowPageWithNoWait>()
 					.FirstName
 					.Text
 					.Should().Be("Todd");
@@ -55,7 +55,7 @@ namespace Bumblebee.IntegrationTests.Implementation.WebPageTests
 		{
 			Action action = () =>
 				Threaded<Session>
-					.CurrentBlock<SlowWebPageWithNoWait>()
+					.CurrentBlock<SlowPageWithNoWait>()
 					.Checkbox
 					.Selected
 					.Should().BeTrue();

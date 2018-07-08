@@ -9,10 +9,10 @@ using NUnit.Framework;
 
 // ReSharper disable InconsistentNaming
 
-namespace Bumblebee.IntegrationTests.Implementation.WebPageTests
+namespace Bumblebee.IntegrationTests.Implementation.PageTests
 {
 	[TestFixture(typeof(HeadlessChromeWithNoWaitTime))]
-	public class Given_slow_web_page_with_explicit_wait<T> : HostTestFixture
+	public class Given_slow_page_with_explicit_wait<T> : HostTestFixture
 	    where T : IDriverEnvironment, new()
     {
 		[SetUp]
@@ -20,14 +20,14 @@ namespace Bumblebee.IntegrationTests.Implementation.WebPageTests
 		{
 			Threaded<Session>
 				.With<T>()
-				.NavigateTo<SlowWebPageWithExplicitWait>(GetUrl("SlowWebPage.html"));
+				.NavigateTo<SlowPageWithExplicitWait>(GetUrl("SlowPage.html"));
 		}
 
 		[TearDown]
 		public void TestDispose()
 		{
 			Threaded<Session>
-				.CurrentBlock<SlowWebPageWithExplicitWait>()
+				.CurrentBlock<SlowPageWithExplicitWait>()
 				.Session.End();
 		}
 
@@ -35,7 +35,7 @@ namespace Bumblebee.IntegrationTests.Implementation.WebPageTests
 		public void When_getting_text_of_textfield_using_wait_Should_wait()
 		{
 			Threaded<Session>
-				.CurrentBlock<SlowWebPageWithExplicitWait>()
+				.CurrentBlock<SlowPageWithExplicitWait>()
 				.FirstName
 				.Text
 				.Should().Be("Todd");
@@ -45,7 +45,7 @@ namespace Bumblebee.IntegrationTests.Implementation.WebPageTests
 		public void When_getting_checked_indicator_of_checkbox_using_wait_Should_wait()
 		{
 			Threaded<Session>
-				.CurrentBlock<SlowWebPageWithExplicitWait>()
+				.CurrentBlock<SlowPageWithExplicitWait>()
 				.Checkbox
 				.Selected
 				.Should().BeTrue();
