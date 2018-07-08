@@ -33,10 +33,7 @@ namespace Bumblebee.Implementation
 			return this.FindRelated<TResult>();
 		}
 
-		public override string Text
-		{
-			get { return Tag.GetAttribute("value"); }
-		}
+		public override string Text => Tag.GetAttribute("value");
 	}
 
 	public class TextField<TResult> : TextField, ITextField<TResult>

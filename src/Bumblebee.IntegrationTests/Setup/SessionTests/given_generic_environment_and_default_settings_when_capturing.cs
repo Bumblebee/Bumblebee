@@ -1,4 +1,3 @@
-using System;
 using System.IO;
 using System.Reflection;
 
@@ -18,8 +17,8 @@ namespace Bumblebee.IntegrationTests.Setup.SessionTests
 
 	[TestFixture(typeof(HeadlessChrome))]
 	public class given_generic_environment_and_default_settings_when_capturing<T> : HostTestFixture
-	    where T : IDriverEnvironment, new()
-    {
+		where T : IDriverEnvironment, new()
+	{
 		private string path;
 		private Session session;
 		private Session _returnSession;
@@ -27,7 +26,7 @@ namespace Bumblebee.IntegrationTests.Setup.SessionTests
 		[OneTimeSetUp]
 		public void Before()
 		{
-			var currentMethod = String.Format("{0}.png", MethodBase.GetCurrentMethod().GetFullName());
+			var currentMethod = $"{MethodBase.GetCurrentMethod().GetFullName()}.png";
 			var defaultSettings = new Settings();
 			path = Path.Combine(defaultSettings.ScreenCapturePath, currentMethod);
 			File.Delete(path);

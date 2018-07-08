@@ -1,4 +1,5 @@
 ﻿using System;
+
 using OpenQA.Selenium.Chrome;
 
 namespace Bumblebee.Setup.DriverEnvironments

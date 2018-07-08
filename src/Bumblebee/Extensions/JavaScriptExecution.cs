@@ -19,7 +19,7 @@ namespace Bumblebee.Extensions
 		[Obsolete("Please use the new By.JQuery functionality provided.")]
 		public static IEnumerable<IWebElement> GetElementsByJQuery(this IWebDriver driver, string query)
 		{
-			return driver.ExecuteJavaScript<IEnumerable<IWebElement>>(String.Format("return $('{0}').get();", query));
+			return driver.ExecuteJavaScript<IEnumerable<IWebElement>>($"return $('{query}').get();");
 		}
 
 		public static T ExecuteFunction<T>(this IWebElement element, string function, params object[] args)

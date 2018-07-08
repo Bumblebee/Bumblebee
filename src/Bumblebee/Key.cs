@@ -151,12 +151,12 @@ namespace Bumblebee
 
 		public static Key operator +(Key left, Key right)
 		{
-			return new Key(String.Format("{0}{1}", left.Value, right.Value), String.Format("{0}+{1}", left, right));
+			return new Key($"{left.Value}{right.Value}", $"{left}+{right}");
 		}
 
 		public static Key operator |(Key left, Key right)
 		{
-			return new Key(String.Format("{0}{1}", left.Value, right.Value), String.Format("{0}+{1}", left, right));
+			return new Key($"{left.Value}{right.Value}", $"{left}+{right}");
 		}
 
 		public bool Equals(Key other)

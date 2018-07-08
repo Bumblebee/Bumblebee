@@ -39,12 +39,12 @@ namespace Bumblebee.Implementation
 		{
 			if (parent == null)
 			{
-				throw new ArgumentNullException("parent");
+				throw new ArgumentNullException(nameof (parent));
 			}
 
 			if (@by == null)
 			{
-				throw new ArgumentNullException("by");
+				throw new ArgumentNullException(nameof (@by));
 			}
 
 			Parent = parent;

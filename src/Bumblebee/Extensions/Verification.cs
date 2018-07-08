@@ -30,7 +30,7 @@ namespace Bumblebee.Extensions
 		/// <returns></returns>
 		public static T Verify<T>(this T obj, string verification, Predicate<T> predicate)
 		{
-			var message = String.Format("Unable to verify.  {0}", verification ?? String.Empty).Trim();
+			var message = $"Unable to verify.  {verification ?? String.Empty}".Trim();
 
 			if (predicate(obj) == false)
 			{
@@ -53,7 +53,7 @@ namespace Bumblebee.Extensions
 		public static T Verify<T>(this T obj, Expression<Predicate<T>> predicateExpression)
 		{
 			var predicate = predicateExpression.Compile();
-			return obj.Verify(String.Format("Expected {0}", predicateExpression.Body), predicate);
+			return obj.Verify($"Expected {predicateExpression.Body}", predicate);
 		}
 
 		/// <summary>
@@ -75,7 +75,7 @@ namespace Bumblebee.Extensions
 			}
 			catch (Exception ex)
 			{
-				throw CreateVerificationException(value, String.Format("Unable to verify.  {0}", ex.Message), ex);
+				throw CreateVerificationException(value, $"Unable to verify.  {ex.Message}", ex);
 			}
 		}
 
@@ -91,7 +91,7 @@ namespace Bumblebee.Extensions
 		{
 			if (selectable.Selected != selected)
 			{
-				throw CreateVerificationException(selectable, String.Format("Selection verification failed. Expected: {0}, Actual: {1}.", selected, selectable.Selected));
+				throw CreateVerificationException(selectable, $"Selection verification failed. Expected: {selected}, Actual: {selectable.Selected}.");
 			}
 
 			return selectable;
@@ -101,7 +101,7 @@ namespace Bumblebee.Extensions
 		{
 			if (hasText.Text != text)
 			{
-				throw CreateVerificationException(hasText, String.Format("Text verification failed. Expected:  {0}, Actual:  {1}.", text, hasText.Text));
+				throw CreateVerificationException(hasText, $"Text verification failed. Expected:  {text}, Actual:  {hasText.Text}.");
 			}
 
 			return hasText;
@@ -111,7 +111,7 @@ namespace Bumblebee.Extensions
 		{
 			if (hasText.Text == text)
 			{
-				throw CreateVerificationException(hasText, String.Format("Text mismatch verification failed. Unexpected:  {0}, Actual:  {1}.", text, hasText.Text));
+				throw CreateVerificationException(hasText, $"Text mismatch verification failed. Unexpected:  {text}, Actual:  {hasText.Text}.");
 			}
 
 			return hasText;
@@ -121,7 +121,7 @@ namespace Bumblebee.Extensions
 		{
 			if (hasText.Text.Contains(text) == false)
 			{
-				throw CreateVerificationException(hasText, String.Format("Expected \"{0}\" to contain \"{1}\"", hasText.Text, text));
+				throw CreateVerificationException(hasText, $"Expected \"{hasText.Text}\" to contain \"{text}\"");
 			}
 
 			return hasText;
@@ -141,7 +141,7 @@ namespace Bumblebee.Extensions
 		{
 			if (block.FindElements(@by).Any() == false)
 			{
-				throw CreateVerificationException(block, String.Format("Couldn't verify presence of {0} {1}", element, by));
+				throw CreateVerificationException(block, $"Couldn't verify presence of {element} {@by}");
 			}
 
 			return block;
@@ -151,7 +151,7 @@ namespace Bumblebee.Extensions
 		{
 			if (block.FindElements(@by).Any())
 			{
-				throw CreateVerificationException(block, String.Format("Couldn't verify absence of {0} {1}", element, by));
+				throw CreateVerificationException(block, $"Couldn't verify absence of {element} {@by}");
 			}
 
 			return block;
@@ -173,11 +173,11 @@ namespace Bumblebee.Extensions
 		{
 			var classes = element.GetClasses();
 
-			var missingClasses = expectedClasses.Where(expected => !classes.Contains(expected)).ToList();
+			var missingClasses = expectedClasses.Where(expected => classes.Contains(expected) == false).ToList();
 
 			if (missingClasses.Any())
 			{
-				throw CreateVerificationException(element, String.Format("Block is missing the following expected classes: {0}", String.Join(", ", missingClasses)));
+				throw CreateVerificationException(element, $"Block is missing the following expected classes: {String.Join(", ", missingClasses)}");
 			}
 		}
 
@@ -197,25 +197,19 @@ namespace Bumblebee.Extensions
 		{
 			var hasSession = item as IHasSession;
 
-			if (hasSession != null)
+			var session = hasSession?.Session;
+
+			var settings = session?.Settings;
+
+			if (settings != null && settings.CaptureScreenOnVerificationFailure)
 			{
-				var session = hasSession.Session;
+				var method = CallStack.GetFirstNonBumblebeeMethod();
 
-				if (session != null)
-				{
-					var settings = session.Settings;
+				var methodName = method.GetFullName();
 
-					if ((settings != null) && settings.CaptureScreenOnVerificationFailure)
-					{
-						var method = CallStack.GetFirstNonBumblebeeMethod();
+				var path = Path.Combine(Environment.CurrentDirectory, $"{methodName}.png");
 
-						var methodName = method.GetFullName();
-
-						var path = Path.Combine(Environment.CurrentDirectory, String.Format("{0}.png", methodName));
-
-						session.CaptureScreen(path);
-					}
-				}
+				session.CaptureScreen(path);
 			}
 
 			return new VerificationException(message, innerException);

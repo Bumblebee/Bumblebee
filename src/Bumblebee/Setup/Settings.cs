@@ -27,12 +27,12 @@ namespace Bumblebee.Setup
 		/// </value>
 		public string ScreenCapturePath
 		{
-			get { return _screenCapturePath; }
+			get => _screenCapturePath;
 			set
 			{
 				if (Directory.Exists(value) == false)
 				{
-					throw new ArgumentException("Not an existing directory.", "value");
+					throw new ArgumentException("Not an existing directory.", nameof (value));
 				}
 
 				_screenCapturePath = value;

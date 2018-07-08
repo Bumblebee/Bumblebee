@@ -17,10 +17,7 @@ namespace Bumblebee.Implementation
 		/// <summary>
 		/// Gets a new instance of <see cref="OpenQA.Selenium.Support.UI.SelectElement" /> for use in member methods.
 		/// </summary>
-		protected SelectElement SelectElement
-		{
-			get { return new SelectElement(Tag); }
-		}
+		protected SelectElement SelectElement => new SelectElement(Tag);
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="SelectBox" /> class. To construct a <see cref="SelectBox" />, you must have both a parent block and a specification for finding the &lt;select&gt; element.
@@ -34,18 +31,12 @@ namespace Bumblebee.Implementation
 		/// <summary>
 		/// Gets all &lt;option&gt; elements.
 		/// </summary>
-		public virtual IEnumerable<IOption> Options
-		{
-			get { return FindElements<Option>(By.TagName("option")); }
-		}
+		public virtual IEnumerable<IOption> Options => FindElements<Option>(By.TagName("option"));
 
 		/// <summary>
 		/// Gets the first selected &lt;option&gt; element.
 		/// </summary>
-		public IOption SelectedOption
-		{
-			get { return SelectedOptions.FirstOrDefault(); }
-		}
+		public IOption SelectedOption => SelectedOptions.FirstOrDefault();
 
 		/// <summary>
 		/// Gets all selected &lt;option&gt; elements.
@@ -71,10 +62,7 @@ namespace Bumblebee.Implementation
 		/// <summary>
 		/// Gets a value indicating whether this &lt;select&gt; element supports multiple selections.
 		/// </summary>
-		public bool IsMultiSelect
-		{
-			get { return SelectElement.IsMultiple; }
-		}
+		public bool IsMultiSelect => SelectElement.IsMultiple;
 
 		/// <summary>
 		/// Select the &lt;option&gt; element with the specified text.
@@ -186,18 +174,12 @@ namespace Bumblebee.Implementation
 		/// <summary>
 		/// Gets all &lt;option&gt; elements.
 		/// </summary>
-		public new virtual IEnumerable<IOption<TResult>> Options
-		{
-			get { return FindElements<Option<TResult>>(By.TagName("option")); }
-		}
+		public new virtual IEnumerable<IOption<TResult>> Options => FindElements<Option<TResult>>(By.TagName("option"));
 
 		/// <summary>
 		/// Gets the first selected &lt;option&gt; element.
 		/// </summary>
-		public new IOption<TResult> SelectedOption
-		{
-			get { return SelectedOptions.FirstOrDefault(); }
-		}
+		public new IOption<TResult> SelectedOption => SelectedOptions.FirstOrDefault();
 
 		/// <summary>
 		/// Gets all selected &lt;option&gt; elements.

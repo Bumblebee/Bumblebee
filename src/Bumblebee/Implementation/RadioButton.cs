@@ -1,6 +1,4 @@
-﻿using System;
-
-using Bumblebee.Extensions;
+﻿using Bumblebee.Extensions;
 using Bumblebee.Interfaces;
 
 using OpenQA.Selenium;
@@ -14,9 +12,6 @@ namespace Bumblebee.Implementation
 		{
 		}
 
-		public override string Text
-		{
-			get { return Parent.FindElement(By.CssSelector(String.Format("label[for=\"{0}\"]", Tag.GetID()))).Text; }
-		}
+		public override string Text => Parent.FindElement(By.CssSelector($"label[for=\"{Tag.GetId()}\"]")).Text;
 	}
 }

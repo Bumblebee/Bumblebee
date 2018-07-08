@@ -1,4 +1,3 @@
-using System;
 using System.IO;
 
 using Bumblebee.Extensions;
@@ -37,7 +36,7 @@ namespace Bumblebee.IntegrationTests.Setup.SessionTests
 
 		private string GenericMethod<TSession>(TSession session) where TSession : Session
 		{
-			var currentMethod = String.Format("{0}.png", CallStack.GetCurrentMethod().GetFullName());
+			var currentMethod = $"{CallStack.GetCurrentMethod().GetFullName()}.png";
 			var defaultSettings = new Settings();
 
 			var path = Path.Combine(defaultSettings.ScreenCapturePath, currentMethod);
