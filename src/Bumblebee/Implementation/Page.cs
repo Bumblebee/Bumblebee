@@ -15,21 +15,39 @@ namespace Bumblebee.Implementation
 	/// </remarks>
 	public abstract class Page : Block, IPage
 	{
-		/// <summary>
-		/// Constructor that takes the Session for assembly of other composite elements and assumes that &lt;body&gt; tag is the scope for the page.
-		/// </summary>
-		/// <param name="session">The current session</param>
-		/// <exception cref="ArgumentNullException">The session cannot be null.</exception>
-		protected Page(Session session) : this(session, By.TagName("body"))
+        /// <summary>
+        /// Constructor that takes the Session for assembly of other composite elements and assumes that &lt;body&gt; tag is the scope for the page.
+        /// </summary>
+        /// <param name="session"></param>
+	    protected Page(Session session)
+	        : this(session, DefaultTimeout)
+	    {
+
+	    }
+
+	    /// <summary>
+	    /// Constructor that takes the session and a customized Wait timeout for finding the Tag.
+	    /// </summary>
+	    /// <param name="session">The current session</param>
+	    /// <param name="timeout"></param>
+	    /// <exception cref="ArgumentNullException">The session cannot be null.</exception>
+	    protected Page(Session session, TimeSpan timeout) : this(session, By.TagName("body"), timeout)
 		{
 		}
 
-		/// <summary>
-		/// Constructor that takes the Session and a By, to be used for testing purposes
-		/// </summary>
-		/// <param name="session">The current session.</param>
-		/// <param name="by">The By specification, typically By.TagName("body")</param>
-		internal Page(Session session, By @by) : base(session, @by)
+	    internal Page(Session session, By @by)
+	        : this(session, @by, DefaultTimeout)
+	    {
+
+	    }
+
+	    /// <summary>
+	    /// Constructor that takes the Session and a By, to be used for testing purposes
+	    /// </summary>
+	    /// <param name="session">The current session.</param>
+	    /// <param name="by">The By specification, typically By.TagName("body")</param>
+	    /// <param name="timeout"></param>
+	    internal Page(Session session, By @by, TimeSpan timeout) : base(session, @by, timeout)
 		{
 		}
 
@@ -57,5 +75,5 @@ namespace Bumblebee.Implementation
 					.FindElement(Specification);
 			}
 		}
-	}
+    }
 }

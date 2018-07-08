@@ -6,50 +6,62 @@ using Bumblebee.Setup;
 using Bumblebee.Specifications;
 
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 
 namespace Bumblebee.Implementation
 {
+    /// <summary>
+    /// Base block for a scoped area of a page allowing for specifying a custom wait timeout for finding elements.
+    /// </summary>
 	public abstract class Block : IBlock
 	{
 		protected static readonly ISpecification By = new Specification();
+	    public static readonly TimeSpan DefaultTimeout = TimeSpan.FromTicks(3000);
 
-		internal Block(Session session, By @by)
+	    internal Block(Session session, By @by)
+	        : this(session, @by, DefaultTimeout)
+	    {
+	    }
+
+		internal Block(Session session, By @by, TimeSpan timeout)
 		{
-			if (session == null)
-			{
-				throw new ArgumentNullException(nameof (session));
-			}
+            Session = session ?? throw new ArgumentNullException(nameof (session));
+			Specification = @by ?? throw new ArgumentNullException(nameof (@by));
+		    Wait = new WebDriverWait(Session.Driver, timeout);
 
-			if (@by == null)
-			{
-				throw new ArgumentNullException(nameof (@by));
-			}
-
-			Session = session;
-			Specification = @by;
-
-			InitializeCurrentBlock();
+            InitializeCurrentBlock();
 
 			Session.Monkey?.Invoke(this);
 		}
 
-		protected Block(IBlock parent, By @by)
+	    /// <summary>
+	    /// Default constructor.
+	    /// </summary>
+	    /// <remarks>
+	    /// The default timeout for waiting for elements is 3000 ticks (3-100 nano seconds).  If you need to override this value, call the other constructor.
+	    /// </remarks>
+	    /// <param name="parent">The parent.</param>
+	    /// <param name="by">The by.</param>
+	    protected Block(IBlock parent, By @by)
+            : this (parent, @by, DefaultTimeout)
+	    {
+
+	    }
+
+	    /// <summary>
+	    /// Constructor that allows for overriding the default timeout for waits.
+	    /// </summary>
+	    /// <param name="parent">The parent.</param>
+	    /// <param name="by">The by.</param>
+	    /// <param name="timeout">The timeout period for waits represented as a TimeSpan</param>
+        protected Block(IBlock parent, By @by, TimeSpan timeout)
 		{
-			if (parent == null)
-			{
-				throw new ArgumentNullException(nameof (parent));
-			}
-
-			if (@by == null)
-			{
-				throw new ArgumentNullException(nameof (@by));
-			}
-
-			Parent = parent;
+            Parent = parent ?? throw new ArgumentNullException(nameof (parent));
 			Session = parent.Session;
-			Specification = @by;
+			Specification = @by ?? throw new ArgumentNullException(nameof (@by));
+		    Wait = new WebDriverWait(Session.Driver, timeout);
 
-			InitializeCurrentBlock();
+            InitializeCurrentBlock();
 
 			Session.Monkey?.Invoke(this);
 		}
@@ -119,13 +131,27 @@ namespace Bumblebee.Implementation
 			return result;
 		}
 
+        /// <summary>
+        /// Parent block for this particular block.
+        /// </summary>
 		public IBlock Parent { get; }
 
+        /// <summary>
+        /// The session related to this instance of the block.  Allows for customized interaction with the driver.
+        /// </summary>
 		public Session Session { get; }
 
+        /// <summary>
+        /// The specification for finding this particular block in the document object model.
+        /// </summary>
 		public By Specification { get; }
 
-		private void InitializeCurrentBlock()
+	    /// <summary>
+	    /// A common wait timeout that can be used when trying to find elements within derived pages or blocks.
+	    /// </summary>
+	    protected WebDriverWait Wait { get; }
+
+        private void InitializeCurrentBlock()
 		{
 			Session.SetCurrentBlock(this);
 		}
@@ -133,7 +159,7 @@ namespace Bumblebee.Implementation
 		/// <summary>
 		/// Gets the Selenium IWebElement that underpins this component.
 		/// </summary>
-		public virtual IWebElement Tag => Parent.FindElement(Specification);
+		public virtual IWebElement Tag => Wait.Until(driver => Parent.FindElement(Specification));
 
 		/// <summary>
 		/// Gets the value of the specified attribute for this component.

@@ -6,7 +6,7 @@ using Bumblebee.Setup;
 
 namespace Bumblebee.IntegrationTests.Shared.Pages
 {
-	public class DoubleClickablePage : WebPage
+	public class DoubleClickablePage : Page
 	{
 		public DoubleClickablePage(Session session, TimeSpan timeout) : base(session, timeout)
 		{
