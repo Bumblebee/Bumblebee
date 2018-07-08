@@ -6,7 +6,7 @@ using Bumblebee.Setup;
 
 namespace Bumblebee.IntegrationTests.Shared.Pages
 {
-	public class RadioButtonsPage : WebPage
+	public class RadioButtonsPage : Page
 	{
 		public RadioButtonsPage(Session session, TimeSpan timeout) : base(session, timeout)
 		{

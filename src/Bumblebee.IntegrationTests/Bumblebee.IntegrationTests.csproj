@@ -102,17 +102,20 @@
     <Compile Include="CallStackTests.cs" />
     <Compile Include="Extensions\FindRelatedTests\Given_parent_element_that_gets_removed.cs" />
     <Compile Include="Extensions\FindRelatedTests\Given_static_page_heirarchy.cs" />
+    <Compile Include="Implementation\BlockTests\BlockTests.cs" />
+    <Compile Include="Implementation\BlockTests\Given_slow_block_with_explicit_wait.cs" />
+    <Compile Include="Implementation\BlockTests\Given_slow_block_with_no_wait.cs" />
     <Compile Include="Implementation\CheckboxTests.cs" />
     <Compile Include="Implementation\AlertDialogTests.cs" />
     <Compile Include="Implementation\ClickableTests\Given_double_clickable.cs" />
     <Compile Include="Implementation\InlineFrameTests\Given_inline_frame.cs" />
     <Compile Include="Implementation\IEnumerableOfBlocksTests.cs" />
     <Compile Include="Implementation\InlineFrameTests\Given_nested_inline_frames.cs" />
-    <Compile Include="Implementation\PageTests.cs" />
+    <Compile Include="Implementation\PageTests\PageTests.cs" />
     <Compile Include="Implementation\SelectBoxTests\Given_select_box_that_supports_multiple_selections.cs" />
     <Compile Include="Implementation\SelectBoxTests\Given_select_box_with_one_hundred_thousand_items.cs" />
-    <Compile Include="Implementation\WebPageTests\Given_slow_web_page_with_explicit_wait.cs" />
-    <Compile Include="Implementation\WebPageTests\Given_slow_web_page_with_no_wait.cs" />
+    <Compile Include="Implementation\PageTests\Given_slow_page_with_explicit_wait.cs" />
+    <Compile Include="Implementation\PageTests\Given_slow_page_with_no_wait.cs" />
     <Compile Include="Shared\HeadlessChrome.cs" />
     <Compile Include="Shared\HeadlessChromeWithNoWaitTime.cs" />
     <Compile Include="Shared\Hosting\OwinStartUp.cs" />
@@ -125,8 +128,9 @@
     <Compile Include="Setup\ThreadedSessionTests\Given_user_has_navigated_to_a_page.cs" />
     <Compile Include="Shared\Pages\DefaultPage.cs" />
     <Compile Include="Shared\Pages\HundredThousandItemSelectPage.cs" />
+    <Compile Include="Shared\Pages\SlowBlockPage.cs" />
     <Compile Include="Shared\Pages\SlowPageWithJQuery.cs" />
-    <Compile Include="Shared\Pages\SlowWebPage.cs" />
+    <Compile Include="Shared\Pages\SlowPage.cs" />
     <Compile Include="Shared\Pages\JavaScriptPopUpPage.cs" />
     <Compile Include="KeyTests.cs" />
     <Compile Include="Implementation\RadioButtonTests.cs" />
@@ -247,6 +251,9 @@
     <Content Include="Content\NumericField.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\SlowBlock.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\SlowPageWithJQuery.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -262,7 +269,7 @@
     <Content Include="Content\Default.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\SlowWebPage.html">
+    <Content Include="Content\SlowPage.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Table.html">

@@ -1,16 +1,15 @@
 ﻿using System;
 
-using Bumblebee.Extensions;
 using Bumblebee.Interfaces;
 
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
 
 namespace Bumblebee.Implementation
 {
 	/// <summary>
 	/// Base block for typical web pages allowing for specifying a common wait timeout for finding elements.
 	/// </summary>
+	[Obsolete("Use Block now for scoped sections of a page or use Page to represent the page.", error: true)]
 	public abstract class WebBlock : Block
 	{
 		/// <summary>
@@ -34,14 +33,7 @@ namespace Bumblebee.Implementation
 		protected WebBlock(IBlock parent, By @by, TimeSpan timeout)
 			: base(parent, @by)
 		{
-			this.Pause(200);
-			Wait = new WebDriverWait(Session.Driver, timeout);
 		}
-
-		/// <summary>
-		/// A common wait timeout that can be used when trying to find elements within derived pages or blocks.
-		/// </summary>
-		protected WebDriverWait Wait { get; private set; }
 
 		/// <summary>
 		/// The actual web element that the Block is abstracting.

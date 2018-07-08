@@ -42,7 +42,7 @@ namespace Bumblebee.IntegrationTests.Shared.Pages
 		}
 	}
 
-	public class ListOfComplexBlocksPage : WebPage
+	public class ListOfComplexBlocksPage : Page
 	{
 		public ListOfComplexBlocksPage(Session session) : base(session)
 		{

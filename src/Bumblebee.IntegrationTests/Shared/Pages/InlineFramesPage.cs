@@ -8,7 +8,7 @@ using OpenQA.Selenium;
 
 namespace Bumblebee.IntegrationTests.Shared.Pages
 {
-	public class InlineFramesPage : WebPage
+	public class InlineFramesPage : Page
 	{
 		public InlineFramesPage(Session session) : base(session, TimeSpan.FromSeconds(5))
 		{

@@ -16,9 +16,25 @@ namespace Bumblebee.Implementation
 		/// <summary>
 		/// Constructor that takes the Session for assembly of other composite elements and assumes that &lt;body&gt; tag is the scope for the page.
 		/// </summary>
-		/// <param name="session">The current session</param>
+		/// <param name="session"></param>
 		/// <exception cref="System.ArgumentNullException">The session cannot be null.</exception>
-		protected Page(Session session) : this(session, By.TagName("body"))
+		protected Page(Session session)
+			: this(session, DefaultTimeout)
+		{
+		}
+
+		/// <summary>
+		/// Constructor that takes the session and a customized Wait timeout for finding the Tag.
+		/// </summary>
+		/// <param name="session">The current session</param>
+		/// <param name="timeout"></param>
+		/// <exception cref="ArgumentNullException">The session cannot be null.</exception>
+		protected Page(Session session, TimeSpan timeout) : this(session, By.TagName("body"), timeout)
+		{
+		}
+
+		internal Page(Session session, By @by)
+			: this(session, @by, DefaultTimeout)
 		{
 		}
 
@@ -27,7 +43,9 @@ namespace Bumblebee.Implementation
 		/// </summary>
 		/// <param name="session">The current session.</param>
 		/// <param name="by">The By specification, typically By.TagName("body")</param>
-		internal Page(Session session, By @by) : base(session, @by)
+		/// <param name="timeout"></param>
+		internal Page(Session session, By @by, TimeSpan timeout)
+			: base(session, @by, timeout)
 		{
 		}
 

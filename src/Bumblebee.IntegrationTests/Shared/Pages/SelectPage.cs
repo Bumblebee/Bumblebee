@@ -4,7 +4,7 @@ using Bumblebee.Setup;
 
 namespace Bumblebee.IntegrationTests.Shared.Pages
 {
-	public class SelectPage : WebPage
+	public class SelectPage : Page
 	{
 		public SelectPage(Session session) : base(session)
 		{
