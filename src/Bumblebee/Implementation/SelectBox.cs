@@ -5,6 +5,7 @@ using Bumblebee.Extensions;
 using Bumblebee.Interfaces;
 
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.Extensions;
 using OpenQA.Selenium.Support.UI;
 
 namespace Bumblebee.Implementation
@@ -12,7 +13,7 @@ namespace Bumblebee.Implementation
 	/// <summary>
 	/// Provides an abstraction for &lt;select&gt; elements.
 	/// </summary>
-	public class SelectBox : Block, ISelectBox
+	public class SelectBox : Block, ISelectBox, IFocusable
 	{
 		/// <summary>
 		/// Gets a new instance of <see cref="OpenQA.Selenium.Support.UI.SelectElement" /> for use in member methods.
@@ -153,13 +154,29 @@ namespace Bumblebee.Implementation
 
 			return this.FindRelated<TResult>();
 		}
+
+		/// <summary>
+		/// Sets focus on the select box.
+		/// </summary>
+		/// <typeparam name="TResult">The type of the block the focused block or element is on.</typeparam>
+		/// <returns>The type of block to return.</returns>
+		public TResult SetFocus<TResult>() where TResult : IBlock
+		{
+			Session.Driver.ExecuteJavaScript("arguments[0].focus();", Tag);
+			return this.FindRelated<TResult>();
+		}
+
+		/// <summary>
+		/// Gets the value indicating whether the select box has focus.
+		/// </summary>
+		public bool HasFocus => Tag.Equals(Session.Driver.SwitchTo().ActiveElement());
 	}
 
 	/// <summary>
 	/// Provides a generic abstraction for &lt;select&gt; elements.
 	/// </summary>
 	/// <typeparam name="TResult">The type of block all actions will return.</typeparam>
-	public class SelectBox<TResult> : SelectBox, ISelectBox<TResult>
+	public class SelectBox<TResult> : SelectBox, ISelectBox<TResult>, IFocusable<TResult>
 		where TResult : IBlock
 	{
 		/// <summary>
@@ -269,6 +286,15 @@ namespace Bumblebee.Implementation
 		public TResult DeselectAll()
 		{
 			return DeselectAll<TResult>();
+		}
+
+		/// <summary>
+		/// Sets focus on the select box.
+		/// </summary>
+		/// <returns>The type of block to return.</returns>
+		public TResult SetFocus()
+		{
+			return SetFocus<TResult>();
 		}
 	}
 }

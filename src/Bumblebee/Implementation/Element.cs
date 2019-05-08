@@ -1,10 +1,12 @@
 ﻿using System;
 
+using Bumblebee.Extensions;
 using Bumblebee.Interfaces;
 using Bumblebee.Setup;
 using Bumblebee.Specifications;
 
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.Extensions;
 
 namespace Bumblebee.Implementation
 {
@@ -131,5 +133,21 @@ namespace Bumblebee.Implementation
 		{
 			return new WebDragAndDropPerformer(Session.Driver);
 		}
+
+		/// <summary>
+		/// Sets focus on the block or element.
+		/// </summary>
+		/// <typeparam name="TResult">The type of the block the focused block or element is on.</typeparam>
+		/// <returns>The type of block to return.</returns>
+		public virtual TResult SetFocus<TResult>() where TResult : IBlock
+		{
+			Session.Driver.ExecuteJavaScript("arguments[0].focus();", Tag);
+			return this.FindRelated<TResult>();
+		}
+
+		/// <summary>
+		/// Gets the value indicating whether block or element has focus.
+		/// </summary>
+		public virtual bool HasFocus => Tag.Equals(Session.Driver.SwitchTo().ActiveElement());
 	}
 }

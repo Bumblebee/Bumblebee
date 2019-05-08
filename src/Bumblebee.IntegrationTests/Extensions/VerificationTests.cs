@@ -263,5 +263,12 @@ namespace Bumblebee.IntegrationTests.Extensions
 		{
 			throw new NotImplementedException();
 		}
+
+		public TResult SetFocus<TResult>() where TResult : IBlock
+		{
+			throw new NotImplementedException();
+		}
+
+		public bool HasFocus { get; }
 	}
 }
