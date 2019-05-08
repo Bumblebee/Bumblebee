@@ -1,0 +1,18 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta charset="utf-8" />
+		<title>Slow Web Page</title>
+		<script type="text/javascript">
+			function init() {
+				setTimeout(function () {
+					var body = document.getElementsByTagName("body")[0];
+					body.innerHTML = '<input id="firstName" name="test-name" x-test="match" class="test" type="text" value="Todd"/><a href="">Todd</a><input id="checkedCheckbox" type="checkbox" checked="checked"/>';
+				}, 5000);
+			}
+		</script>
+	</head>
+	<body onload="init()">
+	</body>
+</html>

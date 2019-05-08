@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta charset="utf-8" />
+		<title>Nested Inline Frames Grandchild</title>
+	</head>
+	<body>
+		<div align="center">
+			<a id="ParentLink" href="#" onclick="return parentLinkClick();">Parent Link</a><br />
+			<a id="GrandparentLink" href="#" onclick="return grandParentLinkClick();">Grandparent Link</a>
+		</div>
+		<script>
+			function parentLinkClick() {
+				window.parent.document.getElementById('ParentSpan').innerHTML = 'Clicked.';
+
+				return false;
+			}
+
+			function grandParentLinkClick() {
+				window.parent.parent.document.getElementById('GrandparentSpan').innerHTML = 'Clicked.';
+
+				return false;
+			}
+		</script>
+	</body>
+</html>

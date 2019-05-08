@@ -9,11 +9,11 @@ namespace Bumblebee.Setup.DriverEnvironments
 	{
 		private TimeSpan TimeToWait { get; set; }
 
-		public SimpleDriverEnvironment() : this(TimeSpan.FromSeconds(5))
+		protected SimpleDriverEnvironment() : this(TimeSpan.FromSeconds(5))
 		{
 		}
 
-		public SimpleDriverEnvironment(TimeSpan timeToWait)
+		protected SimpleDriverEnvironment(TimeSpan timeToWait)
 		{
 			TimeToWait = timeToWait;
 		}
@@ -24,8 +24,8 @@ namespace Bumblebee.Setup.DriverEnvironments
 
 			driver.Manage().Window.Maximize();
 
-			driver.Manage().Timeouts().ImplicitlyWait(TimeToWait);
-			
+			driver.Manage().Timeouts().ImplicitWait = TimeToWait;
+
 			return driver;
 		}
 	}

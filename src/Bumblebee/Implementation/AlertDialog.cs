@@ -1,57 +1,106 @@
 ﻿using System;
+using System.Collections.Generic;
 
 using Bumblebee.Interfaces;
 using Bumblebee.Setup;
+using Bumblebee.Specifications;
 
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 
 namespace Bumblebee.Implementation
 {
-	public class AlertDialog : Block, IAlertDialog
+	public class AlertDialog : IAlertDialog
 	{
-		private IWebElement Parent { get; set; }
-		private IAlert Alert { get; set; }
+		protected static readonly ISpecification By = new Specification();
 
-		public AlertDialog(Session session) : base(session)
+		public IWebElement Tag => throw new NotImplementedException();
+
+		public IBlock Parent { get; }
+		public Session Session { get; }
+
+		private IAlert Alert { get; }
+
+		public AlertDialog(Session session)
 		{
-			Parent = null;
+			Session = session;
+
 			Alert = WaitForAlert();
 		}
 
-		public AlertDialog(IWebElement parent, Session session) : base(session)
+		public AlertDialog(IBlock parent) : this(parent.Session)
 		{
 			Parent = parent;
-			Alert = WaitForAlert();
+		}
+		public string GetAttribute(string name)
+		{
+			throw new NotImplementedException();
+		}
+
+		public TParent ParentAs<TParent>() where TParent : IBlock
+		{
+			var type = typeof (TParent);
+
+			var result = default (TParent);
+
+			if (type.IsInstanceOfType(Parent))
+			{
+				result = (TParent)Parent;
+			}
+
+			return result;
+		}
+
+		public IWebElement FindElement(By @by)
+		{
+			throw new NotImplementedException();
+		}
+
+		public IEnumerable<IWebElement> FindElements(By @by)
+		{
+			throw new NotImplementedException();
 		}
 
 		private IAlert WaitForAlert()
 		{
-			var wait = new WebDriverWait(Session.Driver, new TimeSpan(0, 0, 5));
+			var wait = new WebDriverWait(Session.Driver, TimeSpan.FromSeconds(5));
 			return wait.Until(d => d.SwitchTo().Alert());
 		}
 
 		public virtual TResult Accept<TResult>() where TResult : IBlock
 		{
 			Alert.Accept();
-			return Session.CurrentBlock<TResult>(Parent);
+
+			return Session.CurrentBlock<TResult>();
 		}
 
 		public virtual TResult Dismiss<TResult>() where TResult : IBlock
 		{
 			Alert.Dismiss();
-			return Session.CurrentBlock<TResult>(Parent);
+
+			return Session.CurrentBlock<TResult>();
 		}
 
 		public virtual IAlertDialog EnterText(string text)
 		{
 			Alert.SendKeys(text);
+
 			return this;
 		}
 
 		public virtual string Text
 		{
 			get { return Alert.Text; }
+		}
+
+		public IPerformsDragAndDrop GetDragAndDropPerformer()
+		{
+			throw new NotImplementedException();
+		}
+
+		public void VerifyMonkeyState()
+		{
+			throw new NotImplementedException();
 		}
 	}
 }

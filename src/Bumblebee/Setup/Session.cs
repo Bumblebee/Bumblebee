@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Drawing.Imaging;
 using System.IO;
-using System.Linq;
+
 using Bumblebee.Extensions;
+using Bumblebee.Implementation;
 using Bumblebee.Interfaces;
 
 using OpenQA.Selenium;
@@ -11,8 +10,12 @@ using OpenQA.Selenium.Support.Extensions;
 
 namespace Bumblebee.Setup
 {
-	public class Session
+	public class Session : IDisposable
 	{
+		private static readonly Type PageInterfaceType = typeof (IPage);
+
+		private IBlock _currentBlock;
+
 		public virtual ISettings Settings { get; private set; }
 
 		public virtual IWebDriver Driver { get; private set; }
@@ -29,32 +32,76 @@ namespace Bumblebee.Setup
 			Driver = environment.CreateWebDriver();
 		}
 
-		public virtual TBlock NavigateTo<TBlock>(string url) where TBlock : IBlock
+		public virtual TPage NavigateTo<TPage>(string url) where TPage : IPage
 		{
 			Driver.Navigate().GoToUrl(url);
-			return CurrentBlock<TBlock>();
+
+			return Page.Create<TPage>(this);
 		}
 
-		public virtual TBlock CurrentBlock<TBlock>(IWebElement tag = null) where TBlock : IBlock
+		public virtual TPage NavigateTo<TPage>(string uriFormat, params object[] args) where TPage : IPage
+		{
+			return NavigateTo<TPage>(String.Format(uriFormat, args));
+		}
+
+		public virtual void Refresh()
+		{
+			Driver.Navigate().Refresh();
+		}
+
+		internal void SetCurrentBlock(IBlock block)
+		{
+			_currentBlock = block;
+		}
+
+		/// <summary>
+		/// Retrieves the currently stored current block, if it is of type <typeparamref name="TBlock" />.
+		/// Otherwise, if there is a current block, then the closest related element of type <typeparamref name="TBlock" /> is found.
+		/// If type <typeparamref name="TBlock" /> is a <see cref="Bumblebee.Interfaces.IPage" /> then it is created and returned.
+		/// Otherwise, null is returned.
+		/// </summary>
+		/// <typeparam name="TBlock"></typeparam>
+		/// <returns></returns>
+		public virtual TBlock CurrentBlock<TBlock>() where TBlock : IBlock
 		{
 			var type = typeof (TBlock);
-			IList<Type> constructorSignature = new List<Type> { typeof (Session) };
-			IList<object> constructorArgs = new List<object> { this };
 
-			if (typeof (ISpecificBlock).IsAssignableFrom(typeof (TBlock)))
+			IBlock result = default (TBlock);
+
+			if (type.IsInstanceOfType(_currentBlock))
 			{
-				constructorSignature.Add(typeof (IWebElement));
-				constructorArgs.Add(tag);
+				result = (TBlock) _currentBlock;
 			}
-
-			var constructor = type.GetConstructor(constructorSignature.ToArray());
-
-			if (constructor == null)
+			else if (_currentBlock != null)
 			{
-				throw new ArgumentException(String.Format("The result type specified ({0}) is not a valid block. It must have a constructor that takes only a session.", type));
+				result = _currentBlock.FindRelated<TBlock>();
 			}
+			else if (PageInterfaceType.IsAssignableFrom(type))
+			{
+				result = Block.Create<TBlock>(this);
+			}
+			
+			return (TBlock) result;
+		}
 
-			return (TBlock) constructor.Invoke(constructorArgs.ToArray());
+		[Obsolete("This method is obsolete.  Due to the nature of lazy loading elements, this is no longer relevant.  For the same reason, we have removed the SpecificBlock type.  Please use the CurrentBlock<TBlock>() method to get your block reference.", error: true)]
+		public virtual TBlock CurrentBlock<TBlock>(IWebElement tag) where TBlock : IBlock
+		{
+			return Block.Create<TBlock>(this);
+		}
+
+		/// <summary>
+		/// Returns the page representation with the current <c ref="Session">Session</c>
+		/// </summary>
+		/// <remarks>
+		/// There is nothing that currently enforces that the right type is being cast for the page, so if you select a different page
+		/// than what was last navigated to, you might encounter errors when using the associated elements since they will likely not exist.
+		/// </remarks>
+		/// <typeparam name="TPage">The requested page type.</typeparam>
+		/// <returns>A newly constructed page object of type <typeparamref name="TPage" />.</returns>
+		public virtual TPage CurrentPage<TPage>() where TPage : IPage
+		{
+			return Page.Create<TPage>(this);
 		}
 
 		public virtual void End()
@@ -71,7 +118,7 @@ namespace Bumblebee.Setup
 
 		public virtual Session CaptureScreen()
 		{
-			var filename = String.Format("{0}.png", CallStack.GetCallingMethod().GetFullName());
+			var filename = $"{CallStack.GetCallingMethod().GetFullName()}.png";
 			var path = Path.Combine(Settings.ScreenCapturePath, filename);
 			return CaptureScreen(path);
 		}
@@ -86,8 +133,8 @@ namespace Bumblebee.Setup
 			{
 				screenshot.SaveAsFile(path, ScreenshotImageFormat.Png);
 			}
-			else if ((String.Equals(extension, ".jpg", StringComparison.OrdinalIgnoreCase))
-					|| (String.Equals(extension, ".jpeg", StringComparison.OrdinalIgnoreCase)))
+			else if (String.Equals(extension, ".jpg", StringComparison.OrdinalIgnoreCase)
+					|| String.Equals(extension, ".jpeg", StringComparison.OrdinalIgnoreCase))
 			{
 				screenshot.SaveAsFile(path, ScreenshotImageFormat.Jpeg);
 			}
@@ -107,9 +154,38 @@ namespace Bumblebee.Setup
 			return this;
 		}
 
+		public virtual void ExecuteJavaScript(string script, params object[] args)
+		{
+			Driver.ExecuteJavaScript<object>(script, args);
+		}
+
 		public virtual T ExecuteJavaScript<T>(string script, params object[] args)
 		{
 			return Driver.ExecuteJavaScript<T>(script, args);
+		}
+
+		~Session()
+		{
+			Dispose(false);
+		}
+
+		public void Dispose()
+		{
+			Dispose(true);
+
+			GC.SuppressFinalize(this);
+		}
+
+		private void Dispose(bool disposing)
+		{
+			if (disposing)
+			{
+				// dispose managed resources
+
+				End();
+			}
+
+			// dispose native resources
 		}
 	}
 
@@ -122,7 +198,6 @@ namespace Bumblebee.Setup
 
 		public Session(ISettings settings) : base(new TDriverEnvironment(), settings)
 		{
-			
 		}
 	}
 }

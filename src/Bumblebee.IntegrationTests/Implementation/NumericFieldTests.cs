@@ -1,28 +1,31 @@
-using System;
 using Bumblebee.Extensions;
 using Bumblebee.IntegrationTests.Shared.Hosting;
-using Bumblebee.IntegrationTests.Shared.Pages.Implementation;
+using Bumblebee.IntegrationTests.Shared.Pages;
 using Bumblebee.Setup;
 using Bumblebee.Setup.DriverEnvironments;
+
 using FluentAssertions;
+
 using NUnit.Framework;
+
+// ReSharper disable InconsistentNaming
 
 namespace Bumblebee.IntegrationTests.Implementation
 {
-	// ReSharper disable InconsistentNaming
-	[TestFixture]
-	public class Given_numeric_field : HostTestFixture
+	[TestFixture(typeof (HeadlessChrome))]
+	public class Given_numeric_field<T> : HostTestFixture
+		where T : IDriverEnvironment, new()
 	{
 		[OneTimeSetUp]
-		public void Init()
+		public void TestFixtureSetUp()
 		{
 			Threaded<Session>
-				.With<PhantomJS>()
-				.NavigateTo<NumericFieldPage>(String.Format("{0}/Content/NumericField.html", BaseUrl));
+				.With<T>()
+				.NavigateTo<NumericFieldPage>(GetUrl("NumericField.html"));
 		}
 
 		[OneTimeTearDown]
-		public void Dispose()
+		public void TestFixtureTearDown()
 		{
 			Threaded<Session>
 				.End();

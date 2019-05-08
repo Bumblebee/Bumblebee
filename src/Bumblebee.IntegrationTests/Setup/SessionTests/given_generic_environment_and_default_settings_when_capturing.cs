@@ -1,10 +1,9 @@
-using System;
 using System.IO;
 using System.Reflection;
 
 using Bumblebee.Extensions;
 using Bumblebee.IntegrationTests.Shared.Hosting;
-using Bumblebee.IntegrationTests.Shared.Pages.Implementation;
+using Bumblebee.IntegrationTests.Shared.Pages;
 using Bumblebee.Setup;
 using Bumblebee.Setup.DriverEnvironments;
 
@@ -16,8 +15,9 @@ namespace Bumblebee.IntegrationTests.Setup.SessionTests
 {
 	// ReSharper disable InconsistentNaming
 
-	[TestFixture]
-	public class given_generic_environment_and_default_settings_when_capturing : HostTestFixture
+	[TestFixture(typeof(HeadlessChrome))]
+	public class given_generic_environment_and_default_settings_when_capturing<T> : HostTestFixture
+		where T : IDriverEnvironment, new()
 	{
 		private string path;
 		private Session session;
@@ -26,12 +26,12 @@ namespace Bumblebee.IntegrationTests.Setup.SessionTests
 		[OneTimeSetUp]
 		public void Before()
 		{
-			var currentMethod = String.Format("{0}.png", MethodBase.GetCurrentMethod().GetFullName());
+			var currentMethod = $"{MethodBase.GetCurrentMethod().GetFullName()}.png";
 			var defaultSettings = new Settings();
 			path = Path.Combine(defaultSettings.ScreenCapturePath, currentMethod);
 			File.Delete(path);
 
-			session = new Session<InternetExplorer>();
+			session = new Session<T>();
 			session.NavigateTo<CheckboxPage>(GetUrl("Checkbox.html"));
 			_returnSession = session.CaptureScreen();
 		}

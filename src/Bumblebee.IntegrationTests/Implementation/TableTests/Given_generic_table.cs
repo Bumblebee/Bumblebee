@@ -1,9 +1,8 @@
-using System;
 using System.Linq;
 
 using Bumblebee.Extensions;
 using Bumblebee.IntegrationTests.Shared.Hosting;
-using Bumblebee.IntegrationTests.Shared.Pages.Implementation;
+using Bumblebee.IntegrationTests.Shared.Pages;
 using Bumblebee.Setup;
 using Bumblebee.Setup.DriverEnvironments;
 
@@ -15,19 +14,20 @@ namespace Bumblebee.IntegrationTests.Implementation.TableTests
 {
 	// ReSharper disable InconsistentNaming
 
-	[TestFixture]
-	public class Given_generic_table : HostTestFixture
+	[TestFixture(typeof(HeadlessChrome))]
+	public class Given_generic_table<T> : HostTestFixture
+		where T : IDriverEnvironment, new()
 	{
 		[OneTimeSetUp]
-		public void OneTimeSetUp()
+		public void TestFixtureSetUp()
 		{
 			Threaded<Session>
-				.With<PhantomJS>()
-				.NavigateTo<GenericTablePage>(String.Format("{0}{1}", BaseUrl, "/Content/Table.html"));
+				.With<T>()
+				.NavigateTo<GenericTablePage>(GetUrl("Table.html"));
 		}
 
 		[OneTimeTearDown]
-		public void OneTimeTearDown()
+		public void TestFixtureTearDown()
 		{
 			Threaded<Session>
 				.End();

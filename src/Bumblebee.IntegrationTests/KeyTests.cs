@@ -1,6 +1,6 @@
 ﻿using Bumblebee.Extensions;
 using Bumblebee.IntegrationTests.Shared.Hosting;
-using Bumblebee.IntegrationTests.Shared.Pages.Implementation;
+using Bumblebee.IntegrationTests.Shared.Pages;
 using Bumblebee.Setup;
 using Bumblebee.Setup.DriverEnvironments;
 
@@ -8,12 +8,13 @@ using FluentAssertions;
 
 using NUnit.Framework;
 
+// ReSharper disable InconsistentNaming
+
 namespace Bumblebee.IntegrationTests
 {
-	// ReSharper disable InconsistentNaming
-
-	[TestFixture(typeof (Chrome))]
-	public class Given_keys<T> : HostTestFixture where T : IDriverEnvironment, new()
+	[TestFixture(typeof (HeadlessChrome))]
+	public class Given_keys<T> : HostTestFixture
+		where T : IDriverEnvironment, new()
 	{
 		private static readonly Key[] Data =
 		{
@@ -124,7 +125,7 @@ namespace Bumblebee.IntegrationTests
 		{
 			Threaded<Session>
 				.With<T>()
-				.NavigateTo<CheckboxPage>(GetUrl("Keys.html"));
+				.NavigateTo<KeysPage>(GetUrl("Keys.html"));
 		}
 
 		[OneTimeTearDown]
@@ -135,7 +136,7 @@ namespace Bumblebee.IntegrationTests
 		}
 
 		[Test]
-		[TestCaseSource("Data")]
+		[TestCaseSource(nameof (Data))]
 		public void When_key_is_pressed_correct_key_event_is_fired(Key key)
 		{
 			Threaded<Session>

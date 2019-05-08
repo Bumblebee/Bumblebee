@@ -2,12 +2,12 @@
 {
 	public interface ICheckbox : IElement, ISelectable
 	{
-		TCustomResult Check<TCustomResult>() where TCustomResult : IBlock;
-		TCustomResult Uncheck<TCustomResult>() where TCustomResult : IBlock;
-		TCustomResult Toggle<TCustomResult>() where TCustomResult : IBlock;
+		TResult Check<TResult>() where TResult : IBlock;
+		TResult Uncheck<TResult>() where TResult : IBlock;
+		TResult Toggle<TResult>() where TResult : IBlock;
 	}
 
-	public interface ICheckbox<out TResult> : ICheckbox, IGenericElement<TResult>
+	public interface ICheckbox<out TResult> : ICheckbox
 		where TResult : IBlock
 	{
 		TResult Check();

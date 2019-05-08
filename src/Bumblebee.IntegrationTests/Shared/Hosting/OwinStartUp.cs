@@ -1,7 +1,9 @@
 ﻿using System;
+
 using Microsoft.Owin;
 using Microsoft.Owin.FileSystems;
 using Microsoft.Owin.StaticFiles;
+
 using Owin;
 
 namespace Bumblebee.IntegrationTests.Shared.Hosting

@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta charset="utf-8" />
+		<title>Java Script Pop Up</title>
+		<style type="text/css">
+			.window {
+				background-color: #FFFFFF;
+				border: 1px solid #000000;
+				height: 30em;
+				width: 70em;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="TheRegion">
+			<button id="TheButton" onclick="return showPopUp(this, event);">Open Pop Up</button>
+		</div>
+		<script>
+			function createDataRegion() {
+				var data = document.createElement('div');
+
+				data.setAttribute('class', 'data-region');
+
+				data.innerHTML = 'Data goes here.';
+
+				return data;
+			}
+
+			function createWindow() {
+				var fragment = document.createDocumentFragment();
+
+				var window = document.createElement('div');
+
+				window.id = 'TheWindow';
+				window.setAttribute('class', 'window');
+
+				var closeButton = document.createElement('a');
+
+				closeButton.innerHTML = '[x]';
+				closeButton.setAttribute('href', '#');
+				closeButton.setAttribute('class', 'close-button');
+				closeButton.setAttribute('onclick', 'return closeWindow(this, event);');
+
+				var data = createDataRegion();
+
+				window.appendChild(closeButton);
+				window.appendChild(data);
+
+				fragment.appendChild(window);
+
+				return fragment;
+			}
+
+			function closeWindow(element, e) {
+				e.preventDefault();
+
+				element.parentElement.remove();
+
+				return false;
+			}
+
+			function showPopUp(element, e) {
+				e.preventDefault();
+
+				var fragment = createWindow();
+
+				element.parentElement.appendChild(fragment);
+
+				return false;
+			}
+		</script>
+	</body>
+</html>

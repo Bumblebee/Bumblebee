@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 using Bumblebee.Interfaces;
@@ -8,26 +7,20 @@ using OpenQA.Selenium;
 
 namespace Bumblebee.Implementation
 {
-	public class Table : Element, ITable
+	public class Table : Block, ITable
 	{
-		protected static T Create<T>(IBlock parent, By @by)
-		{
-			return (T) Activator.CreateInstance(typeof (T), parent, @by);
-		}
-
-		protected static T Create<T>(IBlock parent, IWebElement tag)
-		{
-			return (T) Activator.CreateInstance(typeof (T), parent, tag);
-		}
-
+		/// <summary>
+		/// Initializes an instance of the <see cref="Table" /> class.
+		/// </summary>
+		/// <param name="parent"></param>
+		/// <param name="by"></param>
 		public Table(IBlock parent, By @by) : base(parent, @by)
 		{
 		}
 
-		public Table(IBlock parent, IWebElement tag) : base(parent, tag)
-		{
-		}
-
+		/// <summary>
+		/// Gets the header cells of this table.
+		/// </summary>
 		public IEnumerable<string> Headers
 		{
 			get
@@ -39,16 +32,14 @@ namespace Bumblebee.Implementation
 			}
 		}
 
-		public IEnumerable<ITableRow> Rows
-		{
-			get
-			{
-				return FindElement(By.TagName("tbody"))
-					.FindElements(By.TagName("tr"))
-					.Select((x, i) => new TableRow(this, By.CssSelector(String.Format("tbody > tr:nth-child({0})", i + 1))));
-			}
-		}
+		/// <summary>
+		/// Gets the rows of this table.
+		/// </summary>
+		public IEnumerable<ITableRow> Rows => FindBlocks<TableRow>(By.CssSelector("tbody > tr"));
 
+		/// <summary>
+		/// Gets the footer cells of this table.
+		/// </summary>
 		public IEnumerable<string> Footers
 		{
 			get
@@ -60,24 +51,22 @@ namespace Bumblebee.Implementation
 			}
 		}
 
-		public T HeaderAs<T>()
-			where T : Element
+		public TBlock HeaderAs<TBlock>()
+			where TBlock : IBlock
 		{
-			return Create<T>(this, By.TagName("thead"));
+			return Block.Create<TBlock>(this, By.TagName("thead"));
 		}
 
 		public IEnumerable<T> RowsAs<T>()
-			where T : Element
+			where T : IBlock
 		{
-			return FindElement(By.TagName("tbody"))
-				.FindElements(By.TagName("tr"))
-				.Select((x, i) => Create<T>(this, By.CssSelector(String.Format("tbody > tr:nth-child({0})", i + 1))));
+			return FindBlocks<T>(By.CssSelector("tbody > tr"));
 		}
 
-		public T FooterAs<T>()
-			where T : Element
+		public TBlock FooterAs<TBlock>()
+			where TBlock : IBlock
 		{
-			return Create<T>(this, By.TagName("tfoot"));
+			return Block.Create<TBlock>(this, By.TagName("tfoot"));
 		}
 	}
 }

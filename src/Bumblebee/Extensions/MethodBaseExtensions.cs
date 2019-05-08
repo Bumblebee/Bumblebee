@@ -5,20 +5,20 @@ namespace Bumblebee.Extensions
 {
 	public static class MethodBaseExtensions
 	{
-		public static string GetFullName(this MethodBase methodInfo)
+		public static string GetFullName(this MethodBase method)
 		{
-			if (methodInfo == null)
+			if (method == null)
 			{
-				throw new ArgumentNullException("methodInfo");
+				throw new ArgumentNullException(nameof (method));
 			}
 
-			if (methodInfo.DeclaringType == null)
+			if (method.DeclaringType == null)
 			{
 				// this only happens for C++/CLI defined global free functions (e.g. basically never)
-				throw new ArgumentNullException("methodInfo.DeclaringType");
+				throw new ArgumentNullException("method.DeclaringType");
 			}
 
-			return String.Format("{0}.{1}", methodInfo.DeclaringType.FullName, methodInfo.Name);
+			return $"{method.DeclaringType.FullName}.{method.Name}";
 		}
 	}
 }

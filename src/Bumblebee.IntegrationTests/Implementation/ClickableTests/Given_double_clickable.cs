@@ -1,6 +1,6 @@
 using Bumblebee.Extensions;
 using Bumblebee.IntegrationTests.Shared.Hosting;
-using Bumblebee.IntegrationTests.Shared.Pages.Implementation;
+using Bumblebee.IntegrationTests.Shared.Pages;
 using Bumblebee.Setup;
 using Bumblebee.Setup.DriverEnvironments;
 
@@ -8,23 +8,24 @@ using FluentAssertions;
 
 using NUnit.Framework;
 
+// ReSharper disable InconsistentNaming
+
 namespace Bumblebee.IntegrationTests.Implementation.ClickableTests
 {
-	// ReSharper disable InconsistentNaming
-
-	[TestFixture]
-	public class Given_double_clickable : HostTestFixture
+	[TestFixture(typeof (HeadlessChrome))]
+	public class Given_double_clickable<T> : HostTestFixture
+		where T : IDriverEnvironment, new()
 	{
 		[OneTimeSetUp]
-		public void Init()
+		public void TestFixtureSetUp()
 		{
 			Threaded<Session>
-				.With<PhantomJS>()
-				.NavigateTo<DoubleClickablePage>(BaseUrl + "/Content/DoubleClick.html");
+				.With<T>()
+				.NavigateTo<DoubleClickablePage>(GetUrl("DoubleClick.html"));
 		}
 
 		[OneTimeTearDown]
-		public void Dispose()
+		public void TestFixtureTearDown()
 		{
 			Threaded<Session>
 				.End();

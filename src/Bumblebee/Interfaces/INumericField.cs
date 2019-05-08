@@ -8,10 +8,10 @@
 		/// <summary>
 		/// Enters a number into the number field
 		/// </summary>
-		/// <typeparam name="TCustomResult">The type of the block this element is on.</typeparam>
+		/// <typeparam name="TResult">The type of the block this element is on.</typeparam>
 		/// <param name="number">The number to enter</param>
 		/// <returns>The current block</returns>
-		TCustomResult EnterNumber<TCustomResult>(double number) where TCustomResult : IBlock;
+		TResult EnterNumber<TResult>(double number) where TResult : IBlock;
 
 		/// <summary>
 		/// Gets the value as a double. Tries to parse according to CurrentUICulture.
