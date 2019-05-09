@@ -59,8 +59,7 @@ namespace Bumblebee.IntegrationTests.Implementation
 		}
 
 		[Test]
-		public void
-			Given_option_is_selected_When_setting_focus_on_radio_buttons_control_Then_selected_option_has_focus()
+		public void Given_option_is_selected_When_setting_focus_on_radio_buttons_control_Then_selected_option_has_focus()
 		{
 			Threaded<Session>
 				.CurrentBlock<RadioButtonsPage>()
