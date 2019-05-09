@@ -5,7 +5,7 @@ namespace Bumblebee.Interfaces
 	/// <summary>
 	/// Provides an abstraction for &lt;select&gt; elements.
 	/// </summary>
-	public interface ISelectBox : IBlock
+	public interface ISelectBox : IBlock, IFocusable
 	{
 		/// <summary>
 		/// Gets all &lt;option&gt; elements.
@@ -86,7 +86,7 @@ namespace Bumblebee.Interfaces
 	/// <summary>
 	/// Provides an abstraction for &lt;select&gt; elements.
 	/// </summary>
-	public interface ISelectBox<out TResult> : ISelectBox
+	public interface ISelectBox<out TResult> : ISelectBox, IFocusable<TResult>
 		where TResult : IBlock
 	{
 		/// <summary>

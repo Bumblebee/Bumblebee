@@ -13,7 +13,7 @@ namespace Bumblebee.Implementation
 	/// <summary>
 	/// Provides an abstraction for &lt;select&gt; elements.
 	/// </summary>
-	public class SelectBox : Block, ISelectBox, IFocusable
+	public class SelectBox : Block, ISelectBox
 	{
 		/// <summary>
 		/// Gets a new instance of <see cref="OpenQA.Selenium.Support.UI.SelectElement" /> for use in member methods.
@@ -176,8 +176,7 @@ namespace Bumblebee.Implementation
 	/// Provides a generic abstraction for &lt;select&gt; elements.
 	/// </summary>
 	/// <typeparam name="TResult">The type of block all actions will return.</typeparam>
-	public class SelectBox<TResult> : SelectBox, ISelectBox<TResult>, IFocusable<TResult>
-		where TResult : IBlock
+	public class SelectBox<TResult> : SelectBox, ISelectBox<TResult> where TResult : IBlock
 	{
 		/// <summary>
 		/// Initializes a new instance of the <see cref="SelectBox{TResult}" /> class. To construct a <see cref="SelectBox" />, you must have both a parent block and a specification for finding the &lt;select&gt; element.

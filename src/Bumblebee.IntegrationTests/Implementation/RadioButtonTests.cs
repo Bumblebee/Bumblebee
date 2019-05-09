@@ -57,5 +57,18 @@ namespace Bumblebee.IntegrationTests.Implementation
 					.Any()
 					.Should().BeFalse());
 		}
+
+		[Test]
+		public void
+			Given_option_is_selected_When_setting_focus_on_radio_buttons_control_Then_selected_option_has_focus()
+		{
+			Threaded<Session>
+				.CurrentBlock<RadioButtonsPage>()
+				.Beverages.SetFocus()
+				.VerifyThat(
+					p => p.Beverages
+					.Options.First()
+					.HasFocus.Should().BeFalse());
+		}
 	}
 }

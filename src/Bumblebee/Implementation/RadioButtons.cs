@@ -9,8 +9,7 @@ using OpenQA.Selenium;
 
 namespace Bumblebee.Implementation
 {
-	public class RadioButtons<TResult> : IRadioButtons<TResult>, IFocusable<TResult>
-		where TResult : IBlock
+	public class RadioButtons<TResult> : IRadioButtons<TResult> where TResult : IBlock
 	{
 		protected static readonly ISpecification By = new Specification();
 

@@ -32,5 +32,10 @@ namespace Bumblebee.Implementation
 		{
 			return Click<TResult>();
 		}
+
+		public virtual TResult SetFocus()
+		{
+			return SetFocus<TResult>();
+		}
 	}
 }
