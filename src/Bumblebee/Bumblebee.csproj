@@ -18,7 +18,15 @@
     <PackageReleaseNotes>This is Bumblebee 2.0 that handles stale elements better by maintaining element specification logic.  Note, there are some breaking changes -- especially for elements that were Obsolete with warning before in the pre-releases.
 
 You can find more info about this release [here](https://github.com/Bumblebee/Bumblebee/releases/tag/v2.1.2).</PackageReleaseNotes>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Selenium.Support" Version="3.6.0" />
