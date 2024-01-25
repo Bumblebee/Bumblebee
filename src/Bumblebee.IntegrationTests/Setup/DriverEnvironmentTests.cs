@@ -9,7 +9,6 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 //using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
-using OpenQA.Selenium.PhantomJS;
 
 namespace Bumblebee.IntegrationTests.Setup
 {
@@ -19,7 +18,6 @@ namespace Bumblebee.IntegrationTests.Setup
 	[TestFixture(typeof (InternetExplorer), typeof (InternetExplorerDriver))]
 	[TestFixture(typeof (HeadlessChrome), typeof(HeadlessChromeDriver))]
 	[TestFixture(typeof (Chrome), typeof (ChromeDriver))]
-	[TestFixture(typeof (PhantomJS), typeof (PhantomJSDriver))]
 	public class DriverEnvironmentTests<TDriverEnvironment, TExpectedDriver>
 		where TDriverEnvironment : IDriverEnvironment, new()
 		where TExpectedDriver : IWebDriver
@@ -40,7 +38,6 @@ namespace Bumblebee.IntegrationTests.Setup
 	[TestFixture(typeof (InternetExplorer))]
 	[TestFixture(typeof(HeadlessChrome))]
 	[TestFixture(typeof (Chrome))]
-	[TestFixture(typeof (PhantomJS))]
 	public class DriverEnvironmentTests<TDriverEnvironment>
 		where TDriverEnvironment : IDriverEnvironment
 	{

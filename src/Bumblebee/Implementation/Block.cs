@@ -10,9 +10,9 @@ using OpenQA.Selenium.Support.UI;
 
 namespace Bumblebee.Implementation
 {
-    /// <summary>
-    /// Base block for a scoped area of a page allowing for specifying a custom wait timeout for finding elements.
-    /// </summary>
+	/// <summary>
+	/// Base block for a scoped area of a page allowing for specifying a custom wait timeout for finding elements.
+	/// </summary>
 	public abstract class Block : IBlock
 	{
 		protected static readonly ISpecification By = new Specification();
@@ -179,18 +179,6 @@ namespace Bumblebee.Implementation
 		public virtual IEnumerable<IWebElement> FindElements(By @by)
 		{
 			return Tag.FindElements(@by);
-		}
-
-		[Obsolete("This method is obsolete. Please use FindElement(By @by) instead.", error: true)]
-		public virtual IWebElement GetElement(By @by)
-		{
-			return null;
-		}
-
-		[Obsolete("This method is obsolete. Please use FindElements(By @by) instead.", error: true)]
-		public virtual IEnumerable<IWebElement> GetElements(By @by)
-		{
-			return null;
 		}
 
 		protected virtual T FindBlock<T>(By @by) where T : IBlock

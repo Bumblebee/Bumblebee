@@ -21,8 +21,8 @@ You can find more info about this release [here](https://github.com/Bumblebee/Bu
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Selenium.Support" Version="3.6.0" />
-    <PackageReference Include="Selenium.WebDriver" Version="3.6.0" />
+    <PackageReference Include="Selenium.Support" Version="4.17.0" />
+    <PackageReference Include="Selenium.WebDriver" Version="4.17.0" />
   </ItemGroup>
 
 </Project>

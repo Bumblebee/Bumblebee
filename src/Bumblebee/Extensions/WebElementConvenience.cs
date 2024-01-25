@@ -1,9 +1,7 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
 using OpenQA.Selenium;
-using OpenQA.Selenium.Internal;
 using OpenQA.Selenium.Support.Extensions;
 
 namespace Bumblebee.Extensions
@@ -16,12 +14,6 @@ namespace Bumblebee.Extensions
 		}
 
 		public static string GetId(this IWebElement element)
-		{
-			return element.GetAttribute("id");
-		}
-
-		[Obsolete("Use GetId() instead.")]
-		public static string GetID(this IWebElement element)
 		{
 			return element.GetAttribute("id");
 		}
@@ -39,18 +31,6 @@ namespace Bumblebee.Extensions
 		public static void SetAttribute(this IWebElement element, string attribute, string value)
 		{
 			element.GetDriver().ExecuteJavaScript<object>("arguments[0].setAttribute(arguments[1], arguments[2])", element, attribute, value);
-		}
-
-		[Obsolete("This method is obsolete.  Please use the FindElements(By @by) instead.", error: true)]
-		public static IList<IWebElement> GetElements(this ISearchContext driver, By @by)
-		{
-			return null;
-		}
-
-		[Obsolete("This method is obsolete.  Please use the FindElement(By @by) instead.", error: true)]
-		public static IWebElement GetElement(this ISearchContext driver, By by)
-		{
-			return null;
 		}
 	}
 }

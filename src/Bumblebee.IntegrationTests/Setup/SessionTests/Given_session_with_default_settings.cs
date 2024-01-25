@@ -44,16 +44,18 @@ namespace Bumblebee.IntegrationTests.Setup.SessionTests
 			_session = null;
 		}
 
-		[TestCaseSource(nameof (TestCases))]
-		public void When_CaptureScreen_is_called_Then_takes_screenshot_of_correct_format(string path, ImageFormat format, string expected)
+		[Test]
+		public void When_CaptureScreen_is_called_Then_takes_screenshot_of_correct_format()
 		{
+			const string path = "screenshot.png";
+			
 			File.Delete(path);
 
 			_session.CaptureScreen(path);
 
 			var actual = MimeProvider.GetMimeFromFile(path);
 
-			actual.Should().Be(expected);
+			actual.Should().Be("image/x-png");
 
 			File.Delete(path);
 		}
