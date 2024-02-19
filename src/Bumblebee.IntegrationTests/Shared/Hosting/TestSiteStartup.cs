@@ -12,9 +12,6 @@ public class TestSiteStartup
 
 	public void Configure(IApplicationBuilder app, IHostEnvironment env)
 	{
-		app.UseHsts();
-		app.UseHttpsRedirection();
-
 		app.UseStaticFiles(new StaticFileOptions
 		{
 			FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Content/"))

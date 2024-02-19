@@ -14,7 +14,7 @@ namespace Bumblebee.IntegrationTests
 	public class AssemblyTestFixture
 	{
 		private IWebHost _host = null!;
-		public const string BaseUrl = "https://localhost:5000";
+		public const string BaseUrl = "http://localhost:5000";
 
 		[OneTimeSetUp]
 		public void Init()
