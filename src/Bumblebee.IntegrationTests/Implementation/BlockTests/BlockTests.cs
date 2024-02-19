@@ -19,7 +19,7 @@ namespace Bumblebee.IntegrationTests.Implementation
         {
             Action action = () => new TestableBlock(null);
             action.ShouldThrow<ArgumentNullException>()
-                .WithMessage("Value cannot be null.\r\nParameter name: parent");
+                .WithMessage("Value cannot be null. (Parameter 'parent')");
         }
 
         [Test]
@@ -28,7 +28,7 @@ namespace Bumblebee.IntegrationTests.Implementation
             var mockParent = Substitute.For<IBlock>();
             Action action = () => new BlockWithNullSpecification(mockParent);
             action.ShouldThrow<ArgumentNullException>()
-                .WithMessage("Value cannot be null.\r\nParameter name: by");
+                .WithMessage("Value cannot be null. (Parameter 'by')");
         }
     }
 
