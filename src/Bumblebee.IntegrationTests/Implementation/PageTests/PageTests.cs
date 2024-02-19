@@ -71,7 +71,7 @@ namespace Bumblebee.IntegrationTests.Implementation.PageTests
 		{
 			Action action = () => new TestablePage(null);
 			action.ShouldThrow<ArgumentNullException>()
-				.WithMessage("Value cannot be null.\r\nParameter name: session");
+				.WithMessage("Value cannot be null. (Parameter 'session')");
 		}
 	}
 

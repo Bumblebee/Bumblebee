@@ -1,311 +1,206 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\NUnit.3.10.1\build\NUnit.props" Condition="Exists('..\packages\NUnit.3.10.1\build\NUnit.props')" />
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5B2C5CD0-1C34-433C-9100-59E50DC4DE1F}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Bumblebee.IntegrationTests</RootNamespace>
-    <AssemblyName>Bumblebee.IntegrationTests</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
-    <RestorePackages>true</RestorePackages>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
-    <TargetFrameworkProfile />
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="FluentAssertions, Version=4.19.3.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
-      <HintPath>..\packages\FluentAssertions.4.19.3\lib\net45\FluentAssertions.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="FluentAssertions.Core, Version=4.19.3.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
-      <HintPath>..\packages\FluentAssertions.4.19.3\lib\net45\FluentAssertions.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.Owin, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Owin.3.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.Owin.Diagnostics, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Owin.Diagnostics.3.1.0\lib\net45\Microsoft.Owin.Diagnostics.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.Owin.FileSystems, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Owin.FileSystems.3.1.0\lib\net45\Microsoft.Owin.FileSystems.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.Owin.Host.HttpListener, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Owin.Host.HttpListener.3.1.0\lib\net45\Microsoft.Owin.Host.HttpListener.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.Owin.Hosting, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Owin.Hosting.3.1.0\lib\net45\Microsoft.Owin.Hosting.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.Owin.StaticFiles, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Owin.StaticFiles.3.1.0\lib\net45\Microsoft.Owin.StaticFiles.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="NSubstitute, Version=2.0.3.0, Culture=neutral, PublicKeyToken=92dd2e9066daa5ca, processorArchitecture=MSIL">
-      <HintPath>..\packages\NSubstitute.2.0.3\lib\net45\NSubstitute.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="nunit.framework, Version=3.10.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
-      <HintPath>..\packages\NUnit.3.10.1\lib\net45\nunit.framework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
-      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.XML" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="WebDriver, Version=3.6.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Selenium.WebDriver.3.6.0\lib\net45\WebDriver.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="WebDriver.Support, Version=3.6.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Selenium.Support.3.6.0\lib\net45\WebDriver.Support.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
+    <None Remove="Content\ByOrdinal.html" />
+    <None Remove="Content\Checkbox.html" />
+    <None Remove="Content\ComplexTable.html" />
+    <None Remove="Content\CurrentBlock-Default.html" />
+    <None Remove="Content\CurrentBlock-NavigateTo.html" />
+    <None Remove="Content\DateField.html" />
+    <None Remove="Content\Default.html" />
+    <None Remove="Content\Dialogs.html" />
+    <None Remove="Content\DoubleClick.html" />
+    <None Remove="Content\favicon.ico" />
+    <None Remove="Content\HundredThousandItemSelect.html" />
+    <None Remove="Content\InlineFrames.html" />
+    <None Remove="Content\InlineFramesChild.html" />
+    <None Remove="Content\JavaScriptPopUp.html" />
+    <None Remove="Content\Keys.html" />
+    <None Remove="Content\ListOfComplexBlocks.html" />
+    <None Remove="Content\MultiSelect.html" />
+    <None Remove="Content\NestedInlineFrames.html" />
+    <None Remove="Content\NestedInlineFramesChild.html" />
+    <None Remove="Content\NestedInlineFramesGrandchild.html" />
+    <None Remove="Content\NumericField.html" />
+    <None Remove="Content\PageWithJQuery.html" />
+    <None Remove="Content\RadioButtons.html" />
+    <None Remove="Content\SingleSelect.html" />
+    <None Remove="Content\SlowBlock.html" />
+    <None Remove="Content\SlowPage.html" />
+    <None Remove="Content\SlowPageWithJQuery.html" />
+    <None Remove="Content\Table.html" />
+    <None Remove="Content\TextField.html" />
   </ItemGroup>
+
   <ItemGroup>
-    <Compile Include="AssemblyTestFixture.cs" />
-    <Compile Include="Extensions\FilteringTests.cs" />
-    <Compile Include="CallStackTests.cs" />
-    <Compile Include="Extensions\FindRelatedTests\Given_parent_element_that_gets_removed.cs" />
-    <Compile Include="Extensions\FindRelatedTests\Given_static_page_heirarchy.cs" />
-    <Compile Include="Implementation\BlockTests\BlockTests.cs" />
-    <Compile Include="Implementation\BlockTests\Given_slow_block_with_explicit_wait.cs" />
-    <Compile Include="Implementation\BlockTests\Given_slow_block_with_no_wait.cs" />
-    <Compile Include="Implementation\CheckboxTests.cs" />
-    <Compile Include="Implementation\AlertDialogTests.cs" />
-    <Compile Include="Implementation\ClickableTests\Given_double_clickable.cs" />
-    <Compile Include="Implementation\InlineFrameTests\Given_inline_frame.cs" />
-    <Compile Include="Implementation\IEnumerableOfBlocksTests.cs" />
-    <Compile Include="Implementation\InlineFrameTests\Given_nested_inline_frames.cs" />
-    <Compile Include="Implementation\PageTests\PageTests.cs" />
-    <Compile Include="Implementation\SelectBoxTests\Given_select_box_that_supports_multiple_selections.cs" />
-    <Compile Include="Implementation\SelectBoxTests\Given_select_box_with_one_hundred_thousand_items.cs" />
-    <Compile Include="Implementation\PageTests\Given_slow_page_with_explicit_wait.cs" />
-    <Compile Include="Implementation\PageTests\Given_slow_page_with_no_wait.cs" />
-    <Compile Include="Shared\Hosting\OwinStartUp.cs" />
-    <Compile Include="Shared\Hosting\OwinHost.cs" />
-    <Compile Include="Shared\Pages\CurrentBlockDefaultPage.cs" />
-    <Compile Include="Shared\Pages\CurrentBlockNavigateToPage.cs" />
-    <Compile Include="Setup\SessionTests\Given_user_has_navigated_to_a_page.cs" />
-    <Compile Include="Shared\Pages\InnerInnerSection.cs" />
-    <Compile Include="Shared\Pages\InnerSection.cs" />
-    <Compile Include="Setup\ThreadedSessionTests\Given_user_has_navigated_to_a_page.cs" />
-    <Compile Include="Shared\Pages\DefaultPage.cs" />
-    <Compile Include="Shared\Pages\HundredThousandItemSelectPage.cs" />
-    <Compile Include="Shared\Pages\SlowBlockPage.cs" />
-    <Compile Include="Shared\Pages\SlowPageWithJQuery.cs" />
-    <Compile Include="Shared\Pages\SlowPage.cs" />
-    <Compile Include="Shared\Pages\JavaScriptPopUpPage.cs" />
-    <Compile Include="KeyTests.cs" />
-    <Compile Include="Implementation\RadioButtonTests.cs" />
-    <Compile Include="Implementation\DateFieldTests.cs" />
-    <Compile Include="Implementation\NumericFieldTests.cs" />
-    <Compile Include="Implementation\TableTests\Given_generic_table.cs" />
-    <Compile Include="Implementation\TableTests\Given_complex_table.cs" />
-    <Compile Include="Implementation\TableTests\Given_table.cs" />
-    <Compile Include="Implementation\TextFieldTests.cs" />
-    <Compile Include="Setup\DriverEnvironmentTests.cs" />
-    <Compile Include="Setup\SessionTests\Given_default_implementation_of_ISettings.cs" />
-    <Compile Include="Setup\SessionTests\Given_environment_and_custom_settings_When_capturing.cs" />
-    <Compile Include="Setup\SessionTests\Given_environment_and_default_settings_When_capturing.cs" />
-    <Compile Include="Setup\SessionTests\Given_environment_and_default_settings_When_capturing_from_generic_method.cs" />
-    <Compile Include="Setup\SessionTests\Given_generic_environment_and_custom_settings_When_capturing.cs" />
-    <Compile Include="Setup\SessionTests\Given_generic_environment_and_default_settings_When_capturing.cs" />
-    <Compile Include="Setup\SessionTests\Given_page_without_jQuery.cs" />
-    <Compile Include="Setup\SessionTests\Given_page_with_jQuery.cs" />
-    <Compile Include="Setup\SessionTests\Given_session_with_default_settings.cs" />
-    <Compile Include="Setup\SessionTests\SessionTests.cs" />
-    <Compile Include="Shared\Pages\ByOrdinalPage.cs" />
-    <Compile Include="Shared\Pages\CheckboxPage.cs" />
-    <Compile Include="Shared\Pages\ComplexTableRow.cs" />
-    <Compile Include="Shared\Pages\DateFieldPage.cs" />
-    <Compile Include="Shared\Pages\DialogPage.cs" />
-    <Compile Include="Shared\Pages\GenericTablePage.cs" />
-    <Compile Include="Shared\Pages\GenericTableRow.cs" />
-    <Compile Include="Shared\Pages\DoubleClickablePage.cs" />
-    <Compile Include="Shared\Pages\InlineFramesPage.cs" />
-    <Compile Include="Shared\Pages\KeysPage.cs" />
-    <Compile Include="Shared\Pages\ListOfComplexBlocksPage.cs" />
-    <Compile Include="Shared\Pages\SelectPage.cs" />
-    <Compile Include="Shared\Pages\NestedInlineFramesPage.cs" />
-    <Compile Include="Shared\Pages\NumericFieldPage.cs" />
-    <Compile Include="Shared\Pages\PageWithJQuery.cs" />
-    <Compile Include="Shared\Pages\RadioButtonsPage.cs" />
-    <Compile Include="Shared\Hosting\HostTestFixture.cs" />
-    <Compile Include="Shared\Hosting\IHost.cs" />
-    <Compile Include="Shared\Pages\ComplexTablePage.cs" />
-    <Compile Include="Shared\Pages\TextFieldPage.cs" />
-    <Compile Include="Extensions\VerificationTests.cs" />
-    <Compile Include="Shared\Sessions\DerivedSessionWithWrongArgs.cs" />
-    <Compile Include="Shared\Sessions\DerivedSession.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Setup\ThreadedSessionTests\ThreadedSessionTests.cs" />
-    <Compile Include="Specifications\ByJQueryTests\Given_an_invalid_selector.cs" />
-    <Compile Include="Specifications\ByJQueryTests\Given_I_am_searching_for_a_collection.cs" />
-    <Compile Include="Specifications\ByJQueryTests\Given_I_am_searching_for_a_single_element.cs" />
-    <Compile Include="Specifications\ByJQueryTests\Given_page_loads_slowly.cs" />
-    <Compile Include="Specifications\ByOrdinalTests.cs" />
-    <Compile Include="Specifications\SpecificationTests\Given_page_loads_slowly.cs" />
-    <Compile Include="Specifications\SpecificationTests\SpecificationTests.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include=".editorconfig" />
-    <None Include="packages.config" />
-    <None Include="Readme.md" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="..\packages\PhantomJS.2.1.1\tools\phantomjs\phantomjs.exe">
-      <Link>phantomjs.exe</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Content\ByOrdinal.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\CurrentBlock-NavigateTo.html">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\CurrentBlock-Default.html">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\JavaScriptPopUp.html">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\HundredThousandItemSelect.html">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\SingleSelect.html">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\NestedInlineFramesGrandchild.html">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\NestedInlineFramesChild.html">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\InlineFrames.html">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\InlineFramesChild.html">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Keys.html">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
     <Content Include="Content\Checkbox.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\DateField.html">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Dialogs.html">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\DoubleClick.html">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\ListOfComplexBlocks.html">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\MultiSelect.html">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\NestedInlineFrames.html">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\NumericField.html">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\SlowBlock.html">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\SlowPageWithJQuery.html">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\PageWithJQuery.html">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\RadioButtons.html">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
     <Content Include="Content\ComplexTable.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Content\CurrentBlock-Default.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Content\CurrentBlock-NavigateTo.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Content\DateField.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
     <Content Include="Content\Default.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Content\Dialogs.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Content\DoubleClick.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Content\favicon.ico">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Content\HundredThousandItemSelect.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Content\InlineFrames.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Content\InlineFramesChild.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Content\JavaScriptPopUp.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Content\Keys.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Content\ListOfComplexBlocks.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Content\MultiSelect.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Content\NestedInlineFrames.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Content\NestedInlineFramesChild.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Content\NestedInlineFramesGrandchild.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Content\NumericField.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Content\PageWithJQuery.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Content\RadioButtons.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Content\SingleSelect.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Content\SlowBlock.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
     <Content Include="Content\SlowPage.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Content\SlowPageWithJQuery.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
     <Content Include="Content\Table.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
     <Content Include="Content\TextField.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Compile Include="Shared\Pages\TablePage.cs" />
-    <Content Include="phantomjs-license.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
   </ItemGroup>
+
   <ItemGroup>
-    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+    <PackageReference Include="FluentAssertions" Version="4.19.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="6.0.27" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.5.0" />
+    <PackageReference Include="NSubstitute" Version="2.0.3" />
+    <PackageReference Include="NUnit" Version="3.13.3" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.4.2" />
+    <PackageReference Include="NUnit.Analyzers" Version="3.6.1" />
+    <PackageReference Include="coverlet.collector" Version="3.2.0" />
+    <PackageReference Include="Selenium.PhantomJS.WebDriver" Version="2.1.1" />
+    <PackageReference Include="Selenium.WebDriver.IEDriver" Version="4.14.0" />
   </ItemGroup>
+
   <ItemGroup>
-    <ProjectReference Include="..\Bumblebee\Bumblebee.csproj">
-      <Project>{fd041c5e-b16c-411d-9e8e-082edf9601e0}</Project>
-      <Name>Bumblebee</Name>
-    </ProjectReference>
+    <ProjectReference Include="..\Bumblebee\Bumblebee.csproj" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\packages\NUnit.3.10.1\build\NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit.3.10.1\build\NUnit.props'))" />
-    <Error Condition="!Exists('..\packages\Selenium.WebDriver.ChromeDriver.2.36.0\build\Selenium.WebDriver.ChromeDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Selenium.WebDriver.ChromeDriver.2.36.0\build\Selenium.WebDriver.ChromeDriver.targets'))" />
-  </Target>
-  <Import Project="..\packages\Selenium.WebDriver.ChromeDriver.2.36.0\build\Selenium.WebDriver.ChromeDriver.targets" Condition="Exists('..\packages\Selenium.WebDriver.ChromeDriver.2.36.0\build\Selenium.WebDriver.ChromeDriver.targets')" />
-  <Import Project="..\packages\Selenium.WebDriver.IEDriver.3.4.0\build\Selenium.WebDriver.IEDriver.targets" Condition="Exists('..\packages\Selenium.WebDriver.IEDriver.3.4.0\build\Selenium.WebDriver.IEDriver.targets')" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+
 </Project>

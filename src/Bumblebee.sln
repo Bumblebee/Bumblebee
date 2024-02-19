@@ -1,10 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27428.2002
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bumblebee.IntegrationTests", "Bumblebee.IntegrationTests\Bumblebee.IntegrationTests.csproj", "{5B2C5CD0-1C34-433C-9100-59E50DC4DE1F}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{2202B611-510E-4850-B08B-350D7723E36A}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\NuGet.Config = .nuget\NuGet.Config
@@ -14,7 +12,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{2202B6
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{4C9F5F56-DC0A-4090-BAA4-C935880C9762}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bumblebee", "Bumblebee\Bumblebee.csproj", "{FD041C5E-B16C-411D-9E8E-082EDF9601E0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bumblebee", "Bumblebee\Bumblebee.csproj", "{9F623672-6DEE-49FD-8B07-74F8BB6AE19A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bumblebee.IntegrationTests", "Bumblebee.IntegrationTests\Bumblebee.IntegrationTests.csproj", "{5D21FF89-986F-45C1-B9D8-88951DB12447}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -22,20 +22,20 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{5B2C5CD0-1C34-433C-9100-59E50DC4DE1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5B2C5CD0-1C34-433C-9100-59E50DC4DE1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5B2C5CD0-1C34-433C-9100-59E50DC4DE1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5B2C5CD0-1C34-433C-9100-59E50DC4DE1F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FD041C5E-B16C-411D-9E8E-082EDF9601E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FD041C5E-B16C-411D-9E8E-082EDF9601E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FD041C5E-B16C-411D-9E8E-082EDF9601E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FD041C5E-B16C-411D-9E8E-082EDF9601E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F623672-6DEE-49FD-8B07-74F8BB6AE19A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F623672-6DEE-49FD-8B07-74F8BB6AE19A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F623672-6DEE-49FD-8B07-74F8BB6AE19A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F623672-6DEE-49FD-8B07-74F8BB6AE19A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D21FF89-986F-45C1-B9D8-88951DB12447}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D21FF89-986F-45C1-B9D8-88951DB12447}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D21FF89-986F-45C1-B9D8-88951DB12447}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D21FF89-986F-45C1-B9D8-88951DB12447}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{5B2C5CD0-1C34-433C-9100-59E50DC4DE1F} = {4C9F5F56-DC0A-4090-BAA4-C935880C9762}
+		{5D21FF89-986F-45C1-B9D8-88951DB12447} = {4C9F5F56-DC0A-4090-BAA4-C935880C9762}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {25209741-273B-4F3A-8E11-F023FCF13F1B}

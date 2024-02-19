@@ -110,7 +110,7 @@ namespace Bumblebee.IntegrationTests.Extensions
 		public void Given_selection_verification_fails_when_verifying_selected_should_throw_exception(bool expected)
 		{
 			var element = Substitute.For<ISelectable>();
-			element.Selected.Returns(!expected);
+			element.Selected.Returns(expected == false);
 
 			Action action = () => element.VerifySelected(expected);
 
