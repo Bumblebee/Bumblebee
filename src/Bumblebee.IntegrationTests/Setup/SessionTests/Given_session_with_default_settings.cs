@@ -1,5 +1,4 @@
 using System;
-using System.Drawing.Imaging;
 using System.IO;
 using System.Runtime.InteropServices;
 
@@ -19,15 +18,6 @@ namespace Bumblebee.IntegrationTests.Setup.SessionTests
 	public class Given_session_with_default_settings<T> : HostTestFixture
 		where T : IDriverEnvironment, new()
 	{
-		private static readonly TestCaseData[] TestCases =
-		{
-			new TestCaseData("screenshot.png", ImageFormat.Png, "image/x-png"),
-			new TestCaseData("screenshot.jpg", ImageFormat.Jpeg, "image/pjpeg"),
-			new TestCaseData("screenshot.jpeg", ImageFormat.Jpeg, "image/pjpeg"),
-			new TestCaseData("screenshot.bmp", ImageFormat.Bmp, "image/bmp"),
-			new TestCaseData("screenshot.gif", ImageFormat.Gif, "image/gif")
-		};
-
 		private Session _session;
 
 		[OneTimeSetUp]
@@ -48,7 +38,6 @@ namespace Bumblebee.IntegrationTests.Setup.SessionTests
 		public void When_CaptureScreen_is_called_Then_takes_screenshot_of_correct_format()
 		{
 			const string path = "screenshot.png";
-			
 			File.Delete(path);
 
 			_session.CaptureScreen(path);

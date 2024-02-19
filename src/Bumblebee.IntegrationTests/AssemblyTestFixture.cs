@@ -1,27 +1,37 @@
-﻿using System;
-
+﻿using System.IO;
+using System.Threading.Tasks;
 using Bumblebee.IntegrationTests.Shared.Hosting;
+using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Hosting;
 
 using NUnit.Framework;
+
+[assembly: Parallelizable(ParallelScope.Fixtures)]
 
 namespace Bumblebee.IntegrationTests
 {
 	[SetUpFixture]
 	public class AssemblyTestFixture
 	{
-		private static readonly Lazy<IHost> LazyHost = new Lazy<IHost>(() => new OwinHost(new Uri(HostTestFixture.BaseUrl)));
-		private static IHost Host => LazyHost.Value;
+		private IWebHost _host = null!;
+		public const string BaseUrl = "http://localhost:5000";
 
 		[OneTimeSetUp]
 		public void Init()
 		{
-			Host.Start();
+			_host = WebHost.CreateDefaultBuilder()
+						   .UseContentRoot(Path.Combine(Directory.GetCurrentDirectory(), "Content/"))
+						   .UseUrls(BaseUrl)
+						   .UseStartup<TestSiteStartup>()
+						   .Build();
+
+			_host.Start();
 		}
 
 		[OneTimeTearDown]
-		public void Dispose()
+		public Task Dispose()
 		{
-			Host.Stop();
+			return _host.StopAsync();
 		}
 	}
 }
